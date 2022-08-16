@@ -6,9 +6,9 @@ Appendix A from the book is provided below.
 
 ### Appendix A <br>The Compiler Project
 
-There are several general approaches for a compiler project in an academic course on compiler construction. One approach is to give detailed explanations and a complete implementation for a compiler for one source language but then concentrate the project around writing a compiler for a different source language. Another approach is to give explanations and **partial** implementations about how to write a compiler for a particular source language and then to concentrate the project around finishing the incomplete work and possibly extending the source language or targeting a different computer architecture. This book uses the latter approach.
+There are several general approaches for a compiler project in an academic course on compiler construction. One approach is to give detailed explanations and a complete implementation for a compiler for one source language but then concentrate the project around writing a compiler for a different source language. Another approach is to give explanations and a **partial** implementation for a compiler for a particular source language and then to concentrate the project around finishing the incomplete work and possibly extending the source language or targeting a different computer architecture. This book uses the latter approach.
 
-The overall project of developing a compiler for CPRL is divided into 11 smaller projects as described below (numbered 0-10) as described below. For most of the projects, the GitHub repository has lots of both complete and skeletal code to help you get started plus CPRL test programs that can be used to check your work. For each project you should test your compiler with both correct and incorrect CPRL programs as explained in the project descriptions.
+The overall project of developing a compiler for CPRL is divided into 11 smaller projects (numbered 0-10) as described below. For most of the projects, the GitHub repository has lots of both complete and skeletal code to help you get started plus CPRL test programs that can be used to check your work. For each project you should test your compiler with both correct and incorrect CPRL programs as explained in the project descriptions.
 
 ### Organizational Structure of the Compiler Project
 
@@ -73,22 +73,24 @@ can be commented out for Projects 0-3.
 
 In addition to the standard license and readme files, the top level of the GitHub Repository at [https://github.com/SoftMoore/CPRL-Java-3rd](https://github.com/SoftMoore/CPRL-Java-3rd) contains three directories (a.k.a., folders).  The Handouts directory contains several useful handouts.  The PowerPoint directory contains PowerPoint slides that could be useful for college instructors that adopt this book as a course textbook.  The slides in this directory correspond directly to the book chapters.  The Project directory contains all files used for the compiler projects, as described below.
 
-**Warning:** Several of the source files in the Project directory for latter projects are replacements or enhancements for the same file in earlier projects.  For example, there are three versions of class `Parser` and two versions of class `IdTable`.  Don’t try to download the source files and import all of them at the same time into the IDE for your compiler project.  Follow the project instructions for each project in the order presented.
+**Warning:** Several of the source files in the Project directory for latter projects are replacements or enhancements for the same files in earlier projects.  For example, there are three versions of class `Parser` and two versions of class `IdTable`.  Don’t try to download the source files and import all of them at the same time into the IDE for your compiler project.  Follow the project instructions for each project in the order presented.
 
 
 ### Project 0: Getting Started
 
-* This is not a real project but more of an initialization of your working environment for the remaining compiler projects.  Expand the green &ldquo;Code&rdquo; button on the GitHub Repository page, download the repository as a zip file, and unzip it into a directory on your computer.  Under the Project directory you will see 9 subdirectories as follows.<br>
-Project<br>
- – bin<br>
- – doc<br>
- – examples<br>
- – src-CVM<br>
- – src-Compiler<br>
- – src-ParserV1<br>
- – src-ParserV2<br>
- – src-ParserV3<br>
- – src-Scanner<br>
+* This is not a real project but more of an initialization of your working environment for the remaining compiler projects.  Expand the green &ldquo;Code&rdquo; button on the GitHub Repository page, download the repository as a zip file, and unzip it into a directory on your computer.  Under the Project directory you will see 9 subdirectories as follows.
+```
+Project
+ – bin
+ – doc
+ – examples
+ – src-CVM
+ – src-Compiler
+ – src-ParserV1
+ – src-ParserV2
+ – src-ParserV3
+ – src-Scanner
+```
 Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
 
 * Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `Bash` and `Windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
@@ -101,11 +103,11 @@ Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files 
 
   `cprlc *.cprl`
 
-  Similarly, there is a script `assemble.cmd` for running the assembler on `.asm` files and a script `disassemble.cmd` for running the disassembler on `.obj` files.  There is also a script `cprl.cmd` for running a single compiled/assembled CPRL program on the CVM, as in
+  Similarly, there is a script `assemble.cmd` for running the assembler on `.asm` files and a script `disassemble.cmd` for running the disassembler on `.obj` files.  There is also a script `cprl.cmd` for executing a single compiled/assembled CPRL program on the CVM, as in
 
   `cprl Hello.obj`
 
-  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single program, and script `testCorrect_all.cmd` can be used to test all programs in the current directory.  Both test scripts run `.obj` files and compare the output with expected output.
+  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single program, and script `testCorrect_all.cmd` can be used to test all programs in the current directory.  Both test scripts execute `.obj` files on the CVM and compare the output with expected output.
 
   Additionally, there are script files for testing the scanner and parser in the earlier projects.
 
@@ -209,7 +211,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Correct any remaining errors.
 
-* Test/retest all correct and incorrect examples related to this project and the previous project.
+* Test/retest all correct and incorrect examples related to this project and all previous projects.
 
 ### Project 8: Arrays
 
