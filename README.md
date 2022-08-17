@@ -95,19 +95,16 @@ Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files 
 
 * Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `Bash` and `Windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
 
-  As an example of the contents of bin for Windows, there is a script `cprlc.cmd` that will run the CPRL compiler on a source file whose name is entered via standard input, as in
+  As an example of the contents of bin for Windows, there is a script `cprlc.cmd` that will run the CPRL compiler on a source file whose name is entered via standard input.  Similarly, there is a script `assemble.cmd` for running the assembler on `.asm` files, a script `disassemble.cmd` for running the disassembler on `.obj` files, and a script `cprl.cmd` for executing a single compiled/assembled CPRL program on the CVM.
+  ```
+    cprlc Hello.cprl                // creates Hello.asm
+    assemble Hello.asm              // creates Hello.obj
+    cprl Hello.obj                  // executes Hello.obj on the CVM
+    disassemble Hello.obj           // creates Hello.dis.txt
+  ```
+  To compile all CPRL source files in the current working directory use `cprlc *.cprl`.
 
-  `cprlc Hello.cprl`
-
-  To compile all CPRL source files in the current working directory use
-
-  `cprlc *.cprl`
-
-  Similarly, there is a script `assemble.cmd` for running the assembler on `.asm` files and a script `disassemble.cmd` for running the disassembler on `.obj` files.  There is also a script `cprl.cmd` for executing a single compiled/assembled CPRL program on the CVM, as in
-
-  `cprl Hello.obj`
-
-  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single program, and script `testCorrect_all.cmd` can be used to test all programs in the current directory.  Both test scripts execute `.obj` files on the CVM and compare the output with expected output.
+  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single program, and script `testCorrect_all.cmd` can be used to test all programs in the current directory.  Both test scripts execute `.obj` files on the CVM and compare the output with expected output.  Starting with Project 6 you can also use script `testIncorrect_all.cmd` to compile all incorrect CPRL programs in the current directory and compare the results to the expected results.
 
   Additionally, there are script files for testing the scanner and parser in the earlier projects.
 
@@ -203,7 +200,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Use the assembler provided in directory `src-CVM` (see Project 0 above) and script files `assemble.cmd` (`assemble` for bash) to generate machine code for all correct CPRL/0 examples.
 
-* Use script files `cprl.cmd`/`cprl`, `testCorrect.cmd`/`testCorrect`, and `testCorrect_all.cmd`/`testCorrect_all` to run and test all correct CPRL/0 examples.  Retest all incorrect CPRL/0 examples as described in the previous project.
+* Use script files `cprl.cmd`, `testCorrect.cmd`, and `testCorrect_all.cmd` (or bash equivalents) to run and test all correct CPRL/0 examples.  Use script file `testIncorrect_all.cmd` (or bash equivalent) to test all incorrect CPRL/0 examples.
 
 ### Project 7: Subprograms
 
@@ -211,7 +208,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Correct any remaining errors.
 
-* Test/retest all correct and incorrect examples related to this project and all previous projects.
+* Test all correct and incorrect Subprogram examples.  Retest all correct and incorrect examples from CPRL/0.
 
 ### Project 8: Arrays
 
@@ -219,7 +216,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Correct any remaining errors.
 
-* Test/retest all correct and incorrect examples related to this project and all previous projects.
+* Test all correct and incorrect Arrays examples.  Retest all correct and incorrect examples from CPRL/0 and Subprograms.
 
 ### Project 9: Strings
 
@@ -227,7 +224,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Correct any remaining errors.
 
-* Test/retest all correct and incorrect examples related to this project and all previous projects.
+* Test all correct and incorrect Strings examples.  Retest all correct and incorrect examples from CPRL/0, Subprograms, and Arrays.
 
 ### Project 10: Records
 
@@ -235,4 +232,4 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * Correct any remaining errors.
 
-* Test/retest all correct and incorrect examples related to this project and all previous projects.
+* Test all correct and incorrect Records examples.  Retest all correct and incorrect examples from CPRL/0, Subprograms, Arrays, and Strings.
