@@ -91,6 +91,7 @@ In addition to the standard license and readme files, the top level of the GitHu
     – src-ParserV3
     – src-Scanner
 ```
+
   Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
 
 * Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `bash` and `windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
