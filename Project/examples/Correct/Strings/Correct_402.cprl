@@ -1,0 +1,16 @@
+type Name = string[4];
+
+proc main()
+  {
+    var firstName : Name := "John";
+    var i : Integer;
+
+    i := 0;
+    while i < 4 loop
+      {
+        write firstName[i];
+        i := i + 1;
+      }
+    writeln;
+  }
+

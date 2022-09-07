@@ -1,0 +1,12 @@
+// Check proper handling for a few escaped characters.
+// Correct should look something like the following:
+//
+// string with \n:
+// remaining text.
+// string with \t:     remaining text.
+
+proc main()
+  {
+    writeln "character with \\n: ", '\n', "remaining text.";
+    writeln "character with \\t: ", '\t', "remaining text.";
+  }

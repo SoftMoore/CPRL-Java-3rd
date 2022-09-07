@@ -1,0 +1,13 @@
+// function with a type error in statement part
+
+fun f(n : Integer) : Integer
+  {
+    var b : Boolean;
+    b := true;
+    return n + b;
+  }
+
+proc main()
+  {
+    writeln f(3);
+  }

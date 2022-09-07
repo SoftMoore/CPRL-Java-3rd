@@ -1,0 +1,32 @@
+   0:  CALL 49
+   5:  HALT
+   6:  LDLADDR -8
+  11:  LOADW
+  12:  LOADW
+  13:  LDLADDR -4
+  18:  LOADW
+  19:  BGE 20
+  24:  LDLADDR -8
+  29:  LOADW
+  30:  LDLADDR -8
+  35:  LOADW
+  36:  LOADW
+  37:  INC
+  38:  STOREW
+  39:  BR 5
+  44:  RET 8
+  49:  RET 8
+  54:  PROC 4
+  59:  LDLADDR 8
+  64:  LDCINT 13
+  69:  STOREW
+  70:  LDLADDR 8
+  75:  LDCINT 10
+  80:  CALL -79
+  85:  LDCSTR  "n = "
+  98:  PUTSTR 4
+ 103:  LDLADDR 8
+ 108:  LOADW
+ 109:  PUTINT
+ 110:  PUTEOL
+ 111:  RET0

@@ -1,0 +1,15 @@
+var x : Integer;
+
+fun f(var b : Boolean) : Integer   // function can't have a var parameter
+  {
+    if b then
+        return 1;
+    else
+        return -1;
+  }
+
+proc main()
+  {
+    x := f(true);
+    write x;
+  }

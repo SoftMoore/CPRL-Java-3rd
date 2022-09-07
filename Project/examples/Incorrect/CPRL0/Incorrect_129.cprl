@@ -1,0 +1,4 @@
+const m, n := 2;     // only one identifier is allowed in a constant declaration
+
+// remainder is correct but it tests that spaces are not always required
+var x:Integer;proc main(){x:=5;writeln(x);}

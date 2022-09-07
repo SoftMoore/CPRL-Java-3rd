@@ -1,0 +1,22 @@
+// test scopes
+// output should be:
+// x = 0
+// n = 12
+// x = 5
+
+var x : Integer := 0;
+
+proc p()
+  {
+    var n : Integer := 12;
+
+    writeln "n = ", n;
+    x := 5;
+  }
+
+proc main()
+  {
+    writeln "x = ", x;
+    p();
+    writeln "x = ", x;
+  }

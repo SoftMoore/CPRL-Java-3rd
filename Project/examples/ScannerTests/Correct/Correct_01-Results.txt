@@ -1,0 +1,86 @@
+initializing...
+
+starting main loop...
+
+line:  2   char:  1   token: Reserved Word -> Boolean
+line:  2   char: 11   token: Reserved Word -> Char
+line:  2   char: 21   token: Reserved Word -> Integer
+line:  2   char: 31   token: Reserved Word -> and
+line:  2   char: 41   token: Reserved Word -> array
+line:  2   char: 51   token: Reserved Word -> class
+line:  3   char:  1   token: Reserved Word -> const
+line:  3   char: 11   token: Reserved Word -> else
+line:  3   char: 21   token: Reserved Word -> enum
+line:  3   char: 31   token: Reserved Word -> exit
+line:  3   char: 41   token: Reserved Word -> false
+line:  3   char: 51   token: Reserved Word -> for
+line:  4   char:  1   token: Reserved Word -> fun
+line:  4   char: 11   token: Reserved Word -> if
+line:  4   char: 21   token: Reserved Word -> loop
+line:  4   char: 31   token: Reserved Word -> mod
+line:  4   char: 41   token: Reserved Word -> not
+line:  4   char: 51   token: Reserved Word -> of
+line:  5   char:  1   token: Reserved Word -> or
+line:  5   char: 11   token: Reserved Word -> private
+line:  5   char: 21   token: Reserved Word -> proc
+line:  5   char: 31   token: Reserved Word -> protected
+line:  5   char: 41   token: Reserved Word -> public
+line:  5   char: 51   token: Reserved Word -> read
+line:  6   char:  1   token: Reserved Word -> readln
+line:  6   char: 11   token: Reserved Word -> record
+line:  6   char: 21   token: Reserved Word -> return
+line:  6   char: 31   token: Reserved Word -> string
+line:  6   char: 41   token: Reserved Word -> then
+line:  6   char: 51   token: Reserved Word -> true
+line:  7   char:  1   token: Reserved Word -> type
+line:  7   char: 11   token: Reserved Word -> var
+line:  7   char: 21   token: Reserved Word -> when
+line:  7   char: 31   token: Reserved Word -> while
+line:  7   char: 41   token: Reserved Word -> write
+line:  7   char: 51   token: Reserved Word -> writeln
+line: 10   char:  1   token: +
+line: 10   char:  6   token: -
+line: 10   char: 11   token: *
+line: 10   char: 16   token: /
+line: 13   char:  1   token: =
+line: 13   char:  5   token: !=
+line: 13   char: 10   token: <
+line: 13   char: 14   token: <=
+line: 13   char: 19   token: >
+line: 13   char: 23   token: >=
+line: 16   char:  1   token: :=
+line: 16   char:  6   token: (
+line: 16   char: 10   token: )
+line: 16   char: 14   token: [
+line: 16   char: 18   token: ]
+line: 16   char: 22   token: {
+line: 16   char: 26   token: }
+line: 16   char: 30   token: ,
+line: 16   char: 34   token: :
+line: 16   char: 38   token: ;
+line: 16   char: 42   token: .
+line: 19   char:  1   token: Identifier -> x
+line: 19   char:  5   token: Identifier -> y
+line: 19   char:  9   token: Identifier -> x1
+line: 19   char: 14   token: Identifier -> i
+line: 19   char: 18   token: Identifier -> aVeryLongIdentifier
+line: 22   char:  1   token: Identifier -> IF
+line: 22   char:  6   token: Identifier -> While
+line: 22   char: 14   token: Identifier -> LOOP
+line: 22   char: 21   token: Identifier -> End
+line: 22   char: 27   token: Identifier -> Array
+line: 22   char: 35   token: Identifier -> TYPE
+line: 25   char:  1   token: Integer Literal -> 1
+line: 25   char:  5   token: Integer Literal -> 0
+line: 25   char:  9   token: Integer Literal -> 10
+line: 25   char: 13   token: Integer Literal -> 123456789
+line: 26   char:  1   token: Char Literal -> 'a'
+line: 26   char:  7   token: Char Literal -> 'x'
+line: 26   char: 13   token: Char Literal -> '\"'
+line: 26   char: 20   token: Char Literal -> '\''
+line: 27   char:  1   token: String Literal -> "a"
+line: 27   char:  7   token: String Literal -> "a longer string"
+line: 27   char: 27   token: String Literal -> "yet a longer string with a quote (\") in the middle"
+line: 30   char:  1   token: End-of-File
+
+...done

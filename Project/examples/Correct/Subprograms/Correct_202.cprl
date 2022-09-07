@@ -1,0 +1,18 @@
+// Output should be
+// n = 5
+
+var x : Integer;
+
+proc p()
+  {
+    var n : Integer;
+
+    n := x;
+    writeln "n = ", n;
+  }
+
+proc main()
+  {
+    x := 5;
+    p();
+  }

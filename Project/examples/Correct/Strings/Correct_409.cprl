@@ -1,0 +1,15 @@
+type Name = string[20];
+
+proc main()
+  {
+    var name : Name := "John";
+    writeln name;
+    changeName(name);
+    writeln name;
+  }
+
+proc changeName(var n : Name)   // test pass by reference
+  {
+    n[2] := 'a';
+  }
+

@@ -1,0 +1,12 @@
+fun f(n : Integer) : Integer
+  {
+    if n > 5 then
+        return;       // return statement does not return a value
+    else
+        return -1;
+  }
+
+proc main()
+  {
+    writeln f(3);
+  }

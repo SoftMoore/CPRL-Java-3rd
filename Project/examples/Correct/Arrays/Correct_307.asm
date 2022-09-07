@@ -1,0 +1,183 @@
+   CALL _main
+   HALT
+_main:
+   PROC 40
+   LDLADDR 8
+   ALLOC 40
+   CALL _makeArray
+   STORE 40
+   LDCSTR "array: "
+   PUTSTR 7
+   LDLADDR 8
+   CALL _writeArray
+   LDCSTR "max value in array is "
+   PUTSTR 22
+   ALLOC 4
+   LDLADDR 8
+   CALL _max
+   PUTINT
+   RET 0
+_makeArray:
+   PROC 40
+   LDLADDR 8
+   LDCINT 0
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 12
+   STOREW
+   LDLADDR 8
+   LDCINT 1
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 1
+   NEG
+   STOREW
+   LDLADDR 8
+   LDCINT 2
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 3
+   STOREW
+   LDLADDR 8
+   LDCINT 3
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 7
+   STOREW
+   LDLADDR 8
+   LDCINT 4
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 99
+   STOREW
+   LDLADDR 8
+   LDCINT 5
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 99
+   NEG
+   STOREW
+   LDLADDR 8
+   LDCINT 6
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 1000
+   STOREW
+   LDLADDR 8
+   LDCINT 7
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 18
+   STOREW
+   LDLADDR 8
+   LDCINT 8
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 15
+   STOREW
+   LDLADDR 8
+   LDCINT 9
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 2
+   STOREW
+   LDLADDR -40
+   LDLADDR 8
+   LOAD 40
+   STORE 40
+   RET 0
+_writeArray:
+   PROC 4
+   LDLADDR 8
+   LDCINT 0
+   STOREW
+L60:
+   LDLADDR 8
+   LOADW
+   LDCINT 10
+   BGE L61
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR "  "
+   PUTSTR 2
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L60
+L61:
+   PUTEOL
+   RET 4
+_max:
+   PROC 8
+   LDLADDR 12
+   LDLADDR -4
+   LOADW
+   LDCINT 0
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   STOREW
+   LDLADDR 8
+   LDCINT 1
+   STOREW
+L64:
+   LDLADDR 8
+   LOADW
+   LDCINT 10
+   BGE L65
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   LDLADDR 12
+   LOADW
+   BLE L70
+   LDLADDR 12
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   STOREW
+L70:
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L64
+L65:
+   LDLADDR -8
+   LDLADDR 12
+   LOADW
+   STOREW
+   RET 4

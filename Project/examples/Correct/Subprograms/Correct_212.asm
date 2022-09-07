@@ -1,0 +1,57 @@
+   CALL _main
+   HALT
+_p:
+   PROC 4
+   LDLADDR 8
+   LDCINT 2
+   STOREW
+   LDLADDR -8
+   LOADW
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   ADD
+   STOREW
+   LDCSTR "m = "
+   PUTSTR 4
+   LDLADDR -8
+   LOADW
+   LOADW
+   PUTINT
+   LDCSTR ", n = "
+   PUTSTR 6
+   LDLADDR -4
+   LOADW
+   PUTINT
+   LDCSTR ", k = "
+   PUTSTR 6
+   LDLADDR 8
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 8
+_main:
+   PROC 8
+   LDLADDR 8
+   LDCINT 5
+   STOREW
+   LDLADDR 12
+   LDCINT 6
+   STOREW
+   LDLADDR 8
+   LDLADDR 12
+   LOADW
+   CALL _p
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", y = "
+   PUTSTR 6
+   LDLADDR 12
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

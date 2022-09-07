@@ -1,0 +1,17 @@
+type Name = string[20];
+
+proc main()
+  {
+    var name : Name;
+    name := readName();
+    writeln "Your name is ", name, ".";
+  }
+
+fun readName() : Name
+  {
+    var name : Name;
+    write "What is your name?  ";
+    read name;
+    writeln "You entered ", name, ".";
+    return name;
+  }

@@ -1,0 +1,12 @@
+type Name = string[20];
+
+proc main()
+  {
+    var name1, name2 : Name;
+    name1 := "Moe";
+    name2 := "Larry";
+    writeln "name2 = ", name2;
+
+    name2 := name1;
+    writeln "name2 = ", name2;
+  }

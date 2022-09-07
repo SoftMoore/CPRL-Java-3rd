@@ -1,0 +1,11 @@
+var x, y : Integer;
+
+proc main()
+  {
+    write "Enter value for x: ";
+    read x;
+    write "Enter value for y: ";
+    read y;
+
+    writeln "x + y = ", x + y;
+  }

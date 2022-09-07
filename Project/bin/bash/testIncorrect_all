@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#
+# Compile, assemble, and run all ".cprl" files in the current
+# directory, and compare the results with the expected results.
+#
+
+echo ...deleting \"cprlc_all-Results.tmp\"
+rm -f cprlc_all-Results.tmp
+
+echo ...compiling all \".cprl\" files
+cprlc *.cprl > cprlc_all-Results.tmp 2>&1
+
+echo ...comparing files cprlc_all-Results.tmp and cprlc_all-Results.txt
+diff --strip-trailing-cr cprlc_all-Results.tmp cprlc_all-Results.txt
+if [ $? -ne 0 ]
+then
+    echo "*** Test Failed ***"
+else
+    echo "Test Passed"
+fi

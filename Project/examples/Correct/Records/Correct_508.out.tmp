@@ -1,0 +1,4 @@
+Point(1, 2)
+Point(5, 8)
+Rectangle(Point(1, 2), Point(5, 8))
+Rectangle(Point(1, 2), Point(5, 8))

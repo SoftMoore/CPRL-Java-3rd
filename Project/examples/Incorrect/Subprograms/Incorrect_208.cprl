@@ -1,0 +1,16 @@
+var x : Integer;
+
+fun add() : Integer
+  {
+    var b : Boolean;
+
+    b := false;
+
+    return x + b;      // invalid expression in return statement
+  }
+
+proc main()
+  {
+    x := 5;
+    writeln add();
+  }

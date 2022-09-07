@@ -1,0 +1,36 @@
+   0:  CALL 1
+   5:  HALT
+   6:  PROC 44
+  11:  LDLADDR 8
+  16:  LDCSTR  "Mary"
+  29:  STORE 12
+  34:  LDCSTR  "length of \"Mary\" = "
+  77:  PUTSTR 19
+  82:  LDLADDR 8
+  87:  LOADW
+  88:  PUTINT
+  89:  PUTEOL
+  90:  LDLADDR 8
+  95:  LDCINT 5
+ 100:  STOREW
+ 101:  LDLADDR 8
+ 106:  LDCINT 4
+ 111:  ADD
+ 112:  LDCINT 6
+ 117:  ADD
+ 118:  LDCCH 'i'
+ 121:  STORE2B
+ 122:  LDLADDR 8
+ 127:  LDCINT 4
+ 132:  ADD
+ 133:  LDCINT 8
+ 138:  ADD
+ 139:  LDCCH 'e'
+ 142:  STORE2B
+ 143:  LDCSTR  "name changed to "
+ 180:  PUTSTR 16
+ 185:  LDLADDR 8
+ 190:  LOAD 44
+ 195:  PUTSTR 20
+ 200:  PUTEOL
+ 201:  RET0

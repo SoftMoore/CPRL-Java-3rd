@@ -1,0 +1,15 @@
+var x : Integer;
+
+proc main()
+  {
+    x := 1;
+
+    loop
+      {
+        x := x + 1;
+        y := x;   // error inside loop not related to exit
+        exit when x = 10;
+      }
+
+    writeln "x = ", x;
+  }

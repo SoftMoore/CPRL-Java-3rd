@@ -1,0 +1,39 @@
+   CALL _main
+   HALT
+_p2:
+   LDLADDR -4
+   LOADW
+   LDLADDR -4
+   LOADW
+   LOADW
+   LDCINT 3
+   ADD
+   STOREW
+   RET 4
+_p1:
+   LDLADDR -4
+   LOADW
+   LDLADDR -4
+   LOADW
+   LOADW
+   LDCINT 5
+   ADD
+   STOREW
+   LDLADDR -4
+   LOADW
+   CALL _p2
+   RET 4
+_main:
+   PROC 4
+   LDLADDR 8
+   LDCINT 7
+   STOREW
+   LDLADDR 8
+   CALL _p1
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

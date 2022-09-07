@@ -1,0 +1,15 @@
+type Name1 = string[20];
+type Name2 = string[20];
+
+proc main()
+  {
+    var name : Name1;
+    name := "Johnny";
+    writeName(name);        // parameter type mismatch
+  }
+
+
+proc writeName(name : Name2)
+  {
+    writeln "name = ", name;
+  }

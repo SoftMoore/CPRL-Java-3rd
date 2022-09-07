@@ -1,0 +1,10 @@
+module:edu.citadel.compiler
+edu.citadel.compiler
+edu.citadel.compiler.util
+module:edu.citadel.cprl
+edu.citadel.cprl
+edu.citadel.cprl.ast
+module:edu.citadel.cvm
+edu.citadel.cvm
+edu.citadel.cvm.assembler
+edu.citadel.cvm.assembler.ast

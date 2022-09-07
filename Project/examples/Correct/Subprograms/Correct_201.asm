@@ -1,0 +1,35 @@
+   PROGRAM 4
+   LDGADDR 0
+   LDCINT 5
+   STOREW
+   CALL _main
+   HALT
+_p:
+   LDLADDR -4
+   LOADW
+   LOADW
+   PUTINT
+   LDCSTR "   "
+   PUTSTR 3
+   LDLADDR -4
+   LOADW
+   LDCINT 6
+   STOREW
+   LDGADDR 0
+   LOADW
+   PUTINT
+   LDCSTR "   "
+   PUTSTR 3
+   LDLADDR -4
+   LOADW
+   LDCINT 7
+   STOREW
+   RET 4
+_main:
+   LDGADDR 0
+   CALL _p
+   LDGADDR 0
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

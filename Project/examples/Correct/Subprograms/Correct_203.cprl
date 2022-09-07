@@ -1,0 +1,17 @@
+// tests var parameter
+// output should be:   A     B     C
+var c : Char := 'A';
+
+proc main()
+  {
+    p(c);
+    writeln c;
+  }
+
+proc p(var c : Char)
+  {
+    write c, "   ";
+    c := 'B';
+    write c, "   ";
+    c := 'C';
+  }

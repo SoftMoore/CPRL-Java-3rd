@@ -1,0 +1,84 @@
+   CALL _main
+   HALT
+_main:
+   PROC 20
+   LDLADDR 8
+   ALLOC 20
+   CALL _makeArray
+   STORE 20
+   LDLADDR 8
+   CALL _printArray
+   RET 0
+_makeArray:
+   PROC 20
+   LDLADDR 8
+   LDCINT 0
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 0
+   STOREW
+   LDLADDR 8
+   LDCINT 1
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 1
+   STOREW
+   LDLADDR 8
+   LDCINT 2
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 2
+   STOREW
+   LDLADDR 8
+   LDCINT 3
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 3
+   STOREW
+   LDLADDR 8
+   LDCINT 4
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 4
+   STOREW
+   LDLADDR -20
+   LDLADDR 8
+   LOAD 20
+   STORE 20
+   RET 0
+_printArray:
+   PROC 4
+   LDLADDR 8
+   LDCINT 0
+   STOREW
+L56:
+   LDLADDR 8
+   LOADW
+   LDCINT 5
+   BGE L57
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR "  "
+   PUTSTR 2
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L56
+L57:
+   PUTEOL
+   RET 4

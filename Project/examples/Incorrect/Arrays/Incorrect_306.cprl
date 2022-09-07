@@ -1,0 +1,8 @@
+type T = array[10] of Integer;
+var  a : T;
+
+proc main()
+  {
+    a.0 := 1;          // can't use record selector for arrays
+    writeln a[0];
+  }

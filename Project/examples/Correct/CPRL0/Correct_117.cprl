@@ -1,0 +1,13 @@
+// Correct output is as follows:
+// for input 2: 1
+// for input 8: 0
+
+var x : Integer;
+
+proc main()
+  {
+    write "Enter value for x: ";
+    read x;
+
+    write x <= 5;
+  }

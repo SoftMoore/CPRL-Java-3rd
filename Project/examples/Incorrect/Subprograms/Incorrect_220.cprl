@@ -1,0 +1,12 @@
+fun f() : Integer
+  {
+    const big := 9999999999999;   // literal is too large for Integer
+    var x : Integer;
+
+    return 5;
+  }
+
+proc main()
+  {
+    writeln(f());
+  }

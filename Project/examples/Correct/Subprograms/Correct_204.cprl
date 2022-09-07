@@ -1,0 +1,20 @@
+// Output should be
+// before p:  n = 5
+// during p:  n = 6
+//  after p:  n = 5
+
+var n : Integer;
+
+proc p(n : Integer)
+  {
+    n := n + 1;
+    writeln "during p:  n = ", n;
+  }
+
+proc main()
+  {
+    n := 5;
+    writeln "before p:  n = ", n;
+    p(n);
+    writeln " after p:  n = ", n;
+  }

@@ -1,0 +1,507 @@
+   PROGRAM 52
+   CALL _main
+   HALT
+_initMaxDays:
+   LDGADDR 0
+   LDCINT 0
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 0
+   STOREW
+   LDGADDR 0
+   LDCINT 1
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 2
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 28
+   STOREW
+   LDGADDR 0
+   LDCINT 3
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 4
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 5
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 6
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 7
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 8
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 9
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 10
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 11
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 12
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 31
+   STOREW
+   RET 0
+_isLeapYear:
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   MOD
+   LDCINT 0
+   BE L10
+   LDLADDR -5
+   LDCB 0
+   STOREB
+   RET 4
+   BR L11
+L10:
+   LDLADDR -4
+   LOADW
+   LDCINT 400
+   MOD
+   LDCINT 0
+   BNE L8
+   LDLADDR -5
+   LDCB 1
+   STOREB
+   RET 4
+   BR L9
+L8:
+   LDLADDR -4
+   LOADW
+   LDCINT 100
+   MOD
+   LDCINT 0
+   BNE L6
+   LDLADDR -5
+   LDCB 0
+   STOREB
+   RET 4
+   BR L7
+L6:
+   LDLADDR -5
+   LDCB 1
+   STOREB
+   RET 4
+L7:
+L9:
+L11:
+_maxDaysInMonth:
+   LDLADDR -8
+   LOADW
+   LDCINT 2
+   BE L14
+   LDCB 0
+   BR L15
+L14:
+   ALLOC 1
+   LDLADDR -4
+   LOADW
+   CALL _isLeapYear
+L15:
+   BZ L16
+   LDLADDR -12
+   LDGADDR 0
+   LDLADDR -8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   RET 8
+   BR L17
+L16:
+   LDLADDR -12
+   LDGADDR 0
+   LDLADDR -8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   STOREW
+   RET 8
+L17:
+_isValidDate:
+   LDLADDR -12
+   LDCINT 8
+   ADD
+   LOADW
+   LDCINT 0
+   BGE L22
+   LDCB 1
+   BR L23
+L22:
+   LDLADDR -12
+   LDCINT 8
+   ADD
+   LOADW
+   LDCINT 5000
+   BLE L20
+   LDCB 1
+   BR L21
+L20:
+   LDCB 0
+L21:
+L23:
+   BZ L24
+   LDLADDR -13
+   LDCB 0
+   STOREB
+   RET 12
+L24:
+   LDLADDR -12
+   LDCINT 4
+   ADD
+   LOADW
+   LDCINT 1
+   BGE L30
+   LDCB 1
+   BR L31
+L30:
+   LDLADDR -12
+   LDCINT 4
+   ADD
+   LOADW
+   LDCINT 12
+   BLE L28
+   LDCB 1
+   BR L29
+L28:
+   LDCB 0
+L29:
+L31:
+   BZ L32
+   LDLADDR -13
+   LDCB 0
+   STOREB
+   RET 12
+L32:
+   LDLADDR -12
+   LOADW
+   LDCINT 1
+   BGE L38
+   LDCB 1
+   BR L39
+L38:
+   LDLADDR -12
+   LOADW
+   ALLOC 4
+   LDLADDR -12
+   LDCINT 4
+   ADD
+   LOADW
+   LDLADDR -12
+   LDCINT 8
+   ADD
+   LOADW
+   CALL _maxDaysInMonth
+   BLE L36
+   LDCB 1
+   BR L37
+L36:
+   LDCB 0
+L37:
+L39:
+   BZ L40
+   LDLADDR -13
+   LDCB 0
+   STOREB
+   RET 12
+L40:
+   LDLADDR -13
+   LDCB 1
+   STOREB
+   RET 12
+_checkDate:
+   LDLADDR -12
+   LOAD 12
+   CALL _writeDate
+   ALLOC 1
+   LDLADDR -12
+   LOAD 12
+   CALL _isValidDate
+   BZ L42
+   LDCSTR " is a valid date."
+   PUTSTR 17
+   PUTEOL
+   BR L43
+L42:
+   LDCSTR " is not a valid date."
+   PUTSTR 21
+   PUTEOL
+L43:
+   RET 12
+_writeDate:
+   LDCSTR "Date("
+   PUTSTR 5
+   LDLADDR -12
+   LDCINT 8
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR "-"
+   PUTSTR 1
+   LDLADDR -12
+   LDCINT 4
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR "-"
+   PUTSTR 1
+   LDLADDR -12
+   LOADW
+   PUTINT
+   LDCSTR ")"
+   PUTSTR 1
+   RET 12
+_addDay:
+   ALLOC 1
+   LDLADDR -4
+   LOADW
+   LOAD 12
+   CALL _isValidDate
+   NOT
+   BZ L44
+   LDLADDR -4
+   LOADW
+   LOAD 12
+   CALL _writeDate
+   LDCSTR " is not a valid date."
+   PUTSTR 21
+   PUTEOL
+L44:
+   LDLADDR -4
+   LOADW
+   LDLADDR -4
+   LOADW
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   LDLADDR -4
+   LOADW
+   LOADW
+   ALLOC 4
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   ADD
+   LOADW
+   LDLADDR -4
+   LOADW
+   LDCINT 8
+   ADD
+   LOADW
+   CALL _maxDaysInMonth
+   BLE L48
+   LDLADDR -4
+   LOADW
+   LDCINT 1
+   STOREW
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   ADD
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   ADD
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+L48:
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   ADD
+   LOADW
+   LDCINT 12
+   BLE L52
+   LDLADDR -4
+   LOADW
+   LDCINT 4
+   ADD
+   LDCINT 1
+   STOREW
+   LDLADDR -4
+   LOADW
+   LDCINT 8
+   ADD
+   LDLADDR -4
+   LOADW
+   LDCINT 8
+   ADD
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+L52:
+   RET 4
+_main:
+   PROC 36
+   CALL _initMaxDays
+   LDLADDR 8
+   LDCINT 8
+   ADD
+   LDCINT 2021
+   STOREW
+   LDLADDR 8
+   LDCINT 4
+   ADD
+   LDCINT 7
+   STOREW
+   LDLADDR 8
+   LDCINT 15
+   STOREW
+   LDLADDR 8
+   LOAD 12
+   CALL _checkDate
+   LDLADDR 20
+   LDCINT 8
+   ADD
+   LDCINT 2021
+   STOREW
+   LDLADDR 20
+   LDCINT 4
+   ADD
+   LDCINT 13
+   STOREW
+   LDLADDR 20
+   LDCINT 15
+   STOREW
+   LDLADDR 20
+   LOAD 12
+   CALL _checkDate
+   LDLADDR 32
+   LDCINT 8
+   ADD
+   LDCINT 2020
+   STOREW
+   LDLADDR 32
+   LDCINT 4
+   ADD
+   LDCINT 2
+   STOREW
+   LDLADDR 32
+   LDCINT 29
+   STOREW
+   LDLADDR 32
+   LOAD 12
+   CALL _checkDate
+   PUTEOL
+   LDCSTR "Adding a day to "
+   PUTSTR 16
+   LDLADDR 8
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   LDLADDR 8
+   CALL _addDay
+   LDCSTR "New date is "
+   PUTSTR 12
+   LDLADDR 8
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   PUTEOL
+   LDLADDR 20
+   LDCINT 8
+   ADD
+   LDCINT 2021
+   STOREW
+   LDLADDR 20
+   LDCINT 4
+   ADD
+   LDCINT 12
+   STOREW
+   LDLADDR 20
+   LDCINT 31
+   STOREW
+   LDCSTR "Adding a day to "
+   PUTSTR 16
+   LDLADDR 20
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   LDLADDR 20
+   CALL _addDay
+   LDCSTR "New date is "
+   PUTSTR 12
+   LDLADDR 20
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   PUTEOL
+   LDCSTR "Adding a day to "
+   PUTSTR 16
+   LDLADDR 32
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   LDLADDR 32
+   CALL _addDay
+   LDCSTR "New date is "
+   PUTSTR 12
+   LDLADDR 32
+   LOAD 12
+   CALL _writeDate
+   PUTEOL
+   PUTEOL
+   RET 0

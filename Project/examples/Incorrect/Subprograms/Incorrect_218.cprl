@@ -1,0 +1,12 @@
+var x : Integer;
+
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }
+
+proc main()
+  {
+    x := 3;
+    writeln inc(3);   // attempt to use a proc as an expression
+  }

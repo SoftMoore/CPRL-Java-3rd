@@ -1,0 +1,17 @@
+// test scopes
+// output should be:   1    5
+
+var x : Integer;
+
+proc p()
+  {
+    var x : Boolean := true;
+    write x, "   ";
+  }
+
+proc main()
+  {
+    x := 5;
+    p();
+    writeln x;
+  }

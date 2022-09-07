@@ -1,0 +1,70 @@
+// Output should be
+// initial array:
+// 0  2  99  6  8  10  12  -1  16  5
+// sorted array:
+// -1  0  2  5  6  8  10  12  16  99
+
+const arraySize := 10;
+
+type A = array[arraySize] of Integer;
+
+// insertion sort
+proc sort(var a : A)
+  {
+    var i, j, save : Integer;
+
+    i := 1;
+    while i < arraySize loop
+      {
+        // insert a[i] into the sorted slice a[0]..a[i - 1]
+        save := a[i];
+        j := i - 1;
+
+        while j >= 0 and save < a[j] loop
+          {
+            a[j + 1] := a[j];
+            j := j - 1;
+          }
+
+        a[j + 1] := save;  // insert saved value at proper position
+        i := i + 1;
+      }
+  }
+
+proc printArray(x : A)
+  {
+    var i : Integer;
+
+    i := 0;
+    while i < arraySize loop
+      {
+        write x[i], "  ";
+        i := i + 1;
+      }
+    writeln;
+  }
+
+proc main()
+  {
+    var i : Integer;
+    var a : A;
+
+    // initialize array
+    i := 0;
+    while i < arraySize loop
+      {
+       a[i] := 2*i;
+       i := i + 1;
+      }
+
+    a[2] := 99;
+    a[7] := -1;
+    a[9] := 5;
+
+    writeln "initial array:";
+    printArray(a);
+    sort(a);
+    writeln "sorted array:";
+    printArray(a);
+  }
+

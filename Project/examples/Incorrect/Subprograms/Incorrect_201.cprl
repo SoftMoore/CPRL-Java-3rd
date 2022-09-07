@@ -1,0 +1,19 @@
+var x, y : Boolean;
+var n : Integer;
+
+fun f(b : Boolean) : Integer
+  {
+    if b then
+        return 1;
+    else
+        return -1;
+  }
+
+proc main()
+  {
+    y := f(x);       // incorrect return type for assignment
+    write y;
+
+    n := f(x);
+    write n;
+  }

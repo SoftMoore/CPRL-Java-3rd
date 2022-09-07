@@ -1,0 +1,220 @@
+Starting compilation for Incorrect_101.cprl
+...parsing
+*** Syntax error detected near line 7, character 5:
+    Expecting ";" but found "else" instead.
+Errors detected in Incorrect_101.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_102.cprl
+...parsing
+*** Syntax error detected near line 8, character 1:
+    Expecting "}" but found "End-of-File" instead.
+Errors detected in Incorrect_102.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_103.cprl
+...parsing
+*** Syntax error detected near line 7, character 5:
+    Identifier "i" cannot start a statement.
+Errors detected in Incorrect_103.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_104.cprl
+...parsing
+*** Syntax error detected near line 1, character 7:
+    Expecting ":" but found "=" instead.
+*** Syntax error detected near line 5, character 10:
+    Identifier "x" has not been declared.
+Errors detected in Incorrect_104.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_105.cprl
+...parsing
+*** Syntax error detected near line 5, character 10:
+    Identifier "FALSE" has not been declared.
+Errors detected in Incorrect_105.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_106.cprl
+...parsing
+*** Syntax error detected near line 5, character 13:
+    Invalid literal expression.
+*** Syntax error detected near line 9, character 9:
+    Identifier "boolean" has not been declared.
+*** Syntax error detected near line 13, character 8:
+    Invalid expression.
+*** Syntax error detected near line 16, character 9:
+    Identifier "d" cannot start a statement.
+Errors detected in Incorrect_106.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_107.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_107.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_108.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 10:
+    An "if" condition should have type Boolean.
+Errors detected in Incorrect_108.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_109.cprl
+...parsing
+*** Syntax error detected near line 2, character 7:
+    Identifier "x" is already defined in the current scope.
+Errors detected in Incorrect_109.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_110.cprl
+...parsing
+*** Syntax error detected near line 4, character 3:
+    Expecting ";" but found "}" instead.
+Errors detected in Incorrect_110.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_111.cprl
+...parsing
+*** Syntax error detected near line 6, character 5:
+    Exit statement is not nested within a loop.
+Errors detected in Incorrect_111.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_112.cprl
+...parsing
+*** Syntax error detected near line 1, character 9:
+    Invalid type name.
+Errors detected in Incorrect_112.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_113.cprl
+...parsing
+*** Syntax error detected near line 5, character 5:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_113.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_114.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_114.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_115.cprl
+...parsing
+*** Syntax error detected near line 7, character 7:
+    Expecting ":=" but found "=" instead.
+*** Syntax error detected near line 8, character 5:
+    Identifier "five" cannot start a statement.
+Errors detected in Incorrect_115.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_116.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 7, character 13:
+    The "while" expression should have type Boolean.
+Errors detected in Incorrect_116.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_117.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 10:
+    The number "9999999999999" cannot be converted to an integer in CPRL.
+Errors detected in Incorrect_117.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_118.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 7, character 14:
+    Expression following "not" operator is not a Boolean expression.
+Errors detected in Incorrect_118.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_119.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 8, character 16:
+    Right operand for a logical expression should have type Boolean.
+Errors detected in Incorrect_119.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_120.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 10, character 19:
+    The "when" expression should have type Boolean.
+Errors detected in Incorrect_120.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_121.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 9:
+    Input supported only for integers, characters, and strings.
+Errors detected in Incorrect_121.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_122.cprl
+...parsing
+*** Lexical error detected near line 8, character 31:
+    Illegal escape character.
+*** Lexical error detected near line 9, character 31:
+    Illegal escape character.
+Errors detected in Incorrect_122.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_123.cprl
+...parsing
+*** Lexical error detected near line 8, character 38:
+    Illegal escape character.
+*** Lexical error detected near line 9, character 38:
+    Illegal escape character.
+Errors detected in Incorrect_123.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_124.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 2, character 14:
+    The number "9999999999999" cannot be converted to an integer in CPRL.
+Errors detected in Incorrect_124.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_125.cprl
+...parsing
+*** Syntax error detected near line 4, character 1:
+    Expecting "proc" or "fun" but found "n" instead.
+Errors detected in Incorrect_125.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_126.cprl
+...parsing
+*** Syntax error detected near line 10, character 9:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_126.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_127.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 10:
+    Type mismatch for left and right operands of a relational expression.
+*** Constraint error detected near line 13, character 12:
+    Operand types not permitted for a relational expression.
+Errors detected in Incorrect_127.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_128.cprl
+...parsing
+*** Syntax error detected near line 8, character 1:
+    Expecting "}" but found "End-of-File" instead.
+Errors detected in Incorrect_128.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_129.cprl
+...parsing
+*** Syntax error detected near line 1, character 8:
+    Expecting ":=" but found "," instead.
+Errors detected in Incorrect_129.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_130.cprl
+...parsing
+*** Syntax error detected near line 6, character 10:
+    Invalid expression.
+Errors detected in Incorrect_130.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_131.cprl
+...parsing
+*** Syntax error detected near line 2, character 3:
+    Expecting "(" but found "{" instead.
+Errors detected in Incorrect_131.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_132.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 1, character 20:
+    Type mismatch for variable initialization.
+Errors detected in Incorrect_132.cprl -- compilation terminated.
+

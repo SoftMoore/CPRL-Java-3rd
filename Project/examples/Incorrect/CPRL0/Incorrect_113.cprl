@@ -1,0 +1,6 @@
+var x : Integer;
+
+proc main()
+  {
+    y := 5;    // y has not been declared
+  }

@@ -1,0 +1,258 @@
+   PROGRAM 338
+   CALL _main
+   HALT
+_initMonths:
+   LDGADDR 0
+   LDCINT 0
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "invalid"
+   STORE 18
+   LDGADDR 0
+   LDCINT 0
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 0
+   STOREW
+   LDGADDR 0
+   LDCINT 1
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "January"
+   STORE 18
+   LDGADDR 0
+   LDCINT 1
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 2
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "February"
+   STORE 20
+   LDGADDR 0
+   LDCINT 2
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 29
+   STOREW
+   LDGADDR 0
+   LDCINT 3
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "March"
+   STORE 14
+   LDGADDR 0
+   LDCINT 3
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 4
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "April"
+   STORE 14
+   LDGADDR 0
+   LDCINT 4
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 5
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "May"
+   STORE 10
+   LDGADDR 0
+   LDCINT 5
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 6
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "June"
+   STORE 12
+   LDGADDR 0
+   LDCINT 6
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 7
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "July"
+   STORE 12
+   LDGADDR 0
+   LDCINT 7
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 1
+   STOREW
+   LDGADDR 0
+   LDCINT 8
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "August"
+   STORE 16
+   LDGADDR 0
+   LDCINT 8
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 9
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "September"
+   STORE 22
+   LDGADDR 0
+   LDCINT 9
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 10
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "October"
+   STORE 18
+   LDGADDR 0
+   LDCINT 10
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   LDGADDR 0
+   LDCINT 11
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "November"
+   STORE 20
+   LDGADDR 0
+   LDCINT 11
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 30
+   STOREW
+   LDGADDR 0
+   LDCINT 12
+   LDCINT 26
+   MUL
+   ADD
+   LDCSTR "December"
+   STORE 20
+   LDGADDR 0
+   LDCINT 12
+   LDCINT 26
+   MUL
+   ADD
+   LDCINT 22
+   ADD
+   LDCINT 31
+   STOREW
+   RET 0
+_writelnMonth:
+   LDCSTR "Month "
+   PUTSTR 6
+   LDLADDR -26
+   LOAD 22
+   PUTSTR 9
+   LDCSTR " has a maximum of "
+   PUTSTR 18
+   LDLADDR -26
+   LDCINT 22
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR " days."
+   PUTSTR 6
+   PUTEOL
+   RET 26
+_main:
+   PROC 4
+   CALL _initMonths
+   LDLADDR 8
+   LDCINT 1
+   STOREW
+L82:
+   LDLADDR 8
+   LOADW
+   LDCINT 12
+   BG L83
+   LDGADDR 0
+   LDLADDR 8
+   LOADW
+   LDCINT 26
+   MUL
+   ADD
+   LOAD 26
+   CALL _writelnMonth
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L82
+L83:
+   RET 0

@@ -1,0 +1,7 @@
+type Name = string[5];
+
+proc main()
+  {
+    var name1 : Name;
+    name1 := "Johnny";   // string literal is too big
+  }

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#
+# Run CVM disassembler on one or more ".obj" files.
+#
+
+# set config environment variables
+source cprl_config
+
+# use either CLASSPATH or MODULEPATH
+#CLASSPATH=$COMPILER_PROJECT_PATH
+#java -ea -cp "$CLASSPATH" edu.citadel.cvm.Disassembler $*
+MODULEPATH=$COMPILER_PROJECT_PATH
+java -ea -p "$MODULEPATH" -m edu.citadel.cvm/edu.citadel.cvm.Disassembler $*

@@ -1,0 +1,14 @@
+// missing proc main
+
+fun abs(n : Integer) : Integer
+  {
+    if n >= 0 then
+        return n;
+    else
+        return -n;
+  }
+
+fun f(x : Integer) : Integer
+  {
+    return 3*x - 1;
+  }

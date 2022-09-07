@@ -1,0 +1,5 @@
+proc main()
+  {
+    var name1 : string[20];       // need a type name
+    name1 := "Johnny";
+  }

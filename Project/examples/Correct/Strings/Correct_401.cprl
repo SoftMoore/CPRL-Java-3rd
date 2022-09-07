@@ -1,0 +1,7 @@
+type Name = string[20];
+
+proc main()
+  {
+    var firstName : Name := "John";
+    writeln "Hello, ", firstName, ".";
+  }

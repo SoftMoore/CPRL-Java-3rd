@@ -1,0 +1,17 @@
+var x : Integer;
+
+fun f(b : Boolean, n : Integer) : Integer
+  {
+    if b then
+       x := 1;
+   else
+       x := 0;
+
+   // no return statement
+  }
+
+proc main()
+  {
+    x := f(true, 12);
+    writeln x;
+  }

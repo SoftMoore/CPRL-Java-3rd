@@ -1,0 +1,11 @@
+proc main()
+  {
+    writeln f();
+    writeln g();   // no function named g
+  }
+
+fun f() : Integer
+  {
+    return 5;
+  }
+

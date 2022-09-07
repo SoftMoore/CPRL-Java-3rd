@@ -1,0 +1,29 @@
+   PROGRAM 10
+   CALL _main
+   HALT
+_main:
+   LDGADDR 0
+   LDCINT 7
+   STOREW
+   LDGADDR 4
+   LDCINT 5
+   LDGADDR 0
+   LOADW
+   MUL
+   STOREW
+   LDGADDR 8
+   LDCCH 'X'
+   STORE2B
+   LDCSTR "n = "
+   PUTSTR 4
+   LDGADDR 4
+   LOADW
+   PUTINT
+   PUTEOL
+   LDCSTR "c = "
+   PUTSTR 4
+   LDGADDR 8
+   LOAD2B
+   PUTCH
+   PUTEOL
+   RET 0

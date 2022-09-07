@@ -1,0 +1,120 @@
+Parsing Incorrect_201.cprl...
+Parsing complete.
+
+Parsing Incorrect_202.cprl...
+Parsing complete.
+
+Parsing Incorrect_203.cprl...
+*** Syntax error detected near line 5, character 5:
+    Expecting "{" but found "n" instead.
+Errors detected in Incorrect_203.cprl -- parsing terminated.
+
+Parsing Incorrect_204.cprl...
+Parsing complete.
+
+Parsing Incorrect_205.cprl...
+*** Syntax error detected near line 2, character 8:
+    Expecting ":" but found "=" instead.
+*** Syntax error detected near line 19, character 5:
+    Identifier "x2" has not been declared.
+Errors detected in Incorrect_205.cprl -- parsing terminated.
+
+Parsing Incorrect_206.cprl...
+Parsing complete.
+
+Parsing Incorrect_207.cprl...
+Parsing complete.
+
+Parsing Incorrect_208.cprl...
+Parsing complete.
+
+Parsing Incorrect_209.cprl...
+Parsing complete.
+
+Parsing Incorrect_210.cprl...
+*** Syntax error detected near line 11, character 3:
+    Expecting ";" but found "}" instead.
+Errors detected in Incorrect_210.cprl -- parsing terminated.
+
+Parsing Incorrect_211.cprl...
+Parsing complete.
+
+Parsing Incorrect_212.cprl...
+Parsing complete.
+
+Parsing Incorrect_213.cprl...
+Parsing complete.
+
+Parsing Incorrect_214.cprl...
+Parsing complete.
+
+Parsing Incorrect_215.cprl...
+*** Syntax error detected near line 6, character 5:
+    Identifier "f" is already defined in the current scope.
+Errors detected in Incorrect_215.cprl -- parsing terminated.
+
+Parsing Incorrect_216.cprl...
+Parsing complete.
+
+Parsing Incorrect_217.cprl...
+Parsing complete.
+
+Parsing Incorrect_218.cprl...
+*** Syntax error detected near line 11, character 13:
+    Identifier "inc" is not valid as an expression.
+Errors detected in Incorrect_218.cprl -- parsing terminated.
+
+Parsing Incorrect_219.cprl...
+Parsing complete.
+
+Parsing Incorrect_220.cprl...
+Parsing complete.
+
+Parsing Incorrect_221.cprl...
+Parsing complete.
+
+Parsing Incorrect_222.cprl...
+Parsing complete.
+
+Parsing Incorrect_223.cprl...
+Parsing complete.
+
+Parsing Incorrect_224.cprl...
+Parsing complete.
+
+Parsing Incorrect_225.cprl...
+*** Syntax error detected near line 9, character 1:
+    Expecting "proc" or "fun" but found "procedure" instead.
+Errors detected in Incorrect_225.cprl -- parsing terminated.
+
+Parsing Incorrect_226.cprl...
+*** Syntax error detected near line 1, character 1:
+    Expecting "proc" or "fun" but found "function" instead.
+Errors detected in Incorrect_226.cprl -- parsing terminated.
+
+Parsing Incorrect_227.cprl...
+*** Syntax error detected near line 8, character 6:
+    Identifier "p" is already defined in the current scope.
+Errors detected in Incorrect_227.cprl -- parsing terminated.
+
+Parsing Incorrect_228.cprl...
+*** Syntax error detected near line 8, character 26:
+    Expecting "{" but found ":" instead.
+Errors detected in Incorrect_228.cprl -- parsing terminated.
+
+Parsing Incorrect_229.cprl...
+Parsing complete.
+
+Parsing Incorrect_230.cprl...
+Parsing complete.
+
+Parsing Incorrect_231.cprl...
+*** Syntax error detected near line 1, character 13:
+    Invalid type declaration.
+*** Syntax error detected near line 5, character 13:
+    Identifier "Name" has not been declared.
+Errors detected in Incorrect_231.cprl -- parsing terminated.
+
+Parsing Incorrect_232.cprl...
+Parsing complete.
+

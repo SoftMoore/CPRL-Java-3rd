@@ -1,0 +1,15 @@
+var x : Integer;
+
+fun f(b : Boolean) : Integer
+  {
+    if b then
+        return 1;
+    else
+        return -1;
+  }
+
+proc main()
+  {
+    x := f(1);   // incorrect parameter type
+    writeln x;
+  }

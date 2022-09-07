@@ -1,0 +1,53 @@
+// Test that an array element can be passed as a parameter.
+// Output should be
+// initial array:
+// 0  2  4  6  8
+// incremented array:
+// 1  3  5  7  9
+
+const arraySize := 5;
+type A = array[arraySize] of Integer;
+
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }
+
+proc printArray(x : A)
+  {
+    var i : Integer := 0;
+
+    while i < arraySize loop
+      {
+        write x[i], "  ";
+        i := i + 1;
+      }
+    writeln;
+  }
+
+proc main()
+  {
+    var a : A;
+    var i : Integer := 0;
+
+    // initialize array
+    while i < arraySize loop
+      {
+        a[i] := 2*i;
+        i := i + 1;
+      }
+
+    writeln "initial array:";
+    printArray(a);
+
+    // increment each element in the array
+    i := 0;
+    while i < arraySize loop
+      {
+        inc(a[i]);
+        i := i + 1;
+      }
+
+    writeln "incremented array:";
+    printArray(a);
+  }

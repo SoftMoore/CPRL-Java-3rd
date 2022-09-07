@@ -1,0 +1,7 @@
+var x : Integer;
+
+proc main()
+  {
+    read x;
+    write;   // write statement must have at least one expression
+  }

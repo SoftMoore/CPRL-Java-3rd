@@ -1,0 +1,16 @@
+const n := 5;
+var   x : Integer;
+
+proc f(b : Boolean)
+  {
+    if b then
+        writeln 1;
+    else
+        writeln -1;
+  }
+
+proc main()
+  {
+    f(n);       // incorrect parameter type
+    write x;
+  }

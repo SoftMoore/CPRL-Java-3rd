@@ -1,0 +1,7 @@
+var x : ;     // missing type
+
+proc main()
+  {
+    x := 12;
+    writeln(x);
+  }

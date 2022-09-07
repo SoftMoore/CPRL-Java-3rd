@@ -1,0 +1,6 @@
+var x : Integer;
+
+proc main()
+  {
+    x := true;   // assign Boolean value to an Integer
+  }

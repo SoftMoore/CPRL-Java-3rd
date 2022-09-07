@@ -1,0 +1,88 @@
+   PROGRAM 10
+   CALL _main
+   HALT
+_main:
+   LDCSTR "Enter value for n1:  "
+   PUTSTR 21
+   LDGADDR 2
+   GETINT
+   LDCSTR "Enter value for n2:  "
+   PUTSTR 21
+   LDGADDR 6
+   GETINT
+   LDCSTR "n1 = "
+   PUTSTR 5
+   LDGADDR 2
+   LOADW
+   PUTINT
+   LDCSTR ";  n2 = "
+   PUTSTR 8
+   LDGADDR 6
+   LOADW
+   PUTINT
+   PUTEOL
+   LDGADDR 0
+   LDGADDR 2
+   LOADW
+   LDCINT 0
+   BE L34
+   LDCB 1
+   BR L35
+L34:
+   LDCB 0
+L35:
+   STOREB
+   LDGADDR 1
+   LDGADDR 6
+   LOADW
+   LDCINT 0
+   BE L36
+   LDCB 1
+   BR L37
+L36:
+   LDCB 0
+L37:
+   STOREB
+   LDCSTR "b1 and b2 = "
+   PUTSTR 12
+   LDGADDR 0
+   LOADB
+   BNZ L38
+   LDCB 0
+   BR L39
+L38:
+   LDGADDR 1
+   LOADB
+L39:
+   BZ L40
+   LDCSTR "true"
+   PUTSTR 4
+   PUTEOL
+   BR L41
+L40:
+   LDCSTR "false"
+   PUTSTR 5
+   PUTEOL
+L41:
+   LDCSTR "b1 or  b2 = "
+   PUTSTR 12
+   LDGADDR 0
+   LOADB
+   BZ L42
+   LDCB 1
+   BR L43
+L42:
+   LDGADDR 1
+   LOADB
+L43:
+   BZ L44
+   LDCSTR "true"
+   PUTSTR 4
+   PUTEOL
+   BR L45
+L44:
+   LDCSTR "false"
+   PUTSTR 5
+   PUTEOL
+L45:
+   RET 0

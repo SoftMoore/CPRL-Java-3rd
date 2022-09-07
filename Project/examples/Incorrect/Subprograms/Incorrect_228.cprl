@@ -1,0 +1,12 @@
+proc main()
+  {
+    var x : Integer;
+    x := 5;
+    writeln(double(x));
+  }
+
+proc double(n : Integer) : A    // should be fun, not proc
+  {
+    return 2*n;
+  }
+

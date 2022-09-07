@@ -1,0 +1,27 @@
+// procedure with a return statement
+// output should be:
+// x = 5, y = 6
+// x = 8, y = 5
+
+proc p(var m : Integer, n : Integer)
+  {
+   if m < n then
+      return;
+   else
+      m := n + 3;
+  }
+
+proc main()
+  {
+    var x, y : Integer;
+
+    x := 5;
+    y := 6;
+    p(x, y);
+    writeln "x = ", x, ", y = ", y;
+
+    x := 6;
+    y := 5;
+    p(x, y);
+    writeln "x = ", x, ", y = ", y;
+  }

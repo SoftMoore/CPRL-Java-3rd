@@ -1,0 +1,19 @@
+var x : Integer;
+
+proc main()
+  {
+    loop
+      {
+        write "Enter an integer (0 to exit): ";
+        read x;
+
+        if x < 0 then
+            writeln x, " is negative";
+        else if x = 0 then
+            writeln x, " is zero";
+        else
+            writeln x, " is positive";
+
+        exit when x = 0;
+      }
+  }

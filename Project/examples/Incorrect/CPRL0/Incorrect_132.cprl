@@ -1,0 +1,6 @@
+var x : Integer := true;   // can't initialize integer with boolean value
+
+proc main()
+  {
+    write x;
+  }

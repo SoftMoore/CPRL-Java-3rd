@@ -1,0 +1,32 @@
+   PROGRAM 5
+   LDGADDR 0
+   LDCINT 5
+   STOREW
+   CALL _main
+   HALT
+_main:
+   LDGADDR 4
+   LDGADDR 0
+   LOADW
+   LDCINT 10
+   BG L168
+   LDCB 1
+   BR L169
+L168:
+   LDCB 0
+L169:
+   NOT
+   STOREB
+   LDGADDR 4
+   LOADB
+   BZ L170
+   LDCSTR "not (x <= 10)"
+   PUTSTR 13
+   PUTEOL
+   BR L171
+L170:
+   LDCSTR "x <= 10"
+   PUTSTR 7
+   PUTEOL
+L171:
+   RET 0

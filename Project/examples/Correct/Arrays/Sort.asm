@@ -1,0 +1,196 @@
+   CALL _main
+   HALT
+_sort:
+   PROC 12
+   LDLADDR 8
+   LDCINT 1
+   STOREW
+L124:
+   LDLADDR 8
+   LOADW
+   LDCINT 10
+   BGE L125
+   LDLADDR 16
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   STOREW
+   LDLADDR 12
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   SUB
+   STOREW
+L128:
+   LDLADDR 12
+   LOADW
+   LDCINT 0
+   BGE L134
+   LDCB 0
+   BR L135
+L134:
+   LDLADDR 16
+   LOADW
+   LDLADDR -4
+   LOADW
+   LDLADDR 12
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   BGE L132
+   LDCB 1
+   BR L133
+L132:
+   LDCB 0
+L133:
+L135:
+   BZ L129
+   LDLADDR -4
+   LOADW
+   LDLADDR 12
+   LOADW
+   LDCINT 1
+   ADD
+   LDCINT 4
+   MUL
+   ADD
+   LDLADDR -4
+   LOADW
+   LDLADDR 12
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   STOREW
+   LDLADDR 12
+   LDLADDR 12
+   LOADW
+   LDCINT 1
+   SUB
+   STOREW
+   BR L128
+L129:
+   LDLADDR -4
+   LOADW
+   LDLADDR 12
+   LOADW
+   LDCINT 1
+   ADD
+   LDCINT 4
+   MUL
+   ADD
+   LDLADDR 16
+   LOADW
+   STOREW
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L124
+L125:
+   RET 4
+_printArray:
+   PROC 4
+   LDLADDR 8
+   LDCINT 0
+   STOREW
+L136:
+   LDLADDR 8
+   LOADW
+   LDCINT 10
+   BGE L137
+   LDLADDR -4
+   LOADW
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR "  "
+   PUTSTR 2
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L136
+L137:
+   PUTEOL
+   RET 4
+_main:
+   PROC 44
+   LDLADDR 8
+   LDCINT 0
+   STOREW
+L140:
+   LDLADDR 8
+   LOADW
+   LDCINT 10
+   BGE L141
+   LDLADDR 12
+   LDLADDR 8
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 2
+   LDLADDR 8
+   LOADW
+   MUL
+   STOREW
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L140
+L141:
+   LDLADDR 12
+   LDCINT 2
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 99
+   STOREW
+   LDLADDR 12
+   LDCINT 7
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 1
+   NEG
+   STOREW
+   LDLADDR 12
+   LDCINT 9
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 5
+   STOREW
+   LDCSTR "initial array:"
+   PUTSTR 14
+   PUTEOL
+   LDLADDR 12
+   CALL _printArray
+   LDLADDR 12
+   CALL _sort
+   LDCSTR "sorted array:"
+   PUTSTR 13
+   PUTEOL
+   LDLADDR 12
+   CALL _printArray
+   RET 0

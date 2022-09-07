@@ -1,0 +1,66 @@
+   CALL _main
+   HALT
+_p:
+   LDLADDR -8
+   LOADW
+   LOADW
+   LDLADDR -4
+   LOADW
+   BGE L40
+   RET 8
+   BR L41
+L40:
+   LDLADDR -8
+   LOADW
+   LDLADDR -4
+   LOADW
+   LDCINT 3
+   ADD
+   STOREW
+L41:
+   RET 8
+_main:
+   PROC 8
+   LDLADDR 8
+   LDCINT 5
+   STOREW
+   LDLADDR 12
+   LDCINT 6
+   STOREW
+   LDLADDR 8
+   LDLADDR 12
+   LOADW
+   CALL _p
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", y = "
+   PUTSTR 6
+   LDLADDR 12
+   LOADW
+   PUTINT
+   PUTEOL
+   LDLADDR 8
+   LDCINT 6
+   STOREW
+   LDLADDR 12
+   LDCINT 5
+   STOREW
+   LDLADDR 8
+   LDLADDR 12
+   LOADW
+   CALL _p
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", y = "
+   PUTSTR 6
+   LDLADDR 12
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

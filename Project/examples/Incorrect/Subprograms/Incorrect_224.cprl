@@ -1,0 +1,12 @@
+fun abs(n : Integer) : Integer
+  {
+    if n >= 0 then
+        return n;
+    else
+        return -n;
+  }
+
+proc main(x : Integer)   // main can't have parameters
+  {
+    write abs(42);
+  }

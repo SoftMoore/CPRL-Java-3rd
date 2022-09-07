@@ -1,0 +1,26 @@
+   0:  CALL 1
+   5:  HALT
+   6:  PROC 44
+  11:  LDLADDR 8
+  16:  LDCSTR  "John"
+  29:  STORE 12
+  34:  LDLADDR 8
+  39:  LOAD 44
+  44:  PUTSTR 20
+  49:  PUTEOL
+  50:  LDLADDR 8
+  55:  CALL 17
+  60:  LDLADDR 8
+  65:  LOAD 44
+  70:  PUTSTR 20
+  75:  PUTEOL
+  76:  RET0
+  77:  LDLADDR -4
+  82:  LOADW
+  83:  LDCINT 4
+  88:  ADD
+  89:  LDCINT 4
+  94:  ADD
+  95:  LDCCH 'a'
+  98:  STORE2B
+  99:  RET4

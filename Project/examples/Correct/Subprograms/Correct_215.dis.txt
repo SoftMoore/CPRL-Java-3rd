@@ -1,0 +1,36 @@
+   0:  CALL 54
+   5:  HALT
+   6:  LDLADDR -4
+  11:  LOADW
+  12:  LDLADDR -4
+  17:  LOADW
+  18:  LOADW
+  19:  LDCINT 3
+  24:  ADD
+  25:  STOREW
+  26:  RET4
+  27:  LDLADDR -4
+  32:  LOADW
+  33:  LDLADDR -4
+  38:  LOADW
+  39:  LOADW
+  40:  LDCINT 5
+  45:  ADD
+  46:  STOREW
+  47:  LDLADDR -4
+  52:  LOADW
+  53:  CALL -52
+  58:  RET4
+  59:  PROC 4
+  64:  LDLADDR 8
+  69:  LDCINT 7
+  74:  STOREW
+  75:  LDLADDR 8
+  80:  CALL -58
+  85:  LDCSTR  "x = "
+  98:  PUTSTR 4
+ 103:  LDLADDR 8
+ 108:  LOADW
+ 109:  PUTINT
+ 110:  PUTEOL
+ 111:  RET0

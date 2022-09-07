@@ -1,0 +1,23 @@
+// Output should be:
+// n = 4
+// bounds check failed
+// n = 13
+
+proc inc(var x : Integer, ub : Integer)
+  {
+    if x < ub then
+        x := x + 1;
+    else
+        writeln "bounds check failed";
+  }
+
+proc main()
+  {
+    var n : Integer := 3;
+
+    inc(n, 10);
+    writeln "n = ", n;
+    n := 13;
+    inc(n, 10);
+    writeln "n = ", n;
+  }

@@ -1,0 +1,10 @@
+var n : Integer;
+var b : Boolean;
+
+proc main()
+  {
+    n := 7;
+    b := not n;     // operand following not should be Boolean
+
+    writeln "b = ", b;
+  }

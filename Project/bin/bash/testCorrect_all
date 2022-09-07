@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#
+# Run testCorrect on all ".obj" files in the current directory.
+#
+
+echo ...deleting all \".asm\", \".obj\", and \".tmp\" files
+rm -f *.asm
+rm -f *.obj
+rm -f *.tmp
+
+echo ...recompiling all \".cprl\" files
+cprlc *.cprl > /dev/null
+
+echo ...reasembling all \".asm\" files
+assemble *.asm > /dev/null
+echo
+
+for file in *.obj
+do
+   filename=$(basename $file)
+   filename="${filename%.*}"
+   testCorrect $filename
+done

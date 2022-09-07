@@ -1,0 +1,117 @@
+   CALL _main
+   HALT
+_main:
+   PROC 8
+L42:
+   LDCSTR "Enter value for a (0 to exit):  "
+   PUTSTR 32
+   LDLADDR 8
+   GETINT
+   LDCSTR "a = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   PUTEOL
+   LDLADDR 8
+   LOADW
+   LDCINT 0
+   BE L43
+   LDCSTR "Enter value for b:  "
+   PUTSTR 20
+   LDLADDR 12
+   GETINT
+   LDCSTR "b = "
+   PUTSTR 4
+   LDLADDR 12
+   LOADW
+   PUTINT
+   PUTEOL
+   PUTEOL
+   LDCSTR "GCD("
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", "
+   PUTSTR 2
+   LDLADDR 12
+   LOADW
+   PUTINT
+   LDCSTR ") = "
+   PUTSTR 4
+   ALLOC 4
+   LDLADDR 8
+   LOADW
+   LDLADDR 12
+   LOADW
+   CALL _gcd
+   PUTINT
+   PUTEOL
+   PUTEOL
+   BR L42
+L43:
+   LDCSTR "Done."
+   PUTSTR 5
+   PUTEOL
+   RET 0
+_gcd:
+   PROC 4
+   LDLADDR -8
+   ALLOC 4
+   LDLADDR -8
+   LOADW
+   CALL _abs
+   STOREW
+   LDLADDR -4
+   ALLOC 4
+   LDLADDR -4
+   LOADW
+   CALL _abs
+   STOREW
+L46:
+   LDLADDR -4
+   LOADW
+   LDCINT 0
+   BE L47
+   LDLADDR 8
+   LDLADDR -8
+   LOADW
+   STOREW
+   LDLADDR -8
+   LDLADDR -4
+   LOADW
+   STOREW
+   LDLADDR -4
+   LDLADDR 8
+   LOADW
+   LDLADDR -4
+   LOADW
+   MOD
+   STOREW
+   BR L46
+L47:
+   LDLADDR -12
+   LDLADDR -8
+   LOADW
+   STOREW
+   RET 8
+_abs:
+   LDLADDR -4
+   LOADW
+   LDCINT 0
+   BL L52
+   LDLADDR -8
+   LDLADDR -4
+   LOADW
+   STOREW
+   RET 4
+   BR L53
+L52:
+   LDLADDR -8
+   LDLADDR -4
+   LOADW
+   NEG
+   STOREW
+   RET 4
+L53:

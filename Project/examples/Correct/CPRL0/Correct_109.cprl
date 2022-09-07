@@ -1,0 +1,17 @@
+// output should be "x = 6"
+
+var x : Integer := 1;
+
+proc main()
+  {
+    loop
+      {
+        x := x + 1;
+
+        if x = 6 then
+            exit;
+      }
+
+    writeln "x = ", x;
+  }
+

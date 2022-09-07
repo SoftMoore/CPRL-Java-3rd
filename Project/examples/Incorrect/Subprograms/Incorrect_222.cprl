@@ -1,0 +1,16 @@
+const n := 5;
+var   x : Integer;
+
+proc f(b : Boolean)
+  {
+    if b then
+        return n;   // return expression not allowed for procs
+    else
+        writeln -1;
+  }
+
+proc main()
+  {
+    f(true);
+    write x;
+  }

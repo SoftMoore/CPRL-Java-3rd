@@ -1,0 +1,24 @@
+   PROGRAM 4
+   CALL _main
+   HALT
+_p:
+   PROC 1
+   LDLADDR 8
+   LDCB 1
+   STOREB
+   LDLADDR 8
+   LOADB
+   PUTBYTE
+   LDCSTR "   "
+   PUTSTR 3
+   RET 0
+_main:
+   LDGADDR 0
+   LDCINT 5
+   STOREW
+   CALL _p
+   LDGADDR 0
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

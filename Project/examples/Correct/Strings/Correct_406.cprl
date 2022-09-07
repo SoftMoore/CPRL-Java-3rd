@@ -1,0 +1,15 @@
+type Name = string[20];
+
+proc main()
+  {
+    var name : Name;
+    write "Enter a name: ";
+    read name;
+    writeName(name);
+  }
+
+proc writeName(n : Name)
+  {
+    write "Hello, ", n, ".";
+  }
+

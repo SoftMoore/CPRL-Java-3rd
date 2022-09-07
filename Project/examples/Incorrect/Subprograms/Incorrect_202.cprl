@@ -1,0 +1,11 @@
+const i := 5;
+
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }
+
+proc main()
+  {
+    inc(i);   // actual parameter passed to a var parameter must be a variable
+  }

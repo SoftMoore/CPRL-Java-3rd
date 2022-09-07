@@ -1,0 +1,20 @@
+// Enter the letters ABCDE (one at a time)
+// Output should be
+// EDCBA
+
+proc main()
+  {
+   reverse();
+  }
+
+proc reverse()
+  {
+    var c : Char;
+
+    read c;
+
+    if c != 'E' then
+        reverse();
+
+    write c;
+  }

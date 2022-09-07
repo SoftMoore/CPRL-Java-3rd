@@ -1,0 +1,57 @@
+   PROGRAM 44
+   CALL _main
+   HALT
+_main:
+   LDGADDR 0
+   LDCINT 0
+   STOREW
+L0:
+   LDGADDR 0
+   LOADW
+   LDCINT 10
+   BGE L1
+   LDGADDR 4
+   LDGADDR 0
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LDCINT 2
+   LDGADDR 0
+   LOADW
+   MUL
+   STOREW
+   LDGADDR 0
+   LDGADDR 0
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L0
+L1:
+   LDGADDR 0
+   LDCINT 0
+   STOREW
+L4:
+   LDGADDR 0
+   LOADW
+   LDCINT 10
+   BGE L5
+   LDGADDR 4
+   LDGADDR 0
+   LOADW
+   LDCINT 4
+   MUL
+   ADD
+   LOADW
+   PUTINT
+   PUTEOL
+   LDGADDR 0
+   LDGADDR 0
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L4
+L5:
+   RET 0

@@ -1,0 +1,22 @@
+// one proc calling a second proc with a var parameter
+// output should be:
+// x = 15
+
+proc p2(var n : Integer)
+  {
+    n := n + 3;
+  }
+
+proc p1(var n : Integer)
+  {
+    n := n + 5;
+    p2(n);
+  }
+
+proc main()
+  {
+    var x : Integer := 7;
+
+    p1(x);
+    writeln "x = ", x;
+  }

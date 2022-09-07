@@ -1,0 +1,7 @@
+type Name = string[0];     // string capacity must be positive
+
+proc main()
+  {
+    var name1 : Name;
+    name1 := "Johnny";
+  }

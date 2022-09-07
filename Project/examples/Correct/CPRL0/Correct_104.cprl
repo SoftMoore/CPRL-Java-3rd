@@ -1,0 +1,19 @@
+// tests variable initialization
+// tests that variable and constant declarations can be intermixed
+// correct output is as follows:
+//    1
+//    5
+//    3
+
+var   a : Integer := 1;
+const b := 5;
+var   c : Integer := 3;
+
+proc main()
+  {
+    writeln a;
+    writeln b;
+    writeln c;
+  }
+
+

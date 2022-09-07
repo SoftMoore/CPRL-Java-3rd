@@ -1,0 +1,15 @@
+type Point = record
+  {
+    x : Integer;
+    y : Integer;
+  };
+
+
+proc main()
+  {
+    var p : Point;
+    var x : Integer;
+
+    p[x] := 5;     // can't use index expression for record
+    p.y := 2;
+  }

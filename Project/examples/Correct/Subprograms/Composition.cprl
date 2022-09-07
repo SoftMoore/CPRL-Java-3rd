@@ -1,0 +1,17 @@
+// test function composition
+
+proc main()
+  {
+    writeln f(g(3));   // should be 20
+    writeln g(f(3));   // should be 12
+  }
+
+fun f(x : Integer) : Integer
+  {
+    return 3*x - 1;
+  }
+
+fun g(x : Integer) : Integer
+  {
+    return x + 4;
+  }

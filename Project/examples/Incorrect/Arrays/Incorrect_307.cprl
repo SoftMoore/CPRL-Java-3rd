@@ -1,0 +1,8 @@
+type T = array[10] of Integer;
+var a : T;
+
+proc main()
+  {
+    read a;    // can't read an array
+    write a;   // can't write an array
+  }

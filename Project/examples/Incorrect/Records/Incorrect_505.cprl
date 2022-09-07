@@ -1,0 +1,13 @@
+type R = record
+  {
+    i : Integer;
+    b : Boolean;
+    i : Boolean;    // field names must be unique within the record
+  };
+
+
+proc main()
+  {
+    var r : R;
+    r.i := 1;
+  }

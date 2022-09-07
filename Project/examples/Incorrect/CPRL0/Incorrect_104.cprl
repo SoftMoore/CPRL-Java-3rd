@@ -1,0 +1,8 @@
+var x = Integer;   // uses '=' instead of ':'
+
+proc main()
+  {
+    read x;
+    x := x + 1;
+    write x;
+  }

@@ -1,0 +1,148 @@
+Parsing Incorrect_101.cprl...
+*** Syntax error detected near line 7, character 5:
+    Expecting ";" but found "else" instead.
+Errors detected in Incorrect_101.cprl -- parsing terminated.
+
+Parsing Incorrect_102.cprl...
+*** Syntax error detected near line 8, character 1:
+    Expecting "}" but found "End-of-File" instead.
+Errors detected in Incorrect_102.cprl -- parsing terminated.
+
+Parsing Incorrect_103.cprl...
+*** Syntax error detected near line 7, character 5:
+    Identifier "i" cannot start a statement.
+Errors detected in Incorrect_103.cprl -- parsing terminated.
+
+Parsing Incorrect_104.cprl...
+*** Syntax error detected near line 1, character 7:
+    Expecting ":" but found "=" instead.
+*** Syntax error detected near line 5, character 10:
+    Identifier "x" has not been declared.
+Errors detected in Incorrect_104.cprl -- parsing terminated.
+
+Parsing Incorrect_105.cprl...
+*** Syntax error detected near line 5, character 10:
+    Identifier "FALSE" has not been declared.
+Errors detected in Incorrect_105.cprl -- parsing terminated.
+
+Parsing Incorrect_106.cprl...
+*** Syntax error detected near line 5, character 13:
+    Invalid literal expression.
+*** Syntax error detected near line 9, character 9:
+    Identifier "boolean" has not been declared.
+*** Syntax error detected near line 13, character 8:
+    Invalid expression.
+*** Syntax error detected near line 16, character 9:
+    Identifier "d" cannot start a statement.
+Errors detected in Incorrect_106.cprl -- parsing terminated.
+
+Parsing Incorrect_107.cprl...
+Parsing complete.
+
+Parsing Incorrect_108.cprl...
+Parsing complete.
+
+Parsing Incorrect_109.cprl...
+*** Syntax error detected near line 2, character 7:
+    Identifier "x" is already defined in the current scope.
+Errors detected in Incorrect_109.cprl -- parsing terminated.
+
+Parsing Incorrect_110.cprl...
+*** Syntax error detected near line 4, character 3:
+    Expecting ";" but found "}" instead.
+Errors detected in Incorrect_110.cprl -- parsing terminated.
+
+Parsing Incorrect_111.cprl...
+Parsing complete.
+
+Parsing Incorrect_112.cprl...
+*** Syntax error detected near line 1, character 9:
+    Invalid type name.
+Errors detected in Incorrect_112.cprl -- parsing terminated.
+
+Parsing Incorrect_113.cprl...
+*** Syntax error detected near line 5, character 5:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_113.cprl -- parsing terminated.
+
+Parsing Incorrect_114.cprl...
+Parsing complete.
+
+Parsing Incorrect_115.cprl...
+*** Syntax error detected near line 7, character 7:
+    Expecting ":=" but found "=" instead.
+*** Syntax error detected near line 8, character 5:
+    Identifier "five" cannot start a statement.
+Errors detected in Incorrect_115.cprl -- parsing terminated.
+
+Parsing Incorrect_116.cprl...
+Parsing complete.
+
+Parsing Incorrect_117.cprl...
+Parsing complete.
+
+Parsing Incorrect_118.cprl...
+Parsing complete.
+
+Parsing Incorrect_119.cprl...
+Parsing complete.
+
+Parsing Incorrect_120.cprl...
+Parsing complete.
+
+Parsing Incorrect_121.cprl...
+Parsing complete.
+
+Parsing Incorrect_122.cprl...
+*** Lexical error detected near line 8, character 31:
+    Illegal escape character.
+*** Lexical error detected near line 9, character 31:
+    Illegal escape character.
+Errors detected in Incorrect_122.cprl -- parsing terminated.
+
+Parsing Incorrect_123.cprl...
+*** Lexical error detected near line 8, character 38:
+    Illegal escape character.
+*** Lexical error detected near line 9, character 38:
+    Illegal escape character.
+Errors detected in Incorrect_123.cprl -- parsing terminated.
+
+Parsing Incorrect_124.cprl...
+Parsing complete.
+
+Parsing Incorrect_125.cprl...
+*** Syntax error detected near line 4, character 1:
+    Expecting "proc" or "fun" but found "n" instead.
+Errors detected in Incorrect_125.cprl -- parsing terminated.
+
+Parsing Incorrect_126.cprl...
+*** Syntax error detected near line 10, character 9:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_126.cprl -- parsing terminated.
+
+Parsing Incorrect_127.cprl...
+Parsing complete.
+
+Parsing Incorrect_128.cprl...
+*** Syntax error detected near line 8, character 1:
+    Expecting "}" but found "End-of-File" instead.
+Errors detected in Incorrect_128.cprl -- parsing terminated.
+
+Parsing Incorrect_129.cprl...
+*** Syntax error detected near line 1, character 8:
+    Expecting ":=" but found "," instead.
+Errors detected in Incorrect_129.cprl -- parsing terminated.
+
+Parsing Incorrect_130.cprl...
+*** Syntax error detected near line 6, character 10:
+    Invalid expression.
+Errors detected in Incorrect_130.cprl -- parsing terminated.
+
+Parsing Incorrect_131.cprl...
+*** Syntax error detected near line 2, character 3:
+    Expecting "(" but found "{" instead.
+Errors detected in Incorrect_131.cprl -- parsing terminated.
+
+Parsing Incorrect_132.cprl...
+Parsing complete.
+

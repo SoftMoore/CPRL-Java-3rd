@@ -1,0 +1,17 @@
+var x : Integer;
+
+proc p()
+  {
+    x := 42;
+  }
+
+proc p()   // same procedure name
+  {
+    x := 7;
+  }
+
+proc main()
+  {
+    p();
+    write x;
+  }

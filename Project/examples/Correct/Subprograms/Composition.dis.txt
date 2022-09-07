@@ -1,0 +1,30 @@
+   0:  CALL 1
+   5:  HALT
+   6:  ALLOC 8
+  11:  LDCINT 3
+  16:  CALL 50
+  21:  CALL 25
+  26:  PUTINT
+  27:  PUTEOL
+  28:  ALLOC 8
+  33:  LDCINT 3
+  38:  CALL 8
+  43:  CALL 23
+  48:  PUTINT
+  49:  PUTEOL
+  50:  RET0
+  51:  LDLADDR -8
+  56:  LDCINT 3
+  61:  LDLADDR -4
+  66:  LOADW
+  67:  MUL
+  68:  DEC
+  69:  STOREW
+  70:  RET4
+  71:  LDLADDR -8
+  76:  LDLADDR -4
+  81:  LOADW
+  82:  LDCINT 4
+  87:  ADD
+  88:  STOREW
+  89:  RET4

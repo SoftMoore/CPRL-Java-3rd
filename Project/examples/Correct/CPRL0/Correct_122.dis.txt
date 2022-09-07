@@ -1,0 +1,33 @@
+   0:  CALL 1
+   5:  HALT
+   6:  LDCB0
+   7:  LDCB0
+   8:  LDCB0
+   9:  LDCB0
+  10:  LDCB0
+  11:  LDCB0
+  12:  LDCB0
+  13:  LDCB1
+  14:  BGE 40
+  19:  LDCSTR  "false < true"
+  48:  PUTSTR 12
+  53:  PUTEOL
+  54:  BR 37
+  59:  LDCSTR  "false >= true"
+  90:  PUTSTR 13
+  95:  PUTEOL
+  96:  LDCB0
+  97:  LDCB0
+  98:  LDCCH 'a'
+ 101:  LDCB0
+ 102:  LDCB0
+ 103:  LDCCH 'b'
+ 106:  BGE 34
+ 111:  LDCSTR  "\'a\' < \'b\'"
+ 134:  PUTSTR 9
+ 139:  PUTEOL
+ 140:  BR 31
+ 145:  LDCSTR  "\'a\' >= \'b\'"
+ 170:  PUTSTR 10
+ 175:  PUTEOL
+ 176:  RET0

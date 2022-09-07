@@ -1,0 +1,63 @@
+   PROGRAM 4
+   CALL _main
+   HALT
+_main:
+   LDGADDR 0
+   LDCINT 5
+   STOREW
+   LDGADDR 0
+   CALL _p1
+   LDCSTR "x = "
+   PUTSTR 4
+   LDGADDR 0
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0
+_p2:
+   LDLADDR -4
+   LDLADDR -4
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   LDCSTR "x = "
+   PUTSTR 4
+   LDGADDR 0
+   LOADW
+   PUTINT
+   PUTEOL
+   LDCSTR "n = "
+   PUTSTR 4
+   LDLADDR -4
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 4
+_p1:
+   LDLADDR -4
+   LOADW
+   LDLADDR -4
+   LOADW
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   LDCSTR "x = "
+   PUTSTR 4
+   LDGADDR 0
+   LOADW
+   PUTINT
+   PUTEOL
+   LDCSTR "n = "
+   PUTSTR 4
+   LDLADDR -4
+   LOADW
+   LOADW
+   PUTINT
+   PUTEOL
+   LDLADDR -4
+   LOADW
+   LOADW
+   CALL _p2
+   RET 4

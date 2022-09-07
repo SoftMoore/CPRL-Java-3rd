@@ -63,11 +63,11 @@ Module `edu.citadel.cprl` contains the classes that implement the CPRL compiler.
        requires transitive edu.citadel.compiler;
      }
 ````
-Since abstract syntax trees are not introduced until Project 4 below, the line
+  Since abstract syntax trees are not introduced until Project 4 below, the line
 ````java
    exports edu.citadel.cprl.ast;
 ````
-can be commented out for Projects 0-3.
+  can be commented out for Projects 0-3.
 
 ### Overview of the Book&rsquo;s GitHub Repository
 
@@ -80,31 +80,31 @@ In addition to the standard license and readme files, the top level of the GitHu
 
 * This is not a real project but more of an initialization of your working environment for the remaining compiler projects.  Expand the green &ldquo;Code&rdquo; button on the GitHub Repository page, download the repository as a zip file, and unzip it into a directory on your computer.  Under the Project directory you will see 9 subdirectories as follows.
 ```
-Project
- – bin
- – doc
- – examples
- – src-CVM
- – src-Compiler
- – src-ParserV1
- – src-ParserV2
- – src-ParserV3
- – src-Scanner
+   Project
+    – bin
+    – doc
+    – examples
+    – src-CVM
+    – src-Compiler
+    – src-ParserV1
+    – src-ParserV2
+    – src-ParserV3
+    – src-Scanner
 ```
-Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
+  Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
 
-* Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `Bash` and `Windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
+* Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `bash` and `windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
 
   As an example of the contents of bin for Windows, there is a script `cprlc.cmd` that will run the CPRL compiler on a source file whose name is entered via standard input.  Similarly, there is a script `assemble.cmd` for running the assembler on `.asm` files, a script `disassemble.cmd` for running the disassembler on `.obj` files, and a script `cprl.cmd` for executing a single compiled/assembled CPRL program on the CVM.
   ```
-    cprlc Hello.cprl                // creates Hello.asm
-    assemble Hello.asm              // creates Hello.obj
-    cprl Hello.obj                  // executes Hello.obj on the CVM
-    disassemble Hello.obj           // creates Hello.dis.txt
+   cprlc Hello.cprl                // creates Hello.asm
+   assemble Hello.asm              // creates Hello.obj
+   cprl Hello.obj                  // executes Hello.obj on the CVM
+   disassemble Hello.obj           // creates Hello.dis.txt
   ```
   To compile all CPRL source files in the current working directory use `cprlc *.cprl`.
 
-  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single program, and script `testCorrect_all.cmd` can be used to test all programs in the current directory.  Both test scripts execute `.obj` files on the CVM and compare the output with expected output.  Starting with Project 6 you can also use script `testIncorrect_all.cmd` to compile all incorrect CPRL programs in the current directory and compare the results to the expected results.
+  There are two scripts for testing correct programs.  Script `testCorrect.cmd` can be used to test a single CPRL program, and script `testCorrect_all.cmd` can be used to test all CPRL programs in the current directory.  Both test scripts execute `.obj` files on the CVM and compare the output with expected output.  Starting with Project 6 you can also use script `testIncorrect_all.cmd` to compile all incorrect CPRL programs in the current directory and compare the results to the expected results.
 
   Additionally, there are script files for testing the scanner and parser in the earlier projects.
 
@@ -172,7 +172,7 @@ Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files 
 
 * Directory `src-ParserV3` contains full or partial implementations of more than 40 AST classes in package `edu.citadel.cprl.ast`.  Approximately half of the AST classes are implemented completely, while the remaining AST classes have only partial implementations.  You should import the AST classes into your IDE.  For now there are empty bodies or partially incomplete bodies for methods `checkConstraints()` and `emit()` in the AST classes that are not fully implemented.
 
-Directory `src-ParserV3` also contains full or partial implementations of several classes in package `edu.citadel.cprl` as follows.
+  Directory `src-ParserV3` also contains full or partial implementations of several classes in package `edu.citadel.cprl` as follows.
 
   – A complete implementation for class `Compiler`.  For this project we will continue to use `TestParser`, but in the next project you will start using class `Compiler` instead of `TestParser` to test your work.
 
@@ -186,7 +186,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 * **Complete the implementation of classes `ArrayType`, `StringType`, and `RecordType`, and edit your parser from the previous project to add generation of AST classes or lists of AST classes.**
 
-* Test your parser with all correct and incorrect examples.  Directory `src-ParserV3` contains a text file showing the results that you should expect when running this version of the parser against the incorrect test examples.  The major differences in test results between versions 2 and 3 of your parser are that version 3 should also detect exit statements that are not nested within loops and return statements that are not nested within subprograms.
+* Test your parser with all correct and incorrect examples.  The &ldquo;incorrect&rdquo; example subdirectories contain text files showing the results that you should expect when running this version of the parser against the incorrect test examples.  The major differences in test results between versions 2 and 3 of your parser are that version 3 should also detect exit statements that are not nested within loops.
 
 ### Project 5: Constraint Analysis for CPRL/0
 
@@ -212,7 +212,7 @@ Directory `src-ParserV3` also contains full or partial implementations of severa
 
 ### Project 8: Arrays
 
-* **Using the concepts from Chapter 14, add constraint analysis and code generation for arrays.** Completion of this project results in the final version of your compiler.
+* **Using the concepts from Chapter 14, add constraint analysis and code generation for arrays.**
 
 * Correct any remaining errors.
 

@@ -1,0 +1,13 @@
+type Name = string[10];
+
+fun getLength(name : Name) : Integer
+  {
+    return name.length;
+  }
+
+proc main()
+  {
+    var len : Integer;
+    len := getLength("Chloe");   // can't pass string literals as parameters to functions
+    writeln "length = ", len;
+  }

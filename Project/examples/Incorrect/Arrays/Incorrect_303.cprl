@@ -1,0 +1,9 @@
+type T = array[10] of Integer;
+var a : T;
+
+proc main()
+  {
+    read a[0];        // no error
+    read a[true];     // index should have type Integer
+    writeln a['c'];   // index should have type Integer
+  }

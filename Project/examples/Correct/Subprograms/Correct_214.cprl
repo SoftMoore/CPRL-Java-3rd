@@ -1,0 +1,13 @@
+// constant function with no parameters
+// output should be:
+// 42
+
+fun f() : Integer
+  {
+    return 42;
+  }
+
+proc main()
+  {
+    writeln f();
+  }

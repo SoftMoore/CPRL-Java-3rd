@@ -1,0 +1,43 @@
+   CALL _main
+   HALT
+_makePoint:
+   PROC 8
+   LDLADDR 8
+   LDLADDR -8
+   LOADW
+   STOREW
+   LDLADDR 8
+   LDCINT 4
+   ADD
+   LDLADDR -4
+   LOADW
+   STOREW
+   LDLADDR -16
+   LDLADDR 8
+   LOAD 8
+   STORE 8
+   RET 8
+_main:
+   PROC 8
+   LDLADDR 8
+   ALLOC 8
+   LDCINT 1
+   LDCINT 2
+   CALL _makePoint
+   STORE 8
+   LDCSTR "Point("
+   PUTSTR 6
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", "
+   PUTSTR 2
+   LDLADDR 8
+   LDCINT 4
+   ADD
+   LOADW
+   PUTINT
+   LDCSTR ")"
+   PUTSTR 1
+   PUTEOL
+   RET 0

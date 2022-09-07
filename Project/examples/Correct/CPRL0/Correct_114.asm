@@ -1,0 +1,56 @@
+   PROGRAM 8
+   CALL _main
+   HALT
+_main:
+   LDCSTR "Enter value for i: "
+   PUTSTR 19
+   LDGADDR 0
+   GETINT
+   LDCSTR "Enter value for j: "
+   PUTSTR 19
+   LDGADDR 4
+   GETINT
+L154:
+   LDGADDR 0
+   LOADW
+   LDCINT 10
+   BG L155
+L158:
+   LDGADDR 4
+   LOADW
+   LDCINT 10
+   BG L159
+   LDGADDR 0
+   LDGADDR 0
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   LDGADDR 4
+   LDGADDR 4
+   LOADW
+   LDCINT 2
+   ADD
+   STOREW
+   BR L158
+L159:
+   LDGADDR 0
+   LDGADDR 0
+   LOADW
+   LDCINT 3
+   ADD
+   STOREW
+   BR L154
+L155:
+   LDCSTR "i = "
+   PUTSTR 4
+   LDGADDR 0
+   LOADW
+   PUTINT
+   LDCSTR ", j = "
+   PUTSTR 6
+   LDGADDR 4
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

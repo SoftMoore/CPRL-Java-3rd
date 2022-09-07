@@ -1,0 +1,22 @@
+var x1 : Integer;
+var x2 = Integer;         // "=" instead of ":"
+var y : Integer;
+
+fun f(x : Integer) : Integer
+  {
+    if x > 0 then
+        return 1;
+    else
+        return -1;
+  }
+
+proc main()
+  {
+    x1 := 5;
+    y := f(x1);
+    write y;
+
+    x2 := 5;
+    y := f(x2);
+    write y;
+  }

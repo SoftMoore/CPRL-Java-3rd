@@ -1,0 +1,15 @@
+var x : Integer;
+
+fun f(n : Integer) : Integer
+  {
+    if n > 5 then
+        return true;    // incorrect return type
+    else
+        return n + 1;
+  }
+
+proc main()
+  {
+    x := f(12);
+    writeln x;
+  }

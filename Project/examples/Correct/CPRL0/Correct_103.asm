@@ -1,0 +1,47 @@
+   PROGRAM 12
+   CALL _main
+   HALT
+_main:
+   LDGADDR 0
+   LDCINT 1
+   STOREW
+   LDGADDR 0
+   LOADW
+   PUTINT
+   LDCSTR "    "
+   PUTSTR 4
+   LDGADDR 4
+   LDCINT 1
+   STOREW
+   LDGADDR 8
+   LDCINT 2
+   STOREW
+   LDGADDR 4
+   LOADW
+   LDCINT 1
+   BE L4
+   LDCB 1
+   BR L5
+L4:
+   LDGADDR 8
+   LOADW
+   LDCINT 2
+   BE L2
+   LDCB 1
+   BR L3
+L2:
+   LDCB 0
+L3:
+L5:
+   BZ L6
+   LDCSTR "ERROR"
+   PUTSTR 5
+   PUTEOL
+   BR L7
+L6:
+   LDGADDR 8
+   LOADW
+   PUTINT
+   PUTEOL
+L7:
+   RET 0

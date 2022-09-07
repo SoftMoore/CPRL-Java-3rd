@@ -1,0 +1,16 @@
+// output should be
+// x = 6
+
+const five := 5;
+var x : Integer := five;
+
+proc main()
+  {
+    inc(x);
+    writeln "x = ", x;
+  }
+
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }

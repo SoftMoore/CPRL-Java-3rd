@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#
+# Set the path to include this directory
+#
+
+if [[ $0 != "-bash" ]]
+then
+    echo "Source this file to set the path in the parent shell.  For example,"
+    echo source setPath " or " . setPath
+else
+    export PATH="$(realpath .):$PATH"
+fi
+

@@ -1,0 +1,50 @@
+proc main()
+  {
+    var a, b : Integer;
+
+    loop
+      {
+        write "Enter value for a (0 to exit):  ";
+        read a;
+        writeln "a = ", a;
+
+        exit when a = 0;
+
+        write "Enter value for b:  ";
+        read b;
+        writeln "b = ", b;
+
+        writeln;
+        writeln "GCD(", a, ", ", b, ") = ", gcd(a, b);
+        writeln;
+      }
+
+    writeln "Done.";
+  }
+
+fun gcd(a : Integer, b : Integer) : Integer
+  {
+    var temp : Integer;
+
+    // convert to absolute value
+    a := abs(a);
+    b := abs(b);
+
+    // compute GCD
+    while b != 0 loop
+      {
+        temp := a;
+        a := b;
+        b := temp mod b;
+      }
+
+    return a;
+  }
+
+fun abs(n : Integer) : Integer
+  {
+    if n >= 0 then
+        return n;
+    else
+        return -n;
+  }

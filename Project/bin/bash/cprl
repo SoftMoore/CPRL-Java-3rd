@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#
+# Run CPRL Virtual Machine interpreter on a single ".obj" file
+#
+
+# set config environment variables
+source cprl_config
+
+# use either CLASSPATH or MODULEPATH
+#CLASSPATH=$COMPILER_PROJECT_PATH
+#java -ea -cp "$CLASSPATH" edu.citadel.cvm.CVM $1
+MODULEPATH=$COMPILER_PROJECT_PATH
+java -ea -p "$MODULEPATH" -m edu.citadel.cvm/edu.citadel.cvm.CVM $1

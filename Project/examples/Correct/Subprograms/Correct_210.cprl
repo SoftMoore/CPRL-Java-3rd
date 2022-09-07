@@ -1,0 +1,43 @@
+// Correct output is as follows:
+// for inputs 3 and 7: lessThan(3, 7) = true
+// for inputs 7 and 2: lessThan(3, 7) = false
+// for inputs 4 and 4: lessThan(3, 7) = false
+
+proc main()
+  {
+    var a, b : Integer;
+
+    loop
+      {
+        write "Enter value for a (0 to exit):  ";
+        read a;
+        writeln "a = ", a;
+
+        exit when a = 0;
+
+        write "Enter value for b:  ";
+        read b;
+        writeln "b = ", b;
+
+        writeln;
+        write "lessThan(", a, ", ", b, ") = ";
+        writeBoolean(lessThan(a, b));
+        writeln;
+        writeln;
+      }
+
+    writeln "Done.";
+  }
+
+fun lessThan(x : Integer, y : Integer) : Boolean
+  {
+    return x < y;
+  }
+
+proc writeBoolean(b : Boolean)
+  {
+    if b then
+        write "true";
+    else
+        write "false";
+  }

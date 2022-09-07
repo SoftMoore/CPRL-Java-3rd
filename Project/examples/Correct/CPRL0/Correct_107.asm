@@ -1,0 +1,96 @@
+   PROGRAM 13
+   CALL _main
+   HALT
+_main:
+   LDCSTR "Enter x:  "
+   PUTSTR 10
+   LDGADDR 0
+   GETINT
+   LDGADDR 8
+   LDGADDR 0
+   LOADW
+   LDCINT 2
+   MOD
+   STOREW
+   LDGADDR 12
+   LDGADDR 0
+   LOADW
+   LDCINT 7
+   BLE L16
+   LDCB 1
+   BR L17
+L16:
+   LDCB 0
+L17:
+   STOREB
+   LDGADDR 0
+   LOADW
+   LDCINT 0
+   BGE L28
+   LDGADDR 4
+   LDCINT 1
+   NEG
+   STOREW
+L20:
+   LDGADDR 0
+   LDGADDR 0
+   LOADW
+   LDCINT 7
+   LDCINT 3
+   DIV
+   ADD
+   STOREW
+   LDGADDR 0
+   LOADW
+   LDCINT 0
+   BG L21
+   BR L20
+L21:
+   BR L29
+L28:
+   LDGADDR 0
+   LOADW
+   LDCINT 0
+   BNE L26
+   LDGADDR 4
+   LDCINT 0
+   STOREW
+   BR L27
+L26:
+   LDGADDR 4
+   LDCINT 1
+   STOREW
+L27:
+L29:
+   LDGADDR 12
+   LOADB
+   BNZ L30
+   LDCB 0
+   BR L31
+L30:
+   LDCB 0
+   NOT
+L31:
+   BZ L32
+   LDCSTR "TRUE   "
+   PUTSTR 7
+   BR L33
+L32:
+   LDCSTR "FALSE   "
+   PUTSTR 8
+L33:
+   LDGADDR 0
+   LOADW
+   PUTINT
+   LDCSTR "   "
+   PUTSTR 3
+   LDGADDR 4
+   LOADW
+   PUTINT
+   LDCSTR "   "
+   PUTSTR 3
+   LDGADDR 8
+   LOADW
+   PUTINT
+   PUTEOL
+   RET 0

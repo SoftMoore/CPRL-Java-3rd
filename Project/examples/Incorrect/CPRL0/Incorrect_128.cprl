@@ -1,0 +1,7 @@
+const i := 2;
+var x : Integer;
+
+proc main()
+  {
+    x := i;
+  {    // wrong brace

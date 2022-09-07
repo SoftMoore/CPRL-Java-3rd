@@ -1,0 +1,11 @@
+var x : Integer;
+
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }
+
+proc main()
+  {
+    inc(x)   // missing semicolon
+  }

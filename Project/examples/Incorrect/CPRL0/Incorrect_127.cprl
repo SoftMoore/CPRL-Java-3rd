@@ -1,0 +1,16 @@
+var i : Integer;
+var c : Char;
+
+proc main()
+  {
+    i := 1;
+    c := 'c';
+
+    if i = c // Not both same type
+    then
+        writeln "bogus";
+
+    if "c" = "c"  // Not both scalar
+    then
+        writeln "bogus";
+  }

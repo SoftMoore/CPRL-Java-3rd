@@ -1,0 +1,11 @@
+var n : Integer;
+var b, c : Boolean;
+
+proc main()
+  {
+    b := true;
+    n := 7;
+    c := b and n;   // both operands of a logical expression should be Boolean
+
+    writeln "n = ", n;
+  }

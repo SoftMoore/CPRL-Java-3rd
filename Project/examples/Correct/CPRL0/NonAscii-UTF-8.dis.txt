@@ -1,0 +1,6 @@
+   0:  CALL 1
+   5:  HALT
+   6:  LDCSTR  "Ζήσε πολύ και ευημερώ."
+  55:  PUTSTR 22
+  60:  PUTEOL
+  61:  RET0

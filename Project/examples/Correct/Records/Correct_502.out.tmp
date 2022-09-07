@@ -1,0 +1,13 @@
+Date(2021-7-15) is a valid date.
+Date(2021-13-15) is not a valid date.
+Date(2020-2-29) is a valid date.
+
+Adding a day to Date(2021-7-15)
+New date is Date(2021-7-16)
+
+Adding a day to Date(2021-12-31)
+New date is Date(2022-1-1)
+
+Adding a day to Date(2020-2-29)
+New date is Date(2020-3-1)
+

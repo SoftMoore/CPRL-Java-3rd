@@ -1,0 +1,10 @@
+type Name1 = string[5];
+type Name2 = string[5];
+
+proc main()
+  {
+    var name1 : Name1;
+    var name2 : Name2;
+    name1 := "John";
+    name2 := name1;   // incompatible types
+  }

@@ -1,0 +1,12 @@
+fun abs(n : Integer) : Integer
+  {
+    if n >= 0 then
+        return n;
+    else
+        return -n;
+  }
+
+fun main(x : Integer) : Integer   // main must be a procedure
+  {
+    return abs(42);
+  }

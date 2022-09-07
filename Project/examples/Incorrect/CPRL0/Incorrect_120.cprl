@@ -1,0 +1,14 @@
+var x : Integer;
+
+proc main()
+  {
+    x := 1;
+
+    loop
+      {
+        x := x + 1;
+        exit when x;      // when expression should be boolean
+      }
+
+   writeln "x = ", x;
+  }

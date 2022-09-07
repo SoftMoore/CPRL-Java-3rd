@@ -1,0 +1,7 @@
+var x : Boolean;
+
+proc main()
+  {
+   read x;      // input not supported for type Boolean
+   writeln(x);
+  }

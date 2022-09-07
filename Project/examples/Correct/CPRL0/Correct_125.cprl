@@ -1,0 +1,25 @@
+// test nested loops with both having an exit statement
+
+var x, y : Integer;
+
+proc main()
+  {
+    x := 1;
+
+    loop
+      {
+        x := x + 1;
+        y := x;
+
+        loop
+          {
+            y := y + 2;
+            exit when y > 10;
+          }
+
+        exit when x = 6;
+      }
+
+    writeln "x = ", x;
+    writeln "y = ", y;
+  }

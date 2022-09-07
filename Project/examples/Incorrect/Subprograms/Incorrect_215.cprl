@@ -1,0 +1,14 @@
+fun f(n : Integer) : Integer
+  {
+    return 6;
+  }
+
+fun f(n : Integer) : Integer  // same function name
+  {
+    return 7;
+  }
+
+proc main()
+  {
+    writeln f(3);
+  }

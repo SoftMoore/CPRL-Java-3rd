@@ -1,0 +1,12 @@
+function abs(n : Integer) : Integer   // function should be fun
+  {
+    if n >= 0 then
+        return n;
+    else
+        return -n;
+  }
+
+proc main()
+  {
+    write abs(42);
+  }

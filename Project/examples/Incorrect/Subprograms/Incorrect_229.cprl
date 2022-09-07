@@ -1,0 +1,13 @@
+proc main()
+  {
+    var x : Integer;
+    x := 5;
+    p(x);
+    q(x);   // no procedure named q
+  }
+
+proc p(n : Integer)
+  {
+    writeln n;
+  }
+

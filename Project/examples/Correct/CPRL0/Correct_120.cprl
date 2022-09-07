@@ -1,0 +1,16 @@
+// test not expression
+// output should be as follows:
+// x <= 10
+
+var x : Integer := 5;
+var b : Boolean;
+
+proc main()
+  {
+    b := not (x <= 10);
+
+    if b then
+        writeln "not (x <= 10)";
+    else
+        writeln "x <= 10";
+ }

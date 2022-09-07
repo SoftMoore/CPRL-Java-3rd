@@ -1,0 +1,14 @@
+type Point = record
+  {
+    x : Integer;
+    y : Integer;
+  };
+
+proc main()
+  {
+    var p : Point;
+
+    p.x := 5;
+    p.z := 2;        // no field named z
+    p.y := 2;
+  }

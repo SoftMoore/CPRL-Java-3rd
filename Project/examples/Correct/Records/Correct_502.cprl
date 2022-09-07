@@ -1,0 +1,153 @@
+type Date = record
+  {
+    day   : Integer;
+    month : Integer;
+    year  : Integer;
+  };
+
+type DaysPerMonth = array[13] of Integer;
+var maxDays : DaysPerMonth;
+
+proc initMaxDays()
+  {
+    maxDays[0]  := 0;      // not a month
+    maxDays[1]  := 31;     // January
+    maxDays[2]  := 28;     // February
+    maxDays[3]  := 31;     // March
+    maxDays[4]  := 30;     // April
+    maxDays[5]  := 31;     // May
+    maxDays[6]  := 30;     // June
+    maxDays[7]  := 31;     // July
+    maxDays[8]  := 31;     // August
+    maxDays[9]  := 30;     // September
+    maxDays[10] := 31;     // October
+    maxDays[11] := 30;     // November
+    maxDays[12] := 31;     // December
+  }
+
+fun isLeapYear(year : Integer) : Boolean
+  {
+    if year mod 4 != 0 then
+        return false;
+    else if year mod 400 = 0 then
+        return true;
+    else if year mod 100 = 0 then
+        return false;
+    else
+        return true;
+  }
+
+// max days in a month depends on whether or not the year is a leap year
+fun maxDaysInMonth(month : Integer, year : Integer) : Integer
+  {
+    if month = 2 and isLeapYear(year) then
+        return maxDays[month] + 1;
+    else
+        return maxDays[month];
+  }
+
+fun isValidDate(d : Date) : Boolean
+  {
+    // check that year is within reasonable limits
+    if d.year < 0 or d.year > 5000 then
+        return false;
+
+    if d.month < 1 or d.month > 12 then
+        return false;
+
+    if d.day < 1 or d.day > maxDaysInMonth(d.month, d.year) then
+        return false;
+
+    return true;
+  }
+
+proc checkDate(d : Date)
+  {
+    writeDate(d);
+
+    if isValidDate(d) then
+        writeln " is a valid date.";
+    else
+        writeln " is not a valid date.";
+  }
+
+proc writeDate(d : Date)
+  {
+    write "Date(", d.year, "-", d.month, "-", d.day, ")";
+  }
+
+proc addDay(var d : Date)
+  {
+    if not isValidDate(d) then
+      {
+        writeDate(d);
+        writeln " is not a valid date.";
+      }
+
+    d.day := d.day + 1;
+    if d.day > maxDaysInMonth(d.month, d.year) then
+      {
+        d.day   := 1;
+        d.month := d.month + 1;
+      }
+
+    if d.month > 12 then
+      {
+        d.month := 1;
+        d.year  := d.year + 1;
+      }
+  }
+
+proc main()
+  {
+    var d1, d2, d3 : Date;
+
+    initMaxDays();
+
+    d1.year  := 2021;
+    d1.month := 7;
+    d1.day   := 15;
+    checkDate(d1);
+
+    d2.year  := 2021;
+    d2.month := 13;
+    d2.day   := 15;
+    checkDate(d2);
+
+    d3.year  := 2020;   // this was a leap year
+    d3.month := 2;
+    d3.day   := 29;
+    checkDate(d3);
+
+    writeln;
+
+    write "Adding a day to ";
+    writeDate(d1);
+    writeln;
+    addDay(d1);
+    write "New date is ";
+    writeDate(d1);
+    writeln;
+    writeln;
+
+    d2.year  := 2021;
+    d2.month := 12;
+    d2.day   := 31;
+    write "Adding a day to ";
+    writeDate(d2);
+    writeln;
+    addDay(d2);
+    write "New date is ";
+    writeDate(d2);
+    writeln;
+    writeln;
+
+    write "Adding a day to ";
+    writeDate(d3);
+    writeln;
+    addDay(d3);
+    write "New date is ";
+    writeDate(d3);
+    writeln;
+    writeln;
+  }

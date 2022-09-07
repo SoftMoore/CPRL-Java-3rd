@@ -1,0 +1,71 @@
+Complete implementations are provided for all classes not marked with an
+asterisk (*).  Only partial implementations are provide for classes marked
+with an asterisk.  Look for comments that start in the first column and
+have the following form.
+// ...
+
+Most of the incomplete classes have valid constructors except as commented.
+Import statements are left in as hints.
+
+
+Classes in package edu.citadel.cprl
+
+*ArrayType.java
+Compiler.java
+IdTable.java
+LoopContext.java
+* Parser.java
+* RecordType.java
+Scope.java
+ScopeLevel.java
+* StringType.java
+SubprogramContext.java
+Type.java
+
+
+Classes in package edu.citadel.cprl.ast
+
+AddingExpr.java
+* ArrayTypeDecl.java
+* AssignmentStmt.java
+AST.java
+BinaryExpr.java
+* CompoundStmt.java
+* ConstDecl.java
+ConstValue.java
+Declaration.java
+EmptyExpression.java
+EmptyInitialDecl.java
+EmptyStatement.java
+EmptySubprogramDecl.java
+* ExitStmt.java
+Expression.java
+FieldDecl.java
+* FieldExpr.java
+FunctionCallExpr.java
+* FunctionDecl.java
+IfStmt.java
+InitialDecl.java
+LogicalExpr.java
+* LoopStmt.java
+* MultiplyingExpr.java
+* NegationExpr.java
+* NotExpr.java
+OutputStmt.java
+ParameterDecl.java
+* ProcedureCallStmt.java
+* ProcedureDecl.java
+Program.java
+* ReadStmt.java
+* RecordTypeDecl.java
+* RelationalExpr.java
+* ReturnStmt.java
+SingleVarDecl.java
+Statement.java
+* StringTypeDecl.java
+SubprogramDecl.java
+UnaryExpr.java
+VarDecl.java
+* Variable.java
+VariableDecl.java
+VariableExpr.java

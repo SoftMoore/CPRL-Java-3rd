@@ -1,0 +1,81 @@
+// Output should be
+// initial array:
+// 0  2  99  6  8  10  12  -1  16  5
+// sorted array:
+// -1  0  2  5  6  8  10  12  16  99
+
+const arraySize := 10;
+type A = array[arraySize] of Integer;
+
+proc main()
+  {
+    var i : Integer;
+    var a : A;
+
+    // initialize array
+    i := 0;
+    while i < arraySize loop
+      {
+        a[i] := 2*i;
+        i := i + 1;
+      }
+
+    a[2] := 99;
+    a[7] := -1;
+    a[9] := 5;
+
+    writeln "initial array:";
+    printArray(a);
+    quickSort(a, 0, arraySize - 1);
+    writeln "sorted array:";
+    printArray(a);
+  }
+
+proc quickSort(var a : A, fromIndex : Integer, toIndex : Integer)
+  {
+    var i, j, pivot, temp : Integer;
+
+    i := fromIndex;
+    j := toIndex;
+    pivot := a[(fromIndex + toIndex)/2];
+
+    // partition a[fromIndex]..a[toIndex] with pivot as the dividing item
+    while i <= j loop
+      {
+        while a[i] < pivot loop
+           i := i + 1;
+
+        while a[j] > pivot loop
+           j := j - 1;
+
+        if i <= j then
+          {
+            // swap a[i] and a[j]
+            temp := a[i];
+            a[i] := a[j];
+            a[j] := temp;
+
+            // update i and j
+            i := i + 1;
+            j := j - 1;
+          }
+      }
+
+    if fromIndex < j then
+        quickSort(a, fromIndex, j);   // sort top part
+
+    if i < toIndex then
+        quickSort(a, i, toIndex);     // sort bottom part
+  }
+
+proc printArray(x : A)
+  {
+    var i : Integer := 0;
+
+    while i < arraySize loop
+      {
+        write x[i], "  ";
+        i := i + 1;
+      }
+    writeln;
+  }

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# Run SEL interpreter.
+#
+
+# set config environment variables
+source cprl_config
+
+SEL_HOME=$WORKSPACE_HOME/edu.citadel.sel
+
+COMPILER_PROJECT_PATH=$SEL_HOME/$CLASSES_DIR:$COMPILER_PROJECT_PATH
+
+# use either CLASSPATH or MODULEPATH
+#CLASSPATH=$COMPILER_PROJECT_PATH
+#java -ea -cp "$CLASSPATH" edu.citadel.sel.Interpreter $1
+MODULEPATH=$COMPILER_PROJECT_PATH
+java -ea -p "$MODULEPATH" -m edu.citadel.sel/edu.citadel.sel.Interpreter $1

@@ -1,0 +1,30 @@
+   0:  CALL 1
+   5:  HALT
+   6:  PROC 16
+  11:  LDLADDR 8
+  16:  LDCSTR  "John"
+  29:  STORE 12
+  34:  LDLADDR 20
+  39:  LDCINT0
+  40:  STOREW
+  41:  LDLADDR 20
+  46:  LOADW
+  47:  LDCINT 4
+  52:  BGE 40
+  57:  LDLADDR 8
+  62:  LDCINT 4
+  67:  ADD
+  68:  LDLADDR 20
+  73:  LOADW
+  74:  SHL 1
+  76:  ADD
+  77:  LOAD2B
+  78:  PUTCH
+  79:  LDLADDR 20
+  84:  LDLADDR 20
+  89:  LOADW
+  90:  INC
+  91:  STOREW
+  92:  BR -56
+  97:  PUTEOL
+  98:  RET0

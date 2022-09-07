@@ -1,0 +1,6 @@
+   0:  CALL 1
+   5:  HALT
+   6:  LDCSTR  "Hello, world."
+  37:  PUTSTR 13
+  42:  PUTEOL
+  43:  RET0

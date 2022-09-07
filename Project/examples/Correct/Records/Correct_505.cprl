@@ -1,0 +1,22 @@
+type Point = record
+  {
+    x : Integer;
+    y : Integer;
+  };
+
+
+fun makePoint(x : Integer, y : Integer) : Point
+  {
+    var p : Point;
+    p.x := x;
+    p.y := y;
+    return p;
+  }
+
+proc main()
+  {
+    var p : Point;
+
+    p := makePoint(1, 2);
+    writeln "Point(", p.x, ", ", p.y, ")";
+  }

@@ -1,0 +1,13 @@
+// output should be "x = 6"
+
+var x : Integer := 1;
+const n := 5;
+
+proc main()
+  {
+    while x <= n loop
+        x := x + 1;
+
+    writeln "x = ", x;
+  }
+

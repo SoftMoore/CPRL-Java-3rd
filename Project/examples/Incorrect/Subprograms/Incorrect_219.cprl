@@ -1,0 +1,12 @@
+fun f() : Integer
+  {
+    var x : Integer;
+
+    x := 'X';    // assign Char literal to an Integer
+    return 1;
+  }
+
+proc main()
+  {
+    writeln(f());
+  }

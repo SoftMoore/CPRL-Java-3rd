@@ -1,0 +1,13 @@
+type Name = string[10];
+
+fun getName() : Name
+  {
+    return "Gaby";
+  }
+
+proc main()
+  {
+    var name : Name;
+    name := getName();
+    writeln(name);
+  }

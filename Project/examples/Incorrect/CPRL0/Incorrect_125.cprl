@@ -1,0 +1,5 @@
+var n : Integer;
+
+// statements not nested within a subprogram
+n := 5;
+return;

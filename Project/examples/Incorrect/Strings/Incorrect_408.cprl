@@ -1,0 +1,11 @@
+type Name = string[10];
+
+proc writeName(name : Name)
+  {
+    writeln name;
+  }
+
+proc main()
+  {
+    writeName("Chloe");   // *** ERROR: string literal as value parameter
+  }

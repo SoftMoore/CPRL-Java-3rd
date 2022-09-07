@@ -1,0 +1,10 @@
+const five := 5;
+var x : Integer;
+
+proc main()
+  {
+    x := 3;
+    x = x + 1;        // used "=" instead of ":="
+    five := 7;        // attempt to assign to a constant
+    writeln(x + five);
+  }

@@ -1,0 +1,7 @@
+var x : Integer;
+
+proc main()
+  {
+    x := 12;
+    exit when x = 12;   // exit not enclosed in a loop
+  }

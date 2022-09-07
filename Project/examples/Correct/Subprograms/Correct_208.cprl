@@ -1,0 +1,30 @@
+// Output should be
+// x = 6
+// n = 6
+// x = 6
+// n = 7
+// x = 6
+
+var x : Integer;
+
+proc main()
+  {
+    x := 5;
+    p1(x);
+    writeln "x = ", x;
+  }
+
+proc p2(n : Integer)
+  {
+    n := n + 1;
+    writeln "x = ", x;
+    writeln "n = ", n;
+  }
+
+proc p1(var n : Integer)
+  {
+    n := n + 1;
+    writeln "x = ", x;
+    writeln "n = ", n;
+    p2(n);
+  }

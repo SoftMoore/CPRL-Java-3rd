@@ -1,0 +1,11 @@
+var x : Integer;
+
+proc main()
+  {
+    x := 1;
+
+    while 2 + 2 loop   // while expression is not boolean
+        x := x + 1;
+
+    writeln "x = ", x;
+  }

@@ -1,0 +1,15 @@
+type T = array[10] of Integer;
+type T1 = array[10] of Integer;
+
+var a : T;
+var b : T;
+var c : T1;
+
+proc main()
+  {
+    if a = c then     // Not both same type, but also not both scalar
+        writeln "bogus";
+
+    if a = b then     // Both the same type, but also not both scalar
+        writeln "bogus";
+  }
