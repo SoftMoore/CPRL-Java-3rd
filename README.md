@@ -63,11 +63,11 @@ Module `edu.citadel.cprl` contains the classes that implement the CPRL compiler.
        requires transitive edu.citadel.compiler;
      }
 ````
-  Since abstract syntax trees are not introduced until Project 4 below, the line
+    Since abstract syntax trees are not introduced until Project 4 below, the line
 ````java
    exports edu.citadel.cprl.ast;
 ````
-  can be commented out for Projects 0-3.
+    can be commented out for Projects 0-3.
 
 ### Overview of the Book&rsquo;s GitHub Repository
 
@@ -92,7 +92,7 @@ In addition to the standard license and readme files, the top level of the GitHu
     – src-Scanner
 ```
 
-  Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
+    Directories with names beginning &ldquo;`src…`&rdquo; contain Java source files for the compiler project.
 
 * Directory `bin` contains sample Bash shell scripts and Windows command scripts for running and testing various stages of the compiler.  There are two subdirectories named `bash` and `windows` that contain the Bash and Windows script files, respectively.  For each Windows `.cmd` script file there is a corresponding Bash script file without the `.cmd` suffix; e.g., `cprlc.cmd` and `cprlc`.  Pick the collection of script files for your operating system and programming environment.
 
