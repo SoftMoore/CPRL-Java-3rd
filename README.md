@@ -128,7 +128,7 @@ In addition to the standard license and readme files, the top level of the GitHu
 
   - `ScannerTests` contains both correct and incorrect files that can be used for testing your scanner as described in Project 1 below. These are not necessarily complete CPRL programs. For example, one of the files contains every valid symbol in CPRL including all reserved words, operators, and numerous user-defined identifiers and literals.
 
- You are strongly encouraged to develop additional test programs as you work though the remaining projects described below.
+   You are strongly encouraged to develop additional test programs as you work though the remaining projects described below.
 
 * Directory `src-Compiler` contains the source code for the Compiler module as described above.  These classes are used by the other two modules, and they are potentially reusable on other compiler projects.  All classes in this directory are complete and require no additional work for use on the compiler project.  **Import the Java source code for this module into your preferred IDE for Java (e.g., Eclipse).**  All code should compile without any errors.
 
