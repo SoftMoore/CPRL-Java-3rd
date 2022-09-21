@@ -8,18 +8,16 @@ rem edu.citadel.compiler, edu.citadel.cprl, and edu.citadel.cvm.  Class files ar
 rem placed in a "classes" directory rather than the Eclipse default "bin" directory.
 rem The project directory hierarchy is as follows:
 rem  PROJECT_HOME
-rem   - workspace
-rem      - edu.citadel.compiler
-rem      - edu.citadel.cprl
-rem      - edu.citadel.cvm
+rem     - edu.citadel.compiler
+rem     - edu.citadel.cprl
+rem     - edu.citadel.cvm
 
 rem set PROJECT_HOME to the directory for your compiler project
-set PROJECT_HOME=C:\JMooreMACS\Teaching\Compiler
+set PROJECT_HOME=C:\Compilers\workspace
 
-set WORKSPACE_HOME=%PROJECT_HOME%\workspace
-set COMPILER_HOME=%WORKSPACE_HOME%\edu.citadel.compiler
-set CPRL_HOME=%WORKSPACE_HOME%\edu.citadel.cprl
-set CVM_HOME=%WORKSPACE_HOME%\edu.citadel.cvm
+set COMPILER_HOME=%PROJECT_HOME%\edu.citadel.compiler
+set CPRL_HOME=%PROJECT_HOME%\edu.citadel.cprl
+set CVM_HOME=%PROJECT_HOME%\edu.citadel.cvm
 
 rem set CLASSES_DIR to the directory name used for compiled Java classes (e.g., classes or bin)
 set CLASSES_DIR=classes
