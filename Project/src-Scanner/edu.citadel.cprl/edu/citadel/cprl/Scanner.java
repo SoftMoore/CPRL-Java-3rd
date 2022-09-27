@@ -321,7 +321,7 @@ public final class Scanner
       {
         // assumes that source.getChar() is the opening single quote for the char literal
         assert (char) source.getChar() == '\'' :
-            "Scanner.scanCharLiteral(): Check for opening quote (\') at position "
+            "Check for opening quote (\') at position "
             + source.getCharPosition() + ".";
 
         String errorMsg = "Invalid Char literal.";
@@ -422,9 +422,7 @@ public final class Scanner
     private void skipWhiteSpace() throws IOException
       {
         while (Character.isWhitespace((char) source.getChar()))
-          {
             source.advance();
-          }
       }
 
 
