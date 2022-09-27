@@ -1,23 +1,22 @@
 initializing...
-
+*** Lexical error detected near line 2, character 7:
+    Invalid character '!'
+*** Lexical error detected near line 2, character 11:
+    Invalid character '?'
 starting main loop...
 
 line:  2   char:  1   token: <
-*** Lexical error detected near line 2, character 6:
+*** Lexical error detected near line 2, character 15:
     Invalid character '!'
 line:  2   char:  2   token: >
-*** Lexical error detected near line 2, character 10:
-    Invalid character '?'
 line:  2   char:  6   token: Unknown
-*** Lexical error detected near line 2, character 14:
-    Invalid character '!'
-line:  2   char: 10   token: Unknown
-line:  2   char: 14   token: Unknown
-*** Lexical error detected near line 2, character 22:
+*** Lexical error detected near line 2, character 23:
     Invalid character '#'
-line:  2   char: 15   token: Identifier -> done
-*** Lexical error detected near line 2, character 26:
+line:  2   char: 10   token: Unknown
+*** Lexical error detected near line 2, character 27:
     Invalid character '@'
+line:  2   char: 14   token: Unknown
+line:  2   char: 15   token: Identifier -> done
 line:  2   char: 22   token: Unknown
 line:  2   char: 26   token: Unknown
 line:  3   char:  1   token: End-of-File
