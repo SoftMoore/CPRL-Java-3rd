@@ -407,7 +407,7 @@ public final class Scanner
             case '\"' : return "\\\"";   // double quote
             case '\'' : return "\\\'";   // single quote
             case '\\' : return "\\\\";   // backslash
-            default   : // report error but return the invalid string
+            default   : // report error but return the invalid character
                         ScannerException ex = error(backslashPosition,
                                                     "Illegal escape character.");
                         errorHandler.reportError(ex);
