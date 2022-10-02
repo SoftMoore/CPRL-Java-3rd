@@ -56,7 +56,7 @@ public class Parser
             followers.addAll(EnumSet.of(Symbol.procRW, Symbol.funRW));
 
         return followers;
-      };
+      }
 
 
     /**
