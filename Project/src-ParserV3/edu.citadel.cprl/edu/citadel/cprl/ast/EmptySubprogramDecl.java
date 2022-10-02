@@ -1,8 +1,6 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
-
 
 /**
  * An empty subprogram declaration passes constraint checks and emits no code.
@@ -12,10 +10,9 @@ import edu.citadel.cprl.Token;
  */
 public class EmptySubprogramDecl extends SubprogramDecl
   {
-    private static EmptySubprogramDecl instance = null;
+    private static EmptySubprogramDecl instance = new EmptySubprogramDecl();
     
-
-    public EmptySubprogramDecl()
+    private EmptySubprogramDecl()
       {
         super(new Token());
       }
@@ -25,9 +22,6 @@ public class EmptySubprogramDecl extends SubprogramDecl
      */
     public static EmptySubprogramDecl getInstance()
       {
-        if (instance == null)
-            instance = new EmptySubprogramDecl();
-
         return instance;
       }
 

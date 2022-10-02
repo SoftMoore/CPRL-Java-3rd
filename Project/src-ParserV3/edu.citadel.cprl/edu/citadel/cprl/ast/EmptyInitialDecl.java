@@ -1,9 +1,7 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * An empty initial declaration passes constraint checks and emits no code.
@@ -13,10 +11,9 @@ import edu.citadel.cprl.Type;
  */
 public class EmptyInitialDecl extends InitialDecl
   {
-    private static EmptyInitialDecl instance = null;
-    
+    private static EmptyInitialDecl instance = new EmptyInitialDecl();
 
-    public EmptyInitialDecl()
+    private EmptyInitialDecl()
       {
         super(new Token(), Type.UNKNOWN);
       }
@@ -26,19 +23,14 @@ public class EmptyInitialDecl extends InitialDecl
      */
     public static EmptyInitialDecl getInstance()
       {
-        if (instance == null)
-            instance = new EmptyInitialDecl();
-
         return instance;
       }
-
 
     @Override
     public void checkConstraints()
       {
         // nothing to check
       }
-
 
     @Override
     public void emit()

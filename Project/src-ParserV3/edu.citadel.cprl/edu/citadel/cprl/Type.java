@@ -50,15 +50,6 @@ public class Type
 
 
     /**
-     * Returns the name for this type.
-     */
-    public String toString()
-      {
-        return typeName;
-      }
-
-
-    /**
      * Returns the number of machine addressable units
      * (e.g., bytes or words) for this type.
      */
@@ -135,6 +126,16 @@ public class Type
       }
 
 
+    /**
+     * Returns the name for this type.
+     */
+    @Override
+    public String toString()
+      {
+        return typeName;
+      }
+
+
     @Override
     public int hashCode()
       {
@@ -155,6 +156,4 @@ public class Type
 
         return Objects.equals(typeName, other.typeName);
       }
-
-
   }

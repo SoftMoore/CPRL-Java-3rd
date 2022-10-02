@@ -1,8 +1,6 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.Position;
-
 
 /**
  * An empty expression passes constraint checks and emits no code.
@@ -12,10 +10,9 @@ import edu.citadel.compiler.Position;
  */
 public class EmptyExpression extends Expression
   {
-    private static EmptyExpression instance = null;
+    private static EmptyExpression instance = new EmptyExpression();
     
-
-    public EmptyExpression()
+    private EmptyExpression()
       {
         super(new Position());
       }
@@ -25,19 +22,14 @@ public class EmptyExpression extends Expression
      */
     public static EmptyExpression getInstance()
       {
-        if (instance == null)
-            instance = new EmptyExpression();
-
         return instance;
       }
-
 
     @Override
     public void checkConstraints()
       {
         // nothing to check
       }
-
 
     @Override
     public void emit()
