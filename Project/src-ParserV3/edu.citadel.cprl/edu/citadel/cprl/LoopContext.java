@@ -26,10 +26,7 @@ public final class LoopContext
      */
     public LoopStmt getLoopStmt()
       {
-        if (!loopStack.empty())
-            return loopStack.peek();
-        else
-            return null;
+        return loopStack.empty() ? null : loopStack.peek();
       }
 
 
