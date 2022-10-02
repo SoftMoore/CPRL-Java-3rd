@@ -1,9 +1,7 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a field declaration.
@@ -19,7 +17,6 @@ public class FieldDecl extends Declaration
      *  which is simply the number of bytes associated with its type. */
     private int size;
 
-
     /**
      * Construct a field declaration with its identifier and type.
      */
@@ -30,42 +27,29 @@ public class FieldDecl extends Declaration
         size = type.getSize();
       }
 
-
     /**
-     * Returns the offset for this field. 
+     * Returns the offset for this field.
      */
     public int getOffset()
       {
         return offset;
       }
 
-
     /**
-     * Sets the offset for this field. 
+     * Sets the offset for this field.
      */
     public void setOffset(int offset)
       {
         this.offset = offset;
       }
 
-
     /**
-     * Returns the size (number of bytes) for this field. 
+     * Returns the size (number of bytes) for this field.
      */
     public int getSize()
       {
         return size;
       }
-
-
-    /**
-     * Sets the size (number of bytes) for this field. 
-     */
-    public void setSize(int size)
-      {
-        this.size = size;
-      }
-
 
     @Override
     public void checkConstraints()
