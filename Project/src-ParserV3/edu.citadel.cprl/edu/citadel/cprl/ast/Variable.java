@@ -56,8 +56,8 @@ public class Variable extends Expression
 
 
     /**
-     * Returns the list of selector expressions for the variable.  Returns
-     * an empty list if the variable is not an array variable.
+     * Returns the list of selector expressions for the variable.  Returns an
+     * empty list if the variable is not an array, string, or record variable.
      */
     public List<Expression> getSelectorExprs()
       {
