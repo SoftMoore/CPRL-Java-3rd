@@ -15,7 +15,7 @@ import java.util.List;
 public class OutputStmt extends Statement
   {
     private List<Expression> expressions;
-    private boolean isWriteln; 
+    private boolean isWriteln;
 
 
     /**
@@ -53,16 +53,16 @@ public class OutputStmt extends Statement
         for (Expression expr : expressions)
           {
             expr.checkConstraints();
-            
+
             try
               {
                 Type type = expr.getType();
-            
+
                 if (type != Type.Integer && type != Type.Boolean
                     && type != Type.Char && !(type instanceof StringType))
                   {
                     String errorMsg = "Output supported only for integers, "
-                                     +"characters, booleans, and strings.";
+                                    + "characters, booleans, and strings.";
                     throw error(expr.getPosition(), errorMsg);
                   }
               }
@@ -92,7 +92,7 @@ public class OutputStmt extends Statement
             else   // must be a string type
                 emit("PUTSTR " + ((StringType) type).getCapacity());
          }
-        
+
         if (isWriteln)
             emit("PUTEOL");
       }
