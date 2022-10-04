@@ -23,7 +23,7 @@ public class TestParser
     private static final String SUFFIX  = ".cprl";
 
 
-    public static void main(String args[]) throws Exception
+    public static void main(String[] args) throws Exception
       {
         if (args.length == 0)
           printUsageAndExit();
@@ -31,7 +31,7 @@ public class TestParser
         for (String fileName : args)
           {
             var errorHandler = new ErrorHandler();
-            
+
             try
               {
                 var sourceFile = new File(fileName);

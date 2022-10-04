@@ -28,7 +28,7 @@ public class Compiler
      * @param args must include the name of the CPRL source file, either the complete
      *             file name or the base file name with suffix ".cprl" omitted.
      */
-    public static void main(String args[]) throws Exception
+    public static void main(String[] args) throws Exception
       {
         if (args.length == 0)
             printUsageAndExit();

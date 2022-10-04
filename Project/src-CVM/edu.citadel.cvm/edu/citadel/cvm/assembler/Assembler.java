@@ -33,14 +33,14 @@ public class Assembler
      * Translates the assembly source files named in args to CVM machine
      * code.  Object files have the same name but with a ".obj" suffix.
      */
-    public static void main(String args[]) throws Exception
+    public static void main(String[] args) throws Exception
       {
         // check arguments
         if (args.length == 0)
             printUsageAndExit();
-        
+
         int startIndex = 0;
-        
+
         if (args[0].startsWith("\"-opt:"))
           {
             processOption(args[0]);
@@ -116,7 +116,7 @@ public class Assembler
         Source  source  = new Source(reader);
         Scanner scanner = new Scanner(source, errorHandler);
         Parser  parser  = new Parser(scanner, errorHandler);
-        
+
         printProgressMessage("Starting assembly for " + sourceFile.getName());
 
         // parse source file
