@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler;
 
-
 /**
  * This class encapsulates the symbols (also known as token types)
  * for the CVM assembly language.
@@ -84,7 +83,6 @@ public enum Symbol
     // unknown symbol (first symbol that is not an opcode)
     UNKNOWN("UNKNOWN"),
     
-
     // literal values and identifier symbols
     intLiteral("intLiteral"),
     stringLiteral("stringLiteral"),
@@ -95,20 +93,16 @@ public enum Symbol
     // special scanning symbols
     EOF("EOF");
 
-
     private final String label;
     private final int    numArgs;
-
 
     /**
      * Construct a symbol with its label and 0 arguments.
      */
     private Symbol(String label)
       {
-        this.label   = label;
-        this.numArgs = 0;
+        this(label, 0);
       }
-
 
     /**
      * Construct a symbol with its label and number of arguments.
@@ -119,7 +113,6 @@ public enum Symbol
         this.numArgs = numArgs;
       }
 
-
     /**
      * Returns the number of arguments required for an opcode. 
      */
@@ -128,13 +121,11 @@ public enum Symbol
         return numArgs;
       }
 
-
     public boolean isOpCode()
       {
         return this.compareTo(HALT) >=0 && this.compareTo(UNKNOWN) < 0;
 
       }
-
 
     /**
      * Returns the label for this Symbol.

@@ -25,14 +25,10 @@ public abstract class Instruction extends AST
     // Maps identifier text (type String) to a stack address (type Integer).
     protected static Map<String, Integer> idMap = new HashMap<>();
 
-    // Initialize address for identifiers (e.g., used in DEFINT).
-    private static int idAddress = Constants.BYTES_PER_CONTEXT;
-
     private List<Token> labels;
     private Token opCode;
 
     private int address;
-
 
     /**
      * Construct an instruction with a list of labels and an opcode.
@@ -43,7 +39,6 @@ public abstract class Instruction extends AST
         this.opCode = opCode;
       }
 
-
     /**
      * Initialize static maps.  These maps are shared with all instructions,but
      * they must be re-initialized if the assembler is run on more than one file.
@@ -53,19 +48,16 @@ public abstract class Instruction extends AST
         labelMap = new HashMap<>();
         idMap = new HashMap<>();
       }
-
     
     public List<Token> getLabels()
       {
         return labels;
       }
 
-
     public Token getOpCode()
       {
         return opCode;
       }
-
 
     /**
      * Sets the memory address and defines label values for an instruction.
@@ -87,7 +79,6 @@ public abstract class Instruction extends AST
               }
       }
 
-
     /**
      * Returns the address of this instruction. 
      */
@@ -95,29 +86,6 @@ public abstract class Instruction extends AST
       {
         return address;
       }
-
-
-    /**
-     * Map the text of the identifier token to an address on the stack.
-     */
-    public void defineIdAddress(Token identifier, int size) throws ConstraintException
-      {
-        assert identifier != null : "Identifier can't be null.";
-        assert identifier.getSymbol() == Symbol.identifier :
-            "Expecting an identifier but found " + identifier.getSymbol() + ".";
-
-        if (idMap.containsKey(identifier.getText()))
-          {
-            String errorMsg  = "This identifier has already been defined.";
-            throw error(identifier.getPosition(), errorMsg);
-          }
-        else
-          {
-            idMap.put(identifier.getText(), Integer.valueOf(idAddress));
-            idAddress = idAddress + size;
-          }
-      }
-
 
     /**
      * Returns the stack address associated with an identifier.
@@ -135,12 +103,10 @@ public abstract class Instruction extends AST
         return idAddress.intValue();
       }
 
-
     /**
      * Returns the number of bytes in memory occupied by the argument.
      */
     protected abstract int getArgSize();
-
 
     /**
      * Returns the number of bytes in memory occupied by the instruction,
@@ -150,7 +116,6 @@ public abstract class Instruction extends AST
       {
         return Constants.BYTES_PER_OPCODE + getArgSize();
       }
-
 
     /**
      * Checks that each label has a value defined in the label map.  This method
@@ -170,7 +135,6 @@ public abstract class Instruction extends AST
           }
       }
 
-
     /**
      * Calculates the displacement between an instruction's address and
      * a label (computed as label's address - instruction's address).
@@ -187,7 +151,6 @@ public abstract class Instruction extends AST
         return labelAddress - (address + getSize());
       }
 
-
     /**
      * Asserts that the opCode token of the instruction has
      * the correct Symbol.  Implemented in each instruction
@@ -195,13 +158,11 @@ public abstract class Instruction extends AST
      */
     protected abstract void assertOpCode();
 
-
     protected void assertOpCode(Symbol opCode)
       {
         assert this.opCode != null : "Null opCode.";
         assert this.opCode.getSymbol() == opCode : "Wrong opCode.";
       }
-
 
     @Override
     public String toString()
