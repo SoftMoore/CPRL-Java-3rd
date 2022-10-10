@@ -41,7 +41,7 @@ public class Assembler
 
         int startIndex = 0;
 
-        if (args[0].startsWith("\"-opt:"))
+        if (args[0].startsWith("-opt:"))
           {
             processOption(args[0]);
             startIndex = 1;

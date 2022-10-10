@@ -49,7 +49,7 @@ public class Parser
         return followers;
       }
 
-    
+
     /**
      * Construct a parser with the specified scanner and error handler.
      */
@@ -76,8 +76,7 @@ public class Parser
                 || symbol == Symbol.identifier)
               {
                 Instruction instruction = parseInstruction();
-                if (instruction != null)
-                    program.addInstruction(instruction);
+                program.addInstruction(instruction);
                 symbol = scanner.getSymbol();
               }
 
@@ -110,9 +109,11 @@ public class Parser
                   }
               }
 
-            // return null when a label is followed by EOF
             if (scanner.getSymbol() == Symbol.EOF)
-                return null;
+              {
+                // return HALT when a label is followed by EOF
+                return makeInstruction(labels, new Token(Symbol.HALT), null);
+              }
             else
               {
                 checkOpCode();
