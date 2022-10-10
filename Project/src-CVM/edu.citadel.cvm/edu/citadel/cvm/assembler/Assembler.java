@@ -116,6 +116,7 @@ public class Assembler
         Source  source  = new Source(reader);
         Scanner scanner = new Scanner(source, errorHandler);
         Parser  parser  = new Parser(scanner, errorHandler);
+        AST.setErrorHandler(errorHandler);
 
         printProgressMessage("Starting assembly for " + sourceFile.getName());
 
