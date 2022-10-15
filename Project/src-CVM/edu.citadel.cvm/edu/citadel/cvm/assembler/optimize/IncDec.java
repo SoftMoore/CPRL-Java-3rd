@@ -10,7 +10,6 @@ import edu.citadel.cvm.assembler.ast.InstructionOneArg;
 
 import java.util.List;
 
-
 /**
  * Replaces addition of 1 with increment and subtraction of 1 with decrement.
  * Basically, this class looks for patterns of the form "LDCINT 1, ADD" and
@@ -32,7 +31,7 @@ public class IncDec implements Optimization
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         if (symbol0 != Symbol.LDCINT)
             return;
-        
+
         InstructionOneArg inst0 = (InstructionOneArg)instruction0;
         String arg0 = inst0.getArg().getText();
 
@@ -42,7 +41,7 @@ public class IncDec implements Optimization
             if (instruction1.getLabels().isEmpty())
               {
                 Symbol symbol1 = instruction1.getOpCode().getSymbol();
-                
+
                 if (symbol1 == Symbol.ADD)
                   {
                     // replace LDCINT by INC

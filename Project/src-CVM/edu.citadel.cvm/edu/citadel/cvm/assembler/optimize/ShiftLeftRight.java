@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 
@@ -11,12 +10,11 @@ import edu.citadel.cvm.assembler.ast.InstructionSHR;
 
 import java.util.List;
 
-
 /**
  * Replaces multiplication by a power of 2 with left shift and division by a power
  * of two with right shift where possible.  Basically, this class looks for patterns
  * of the form "LDCINT 2**n, MUL" and replaces it with "SHL n".  It also replaces
- * patterns of the form "LDCINT 2**n, DIV" with "SHR n".    
+ * patterns of the form "LDCINT 2**n, DIV" with "SHR n".
  */
 public class ShiftLeftRight implements Optimization
   {
@@ -29,14 +27,14 @@ public class ShiftLeftRight implements Optimization
 
         Instruction instruction0 = instructions.get(instNum);
         Instruction instruction1 = instructions.get(instNum + 1);
-        
+
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
 
         // quick check that we have LDCINT
         if (symbol0 != Symbol.LDCINT)
             return;
 
-        InstructionOneArg inst0 = (InstructionOneArg)instruction0;        
+        InstructionOneArg inst0 = (InstructionOneArg)instruction0;
         int shiftAmount = OptimizationUtil.getShiftAmount(inst0.argToInt());
         if (shiftAmount > 0)
           {
@@ -49,10 +47,10 @@ public class ShiftLeftRight implements Optimization
                 Token argToken = new Token(Symbol.intLiteral, argStr);
 
                 Symbol symbol1 = instruction1.getOpCode().getSymbol();
-                
+
                 if (symbol1 == Symbol.MUL)
                   {
-                    // replace LDCINT with SHL 
+                    // replace LDCINT with SHL
                     Token shlToken = new Token(Symbol.SHL);
                     Instruction shlInst = new InstructionSHL(labels, shlToken, argToken);
                     instructions.set(instNum, shlInst);

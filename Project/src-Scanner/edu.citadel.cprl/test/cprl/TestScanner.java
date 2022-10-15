@@ -1,6 +1,5 @@
 package test.cprl;
 
-
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.Source;
 import edu.citadel.cprl.Scanner;
@@ -10,7 +9,6 @@ import edu.citadel.cprl.Token;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-
 
 public class TestScanner
   {
@@ -54,7 +52,6 @@ public class TestScanner
           }
       }
 
-
     public static void printToken(Token token)
       {
         out.printf("line: %2d   char: %2d   token: ",
@@ -70,7 +67,6 @@ public class TestScanner
 
         out.println(token.getText());
       }
-
 
     private static void printUsageAndExit()
       {

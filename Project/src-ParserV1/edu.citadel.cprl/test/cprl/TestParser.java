@@ -1,6 +1,5 @@
 package test.cprl;
 
-
 import edu.citadel.compiler.Source;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.FatalException;
@@ -14,14 +13,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 
-
 /**
  * Test the Parser for the CPRL programming language.
  */
 public class TestParser
   {
     private static final String SUFFIX  = ".cprl";
-
 
     public static void main(String[] args) throws Exception
       {
@@ -83,12 +80,10 @@ public class TestParser
           }
       }
 
-
     private static void printProgressMessage(String message)
       {
          System.out.println(message);
       }
-
 
     private static void printUsageAndExit()
       {

@@ -1,13 +1,11 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
 import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a negation expression.  A negation
@@ -26,13 +24,11 @@ public class NegationExpr extends UnaryExpr
         assert operator.getSymbol() == Symbol.minus : "Operator is not \"-\" operator.";
       }
 
-
     @Override
     public void checkConstraints()
       {
 // ...
       }
-
 
     @Override
     public void emit() throws CodeGenException

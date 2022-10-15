@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
@@ -8,7 +7,6 @@ import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 import edu.citadel.cprl.StringType;
-
 
 /**
  * The abstract syntax tree node for a constant value expression, which is
@@ -23,10 +21,8 @@ public class ConstValue extends Expression
      */
     private Token literal;
 
-
     // constant declaration containing the constant value
     private ConstDecl decl;   // nonstructural reference
-
 
     /**
      * Construct a constant value from a literal token.
@@ -38,7 +34,6 @@ public class ConstValue extends Expression
         this.decl = null;
       }
 
-
     /**
      * Construct a constant value from a constant identifier
      * token and its corresponding constant declaration.
@@ -49,7 +44,6 @@ public class ConstValue extends Expression
         this.literal = decl.getLiteral();
         this.decl = decl;
       }
-
 
     /**
      * Returns an integer value for the declaration literal.  For an integer
@@ -72,7 +66,6 @@ public class ConstValue extends Expression
         else
             return 0;
       }
-
 
     @Override
     public void checkConstraints()
@@ -100,7 +93,6 @@ public class ConstValue extends Expression
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

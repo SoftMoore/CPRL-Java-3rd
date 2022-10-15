@@ -6,12 +6,11 @@ import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
 
-
 /**
  * Replaces LDCB 0 with LDCB0, LDCB 1 with LDCB1, LDCINT 0 with LDCINT0, and
  * LDCINT 1 with LDCINT1.  Implementation Note: This optimization must be
  * applied after the other optimizations or else they will need to be rewritten.
- * For example, the inc/dec instructions look for LDCINT 1 and not LDCINT1. 
+ * For example, the inc/dec instructions look for LDCINT 1 and not LDCINT1.
  */
 public class LoadSpecialConstants implements Optimization
   {
@@ -62,6 +61,6 @@ public class LoadSpecialConstants implements Optimization
                 Instruction loadInst = new InstructionLDCB1(labels, loadToken);
                 instructions.set(instNum, loadInst);
               }
-          } 
+          }
       }
   }

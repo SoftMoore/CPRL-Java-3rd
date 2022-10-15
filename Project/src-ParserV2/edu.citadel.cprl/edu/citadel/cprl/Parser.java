@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.InternalCompilerException;
 import edu.citadel.compiler.ParserException;
@@ -8,7 +7,6 @@ import edu.citadel.compiler.Position;
 
 import java.io.IOException;
 import java.util.*;
-
 
 /**
  * This class uses recursive descent to perform syntax analysis of
@@ -20,18 +18,15 @@ public class Parser
     private IdTable idTable;
     private ErrorHandler errorHandler;
 
-
     /** Symbols that can follow a statement. */
     private final Set<Symbol> stmtFollowers = EnumSet.of(
 // ...
       );
 
-
     /** Symbols that can follow a subprogram declaration. */
     private final Set<Symbol> subprogDeclFollowers = EnumSet.of(
 // ...
       );
-
 
     /** Symbols that can follow a factor. */
     private final Set<Symbol> factorFollowers = EnumSet.of(
@@ -40,7 +35,6 @@ public class Parser
         Symbol.lessThan,  Symbol.lessOrEqual,  Symbol.greaterThan, Symbol.greaterOrEqual,
         Symbol.plus,      Symbol.minus,        Symbol.times,       Symbol.divide,
         Symbol.modRW,     Symbol.rightBracket, Symbol.comma);
-
 
     /** Symbols that can follow an initial declaration (computed property).
      *  Set is computed dynamically based on the scope level of IdTable.*/
@@ -58,7 +52,6 @@ public class Parser
         return followers;
       }
 
-
     /**
      * Construct a parser with the specified scanner, identifier
      * table, and error handler.
@@ -69,7 +62,6 @@ public class Parser
         this.idTable = idTable;
         this.errorHandler = errorHandler;
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -98,7 +90,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>initialDecls = { initialDecl } .</code>
@@ -109,7 +100,6 @@ public class Parser
             parseInitialDecl();
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>initialDecl = constDecl | varDecl | typeDecl .</code>
@@ -119,7 +109,6 @@ public class Parser
 // ...   throw an internal error if the symbol is not one of constRW, varRW, or typeRW
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>constDecl = "const" constId ":=" literal ";" .</code>
@@ -128,7 +117,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -149,7 +137,6 @@ public class Parser
             recover(factorFollowers);
           }
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -181,7 +168,6 @@ public class Parser
             recover(initialDeclFollowers());
           }
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -216,7 +202,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>typeDecl = arrayTypeDecl | recordTypeDecl | stringTypeDecl .</code>
@@ -248,9 +233,6 @@ public class Parser
           }
       }
 
-
-
-
     /**
      * Parse the following grammar rule:<br>
      * <code>arrayTypeDecl = "type" typeId "=" "array" "[" intConstValue "]"
@@ -260,7 +242,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -298,7 +279,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>fieldDecls = { fieldDecl } .</code>
@@ -307,7 +287,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -318,7 +297,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>"type" typeId "=" "string" "[" intConstValue "]" ";" .</code>
@@ -327,7 +305,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -371,7 +348,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>subprogramDecls = { subprogramDecl } .</code>
@@ -381,7 +357,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>subprogramDecl = procedureDecl | functionDecl .</code>
@@ -390,7 +365,6 @@ public class Parser
       {
 // ...   throw an internal error if the symbol is not one of procedureRW or functionRW
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -433,7 +407,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>functionDecl = "fun" funcId "(" [ formalParameters ] ")" ":" typeName
@@ -444,7 +417,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>formalParameters = parameterDecl { "," parameterDecl } .</code>
@@ -453,7 +425,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -464,7 +435,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>statements = { statement } .</code>
@@ -473,7 +443,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -532,7 +501,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>assignmentStmt = variable ":=" expression ";" .</code>
@@ -541,7 +509,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -552,7 +519,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>ifStmt = "if" booleanExpr "then" statement  [ "else" statement ] .</code>
@@ -561,7 +527,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -572,7 +537,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>exitStmt = "exit" [ "when" booleanExpr ] ";" .</code>
@@ -581,7 +545,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -592,7 +555,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>writeStmt = "write" expressions ";" .</code>
@@ -602,7 +564,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>expressions = expression { "," expression } .</code>
@@ -611,7 +572,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -635,7 +595,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>procedureCallStmt = procId "(" [ actualParameters ] ")" ";" .
@@ -646,7 +605,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>returnStmt = "return" [ expression ] ";" .</code>
@@ -655,7 +613,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -695,7 +652,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>indexExpr = "[" expression "]" .</code>
@@ -707,7 +663,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>fieldExpr = "." fieldId .</code>
@@ -718,7 +673,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -737,7 +691,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rules:<br>
      * <code>expression = relation { logicalOp relation } .<br>
@@ -754,7 +707,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rules:<br>
      * <code>relation = simpleExpr [ relationalOp simpleExpr ] .<br>
@@ -764,7 +716,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rules:<br>
@@ -777,7 +728,6 @@ public class Parser
 // ...
       }
 
-
     /**
      * Parse the following grammar rules:<br>
      * <code>term = factor { multiplyingOp factor } .<br>
@@ -787,7 +737,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -865,7 +814,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>constValue = literal | constId .</code>
@@ -874,7 +822,6 @@ public class Parser
       {
 // ...
       }
-
 
     /**
      * Parse the following grammar rule:<br>
@@ -893,7 +840,6 @@ public class Parser
           }
       }
 
-
     /**
      * Parse the following grammar rule:<br>
      * <code>functionCallExpr = funcId "(" [ actualParameters ] ")" .
@@ -904,9 +850,7 @@ public class Parser
 // ...
       }
 
-
     // Utility parsing methods
-
 
     /**
      * Check that the current scanner symbol is the expected symbol.  If it
@@ -924,7 +868,6 @@ public class Parser
           }
       }
 
-
     /**
      * Advance the scanner.  This method represents an unconditional match
      * with the current scanner symbol.
@@ -933,7 +876,6 @@ public class Parser
       {
         scanner.advance();
       }
-
 
     /**
      * Advance the scanner until the current symbol is one of the
@@ -944,7 +886,6 @@ public class Parser
         scanner.advanceTo(followers);
       }
 
-
     /**
      * Create a parser exception with the specified error message and the
      * current scanner position.
@@ -954,7 +895,6 @@ public class Parser
         return new ParserException(scanner.getPosition(), errorMsg);
       }
 
-
     /**
      * Create a parser exception with the specified error position and error message.
      */
@@ -962,7 +902,6 @@ public class Parser
       {
         return new ParserException(errorPos, errorMsg);
       }
-
 
     /**
      * Create an internal compiler exception with the specified error

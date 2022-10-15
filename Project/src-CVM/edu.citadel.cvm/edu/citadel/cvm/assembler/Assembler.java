@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler;
 
-
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.FatalException;
 import edu.citadel.compiler.Source;
@@ -12,7 +11,6 @@ import edu.citadel.cvm.assembler.ast.Program;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-
 
 /**
  * Assembler for the CPRL Virtual Machine.
@@ -27,7 +25,6 @@ public class Assembler
     private static boolean optimize = true;
 
     private File sourceFile;
-
 
     /**
      * Translates the assembly source files named in args to CVM machine
@@ -90,7 +87,6 @@ public class Assembler
           }
       }
 
-
     /**
      * Construct an assembler with the specified source file.
      */
@@ -99,7 +95,6 @@ public class Assembler
         this.sourceFile = sourceFile;
         Instruction.initMaps();
       }
-
 
     /**
      * Assembles the source file.  If there are no errors in the source file,
@@ -179,7 +174,6 @@ public class Assembler
             printProgressMessage("Assembly complete.");
       }
 
-
     /**
      * This method is useful for debugging.
      *
@@ -203,7 +197,6 @@ public class Assembler
          System.out.println(message);
       }
 
-
     private static void printUsageAndExit()
       {
         System.out.println("Usage: Assembler expecting [<option>] and one or more source files");
@@ -214,7 +207,6 @@ public class Assembler
         System.exit(0);
       }
 
-
     private static void processOption(String option)
       {
         if (option.equals("-opt:off"))
@@ -224,7 +216,6 @@ public class Assembler
         else
             printUsageAndExit();
       }
-
 
     private OutputStream getTargetOutputStream(File sourceFile)
       {

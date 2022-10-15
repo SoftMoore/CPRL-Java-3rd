@@ -1,8 +1,7 @@
 package edu.citadel.compiler.util;
 
-
 /**
- * Utilities for recognizing binary and hexadecimal digits. 
+ * Utilities for recognizing binary and hexadecimal digits.
  */
 public class CharUtil
   {
@@ -14,7 +13,6 @@ public class CharUtil
       {
         return ch == '0' || ch == '1';
       }
-
 
     /**
      * Returns true only if the specified character is a hex digit

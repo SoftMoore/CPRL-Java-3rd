@@ -1,8 +1,6 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.cprl.ast.SubprogramDecl;
-
 
 /**
  * This class provides access to an enclosing subprogram context required
@@ -14,12 +12,10 @@ public final class SubprogramContext
      *  null if not currently parsing a subprogram. */
     private SubprogramDecl subprogDecl;
 
-
     public SubprogramContext()
       {
         subprogDecl = null;
       }
-
 
     /**
      * Returns the subprogram declaration currently being parsed.
@@ -30,7 +26,6 @@ public final class SubprogramContext
         return subprogDecl;
       }
 
-
     /**
      * Called when starting to parse a subprogram declaration.
      */
@@ -38,7 +33,6 @@ public final class SubprogramContext
       {
         this.subprogDecl = subprogDecl;
       }
-
 
     /**
      * Called when finished parsing a subprogram declaration.

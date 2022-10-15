@@ -1,11 +1,9 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.cprl.ast.FieldDecl;
 
 import java.util.List;
 import java.util.HashMap;
-
 
 /**
  * This class encapsulates the language concept of a record type
@@ -15,7 +13,6 @@ public class RecordType extends Type
   {
     // Use a hash map for efficient lookup of field names.
     private HashMap<String, FieldDecl> fieldNameMap = new HashMap<>();
-
 
     /**
      * Construct a record type with the specified type name, list of
@@ -29,7 +26,6 @@ public class RecordType extends Type
         for (FieldDecl fieldDecl : fieldDecls)
             fieldNameMap.put(fieldDecl.getIdToken().getText(), fieldDecl);
       }
-
 
     /**
      * Returns the field declaration associated with the identifier string.

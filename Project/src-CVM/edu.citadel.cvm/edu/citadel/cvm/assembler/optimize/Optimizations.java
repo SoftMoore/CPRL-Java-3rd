@@ -1,22 +1,18 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import java.util.List;
 
-
 /**
- * This class is used to retrieve the list of all optimizations. 
+ * This class is used to retrieve the list of all optimizations.
  */
 public class Optimizations
   {
     private static final List<Optimization> optimizations;
 
-
     public static List<Optimization> getOptimizations()
       {
         return optimizations;
       }
-
 
     static
       {

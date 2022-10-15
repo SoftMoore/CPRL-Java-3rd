@@ -1,13 +1,11 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
 import edu.citadel.cvm.Constants;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
-
 
 /**
  * Base class for CPRL procedures and functions.
@@ -22,7 +20,6 @@ public abstract class SubprogramDecl extends Declaration
 
     private String L1;       // label of address of first statement
                              // (used during code generation)
-
 
     /**
      * Construct a subprogram declaration with the specified subprogram identifier.
@@ -39,7 +36,6 @@ public abstract class SubprogramDecl extends Declaration
         L1 = "_" + subprogramId;
       }
 
-
     /**
      * Returns the list of initial declarations for this subprogram.
      */
@@ -47,7 +43,6 @@ public abstract class SubprogramDecl extends Declaration
       {
         return initialDecls;
       }
-
 
     /**
      * Set the list of initial declarations for this subprogram.
@@ -57,7 +52,6 @@ public abstract class SubprogramDecl extends Declaration
         this.initialDecls = initialDecls;
       }
 
-
     /**
      * Returns the list of formal parameter declarations for this subprogram.
      */
@@ -65,7 +59,6 @@ public abstract class SubprogramDecl extends Declaration
       {
         return formalParams;
       }
-
 
     /**
      * Set the list of formal parameter declarations for this subprogram.
@@ -75,7 +68,6 @@ public abstract class SubprogramDecl extends Declaration
         this.formalParams = formalParams;
       }
 
-
     /**
      * Returns the list of statements for this subprogram.
      */
@@ -83,7 +75,6 @@ public abstract class SubprogramDecl extends Declaration
       {
         return statements;
       }
-
 
     /**
      * Set the list of statements for this subprogram.
@@ -93,7 +84,6 @@ public abstract class SubprogramDecl extends Declaration
         this.statements = statements;
       }
 
-
     /**
      * Returns the number of bytes required for all variables in the initial declarations.
      */
@@ -102,7 +92,6 @@ public abstract class SubprogramDecl extends Declaration
         return varLength;
       }
 
-
     /**
      * Returns the label associated with the first statement of the subprogram.
      */
@@ -110,7 +99,6 @@ public abstract class SubprogramDecl extends Declaration
       {
         return L1;
       }
-
 
     /**
      * Returns the number of bytes for all parameters.
@@ -125,7 +113,6 @@ public abstract class SubprogramDecl extends Declaration
         return paramLength;
       }
 
-
     @Override
     public void checkConstraints()
       {
@@ -138,7 +125,6 @@ public abstract class SubprogramDecl extends Declaration
         for (Statement statement : statements)
             statement.checkConstraints();
       }
-
 
     /**
     * Set the relative address (offset) for each variable and

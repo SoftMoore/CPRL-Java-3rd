@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 /**
  * This class encapsulates the symbols (also known as token types)
  * of the programming language CPRL.
@@ -82,10 +81,8 @@ public enum Symbol
     EOF("End-of-File"),
     unknown("Unknown");
 
-
     // instance fields
     private final String label;
-
 
     /**
      * Construct a new symbol with its label.
@@ -95,7 +92,6 @@ public enum Symbol
         this.label = label;
       }
 
-
     /**
      * Returns true if this symbol is a reserved word.
      */
@@ -103,7 +99,6 @@ public enum Symbol
       {
         return this.compareTo(BooleanRW) >=0 && this.compareTo(writelnRW) <= 0;
       }
-
 
     /**
      * Returns true if this symbol can start an initial declaration.
@@ -113,7 +108,6 @@ public enum Symbol
         return this == constRW || this == varRW || this == typeRW;
       }
 
-
     /**
      * Returns true if this symbol can start a subprogram declaration.
      */
@@ -121,7 +115,6 @@ public enum Symbol
       {
         return this == procRW || this == funRW;
       }
-
 
     /**
      * Returns true if this symbol can start a statement.
@@ -134,7 +127,6 @@ public enum Symbol
             || this == returnRW;
       }
 
-
     /**
      * Returns true if this symbol is a literal.
      */
@@ -143,7 +135,6 @@ public enum Symbol
         return this == intLiteral || this == charLiteral || this == stringLiteral
             || this == trueRW     || this == falseRW;
       }
-
 
     /**
      * Returns true if this symbol can start an expression.
@@ -154,7 +145,6 @@ public enum Symbol
             || this == plus || this == minus      || this == notRW;
       }
 
-
     /**
      * Returns true if this symbol can start a parameter declaration.
      */
@@ -162,7 +152,6 @@ public enum Symbol
       {
         return this == identifier || this == varRW;
       }
-
 
     /**
      * Returns true if this symbol can start a variable selector.
@@ -172,7 +161,6 @@ public enum Symbol
         return this == leftBracket || this == dot;
       }
 
-
     /**
      * Returns true if this symbol is a logical operator.
      */
@@ -180,7 +168,6 @@ public enum Symbol
       {
         return this == andRW || this == orRW;
       }
-
 
     /**
      * Returns true if this symbol is a relational operator.
@@ -192,7 +179,6 @@ public enum Symbol
             || this == greaterThan || this == greaterOrEqual;
       }
 
-
     /**
      * Returns true if this symbol is a binary adding operator.
      */
@@ -200,7 +186,6 @@ public enum Symbol
       {
         return this == plus || this == minus;
       }
-
 
     /**
      * Returns true if this symbol is a unary sign operator.
@@ -210,7 +195,6 @@ public enum Symbol
         return this == plus || this == minus;
       }
 
-
     /**
      * Returns true if this symbol is a multiplying operator.
      */
@@ -218,7 +202,6 @@ public enum Symbol
       {
         return this == times || this == divide || this == modRW;
       }
-
 
     /**
      * Returns the label for this Symbol.

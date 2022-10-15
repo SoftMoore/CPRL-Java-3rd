@@ -1,13 +1,11 @@
 package edu.citadel.compiler;
 
-
 /**
  * Superclass for all compiler exceptions.
  */
 public abstract class CompilerException extends Exception
   {
     private static final long serialVersionUID = -6999301636930707946L;
-
 
     /**
      * Construct a compiler exception with information about the
@@ -19,10 +17,9 @@ public abstract class CompilerException extends Exception
      */
     public CompilerException(String errorType, Position position, String errorMsg)
       {
-        super("*** " + errorType + " error detected near " + position 
+        super("*** " + errorType + " error detected near " + position
             + ":\n    " + errorMsg);
       }
-
 
     /**
      * Construct a compiler exception with information about the
@@ -35,7 +32,6 @@ public abstract class CompilerException extends Exception
       {
         super("*** " + errorType + " error detected:\n    " + errorMsg);
       }
-
 
     /**
      * Construct a compiler exception with the specified error message.

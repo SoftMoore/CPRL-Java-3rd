@@ -1,13 +1,10 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
 import java.util.Collections;
 import java.util.List;
-
-
 
 /**
  * The abstract syntax tree node for a CPRL program.
@@ -18,7 +15,6 @@ public class Program extends AST
     private List<SubprogramDecl> subprogramDecls;
 
     private int varLength;      // # bytes of all declared variables
-
 
     /**
      * Construct a program with the specified initial declarations
@@ -31,7 +27,6 @@ public class Program extends AST
         this.varLength = 0;
       }
 
-
     /**
      * Construct a program with empty lists of initial and subprogram declarations.
      */
@@ -39,7 +34,6 @@ public class Program extends AST
       {
         this(Collections.emptyList(), Collections.emptyList());
       }
-
 
     @Override
     public void checkConstraints()
@@ -71,7 +65,6 @@ public class Program extends AST
           }
       }
 
-
     /**
      * Set the relative address (offset) for each variable
      * and compute the length of all variables.
@@ -97,7 +90,6 @@ public class Program extends AST
         // compute length of all variables
         varLength = currentAddr;
       }
-
 
     @Override
     public void emit() throws CodeGenException

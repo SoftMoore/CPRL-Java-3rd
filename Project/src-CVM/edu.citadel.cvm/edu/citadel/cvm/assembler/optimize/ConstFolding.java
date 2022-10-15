@@ -1,12 +1,10 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.ast.Instruction;
 import edu.citadel.cvm.assembler.ast.InstructionOneArg;
 
 import java.util.List;
-
 
 /**
  * Replaces runtime arithmetic on constants with compile-time arithmetic.

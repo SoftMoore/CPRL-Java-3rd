@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 /**
  * This class encapsulates the language concept of a string type in the
  * programming language CPRL.  A string is essentially a record with
@@ -22,7 +21,6 @@ public class StringType extends Type
         this.capacity = capacity;
       }
 
-
     /**
      * Construct a string type with the specified capacity.  The type name
      * is "string[capacity]".  This constructor is used for string literals.
@@ -31,7 +29,6 @@ public class StringType extends Type
       {
         this("string[" + capacity + "]", capacity);
       }
-
 
     public int getCapacity()
       {

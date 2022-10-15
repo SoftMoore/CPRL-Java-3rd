@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.FatalException;
@@ -12,15 +11,12 @@ import edu.citadel.cprl.ast.Program;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-
-
 /**
  * Compiler for the CPRL programming language.
  */
 public class Compiler
   {
     private static final String SUFFIX  = ".cprl";
-
 
     /**
      * This method drives the compilation process.
@@ -74,7 +70,6 @@ public class Compiler
             System.out.println();
           }
       }
-
 
     /**
      * Compile the source file.  If there are no errors in the source file,
@@ -132,7 +127,6 @@ public class Compiler
             printProgressMessage("Compilation complete.");
       }
 
-
     /**
      * Returns a print writer used for writing the assembly code.  The target
      * print writer writes to a file with the same base file name as the source
@@ -160,12 +154,10 @@ public class Compiler
           }
       }
 
-
     private static void printProgressMessage(String message)
       {
         System.out.println(message);
       }
-
 
     private static void printUsageAndExit()
       {

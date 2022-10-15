@@ -1,13 +1,11 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
 import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a relational expression.  A relational
@@ -19,7 +17,6 @@ public class RelationalExpr extends BinaryExpr
     // labels used during code generation
     private String L1 = getNewLabel();   // label at start of right operand
     private String L2 = getNewLabel();   // label at end of the relational expression
-
 
     /**
      * Construct a relational expression with the operator ("=", "&lt;=", etc.)
@@ -34,13 +31,11 @@ public class RelationalExpr extends BinaryExpr
             "Operator is not a relational operator.";
       }
 
-
     @Override
     public void checkConstraints()
       {
 // ...
       }
-
 
     @Override
     public void emit() throws CodeGenException
@@ -62,7 +57,6 @@ public class RelationalExpr extends BinaryExpr
         // L2:
         emitLabel(L2);
       }
-
 
     @Override
     public void emitBranch(boolean condition, String label) throws CodeGenException
@@ -88,7 +82,6 @@ public class RelationalExpr extends BinaryExpr
             throw new CodeGenException(getOperator().getPosition(), errorMsg);
           }
       }
-
 
     private void emitOperands() throws CodeGenException
       {

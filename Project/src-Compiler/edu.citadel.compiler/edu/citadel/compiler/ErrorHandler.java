@@ -1,11 +1,9 @@
 package edu.citadel.compiler;
 
-
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
-
 
 /**
  * This class handles the reporting of error messages.
@@ -20,7 +18,6 @@ public class ErrorHandler
     private String lastMessage;   // remember last error message
     private Set<String> undeclaredIds;
 
-
     /**
      * Constructs a new ErrorHandler.
      */
@@ -32,7 +29,6 @@ public class ErrorHandler
         undeclaredIds = new HashSet<>();
       }
 
-
     /**
      * Returns true if errors have been reported by the error handler.
      */
@@ -41,10 +37,9 @@ public class ErrorHandler
         return errorCount > 0;
       }
 
-
     /**
      * Reports the error.
-     * 
+     *
      * @throws FatalException if the number of errors exceeds the maximum.
      */
     public void reportError(CompilerException e)
@@ -62,7 +57,6 @@ public class ErrorHandler
             throw new FatalException("Max errors exceeded.");
       }
 
-
     /**
      * Reports the fatal error.
      */
@@ -71,7 +65,6 @@ public class ErrorHandler
         err.println(e.getMessage());
       }
 
-
     /**
      * Prints the specified message and continues compilation.
      */
@@ -79,7 +72,6 @@ public class ErrorHandler
       {
         err.println(message);
       }
-
 
     /*
      * Checks for repeated error messages and error messages of
@@ -90,7 +82,7 @@ public class ErrorHandler
       {
         if (message == null || message.equals(lastMessage))
             return false;
-        
+
         lastMessage = message;
 
         // check for messages of the form "Identifier \"x\" has not been declared."

@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.Position;
@@ -14,7 +13,6 @@ import edu.citadel.cprl.Type;
 
 import java.util.List;
 
-
 /**
  * The abstract syntax tree node for a variable, which is any named variable
  * that can appear on the left-hand side of an assignment statement.
@@ -23,7 +21,6 @@ public class Variable extends Expression
   {
     private List<Expression> selectorExprs;
     private VariableDecl decl;   // nonstructural reference
-
 
     /**
      * Construct a variable with a reference to its declaration,
@@ -36,7 +33,6 @@ public class Variable extends Expression
         this.selectorExprs = selectorExprs;
       }
 
-
     /**
      * Construct a variable that corresponds to a variable expression.
      */
@@ -44,7 +40,6 @@ public class Variable extends Expression
       {
         this(varExpr.getDecl(), varExpr.getPosition(), varExpr.getSelectorExprs());
       }
-
 
     /**
      * Returns the declaration for this variable.
@@ -54,7 +49,6 @@ public class Variable extends Expression
         return decl;
       }
 
-
     /**
      * Returns the list of selector expressions for the variable.  Returns an
      * empty list if the variable is not an array, string, or record variable.
@@ -63,7 +57,6 @@ public class Variable extends Expression
       {
         return selectorExprs;
       }
-
 
     @Override
     public void checkConstraints()
@@ -158,7 +151,6 @@ public class Variable extends Expression
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

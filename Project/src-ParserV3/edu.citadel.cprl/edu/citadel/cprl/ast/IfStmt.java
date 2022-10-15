@@ -1,10 +1,8 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for an if statement.
@@ -18,7 +16,6 @@ public class IfStmt extends Statement
     // labels used during code generation
     private String L1 = getNewLabel();   // label of address at end of then statement
     private String L2 = getNewLabel();   // label of address at end of if statement
-
 
     /**
      * Construct an if statement with the specified boolean expression,
@@ -38,7 +35,6 @@ public class IfStmt extends Statement
         this.elseStmt    = elseStmt;
       }
 
-
     /**
      * Returns the "then" statement for this if statement.
      */
@@ -47,7 +43,6 @@ public class IfStmt extends Statement
         return thenStmt;
       }
 
-
     /**
      * Returns the "else" statement for this if statement.
      */
@@ -55,7 +50,6 @@ public class IfStmt extends Statement
       {
         return elseStmt;
       }
-
 
     @Override
     public void checkConstraints()
@@ -78,7 +72,6 @@ public class IfStmt extends Statement
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

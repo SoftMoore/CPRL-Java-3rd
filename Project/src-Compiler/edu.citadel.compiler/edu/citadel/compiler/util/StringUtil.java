@@ -1,6 +1,5 @@
 package edu.citadel.compiler.util;
 
-
 /**
  * Utility class for formatting strings.
  */
@@ -9,7 +8,7 @@ public class StringUtil
     /**
      * Formats an integer as right-justified within the specified field
      * width by prepending a sufficient number of blank spaces.
-     * 
+     *
      * @return the formatted string representation for the integer.
      */
     public static String format(int n, int fieldWidth)

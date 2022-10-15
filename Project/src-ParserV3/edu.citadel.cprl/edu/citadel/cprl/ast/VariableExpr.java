@@ -1,8 +1,6 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
-
 
 /**
  * The abstract syntax tree node for a variable expression.  A variable expression

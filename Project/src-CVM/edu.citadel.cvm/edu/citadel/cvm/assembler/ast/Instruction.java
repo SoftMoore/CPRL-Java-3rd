@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.ast;
 
-
 import edu.citadel.compiler.ConstraintException;
 
 import edu.citadel.cvm.Constants;
@@ -10,7 +9,6 @@ import edu.citadel.cvm.assembler.Token;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  * This abstract class implements common methods for the abstract
@@ -48,7 +46,7 @@ public abstract class Instruction extends AST
         labelMap = new HashMap<>();
         idMap = new HashMap<>();
       }
-    
+
     public List<Token> getLabels()
       {
         return labels;
@@ -80,7 +78,7 @@ public abstract class Instruction extends AST
       }
 
     /**
-     * Returns the address of this instruction. 
+     * Returns the address of this instruction.
      */
     public int getAddress()
       {

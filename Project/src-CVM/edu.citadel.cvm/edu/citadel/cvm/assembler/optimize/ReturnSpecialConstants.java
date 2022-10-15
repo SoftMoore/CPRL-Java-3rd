@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 
@@ -10,7 +9,6 @@ import edu.citadel.cvm.assembler.ast.InstructionRET0;
 import edu.citadel.cvm.assembler.ast.InstructionRET4;
 
 import java.util.List;
-
 
 /**
  * Replaces RET 0 with RET0 and RET 4 with RET4.
@@ -24,7 +22,7 @@ public class ReturnSpecialConstants implements Optimization
       {
         Instruction instruction = instructions.get(instNum);
         Symbol symbol = instruction.getOpCode().getSymbol();
-        
+
         if (symbol == Symbol.RET)
           {
             InstructionOneArg inst = (InstructionOneArg)instruction;

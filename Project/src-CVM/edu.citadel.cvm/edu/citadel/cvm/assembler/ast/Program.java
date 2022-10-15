@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.ast;
 
-
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cvm.assembler.optimize.Optimization;
 import edu.citadel.cvm.assembler.optimize.Optimizations;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class implements the abstract syntax tree for an assembly language program.
  */
@@ -17,25 +15,21 @@ public class Program extends AST
   {
     private ArrayList<Instruction> instructions;
 
-
     public Program()
       {
         super();
         instructions = new ArrayList<Instruction>(200);
       }
 
-
     public void addInstruction(Instruction inst)
       {
         instructions.add(inst);
       }
 
-
     public List<Instruction> getInstructions()
       {
         return instructions;
       }
-
 
     @Override
     public void checkConstraints()
@@ -43,7 +37,6 @@ public class Program extends AST
         for (Instruction inst : instructions)
             inst.checkConstraints();
       }
-
 
     /**
      * Perform code transformations that improve performance.  This method
@@ -57,7 +50,6 @@ public class Program extends AST
                 optimization.optimize(instructions, n);
           }
       }
-
 
     /**
      * Sets the starting memory address for each instruction and defines label
@@ -83,14 +75,12 @@ public class Program extends AST
           }
       }
 
-
     @Override
     public void emit() throws IOException
       {
         for (Instruction inst : instructions)
             inst.emit();
       }
-
 
     @Override
     public String toString()

@@ -1,6 +1,5 @@
 package edu.citadel.compiler;
 
-
 /**
  * Class for exceptions encountered within the compiler.  These
  * exceptions represent problems with the implementation of the compiler
@@ -9,7 +8,6 @@ package edu.citadel.compiler;
 public class InternalCompilerException extends RuntimeException
   {
     private static final long serialVersionUID = 171627814281066792L;
-
 
     /**
      * Construct an internal compiler exception with the specified

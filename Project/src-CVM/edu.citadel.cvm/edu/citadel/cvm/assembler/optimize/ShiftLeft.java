@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 
@@ -9,7 +8,6 @@ import edu.citadel.cvm.assembler.ast.InstructionOneArg;
 import edu.citadel.cvm.assembler.ast.InstructionSHL;
 
 import java.util.List;
-
 
 /**
  * Replaces multiplication by a power of 2 times a variable with left
@@ -31,7 +29,7 @@ public class ShiftLeft implements Optimization
         Instruction instruction1 = instructions.get(instNum + 1);
         Instruction instruction2 = instructions.get(instNum + 2);
         Instruction instruction3 = instructions.get(instNum + 3);
-        
+
         // quick check that we are dealing with a constant and a variable
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
@@ -65,7 +63,7 @@ public class ShiftLeft implements Optimization
             // copy labels from inst0 to inst1 before removing it
             List<Token> inst1Labels = instruction1.getLabels();
             inst1Labels.addAll(inst0.getLabels());
-    
+
             // remove the LDCINT instruction
             instructions.remove(instNum);
           }

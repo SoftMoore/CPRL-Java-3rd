@@ -1,21 +1,18 @@
 package edu.citadel.cvm;
 
-
 import edu.citadel.compiler.util.ByteUtil;
 import edu.citadel.compiler.util.StringUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-
 /**
- * Translates CVM machine code into CVM assembly language. 
+ * Translates CVM machine code into CVM assembly language.
  */
 public class Disassembler
   {
     private static final String SUFFIX   = ".obj";
     private static final int FIELD_WIDTH = 4;
-
 
     /**
      * Translates CVM machine code into CVM assembly language
@@ -24,8 +21,8 @@ public class Disassembler
     public static void main(String[] args) throws IOException
       {
         if (args.length == 0)
-        	  printUsageMessageAndExit();
-        
+              printUsageMessageAndExit();
+
         for (String fileName : args)
           {
             FileInputStream file = new FileInputStream(fileName);
@@ -37,7 +34,7 @@ public class Disassembler
             String outputFileName = baseName + ".dis.txt";
             FileWriter writer = new FileWriter(outputFileName, StandardCharsets.UTF_8);
             PrintWriter out = new PrintWriter(writer, true);
-        
+
             System.out.println("Disassembling " + fileName + " to " + outputFileName);
 
             int inByte;
@@ -78,7 +75,7 @@ public class Disassembler
                         out.println(" " + readByte(file));
                         opCodeAddr = opCodeAddr + 2;  // one byte for opcode and one byte for shift amount
                       }
-                    
+
                     // opcodes with one int operand
                     case OpCode.ALLOC,   OpCode.BR,      OpCode.BE,
                          OpCode.BNE,     OpCode.BG,      OpCode.BGE,
@@ -100,9 +97,9 @@ public class Disassembler
                         out.print(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
                                                   + OpCode.toString(opCode));
                         out.print(" \'");
-                    
+
                         c = readChar(file);
-                        if (c == '\b' || c == '\t' || c == '\n' || c == '\f' 
+                        if (c == '\b' || c == '\t' || c == '\n' || c == '\f'
                          || c == '\r' || c == '\"' || c == '\'' || c == '\\')
                             out.print(getUnescapedChar(c));
                         else
@@ -123,7 +120,7 @@ public class Disassembler
                         for (int i = 0;  i < strLength;  ++i)
                           {
                             c = readChar(file);
-                            if (c == '\b' || c == '\t' || c == '\n' || c == '\f' 
+                            if (c == '\b' || c == '\t' || c == '\n' || c == '\f'
                              || c == '\r' || c == '\"' || c == '\'' || c == '\\')
                                 out.print(getUnescapedChar(c));
                             else
@@ -137,14 +134,13 @@ public class Disassembler
                     default ->
                         System.err.println("*** Unknown opCode in file " + fileName + " ***");
                   }
-            
+
                 inByte = file.read();
               }
 
             out.close();
           }
       }
-
 
     /**
      * Reads an integer argument from the stream.
@@ -159,7 +155,6 @@ public class Disassembler
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
-
     /**
      * Reads a char argument from the stream.
      */
@@ -171,7 +166,6 @@ public class Disassembler
         return ByteUtil.bytesToChar(b0, b1);
       }
 
-
     /**
      * Reads a byte argument from the stream.
      */
@@ -180,10 +174,9 @@ public class Disassembler
         return (byte) in.read();
       }
 
-
     /**
      * Unescapes characters.  For example, if the parameter c is a tab,
-     * this method will return "\\t" 
+     * this method will return "\\t"
      *
      * @return the string for an escaped character.
      */
@@ -202,10 +195,10 @@ public class Disassembler
             default   : return Character.toString(c);
           }
       }
-    
+
     private static void printUsageMessageAndExit()
       {
-    	System.out.println("Usage: java edu.citadel.cvm.Disassembler filename");
+        System.out.println("Usage: java edu.citadel.cvm.Disassembler filename");
         System.out.println();
         System.exit(0);
       }

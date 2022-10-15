@@ -1,10 +1,8 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a parameter declaration.
@@ -13,7 +11,6 @@ public final class ParameterDecl extends Declaration implements VariableDecl
   {
     private int     relAddr;      // relative address for this declaration
     private boolean isVarParam;   // true if this is a variable parameter
-
 
     /**
      * Construct a parameter declaration with its identifier, type, and a boolean
@@ -24,7 +21,6 @@ public final class ParameterDecl extends Declaration implements VariableDecl
         super(paramId, type);
         this.isVarParam = isVarParam;
       }
-
 
     /**
      * Returns the size (number of bytes) associated with this parameter
@@ -37,13 +33,11 @@ public final class ParameterDecl extends Declaration implements VariableDecl
         return isVarParam ? Type.Address.getSize() : getType().getSize();
       }
 
-
     @Override
     public ScopeLevel getScopeLevel()
       {
         return ScopeLevel.LOCAL;   // always LOCAL for a parameter
       }
-
 
     /**
      * Sets the relative address for this declaration. <br>
@@ -54,7 +48,6 @@ public final class ParameterDecl extends Declaration implements VariableDecl
         this.relAddr = relAddr;
       }
 
-
     /**
      * Returns the relative address (offset) associated with this parameter
      * declaration.
@@ -64,7 +57,6 @@ public final class ParameterDecl extends Declaration implements VariableDecl
         return relAddr;
       }
 
-
     /**
      * Returns true if this parameter is a variable parameter.
      */
@@ -72,7 +64,6 @@ public final class ParameterDecl extends Declaration implements VariableDecl
       {
         return isVarParam;
       }
-
 
     @Override
     public void checkConstraints()

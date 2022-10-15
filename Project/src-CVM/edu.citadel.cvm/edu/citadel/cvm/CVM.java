@@ -1,13 +1,11 @@
 package edu.citadel.cvm;
 
-
 import edu.citadel.compiler.util.ByteUtil;
 import edu.citadel.compiler.util.StringUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-
 
 /**
  * This class implements a virtual machine for the programming language CPRL.
@@ -94,7 +92,6 @@ public class CVM
         vm.run();
       }
 
-
     /**
      * Construct a CPRL virtual machine with a given number of bytes of memory.
      *
@@ -119,7 +116,6 @@ public class CVM
 
         running = false;
       }
-
 
     /**
      * Loads the program into memory.
@@ -151,7 +147,6 @@ public class CVM
           }
       }
 
-
     /**
      * Prints values of internal registers to standard output.
      */
@@ -159,7 +154,6 @@ public class CVM
       {
         out.println("PC=" + pc + ", BP=" + bp + ", SB=" + sb + ", SP=" + sp );
       }
-
 
     /**
      * Prints a view of memory to standard output.
@@ -284,7 +278,6 @@ public class CVM
         out.println();
       }
 
-
     /**
      * Prompt user and wait for user to press the enter key.
      */
@@ -293,7 +286,6 @@ public class CVM
         out.println("Press enter to continue...");
         System.console().readLine();   // does not work within IDE
       }
-
 
     /**
      * Runs the program currently in memory.
@@ -379,10 +371,8 @@ public class CVM
           }
       }
 
-
     // Start: internal machine instructions that do NOT correspond to OpCodes
     //------------------------------------------------------------------------
-
 
     /**
      * Print an error message and exit with nonzero status code.
@@ -393,7 +383,6 @@ public class CVM
         System.exit(1);
       }
 
-
     /**
      * Pop the top byte off the stack and return its value.
      */
@@ -401,7 +390,6 @@ public class CVM
       {
         return memory[sp--];
       }
-
 
     /**
      * Pop the top character off the stack and return its value.
@@ -413,7 +401,6 @@ public class CVM
 
         return ByteUtil.bytesToChar(b0, b1);
       }
-
 
     /**
      * Pop the top integer off the stack and return its value.
@@ -428,7 +415,6 @@ public class CVM
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
-
     /**
      * Push a byte onto the stack.
      */
@@ -436,7 +422,6 @@ public class CVM
       {
         memory[++sp] = b;
       }
-
 
     /**
      * Push a character onto the stack.
@@ -448,7 +433,6 @@ public class CVM
         pushByte(bytes[0]);
         pushByte(bytes[1]);
       }
-
 
     /**
      * Push an integer onto the stack.
@@ -463,7 +447,6 @@ public class CVM
         pushByte(bytes[3]);
       }
 
-
     /**
      * Fetch the next instruction/byte from memory.
      */
@@ -471,7 +454,6 @@ public class CVM
       {
         return memory[pc++];
       }
-
 
     /**
      * Fetch the next instruction char operand from memory.
@@ -483,7 +465,6 @@ public class CVM
 
         return ByteUtil.bytesToChar(b0, b1);
       }
-
 
     /**
      * Fetch the next instruction int operand from memory.
@@ -497,7 +478,6 @@ public class CVM
 
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
-
 
     /**
      * Returns the integer at the specified memory address.
@@ -513,7 +493,6 @@ public class CVM
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
-
     /**
      * Returns the word at the specified memory address.
      * Does not alter pc, sp, or bp.
@@ -522,7 +501,6 @@ public class CVM
       {
         return getIntAtAddr(address);
       }
-
 
     /**
      * Returns the character at the specified memory address.
@@ -536,7 +514,6 @@ public class CVM
         return ByteUtil.bytesToChar(b0, b1);
       }
 
-
     /**
      * Writes the char value to the specified memory address.
      * Does not alter pc, sp, or bp.
@@ -547,7 +524,6 @@ public class CVM
         memory[address + 0] = bytes[0];
         memory[address + 1] = bytes[1];
       }
-
 
     /**
      * Writes the integer value to the specified memory address.
@@ -562,10 +538,8 @@ public class CVM
         memory[address + 3] = bytes[3];
       }
 
-
     //----------------------------------------------------------------------
     // End: internal machine instructions that do NOT correspond to OpCodes
-
 
     // Start: machine instructions corresponding to OpCodes
     //------------------------------------------------------
@@ -578,14 +552,12 @@ public class CVM
         pushInt(operand1 + operand2);
       }
 
-
     private void allocate()
       {
         int numBytes = fetchInt();
 
         sp = sp + numBytes;
       }
-
 
     /**
      * Unconditional branch.
@@ -595,7 +567,6 @@ public class CVM
         int displacement = fetchInt();
         pc = pc + displacement;
       }
-
 
     private void branchEqual()
       {
@@ -607,7 +578,6 @@ public class CVM
             pc = pc + displacement;
       }
 
-
     private void branchNotEqual()
       {
         int displacement = fetchInt();
@@ -618,7 +588,6 @@ public class CVM
             pc = pc + displacement;
       }
 
-    
     private void branchGreater()
       {
         int displacement = fetchInt();
@@ -628,7 +597,6 @@ public class CVM
         if (operand1 > operand2)
             pc = pc + displacement;
       }
-
 
     private void branchGreaterOrEqual()
       {
@@ -640,7 +608,6 @@ public class CVM
             pc = pc + displacement;
       }
 
-
     private void branchLess()
       {
         int displacement = fetchInt();
@@ -650,7 +617,6 @@ public class CVM
         if (operand1 < operand2)
             pc = pc + displacement;
       }
-
 
     private void branchLessOrEqual()
       {
@@ -662,7 +628,6 @@ public class CVM
             pc = pc + displacement;
       }
 
-
     private void branchZero()
       {
         int displacement = fetchInt();
@@ -672,7 +637,6 @@ public class CVM
             pc = pc + displacement;
       }
 
-
     private void branchNonZero()
       {
         int displacement = fetchInt();
@@ -681,7 +645,6 @@ public class CVM
         if (value != 0)
             pc = pc + displacement;
       }
-
 
     private void call()
       {
@@ -697,13 +660,11 @@ public class CVM
         pc = pc + displacement;
       }
 
-
     private void decrement()
       {
         int operand = popInt();
         pushInt(operand - 1);
       }
-
 
     private void divide()
       {
@@ -715,7 +676,6 @@ public class CVM
         else
             error("*** FAULT: Divide by zero ***");
       }
-
 
     private void getCh()
       {
@@ -736,7 +696,6 @@ public class CVM
           }
       }
 
-
     private void getInt()
       {
         try
@@ -751,7 +710,6 @@ public class CVM
           }
       }
 
-
     private void getString()
       {
         try
@@ -760,7 +718,7 @@ public class CVM
             int capacity = fetchInt();
             String data = scanner.nextLine();
             int length  = data.length() < capacity ? data.length() : capacity;
-            
+
             putIntToAddr(length, destAddr);
             destAddr = destAddr + Constants.BYTES_PER_INTEGER;
             for (int i = 0; i < length; ++i)
@@ -775,19 +733,16 @@ public class CVM
           }
       }
 
-
     private void halt()
       {
         running = false;
       }
-
 
     private void increment()
       {
         int operand = popInt();
         pushInt(operand + 1);
       }
-
 
     /**
      * Loads a multibyte variable onto the stack.  The number of bytes
@@ -803,7 +758,6 @@ public class CVM
             pushByte(memory[address + i]);
       }
 
-
     private void loadConstByte()
       {
         byte b = fetchByte();
@@ -811,18 +765,15 @@ public class CVM
         pushByte(b);
       }
 
-
     private void loadConstByteZero()
       {
         pushByte((byte) 0);
       }
 
-
     private void loadConstByteOne()
       {
         pushByte((byte) 1);
       }
-
 
     private void loadConstCh()
       {
@@ -830,25 +781,21 @@ public class CVM
         pushChar(ch);
       }
 
-
     private void loadConstInt()
       {
         int value = fetchInt();
         pushInt(value);
       }
 
-
     private void loadConstIntZero()
       {
         pushInt(0);
       }
 
-
     private void loadConstIntOne()
       {
         pushInt(1);
       }
-
 
     private void loadConstStr()
       {
@@ -861,20 +808,17 @@ public class CVM
             pushChar(fetchChar());
       }
 
-
     private void loadLocalAddress()
       {
         int displacement = fetchInt();
         pushInt(bp + displacement);
       }
 
-
     private void loadGlobalAddress()
       {
         int displacement = fetchInt();
         pushInt(sb + displacement);
       }
-
 
     /**
      * Loads a single byte onto the stack.  The address of the
@@ -887,7 +831,6 @@ public class CVM
 
         pushByte(b);
       }
-
 
     /**
      * Loads two bytes onto the stack.  The address of the first
@@ -903,7 +846,6 @@ public class CVM
         pushByte(b0);
         pushByte(b1);
       }
-
 
     private void loadString()
       {
@@ -929,7 +871,6 @@ public class CVM
         pushInt(strLength);
       }
 
-    
     /**
      * Loads a single word-size variable (four bytes) onto the stack.  The address
      * of the variable is obtained by popping it off the top of the stack.
@@ -941,7 +882,6 @@ public class CVM
         pushInt(word);
       }
 
-
     private void modulo()
       {
         int operand2 = popInt();
@@ -949,7 +889,6 @@ public class CVM
 
         pushInt(operand1 % operand2);
       }
-
 
     private void multiply()
       {
@@ -959,13 +898,11 @@ public class CVM
         pushInt(operand1*operand2);
       }
 
-
     private void negate()
       {
         int operand1 = popInt();
         pushInt(-operand1);
       }
-
 
     private void not()
       {
@@ -977,12 +914,10 @@ public class CVM
             pushByte(FALSE);
       }
 
-
     private void procedure()
       {
         allocate();
       }
-
 
     private void program()
       {
@@ -995,30 +930,25 @@ public class CVM
             error("*** Out of memory ***");
       }
 
-
     private void putChar()
       {
         out.print(popChar());
       }
-
 
     private void putByte()
       {
         out.print(popByte());
       }
 
-
     private void putInt()
       {
         out.print(popInt());
       }
 
-
     private void putEOL()
       {
         out.println();
       }
-
 
     private void putString()
       {
@@ -1043,7 +973,6 @@ public class CVM
         sp = sp - capacity;
       }
 
-
     private void returnInst()
       {
         int bpSave = bp;
@@ -1054,7 +983,6 @@ public class CVM
         pc = getIntAtAddr(bpSave + Constants.BYTES_PER_INTEGER);
       }
 
-
     private void returnZero()
       {
         int bpSave = bp;
@@ -1063,7 +991,6 @@ public class CVM
         pc = getIntAtAddr(bpSave + Constants.BYTES_PER_INTEGER);
       }
 
-
     private void returnFour()
       {
         int bpSave = bp;
@@ -1071,7 +998,6 @@ public class CVM
         bp = getIntAtAddr(bpSave);
         pc = getIntAtAddr(bpSave + Constants.BYTES_PER_INTEGER);
       }
-
 
     private void shiftLeft()
       {
@@ -1084,7 +1010,6 @@ public class CVM
         pushInt(operand << shiftAmount);
       }
 
-
     private void shiftRight()
       {
         int  operand = popInt();
@@ -1095,7 +1020,6 @@ public class CVM
 
         pushInt(operand >> shiftAmount);   // ">>" is arithmetic shift in Java
       }
-
 
     private void store()
       {
@@ -1112,7 +1036,6 @@ public class CVM
             memory[destAddr + i] = data[i];
       }
 
-
     private void storeByte()
       {
         byte value   = popByte();
@@ -1120,7 +1043,6 @@ public class CVM
 
         memory[destAddr] = value;
       }
-
 
     private void store2Bytes()
       {
@@ -1131,7 +1053,6 @@ public class CVM
         memory[destAddr + 0] = byte0;
         memory[destAddr + 1] = byte1;
       }
-
 
     private void storeString()
       {
@@ -1154,7 +1075,6 @@ public class CVM
           }
       }
 
-
     private void storeWord()
       {
         int value = popInt();
@@ -1168,7 +1088,6 @@ public class CVM
         memory[destAddr + 3] = bytes[3];
       }
 
-
     private void subtract()
       {
         int operand2 = popInt();
@@ -1177,7 +1096,6 @@ public class CVM
 
         pushInt(result);
       }
-
 
     // End: machine instructions corresponding to OpCodes
     //----------------------------------------------------

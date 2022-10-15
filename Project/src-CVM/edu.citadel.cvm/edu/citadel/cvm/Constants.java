@@ -1,6 +1,5 @@
 package edu.citadel.cvm;
 
-
 /**
  * Class of CVM-related constants.
  */

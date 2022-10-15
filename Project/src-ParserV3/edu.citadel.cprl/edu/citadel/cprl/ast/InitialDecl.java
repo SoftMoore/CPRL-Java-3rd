@@ -1,9 +1,7 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * Base class for all initial declarations.

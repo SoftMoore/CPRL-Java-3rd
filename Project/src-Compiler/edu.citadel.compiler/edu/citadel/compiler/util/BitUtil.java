@@ -1,8 +1,7 @@
 package edu.citadel.compiler.util;
 
-
 /**
- * This class encapsulates several bit manipulation utility methods. 
+ * This class encapsulates several bit manipulation utility methods.
  */
 public class BitUtil
   {
@@ -12,10 +11,10 @@ public class BitUtil
     public static short binaryStringToShort(String bits)
       {
         int result = 0;
- 
+
         if (bits.length() != 16)
             throw new IllegalArgumentException("*** bad string length ***");
-        
+
         int mask = (1 << 15);
 
         for (int i = 0;  i < 16;  ++i)
@@ -25,13 +24,12 @@ public class BitUtil
                 result = result | mask;
             else if (c != '0')
                 throw new IllegalArgumentException("*** non-binary character ***");
-            
+
             mask = mask >>> 1;
           }
 
         return (short) result;
       }
-
 
     /**
      * Returns a binary string representation of the specified integer.
@@ -40,7 +38,6 @@ public class BitUtil
       {
         return toBinaryString(n, Integer.SIZE);
       }
-
 
     /**
      * Returns a binary string representation of the least significant
@@ -61,7 +58,6 @@ public class BitUtil
         return builder.toString();
       }
 
-
     /**
      * Returns a binary string representation of the specified short.
      */
@@ -69,7 +65,6 @@ public class BitUtil
       {
         return toBinaryString(n, Short.SIZE);
       }
-
 
     /**
      * Returns a binary string representation of the least significant
@@ -90,7 +85,6 @@ public class BitUtil
         return builder.toString();
       }
 
-
     /**
      * Returns a binary string representation of the specified byte.
      */
@@ -98,7 +92,6 @@ public class BitUtil
       {
         return toBinaryString(n, Byte.SIZE);
       }
-
 
     /**
      * Returns a binary string representation of the least significant
@@ -119,7 +112,6 @@ public class BitUtil
         return builder.toString();
       }
 
-    
     /**
      * Returns a hexadecimal string representation of the specified integer.
      */
@@ -127,13 +119,12 @@ public class BitUtil
       {
         var builder  = new StringBuilder();
         byte[] bytes = ByteUtil.intToBytes(n);
-        
+
         for (byte b : bytes)
             builder.append(String.format("%02X", b));
 
         return builder.toString();
       }
-
 
     /**
      * Returns a hexadecimal string representation of the specified short.
@@ -142,13 +133,12 @@ public class BitUtil
       {
         var builder  = new StringBuilder();
         byte[] bytes = ByteUtil.shortToBytes(n);
-        
+
         for (byte b : bytes)
             builder.append(String.format("%02X", b));
 
         return builder.toString();
       }
-
 
     /**
      * Returns a hex string representation of the specified byte.
@@ -158,8 +148,6 @@ public class BitUtil
         return String.format("%02X", n);
       }
 
-
-    
     /**
      * Returns the n least significant (rightmost) bits in the
      * specified value as a signed (2s complement) integer.
@@ -186,7 +174,6 @@ public class BitUtil
 
         return result;
       }
-
 
     /**
      * Returns the n least significant (rightmost) bits in the specified

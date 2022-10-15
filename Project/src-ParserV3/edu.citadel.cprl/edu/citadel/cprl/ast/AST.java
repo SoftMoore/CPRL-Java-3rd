@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
@@ -11,7 +10,6 @@ import edu.citadel.cprl.Type;
 import edu.citadel.cprl.StringType;
 
 import java.io.PrintWriter;
-
 
 /**
  * Base class for all abstract syntax tree classes.
@@ -29,7 +27,6 @@ public abstract class AST
     private static IdTable idTable;
     private static ErrorHandler errorHandler;
 
-
     /**
      * Set the print writer to be used for code generation.
      */
@@ -37,7 +34,6 @@ public abstract class AST
       {
         AST.out = out;
       }
-
 
     /**
      * Set the identifier table to be used during code generation.
@@ -47,7 +43,6 @@ public abstract class AST
         AST.idTable = idTable;
       }
 
-
     /**
      * Get the identifier table used during code generation.
      */
@@ -55,7 +50,6 @@ public abstract class AST
       {
         return AST.idTable;
       }
-
 
     /**
      * Set the error handler to be used during code generation.
@@ -65,7 +59,6 @@ public abstract class AST
         AST.errorHandler = errorHandler;
       }
 
-
     /**
      * Get the error handler used during code generation.
      */
@@ -73,7 +66,6 @@ public abstract class AST
       {
         return AST.errorHandler;
       }
-
 
     /**
      * Creates/returns a new constraint exception with the specified position and message.
@@ -83,7 +75,6 @@ public abstract class AST
         return new ConstraintException(errorPos, errorMsg);
       }
 
-
     /**
      * Creates/returns a new constraint exception with the specified message.
      */
@@ -92,12 +83,10 @@ public abstract class AST
         return new ConstraintException(errorMsg);
       }
 
-
     /**
      * Check semantic/contextual constraints.
      */
     public abstract void checkConstraints();
-
 
     /**
      * Emit object code.
@@ -105,7 +94,6 @@ public abstract class AST
      * @throws CodeGenException if the method is unable to generate object code.
      */
     public abstract void emit() throws CodeGenException;
-
 
     /**
      * Returns a new value for a label number.  This method should
@@ -116,7 +104,6 @@ public abstract class AST
         ++currentLabelNum;
         return "L" + currentLabelNum;
       }
-
 
     /**
      * Returns true if the expression type is assignment compatible with
@@ -137,7 +124,6 @@ public abstract class AST
             return false;
       }
 
-
     /**
      * Emits the appropriate LOAD instruction based on the type.
      */
@@ -151,7 +137,6 @@ public abstract class AST
             default -> emit("LOAD " + t.getSize());
           }
       }
-
 
     /**
      * Emits the appropriate STORE instruction based on the type.
@@ -167,7 +152,6 @@ public abstract class AST
           }
       }
 
-
     /**
      * Emit label for assembly instruction.  This instruction appends a colon
      * to the end of the label and writes out the result on a single line.
@@ -176,7 +160,6 @@ public abstract class AST
       {
         out.println(label + ":");
       }
-
 
     /**
      * Emit string representation for an assembly instruction.

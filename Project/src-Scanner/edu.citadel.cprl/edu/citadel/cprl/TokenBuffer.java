@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 /**
  * Bounded circular buffer for tokens.
  */
@@ -9,7 +8,6 @@ public class TokenBuffer
     private int capacity;
     private Token[] buffer;
     private int tokenIndex = 0;   // circular index
-
 
     /**
      * Construct buffer with the specified capacity.
@@ -20,7 +18,6 @@ public class TokenBuffer
         buffer = new Token[capacity];
       }
 
-
     /**
      * Return the token at index i.  Does not remove the token.
      */
@@ -28,7 +25,6 @@ public class TokenBuffer
       {
         return buffer[(tokenIndex + i) % capacity];
       }
-
 
     /**
      * Add a token to the buffer.  Overwrites if the buffer is full.

@@ -10,7 +10,6 @@ import edu.citadel.cvm.assembler.ast.InstructionOneArg;
 
 import java.util.List;
 
-
 /**
  * Replaces addition of 1 to a variable with increment and subtraction
  * of 1 from a variable with decrement.  Basically, this class looks for
@@ -30,7 +29,7 @@ public class IncDec2 implements Optimization
         Instruction instruction1 = instructions.get(instNum + 1);
         Instruction instruction2 = instructions.get(instNum + 2);
         Instruction instruction3 = instructions.get(instNum + 3);
-        
+
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
         Symbol symbol2 = instruction2.getOpCode().getSymbol();
@@ -38,7 +37,7 @@ public class IncDec2 implements Optimization
         // quick check that we have LDCINT, LDLADDR, and LOADW
         if (symbol0 != Symbol.LDCINT || symbol1 != Symbol.LDLADDR || symbol2 != Symbol.LOADW)
             return;
-        
+
         InstructionOneArg inst0 = (InstructionOneArg)instruction0;
 
         String arg0 = inst0.getArg().getText();

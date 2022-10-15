@@ -1,11 +1,8 @@
 package edu.citadel.cvm.assembler.ast;
 
-
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cvm.assembler.Token;
-
 import java.util.List;
-
 
 /**
  * This class serves as a base class for the abstract syntax
@@ -21,7 +18,6 @@ public abstract class InstructionNoArgs extends Instruction
         super(labels, opCode);
       }
 
-
     @Override
     public void checkConstraints()
       {
@@ -35,7 +31,6 @@ public abstract class InstructionNoArgs extends Instruction
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     protected int getArgSize()

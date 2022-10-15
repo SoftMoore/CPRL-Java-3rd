@@ -1,6 +1,5 @@
 package edu.citadel.compiler;
 
-
 /**
  * This class encapsulates the concept of a position in a source file, where
  * the position is characterized by an ordered pair of integers: a line number
@@ -15,7 +14,6 @@ public final class Position
     /** The current character number of the position. */
     private int charNumber;
 
-
     /**
      * Construct a position with the default values of 0
      * for both line number and character number.
@@ -24,7 +22,6 @@ public final class Position
       {
         this(0, 0);
       }
-
 
     /**
      * Construct a position with the given line number and character number.
@@ -35,7 +32,6 @@ public final class Position
         this.charNumber = charNumber;
       }
 
-
     /**
      * Returns the line number of this position.
      */
@@ -44,7 +40,6 @@ public final class Position
         return lineNumber;
       }
 
-
     /**
      * Returns the character number of this position.
      */
@@ -52,7 +47,6 @@ public final class Position
       {
         return charNumber;
       }
-
 
     @Override
     public String toString()

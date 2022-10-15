@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 /**
  * This class encapsulates the language concept of an array type
  * in the programming language CPRL.
@@ -8,7 +7,6 @@ package edu.citadel.cprl;
 public class ArrayType extends Type
   {
     private Type elementType;
-
 
     /**
      * Construct an array type with the specified type name, number
@@ -21,7 +19,6 @@ public class ArrayType extends Type
 // ... What is the size for the array type?  Hint: Read the book.
         this.elementType = elementType;
       }
-
 
     /**
      * Returns the element type for this array type.

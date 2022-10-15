@@ -1,12 +1,10 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 
 import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a single variable declaration.
@@ -36,7 +34,6 @@ public final class SingleVarDecl extends InitialDecl implements VariableDecl
         this.scopeLevel   = scopeLevel;
       }
 
-
     /**
      * Returns the size (number of bytes) associated with this single
      * variable declaration, which is simply the number of bytes associated
@@ -47,13 +44,11 @@ public final class SingleVarDecl extends InitialDecl implements VariableDecl
         return getType().getSize();
       }
 
-
     @Override
     public ScopeLevel getScopeLevel()
       {
         return scopeLevel;
       }
-
 
     /**
      * Sets the relative address for this declaration. <br>
@@ -64,7 +59,6 @@ public final class SingleVarDecl extends InitialDecl implements VariableDecl
         this.relAddr = relAddr;
       }
 
-
     /**
      * Returns the relative address (offset) associated with this single
      * variable declaration.
@@ -74,13 +68,11 @@ public final class SingleVarDecl extends InitialDecl implements VariableDecl
         return relAddr;
       }
 
-
     @Override
     public void checkConstraints()
       {
         // nothing to do for now
       }
-
 
     @Override
     public void emit() throws CodeGenException
@@ -91,7 +83,7 @@ public final class SingleVarDecl extends InitialDecl implements VariableDecl
                 emit("LDGADDR " + relAddr);
             else
                 emit("LDLADDR " + relAddr);
-            
+
             initialValue.emit();
             emitStoreInst(initialValue.getType());
           }

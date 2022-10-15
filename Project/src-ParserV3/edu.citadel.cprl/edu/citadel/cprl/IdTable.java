@@ -1,11 +1,9 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.compiler.ParserException;
 import edu.citadel.cprl.ast.Declaration;
 
 import java.util.ArrayList;
-
 
 /**
  * The identifier table (also known as a symbol table) is used to
@@ -23,7 +21,6 @@ public final class IdTable
     private ArrayList<Scope> table;
     private int currentLevel;
 
-
     /**
      * Construct an empty identifier table with scope level initialized to 0.
      */
@@ -34,7 +31,6 @@ public final class IdTable
         table.add(currentLevel, new Scope(ScopeLevel.GLOBAL));
       }
 
-
     /**
      * Returns the current scope level.
      */
@@ -42,7 +38,6 @@ public final class IdTable
       {
         return table.get(currentLevel).getScopeLevel();
       }
-
 
     /**
      * Opens a new scope for identifiers.
@@ -53,7 +48,6 @@ public final class IdTable
         table.add(currentLevel, new Scope(scopeLevel));
       }
 
-
     /**
      * Closes the outermost scope.
      */
@@ -62,7 +56,6 @@ public final class IdTable
         table.remove(currentLevel);
         --currentLevel;
       }
-
 
     /**
      * Add a declaration to the current scope.
@@ -89,7 +82,6 @@ public final class IdTable
             throw new ParserException(idToken.getPosition(), errorMsg);
           }
       }
-
 
     /**
      * Returns the declaration associated with the identifier name

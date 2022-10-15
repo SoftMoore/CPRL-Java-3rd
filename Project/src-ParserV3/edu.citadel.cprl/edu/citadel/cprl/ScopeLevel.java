@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 /**
  * An enum class for the three scope levels in CPRL.
  */
@@ -11,8 +10,8 @@ public enum ScopeLevel
     RECORD("record");
 
     private String text;
-    
-    
+
+
     /**
      * Construct a new scope level with its text.
      */
@@ -20,7 +19,6 @@ public enum ScopeLevel
       {
         this.text = text;
       }
-
 
     /**
      * Returns a "nice" string for the name of the scope type.  For

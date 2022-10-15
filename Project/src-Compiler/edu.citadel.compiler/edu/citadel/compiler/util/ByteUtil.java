@@ -1,13 +1,11 @@
 package edu.citadel.compiler.util;
 
-
 /**
  * Methods to convert integers and characters to byte representations, and vice versa.
  */
 public class ByteUtil
   {
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
-
 
     /**
      * Convert a single byte to a string of 2 hexadecimal digits.
@@ -19,7 +17,6 @@ public class ByteUtil
         builder.append(HEX_ARRAY[b & 0x0F]);
         return builder.toString();
       }
-
 
     /**
      * Convert a 2-byte char to a string of 4 hexadecimal digits.
@@ -33,7 +30,6 @@ public class ByteUtil
         builder.append(HEX_ARRAY[c & 0x000F]);
         return builder.toString();
       }
-
 
     /**
      * Convert an array of bytes to a string of hexadecimal digits separated by spaces.
@@ -52,7 +48,6 @@ public class ByteUtil
         return builder.toString();
       }
 
-
     /**
      * Converts 2 bytes to a char.  The bytes passed as arguments are
      * ordered with b0 as the high order byte and b1 as the low order byte.
@@ -62,7 +57,6 @@ public class ByteUtil
         return (char) ( (((int)b0 << 8) & 0x0000FF00)
                       |  ((int)b1       & 0x000000FF));
       }
-
 
     /**
      * Converts 4 bytes to an int.  The bytes passed as arguments are
@@ -75,7 +69,6 @@ public class ByteUtil
             |  (((int)b2 << 8)  & 0x0000FF00)
             |   ((int)b3        & 0x000000FF);
       }
-
 
     /**
      * Converts a char to an array of 2 bytes.  The bytes in the return
@@ -92,7 +85,6 @@ public class ByteUtil
         return result;
       }
 
-
     /**
      * Converts a short to an array of 2 bytes.  The bytes in the return
      * array are ordered with the one at index 0 as the high order byte
@@ -107,7 +99,6 @@ public class ByteUtil
 
         return result;
       }
-
 
     /**
      * Converts an int to an array of 4 bytes.  The bytes in the return

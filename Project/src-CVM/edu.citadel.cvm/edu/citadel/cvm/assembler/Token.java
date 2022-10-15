@@ -1,9 +1,7 @@
 package edu.citadel.cvm.assembler;
 
-
 import edu.citadel.compiler.AbstractToken;
 import edu.citadel.compiler.Position;
-
 
 /**
  * Instantiates the generic class AbstractToken for CVM assembly language symbols.
@@ -18,7 +16,6 @@ public final class Token extends AbstractToken<Symbol>
         super(symbol, position, text);
       }
 
-    
     /**
      * Constructs a new Token with the specified symbol.  Position
      * and text are initialized to null  This constructor is
@@ -28,7 +25,6 @@ public final class Token extends AbstractToken<Symbol>
       {
         super(symbol, null, null);
       }
-
 
     /**
      * Constructs a new Token with the specified symbol and text.

@@ -1,15 +1,13 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.ast.Instruction;
 
 import java.util.List;
 
-
 /**
  * If an instruction without labels follows a return or an unconditional
- * branch, then that instruction is unreachable (dead) and can be removed.   
+ * branch, then that instruction is unreachable (dead) and can be removed.
  */
 public class DeadCodeElimination implements Optimization
   {
@@ -20,7 +18,7 @@ public class DeadCodeElimination implements Optimization
         if (instNum > instructions.size() - 2)
             return;
 
-        Instruction instruction0 = instructions.get(instNum);        
+        Instruction instruction0 = instructions.get(instNum);
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
 
         // Check that symbol0 is either BR or RET.

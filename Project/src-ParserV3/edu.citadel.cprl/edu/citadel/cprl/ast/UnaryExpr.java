@@ -1,8 +1,6 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
-
 
 /**
  * Base class for all unary expressions.  A unary expression is an expression
@@ -13,7 +11,6 @@ public abstract class UnaryExpr extends Expression
   {
     private Token      operator;
     private Expression operand;
-
 
     /**
      * Construct a unary expression with the specified operator and operand.
@@ -26,7 +23,6 @@ public abstract class UnaryExpr extends Expression
         this.operand  = operand;
       }
 
-
     /**
      * Returns the operator for this unary expression.
      */
@@ -34,7 +30,6 @@ public abstract class UnaryExpr extends Expression
       {
         return operator;
       }
-
 
     /**
      * Returns the operand for this unary expression.

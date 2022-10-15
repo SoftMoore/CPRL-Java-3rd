@@ -1,6 +1,5 @@
 package edu.citadel.cvm;
 
-
 /**
  * The set of opcodes for the CPRL virtual machine
  */
@@ -21,7 +20,7 @@ public final class OpCode
     public static final byte LDCSTR  = 17;
     public static final byte LDLADDR = 18;
     public static final byte LDGADDR = 19;
-    
+
     // optimized loads for special constants
     public static final byte LDCB0   = 20;
     public static final byte LDCB1   = 21;
@@ -83,7 +82,6 @@ public final class OpCode
     // optimized returns for special constants
     public static final byte RET0   = 100;
     public static final byte RET4   = 101;
-
 
     /**
      * Returns a string representation for a declared opcode.

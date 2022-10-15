@@ -1,10 +1,8 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.RecordType;
 import edu.citadel.cprl.Token;
 import java.util.List;
-
 
 /**
  * The abstract syntax tree node for a record type declaration.
@@ -12,7 +10,6 @@ import java.util.List;
 public class RecordTypeDecl extends InitialDecl
   {
     private List<FieldDecl> fieldDecls;
-
 
     /**
      * Construct a record type declaration with its type name (identifier)
@@ -26,7 +23,6 @@ public class RecordTypeDecl extends InitialDecl
         super(typeId, new RecordType(typeId.getText(), fieldDecls));
         this.fieldDecls = fieldDecls;
       }
-
 
     @Override
     public void checkConstraints()

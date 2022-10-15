@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler;
 
-
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.ParserException;
 import edu.citadel.compiler.Position;
@@ -12,7 +11,6 @@ import java.util.EnumSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 
 /**
  * This class uses recursive descent to perform syntax analysis of the source language.
@@ -26,7 +24,6 @@ public class Parser
 
     private Scanner scanner;
     private ErrorHandler errorHandler;
-
 
     /**
      * Returns a set of symbols that can follow an instruction.
@@ -49,7 +46,6 @@ public class Parser
         return followers;
       }
 
-
     /**
      * Construct a parser with the specified scanner and error handler.
      */
@@ -58,7 +54,6 @@ public class Parser
         this.scanner = scanner;
         this.errorHandler = errorHandler;
       }
-
 
     // program = { instruction } .
     public Program parseProgram() throws IOException
@@ -91,7 +86,6 @@ public class Parser
 
         return program;
       }
-
 
     // instruction = { labelId } opCodeMnemonic [ arg ] .
     private Instruction parseInstruction() throws IOException
@@ -138,7 +132,6 @@ public class Parser
             return null;
           }
       }
-
 
     private Instruction makeInstruction(List<Token> labels, Token opCode, Token arg)
         throws ParserException
@@ -210,7 +203,6 @@ public class Parser
           }
       }
 
-
     // utility parsing methods
 
     private void checkOpCode() throws ParserException
@@ -222,7 +214,6 @@ public class Parser
             throw error(errorMsg);
           }
       }
-
 
     private void checkArgs(Token opCode, Token arg) throws ParserException
       {
@@ -252,7 +243,6 @@ public class Parser
           }
       }
 
-
     private void matchEOF() throws ParserException
       {
         if (scanner.getSymbol() != Symbol.EOF)
@@ -263,12 +253,10 @@ public class Parser
           }
       }
 
-
     private void matchCurrentSymbol() throws IOException
       {
         scanner.advance();
       }
-
 
     /**
      * Create a parser exception with the specified message and the
@@ -279,7 +267,6 @@ public class Parser
         Position errorPos = scanner.getPosition();
         return new ParserException(errorPos, errorMsg);
       }
-
 
     /**
      * Create a parser exception with the specified error position and message.

@@ -1,13 +1,11 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
 import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a logical expression.  A logical expression
@@ -20,7 +18,6 @@ public class LogicalExpr extends BinaryExpr
     private String L1 = getNewLabel();   // label at start of right operand
     private String L2 = getNewLabel();   // label at end of logical expression
 
-
     /**
      * Construct a logical expression with the operator ("and" or "or")
      * and the two operands.
@@ -31,7 +28,6 @@ public class LogicalExpr extends BinaryExpr
         setType(Type.Boolean);
         assert operator.getSymbol().isLogicalOperator() : "Operator is not a logical operator.";
       }
-
 
     @Override
     public void checkConstraints()
@@ -63,7 +59,6 @@ public class LogicalExpr extends BinaryExpr
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

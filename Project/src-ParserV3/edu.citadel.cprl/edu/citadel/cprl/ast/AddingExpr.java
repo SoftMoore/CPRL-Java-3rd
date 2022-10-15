@@ -1,12 +1,10 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for an adding expression.  An adding expression
@@ -25,7 +23,6 @@ public class AddingExpr extends BinaryExpr
         setType(Type.Integer);
         assert operator.getSymbol().isAddingOperator() : "Operator is not an adding operator.";
       }
-
 
     @Override
     public void checkConstraints()
@@ -57,7 +54,6 @@ public class AddingExpr extends BinaryExpr
             getErrorHandler().reportError(ex);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

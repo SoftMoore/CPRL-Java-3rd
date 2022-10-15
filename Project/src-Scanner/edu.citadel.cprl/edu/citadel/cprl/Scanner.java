@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.Position;
 import edu.citadel.compiler.ScannerException;
@@ -8,7 +7,6 @@ import edu.citadel.compiler.Source;
 
 import java.io.IOException;
 import java.util.Set;
-
 
 /**
  * Performs lexical analysis for the CPRL programming language.
@@ -23,7 +21,6 @@ public final class Scanner
     private TokenBuffer buffer;
 
     private StringBuilder scanBuffer;
-
 
     /**
      * Construct scanner with its associated source, number
@@ -41,7 +38,6 @@ public final class Scanner
             advance();
       }
 
-
     /**
      * The current token; equivalent to lookahead(1).
      */
@@ -49,7 +45,6 @@ public final class Scanner
       {
         return lookahead(1);
       }
-
 
     /**
      * The current symbol; equivalent to lookahead(1).getSymbol().
@@ -59,7 +54,6 @@ public final class Scanner
         return lookahead(1).getSymbol();
       }
 
-
     /**
      * The current text; equivalent to lookahead(1).getText().
      */
@@ -68,7 +62,6 @@ public final class Scanner
         return lookahead(1).getText();
       }
 
-
     /**
      * The current position; equivalent to lookahead(1).getPosition().
      */
@@ -76,7 +69,6 @@ public final class Scanner
       {
         return lookahead(1).getPosition();
       }
-
 
     /**
      * Returns the ith lookahead token.  Valid parameter values are in the
@@ -88,7 +80,6 @@ public final class Scanner
         return buffer.get(i - 1);
       }
 
-
     /**
      * Advance the scanner one token.
      */
@@ -96,7 +87,6 @@ public final class Scanner
       {
         buffer.add(nextToken());
       }
-
 
     /**
      * Advance until the current symbol matches the symbol specified
@@ -108,7 +98,6 @@ public final class Scanner
             advance();
       }
 
-
     /**
      * Advance until the current symbol matches one of the symbols
      * in the given set or until end of file is encountered.
@@ -118,7 +107,6 @@ public final class Scanner
         while (!symbols.contains(getSymbol()) && getSymbol() != Symbol.EOF)
             advance();
       }
-
 
     /**
      * Returns the next token in the source file.
@@ -214,7 +202,6 @@ public final class Scanner
         return new Token(symbol, position, text);
       }
 
-
     /**
      * Returns the symbol associated with an identifier
      * (Symbol.arrayRW, Symbol.ifRW, Symbol.identifier, etc.)
@@ -223,7 +210,6 @@ public final class Scanner
       {
 // ...  Hint: Need an efficient search based on the text of the identifier (parameter idString)
       }
-
 
     /**
      * Skip over a comment.
@@ -236,7 +222,6 @@ public final class Scanner
 // ...
       }
 
-
     /**
      * Clear the scan buffer (makes it empty).
      */
@@ -244,7 +229,6 @@ public final class Scanner
       {
         scanBuffer.delete(0, scanBuffer.length());
       }
-
 
     /**
      * Scans characters in the source file for a valid identifier using the
@@ -261,7 +245,6 @@ public final class Scanner
 
 // ...
       }
-
 
     /**
      * Scans characters in the source file for a valid integer literal.
@@ -288,7 +271,6 @@ public final class Scanner
         return scanBuffer.toString();
       }
 
-
     /**
      * Scan characters in the source file for a String literal.  Escaped
      * characters are not converted; e.g., '\t' is not converted to the tab
@@ -306,7 +288,6 @@ public final class Scanner
 
 // ...
       }
-
 
     /**
      * Scan characters in the source file for a Char literal.  Escaped
@@ -369,7 +350,6 @@ public final class Scanner
         return scanBuffer.toString();
       }
 
-
     /**
      * Scans characters in the source file for an escaped character; i.e.,
      * a character preceded by a backslash.  This method checks escape
@@ -415,7 +395,6 @@ public final class Scanner
           }
       }
 
-
     /**
      * Fast skip over white space.
      */
@@ -424,7 +403,6 @@ public final class Scanner
         while (Character.isWhitespace((char) source.getChar()))
             source.advance();
       }
-
 
     /**
      * Advances over source characters to the end of the current line.
@@ -437,7 +415,6 @@ public final class Scanner
             checkEOF();
           }
       }
-
 
     /**
      * Checks that the integer represents a graphic character in the Unicode
@@ -462,7 +439,6 @@ public final class Scanner
           }
       }
 
-
     /**
      * Returns true only if the specified character is a letter.<br>
      * `'A'..'Z' + 'a'..'z' (r.e. char class: [A-Za-z])`
@@ -471,7 +447,6 @@ public final class Scanner
       {
         return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
       }
-
 
     /**
      * Returns true only if the specified character is a digit.<br>
@@ -482,7 +457,6 @@ public final class Scanner
         return ch >= '0' && ch <= '9';
       }
 
-
     /**
      * Returns true only if the specified character is a letter or a digit.<br>
      * `'A'..'Z' + 'a'..'z + '0'..'9' (r.e. char class: [A-Za-z0-9])`
@@ -491,7 +465,6 @@ public final class Scanner
       {
         return isLetter(ch) || isDigit(ch);
       }
-
 
     /**
      * Returns a scanner exception with the specified error message
@@ -502,7 +475,6 @@ public final class Scanner
         return error(source.getCharPosition(), errorMsg);
       }
 
-
     /**
      * Returns a scanner exception with the specified error message
      * and token position.
@@ -511,7 +483,6 @@ public final class Scanner
       {
         return new ScannerException(position, errorMsg);
       }
-
 
     /**
      * Used to check for EOF in the middle of scanning tokens that

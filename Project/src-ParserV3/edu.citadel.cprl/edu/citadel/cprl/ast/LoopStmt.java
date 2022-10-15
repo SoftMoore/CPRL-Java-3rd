@@ -1,11 +1,9 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a loop statement.
@@ -19,7 +17,6 @@ public class LoopStmt extends Statement
     private String L1 = getNewLabel();    // label for start of loop
     private String L2 = getNewLabel();    // label for end of loop
 
-
     /**
      * Default constructor.  Construct a loop statement with a null "while"
      * expression and an empty statement for the loop body.
@@ -30,7 +27,6 @@ public class LoopStmt extends Statement
         this.statement = EmptyStatement.getInstance();
       }
 
-
     /**
      * Set the while expression for this loop statement.
      */
@@ -38,7 +34,6 @@ public class LoopStmt extends Statement
       {
         this.whileExpr = whileExpr;
       }
-
 
     /**
      * Returns the statement for the body of this loop statement.
@@ -48,7 +43,6 @@ public class LoopStmt extends Statement
         return statement;
       }
 
-
     /**
      * Set the statement for the body of this loop statement.
      */
@@ -56,7 +50,6 @@ public class LoopStmt extends Statement
       {
         this.statement = statement;
       }
-
 
     /**
      * Returns the label for the end of the loop statement.
@@ -66,13 +59,11 @@ public class LoopStmt extends Statement
         return L2;
       }
 
-
     @Override
     public void checkConstraints()
       {
 // ...
       }
-
 
     @Override
     public void emit() throws CodeGenException

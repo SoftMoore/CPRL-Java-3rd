@@ -1,13 +1,11 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cprl.StringType;
 import edu.citadel.cprl.Type;
 
 import java.util.List;
-
 
 /**
  * This class implements both write and writeln statements.
@@ -16,7 +14,6 @@ public class OutputStmt extends Statement
   {
     private List<Expression> expressions;
     private boolean isWriteln;
-
 
     /**
      * Construct an output statement with the list of expressions and isWriteln flag.
@@ -27,7 +24,6 @@ public class OutputStmt extends Statement
         this.isWriteln   = isWriteln;
       }
 
-
     /**
      * Construct an output statement with the list of expressions.
      * The isWriteln flag is initialized to false.
@@ -37,7 +33,6 @@ public class OutputStmt extends Statement
         this(expressions, false);
       }
 
-
     /**
      * Returns the list of expressions for this output statement.
      */
@@ -45,7 +40,6 @@ public class OutputStmt extends Statement
       {
         return expressions;
       }
-
 
     @Override
     public void checkConstraints()
@@ -72,7 +66,6 @@ public class OutputStmt extends Statement
               }
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

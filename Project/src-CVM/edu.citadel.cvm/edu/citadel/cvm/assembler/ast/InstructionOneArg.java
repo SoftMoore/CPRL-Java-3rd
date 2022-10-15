@@ -1,12 +1,10 @@
 package edu.citadel.cvm.assembler.ast;
 
-
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 
 import java.util.List;
-
 
 /**
  * This class serves as a base class for the abstract syntax
@@ -27,12 +25,10 @@ public abstract class InstructionOneArg extends Instruction
         assert arg != null : "Argument should never be null for this instruction.";
       }
 
-
     public Token getArg()
       {
         return arg;
       }
-
 
     /**
      * check semantic/contextual constraints
@@ -51,7 +47,6 @@ public abstract class InstructionOneArg extends Instruction
             getErrorHandler().reportError(e);
           }
       }
-
 
     /**
      * This method is called by instructions that have an argument that
@@ -73,7 +68,6 @@ public abstract class InstructionOneArg extends Instruction
           }
       }
 
-
     /**
      * This method is called by instructions to verify the type of its argument.
      */
@@ -86,7 +80,6 @@ public abstract class InstructionOneArg extends Instruction
           }
       }
 
-
     /**
      * Returns the argument as converted to an integer.  Valid
      * only for instructions with arguments of type intLiteral.
@@ -97,7 +90,6 @@ public abstract class InstructionOneArg extends Instruction
             "Can't convert argument " + getArg() + " to an integer.";
         return Integer.parseInt(getArg().getText());
       }
-
 
     /**
      * Returns the argument as converted to a byte.  Valid
@@ -110,13 +102,11 @@ public abstract class InstructionOneArg extends Instruction
         return Byte.parseByte(getArg().getText());
       }
 
-
     @Override
     public String toString()
       {
         return super.toString() + " " + arg.getText();
       }
-
 
     /**
      * Checks that the argument of the instruction has

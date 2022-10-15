@@ -1,10 +1,8 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.Position;
 import edu.citadel.cprl.Type;
-
 
 /**
  * Base class for all CPRL expressions.
@@ -20,7 +18,6 @@ public abstract class Expression extends AST
     private Type     type;
     private Position position;   // position of the expression
 
-
     /**
      * Construct an expression with the specified type and position.
      */
@@ -29,7 +26,6 @@ public abstract class Expression extends AST
         this.type     = type;
         this.position = position;
       }
-
 
     /**
      * Construct an expression with the specified position.  Initializes
@@ -40,7 +36,6 @@ public abstract class Expression extends AST
         this(Type.UNKNOWN, position);
       }
 
-
     /**
      * Returns the type of this expression.
      */
@@ -48,7 +43,6 @@ public abstract class Expression extends AST
       {
         return type;
       }
-
 
     /**
      * Sets the type of this expression.
@@ -58,7 +52,6 @@ public abstract class Expression extends AST
         this.type = exprType;
       }
 
-
     /**
      * Returns the position of this expression.
      */
@@ -66,7 +59,6 @@ public abstract class Expression extends AST
       {
         return position;
       }
-
 
     /**
      * For Boolean expressions, this method emits the appropriate branch opcode

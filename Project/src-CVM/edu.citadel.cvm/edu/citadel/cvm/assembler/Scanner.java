@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler;
 
-
 import edu.citadel.compiler.Source;
 import edu.citadel.compiler.Position;
 import edu.citadel.compiler.ScannerException;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 
-
 /**
  * Performs lexical analysis for CVM assembly language.
  */
@@ -18,7 +16,7 @@ public class Scanner
   {
     private Source source;
     private ErrorHandler errorHandler;
-    
+
     private StringBuilder scanBuffer;
 
     /** maps opcode names to opcode symbols */
@@ -27,7 +25,6 @@ public class Scanner
     /**  The current token in the source file.  */
     private Token token;
 
-    
     /**
      * Initialize scanner with its associated source and error handler,
      * and advance to the first token.
@@ -50,7 +47,6 @@ public class Scanner
         advance();           // advance to the first token
       }
 
-
     /**
      * Returns the current token in the source file.
      */
@@ -59,13 +55,11 @@ public class Scanner
         return token;
       }
 
-
     /**  Short version for getToken().getSymbol(), the next lookahead symbol. */
     public Symbol getSymbol()
       {
         return token.getSymbol();
       }
-
 
     /**  Short version for getToken().getText(), the next lookahead text. */
     public String getText()
@@ -73,13 +67,11 @@ public class Scanner
         return token.getText();
       }
 
-
     /**  Short version for getToken().getPosition(), the next lookahead position. */
     public Position getPosition()
       {
         return token.getPosition();
       }
-
 
     /**
      * Advance scanner to the next token.
@@ -88,7 +80,6 @@ public class Scanner
       {
         token = nextToken();
       }
-
 
     /**
      * Advance until lookahead(1).symbol matches one of the symbols
@@ -99,7 +90,6 @@ public class Scanner
         while (!symbols.contains(token.getSymbol()) && token.getSymbol() != Symbol.EOF)
             advance();
       }
-
 
     /**
      * Returns the next token in the source file.
@@ -195,7 +185,6 @@ public class Scanner
         return new Token(symbol, position, text);
       }
 
-
     /**
      * Clear the scan buffer (makes it empty).
      */
@@ -203,7 +192,6 @@ public class Scanner
       {
         scanBuffer.delete(0, scanBuffer.length());
       }
-
 
     /**
      * Scans characters in the source file for a valid identifier using the
@@ -231,7 +219,6 @@ public class Scanner
         return scanBuffer.toString();
       }
 
-
     /**
      * Scans characters in the source file for a valid integer literal.
      * Assumes that source.getChar() is the first character of the Integer literal.
@@ -256,7 +243,6 @@ public class Scanner
         return scanBuffer.toString();
       }
 
-
     private void skipComment() throws ScannerException, IOException
       {
         // assumes that source.getChar() is the leading ';'
@@ -266,7 +252,6 @@ public class Scanner
         skipToEndOfLine();
         source.advance();
       }
-
 
     /**
      * Scans characters in the source file for a String literal.
@@ -305,7 +290,6 @@ public class Scanner
 
         return scanBuffer.toString();
       }
-
 
     /**
      * Scans characters in the source file for a valid char literal.
@@ -358,7 +342,6 @@ public class Scanner
         return scanBuffer.toString();
       }
 
-
     /**
      * Scans characters in the source file for an escaped character; i.e.,
      * a character preceded by a backslash.  This method handles escape
@@ -372,16 +355,16 @@ public class Scanner
     private char scanEscapedChar() throws ScannerException, IOException
       {
         // assumes that source.getChar() is a backslash character
-        assert (char) source.getChar() == '\\' : 
+        assert (char) source.getChar() == '\\' :
             "Check for escape character ('\\') at position " + getPosition() + ".";
 
         // Need to save current position for error reporting.
         Position backslashPosition = source.getCharPosition();
-        
+
         source.advance();
         checkGraphicChar(source.getChar());
         char c = (char) source.getChar();
-        
+
         source.advance();  // leave source at second character following the backslash
 
         switch (c)
@@ -398,7 +381,6 @@ public class Scanner
           }
       }
 
-
     /**
      * Returns the symbol associated with an identifier
      * (Symbol.ADD, Symbol.AND, Symbol.identifier, etc.)
@@ -408,7 +390,6 @@ public class Scanner
         return opCodeMap.getOrDefault(idString.toUpperCase(), Symbol.identifier);
       }
 
-
     /**
      * Fast skip over white space.
      */
@@ -417,7 +398,6 @@ public class Scanner
         while (Character.isWhitespace((char) source.getChar()))
             source.advance();
       }
-
 
     /**
      * Advances over source characters to the end of the current line.
@@ -430,7 +410,6 @@ public class Scanner
             checkEOF();
           }
       }
-
 
     /**
      * Checks that the integer represents a graphic character in the Unicode
@@ -456,7 +435,6 @@ public class Scanner
           }
       }
 
-
     /**
      * Throws a ScannerException with the specified error message.
      */
@@ -465,7 +443,6 @@ public class Scanner
         return error(getPosition(), errorMsg);
       }
 
-
     /**
      * Throws a ScannerException with the specified position and error message.
      */
@@ -473,7 +450,6 @@ public class Scanner
       {
         return new ScannerException(errorPos, errorMsg);
       }
-
 
     /**
      * Used to check for EOF in the middle of scanning tokens that

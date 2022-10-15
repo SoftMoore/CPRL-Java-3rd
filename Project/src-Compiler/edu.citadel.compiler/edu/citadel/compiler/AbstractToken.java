@@ -1,6 +1,5 @@
 package edu.citadel.compiler;
 
-
 /**
  * This class encapsulates the properties of a language token.  A token
  * consists of a symbol (a.k.a., the token type), a position, and a string
@@ -12,7 +11,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
     private Position position;
     private String   text;
 
-
     /**
      * Constructs a new token with the given symbol, position, and text.
      */
@@ -23,7 +21,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
         this.text     = text == null || text.length() == 0 ? symbol.toString() : text;
       }
 
-
     /**
      * Returns the token's symbol.
      */
@@ -31,7 +28,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
       {
         return symbol;
       }
-
 
     /**
      * Returns the token's position within the source file.
@@ -41,7 +37,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
         return position;
       }
 
-
     /**
      * Returns the string representation for the token.
      */
@@ -50,7 +45,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
         return text;
       }
 
-
     /**
      * Set the string representation for the token.
      */
@@ -58,7 +52,6 @@ public abstract class AbstractToken<Symbol extends Enum<Symbol>>
       {
         this.text = text;
       }
-
 
     @Override
     public String toString()

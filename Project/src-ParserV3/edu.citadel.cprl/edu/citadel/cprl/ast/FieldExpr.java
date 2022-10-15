@@ -1,9 +1,7 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
-
 
 /**
  * The abstract syntax tree node for a field expression.  The value of a field
@@ -16,7 +14,6 @@ public class FieldExpr extends Expression
     // Note: value for fieldDecl is assigned in Variable.checkConstraints()
     private FieldDecl fieldDecl;   // nonstructural reference
 
-
     /**
      * Construct a field expression with its field name.
      */
@@ -26,7 +23,6 @@ public class FieldExpr extends Expression
         this.fieldId = fieldId;
       }
 
-
     /**
      * Returns the field identifier token for this field expression.
      */
@@ -34,7 +30,6 @@ public class FieldExpr extends Expression
       {
         return fieldId;
       }
-
 
     /**
      * Returns the field declaration for this field expression.
@@ -44,7 +39,6 @@ public class FieldExpr extends Expression
         return fieldDecl;
       }
 
-
     /**
      * Set the field declaration for this field expression.
      */
@@ -53,13 +47,11 @@ public class FieldExpr extends Expression
         this.fieldDecl = fieldDecl;
       }
 
-
     @Override
     public void checkConstraints()
       {
         // nothing to do for now
       }
-
 
     @Override
     public void emit()

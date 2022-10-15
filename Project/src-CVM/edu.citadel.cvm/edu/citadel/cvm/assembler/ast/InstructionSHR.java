@@ -1,6 +1,5 @@
 package edu.citadel.cvm.assembler.ast;
 
-
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cvm.OpCode;
 import edu.citadel.cvm.assembler.Symbol;
@@ -8,7 +7,6 @@ import edu.citadel.cvm.assembler.Token;
 
 import java.util.List;
 import java.io.IOException;
-
 
 /**
  * This class implements the abstract syntax tree for the assembly
@@ -21,13 +19,11 @@ public class InstructionSHR extends InstructionOneArg
         super(labels, opCode, arg);
       }
 
-
     @Override
     public void assertOpCode()
       {
         assertOpCode(Symbol.SHR);
       }
-
 
     @Override
     public void checkArgType() throws ConstraintException
@@ -43,13 +39,11 @@ public class InstructionSHR extends InstructionOneArg
           }
       }
 
-
     @Override
     public int getArgSize()
       {
         return 1;   // 1 byte
       }
-
 
     @Override
     public void emit() throws IOException

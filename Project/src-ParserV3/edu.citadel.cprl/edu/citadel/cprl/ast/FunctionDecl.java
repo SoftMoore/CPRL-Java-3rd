@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
@@ -8,7 +7,6 @@ import edu.citadel.cprl.ArrayType;
 import edu.citadel.cprl.Token;
 
 import java.util.List;
-
 
 /**
  * The abstract syntax tree node for a function declaration.
@@ -22,7 +20,6 @@ public class FunctionDecl extends SubprogramDecl
       {
         super(funcId);
       }
-
 
     /**
      * Computes the relative address of the function return value. <br>
@@ -44,7 +41,6 @@ public class FunctionDecl extends SubprogramDecl
         return firstParamAddr - getType().getSize();
       }
 
-
     @Override
     public void checkConstraints()
       {
@@ -58,7 +54,6 @@ public class FunctionDecl extends SubprogramDecl
             getErrorHandler().reportError(e);
           }
       }
-
 
     /**
      * Returns true if the specified list of statements contains at least one
@@ -81,7 +76,6 @@ public class FunctionDecl extends SubprogramDecl
         return false;
       }
 
-
     /**
      * Returns true if the specified statement is a return statement or contains
      * at least one return statement.
@@ -95,7 +89,6 @@ public class FunctionDecl extends SubprogramDecl
     {
 // ...
     }
-
 
     @Override
     public void emit() throws CodeGenException

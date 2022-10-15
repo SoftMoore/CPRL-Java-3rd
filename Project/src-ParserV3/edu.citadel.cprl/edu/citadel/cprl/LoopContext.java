@@ -1,9 +1,7 @@
 package edu.citadel.cprl;
 
-
 import edu.citadel.cprl.ast.LoopStmt;
 import java.util.Stack;
-
 
 /**
  * This class provides access to an enclosing loop context required
@@ -13,12 +11,10 @@ public final class LoopContext
   {
     private Stack<LoopStmt> loopStack;
 
-
     public LoopContext()
       {
         loopStack = new Stack<LoopStmt>();
       }
-
 
     /**
      * Returns the loop statement currently being parsed.
@@ -29,7 +25,6 @@ public final class LoopContext
         return loopStack.empty() ? null : loopStack.peek();
       }
 
-
     /**
      * Called when starting to parse a loop statement.
      */
@@ -37,7 +32,6 @@ public final class LoopContext
       {
         loopStack.push(stmt);
       }
-
 
     /**
      * Called when finished parsing a loop statement.

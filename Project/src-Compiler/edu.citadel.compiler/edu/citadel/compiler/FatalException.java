@@ -1,6 +1,5 @@
 package edu.citadel.compiler;
 
-
 /**
  * Class for fatal exceptions encountered during compilation.
  * A fatal exception is one for which compilation of the source

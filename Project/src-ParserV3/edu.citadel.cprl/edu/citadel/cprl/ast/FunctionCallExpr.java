@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
@@ -9,7 +8,6 @@ import edu.citadel.cprl.StringType;
 import edu.citadel.cprl.Token;
 
 import java.util.List;
-
 
 /**
  * The abstract syntax tree node for a function call expression.
@@ -22,7 +20,6 @@ public class FunctionCallExpr extends Expression
     // declaration of the function being called
     private FunctionDecl funDecl;   // nonstructural reference
 
-
     /**
      * Construct a function call expression with the function name (an identifier
      * token) and the list of actual parameters being passed as part of the call.
@@ -34,7 +31,6 @@ public class FunctionCallExpr extends Expression
         this.funId = funId;
         this.actualParams = actualParams;
       }
-
 
     @Override
     public void checkConstraints()
@@ -93,14 +89,13 @@ public class FunctionCallExpr extends Expression
                     expr = new Variable((VariableExpr) expr);
                     actualParams.set(i, expr);
                   }
-              }            
+              }
           }
         catch (ConstraintException e)
           {
             getErrorHandler().reportError(e);
           }
       }
-
 
     @Override
     public void emit() throws CodeGenException

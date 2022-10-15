@@ -1,23 +1,21 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.Token;
 import edu.citadel.cvm.assembler.ast.*;
 
 import java.util.List;
 
-
 /**
  * Improves branching instructions where a nonconditional branch is used
  * to branch over a conditional branch (which can occur when an exit
- * statement appears at the end of a loop).  For example, the following code 
+ * statement appears at the end of a loop).  For example, the following code
  * <code>
      BZ L1
      BR L0
   L1: ...
  * </code>
- * can be improved as follows: 
+ * can be improved as follows:
  * <code>
      BNZ L0
   L1: ...
@@ -35,7 +33,7 @@ public class BranchingReduction implements Optimization
         Instruction instruction0 = instructions.get(instNum);
         Instruction instruction1 = instructions.get(instNum + 1);
         Instruction instruction2 = instructions.get(instNum + 2);
-        
+
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
 
@@ -46,7 +44,7 @@ public class BranchingReduction implements Optimization
           {
             InstructionOneArg inst0 = (InstructionOneArg)instruction0;
             InstructionOneArg inst1 = (InstructionOneArg)instruction1;
-            
+
             if(containsLabel(instruction2.getLabels(), inst0.getArg()))
               {
                 // combine labels for instructions 0 and 1
@@ -58,24 +56,22 @@ public class BranchingReduction implements Optimization
                 // make the new branch instruction
                 Instruction branchInst = makeDualBranchInst(labels, symbol0, arg);
                 instructions.set(instNum, branchInst);
-                
+
                 // remove the unconditional branch instruction
                 instructions.remove(instNum + 1);
               }
           }
       }
 
-
     /**
      * Returns true if the symbol is a conditional branch; that is,
-     * if the symbol is one of BNZ, BZ, BG, BGE, BL, or BLE.  
+     * if the symbol is one of BNZ, BZ, BG, BGE, BL, or BLE.
      */
     private static boolean isConditionalBranch(Symbol s)
       {
         return s == Symbol.BNZ  || s == Symbol.BZ  || s == Symbol.BG
             || s == Symbol.BGE  || s == Symbol.BL  || s == Symbol.BLE;
       }
-
 
     /**
      * Returns dual branch conditional branch instruction with the specified
@@ -100,10 +96,9 @@ public class BranchingReduction implements Optimization
             throw new IllegalArgumentException("Illegal branch instruction " + s);
       }
 
-
     /**
      * Returns true if the text of the second parameter label equals the
-     * text of one of the labels in the list.  Returns false otherwise. 
+     * text of one of the labels in the list.  Returns false otherwise.
      */
     private static boolean containsLabel(List<Token> labels, Token label)
       {
@@ -117,7 +112,6 @@ public class BranchingReduction implements Optimization
         return false;
       }
 
-
     /**
      * Combines the lists of labels into a single list.
      */
@@ -127,7 +121,7 @@ public class BranchingReduction implements Optimization
             return labels2;
         else if (labels2.isEmpty())
             return labels1;
-        else 
+        else
           {
             labels1.addAll(labels2);
             return labels1;

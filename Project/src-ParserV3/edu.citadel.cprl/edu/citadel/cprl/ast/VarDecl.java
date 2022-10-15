@@ -1,6 +1,5 @@
 package edu.citadel.cprl.ast;
 
-
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.cprl.ScopeLevel;
@@ -9,7 +8,6 @@ import edu.citadel.cprl.Type;
 
 import java.util.List;
 import java.util.ArrayList;
-
 
 /**
  * The abstract syntax tree node for a variable declaration.  Note that a
@@ -23,7 +21,6 @@ public class VarDecl extends InitialDecl
     // the list of single variable declarations for this variable declaration
     private List<SingleVarDecl> singleVarDecls;
 
-
     /**
      * Construct a variable declaration with its list of identifier tokens,
      * type, initial value, and scope level
@@ -33,12 +30,11 @@ public class VarDecl extends InitialDecl
       {
         super(new Token(), varType);
         this.initialValue = initialValue;
-        
+
         singleVarDecls = new ArrayList<>(identifiers.size());
         for (Token id : identifiers)
             singleVarDecls.add(new SingleVarDecl(id, varType, initialValue, scopeLevel));
       }
-
 
     /**
      * Returns the list of single variable declarations for this variable declaration.
@@ -47,7 +43,6 @@ public class VarDecl extends InitialDecl
       {
         return singleVarDecls;
       }
-
 
     @Override
     public void checkConstraints()
@@ -68,8 +63,7 @@ public class VarDecl extends InitialDecl
             getErrorHandler().reportError(e);
           }
       }
-    
-    
+
     @Override
     public void emit() throws CodeGenException
       {

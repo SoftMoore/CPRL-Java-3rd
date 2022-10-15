@@ -1,10 +1,7 @@
 package edu.citadel.cprl;
 
-
 import java.util.Objects;
-
 import edu.citadel.cvm.Constants;
-
 
 /**
  * This class encapsulates the language types for the programming language CPRL.
@@ -27,8 +24,6 @@ public class Type
     public static final Type UNKNOWN = new Type("UNKNOWN");
     public static final Type none    = new Type("none");
 
-
-
     /**
      * Construct a new type with the specified type name and size.
      */
@@ -37,7 +32,6 @@ public class Type
         this.typeName = typeName;
         this.size = size;
       }
-
 
     /**
      * Construct a new type with the specified type name.
@@ -48,7 +42,6 @@ public class Type
         this(typeName, 0);
       }
 
-
     /**
      * Returns the number of machine addressable units
      * (e.g., bytes or words) for this type.
@@ -57,7 +50,6 @@ public class Type
       {
         return size;
       }
-
 
     /**
      * Sets the number of machine addressable units
@@ -68,7 +60,6 @@ public class Type
         this.size = size;
       }
 
-
     /**
      * Returns true if and only if this type is a scalar type.
      * The scalar types in CPRL are Integer, Boolean, and Char.
@@ -77,7 +68,6 @@ public class Type
       {
         return equals(Integer) || equals(Boolean) || equals(Char);
       }
-
 
     /**
      * String literals contain quotes and possibly escape characters,
@@ -104,7 +94,6 @@ public class Type
         return capacity;
       }
 
-
     /**
      * Returns the type of a literal symbol.  For example, if the
      * symbol is an intLiteral, then Type.Integer is returned.
@@ -125,7 +114,6 @@ public class Type
             return Type.UNKNOWN;
       }
 
-
     /**
      * Returns the name for this type.
      */
@@ -135,13 +123,11 @@ public class Type
         return typeName;
       }
 
-
     @Override
     public int hashCode()
       {
         return Objects.hash(typeName);
       }
-
 
     @Override
     public boolean equals(Object obj)

@@ -1,17 +1,15 @@
 package edu.citadel.cvm.assembler.optimize;
 
-
 import edu.citadel.cvm.assembler.Symbol;
 import edu.citadel.cvm.assembler.ast.Instruction;
 import edu.citadel.cvm.assembler.ast.InstructionOneArg;
 
 import java.util.List;
 
-
 /**
  * Using function composition in CPRL can generate 2 or more consecutive
  * ALLOC instructions.  This optimization replaces an instruction sequence
- * of the form ALLOC n, ALLOC m with ALLOC (n + m). 
+ * of the form ALLOC n, ALLOC m with ALLOC (n + m).
  */
 public class Allocate implements Optimization
   {
@@ -24,7 +22,7 @@ public class Allocate implements Optimization
 
         Instruction instruction0 = instructions.get(instNum);
         Instruction instruction1 = instructions.get(instNum + 1);
-        
+
         Symbol symbol0 = instruction0.getOpCode().getSymbol();
         Symbol symbol1 = instruction1.getOpCode().getSymbol();
 
@@ -33,10 +31,10 @@ public class Allocate implements Optimization
           {
             InstructionOneArg inst0 = (InstructionOneArg)instruction0;
             int constValue0 = inst0.argToInt();
-            
+
             InstructionOneArg inst1 = (InstructionOneArg)instruction1;
             int constValue1 = inst1.argToInt();
-            
+
             // Make sure that the second ALLOC instruction does not have any labels.
             if (instruction1.getLabels().isEmpty())
               {
