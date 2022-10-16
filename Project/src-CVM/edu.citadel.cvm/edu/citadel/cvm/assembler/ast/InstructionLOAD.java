@@ -33,7 +33,7 @@ public class InstructionLOAD extends InstructionOneArg
       }
 
     @Override
-    public int getArgSize()
+    protected int getArgSize()
       {
         return Constants.BYTES_PER_INTEGER;
       }

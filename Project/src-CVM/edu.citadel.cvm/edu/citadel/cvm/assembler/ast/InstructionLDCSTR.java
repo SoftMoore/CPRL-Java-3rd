@@ -42,7 +42,7 @@ public class InstructionLDCSTR extends InstructionOneArg
       }
 
     @Override
-    public int getArgSize()
+    protected int getArgSize()
       {
         // Note: We must return the size for both the integer arg and
         //       the string arg that will be generated in machine code

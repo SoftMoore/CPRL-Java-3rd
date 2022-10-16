@@ -40,7 +40,7 @@ public class InstructionSHL extends InstructionOneArg
       }
 
     @Override
-    public int getArgSize()
+    protected int getArgSize()
       {
         return 1;   // 1 byte
       }

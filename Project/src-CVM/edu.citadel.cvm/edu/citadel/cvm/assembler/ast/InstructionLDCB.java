@@ -32,7 +32,7 @@ public class InstructionLDCB extends InstructionOneArg
       }
 
     @Override
-    public int getArgSize()
+    protected int getArgSize()
       {
         return 1;
       }
