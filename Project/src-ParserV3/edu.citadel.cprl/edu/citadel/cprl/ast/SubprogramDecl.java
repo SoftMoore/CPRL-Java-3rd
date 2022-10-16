@@ -19,7 +19,6 @@ public abstract class SubprogramDecl extends Declaration
     private int varLength;   // # bytes of all declared variables
 
     private String L1;       // label of address of first statement
-                             // (used during code generation)
 
     /**
      * Construct a subprogram declaration with the specified subprogram identifier.
@@ -95,7 +94,7 @@ public abstract class SubprogramDecl extends Declaration
     /**
      * Returns the label associated with the first statement of the subprogram.
      */
-    protected String getSubprogramLabel()
+    public String getSubprogramLabel()
       {
         return L1;
       }
