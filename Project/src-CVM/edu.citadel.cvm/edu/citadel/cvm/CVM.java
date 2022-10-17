@@ -161,7 +161,6 @@ public class CVM
     private void printMemory()
       {
         int memAddr   = 0;
-        int strLength = 0;
         byte byte0;
         byte byte1;
         byte byte2;
@@ -243,7 +242,7 @@ public class CVM
                     byte1 = memory[memAddr++];
                     byte2 = memory[memAddr++];
                     byte3 = memory[memAddr++];
-                    strLength = ByteUtil.bytesToInt(byte0, byte1, byte2, byte3);
+                    int strLength = ByteUtil.bytesToInt(byte0, byte1, byte2, byte3);
                     for (int i = 0;  i < strLength;  ++i)
                       {
                         byte0 = memory[memAddr++];
