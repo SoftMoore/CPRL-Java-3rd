@@ -23,7 +23,7 @@ public class TestParser
     public static void main(String[] args) throws Exception
       {
         if (args.length == 0)
-          printUsageAndExit();
+            printUsageAndExit();
 
         for (String fileName : args)
           {
@@ -69,12 +69,12 @@ public class TestParser
                 else
                     printProgressMessage("Parsing complete.");
 
-          }
-        catch (FatalException e)
-          {
-            // report error and continue testing parser
-            errorHandler.reportFatalError(e);
-          }
+              }
+            catch (FatalException e)
+              {
+                // report error and continue testing parser
+                errorHandler.reportFatalError(e);
+              }
 
             System.out.println();
           }
@@ -82,7 +82,7 @@ public class TestParser
 
     private static void printProgressMessage(String message)
       {
-         System.out.println(message);
+        System.out.println(message);
       }
 
     private static void printUsageAndExit()
