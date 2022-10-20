@@ -8,8 +8,8 @@ compiler is assembly language for CVM (CPRL Virtual Machine), a virtual machine 
 architecture that is similar to but much simpler than the Java Virtual Machine (JVM).
 
 Several sections from the book are provided as PDF documents.
-* [Table of Contents](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/TOC.pdf)
-* [Preface](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/Preface.pdf)
-* [Appendix A: The Compiler Project](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/AppendixA.pdf)
-* [Appendix C: Definition of the Programming Language CPRL](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/AppendixC.pdf)
-* [Appendix E: Definition of the CPRL Virtual Machine](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/AppendixE.pdf)
+* [Table of Contents](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/TOC.pdf)
+* [Preface](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/Preface.pdf)
+* [Appendix A: The Compiler Project](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixA.pdf)
+* [Appendix C: Definition of the Programming Language CPRL](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixC.pdf)
+* [Appendix E: Definition of the CPRL Virtual Machine](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixE.pdf)
