@@ -3,7 +3,7 @@ This repository contains handouts, PowerPoint slides, and Java source files to a
 
 Several sections from the book are provided as PDF documents.
 <!---  * [Table of Contents](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/TOC.pdf) -->
-* <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Kt-2nd/main/Book/TOC.pdf" target="_blank">Table of Contents</a>
+* <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/TOC.pdf" target="_blank">Table of Contents</a>
 * [Preface](Book/Preface.pdf)
 * [Appendix A: The Compiler Project](Book/AppendixA.pdf)
 * [Appendix C: Definition of the Programming Language CPRL](Book/AppendixC.pdf)
