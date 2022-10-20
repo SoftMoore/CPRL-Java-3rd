@@ -1,6 +1,6 @@
 ## *Compiler Design Using Java&reg;: An Object-Oriented Approach (Third Edition)*
 This repository contains handouts, PowerPoint slides, and Java source files to accompany the book
-[*Compiler Design Using Java&reg;: An Object-Oriented Approach (Third Edition)*](https://www.amazon.com/Introduction-Compiler-Design-Object-Oriented-Approach/dp/1734139129/)
+[*Compiler Design Using Java&reg;: An Object-Oriented Approach (Third Edition)*](https://www.amazon.com/Compiler-Design-Using-Java-Object-Oriented/dp/1734139129/)
 by John I. Moore, Jr.  The book covers implementation of a compiler for CPRL (Compiler PRoject Language),
 a programming language designed for teaching the basics of compiler construction.  CPRL includes
 variables, statements, expressions, arrays, records, and subprograms.  The target language for the
