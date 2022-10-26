@@ -822,7 +822,7 @@ public class Parser
     private void recover(Set<Symbol> followers) throws IOException
       {
         // no error recovery for version 1 of the parser
-        throw new FatalException("Parsing terminated.");
+        throw new FatalException("No error recovery -- parsing terminated.");
       }
 
     /**

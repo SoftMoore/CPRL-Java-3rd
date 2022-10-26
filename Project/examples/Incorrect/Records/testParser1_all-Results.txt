@@ -1,7 +1,7 @@
 Parsing Incorrect_501.cprl...
 *** Syntax error detected near line 9, character 6:
     Expecting ":" but found "," instead.
-*** Fatal exception: Parsing terminated.
+*** Fatal exception: No error recovery -- parsing terminated.
 
 Parsing Incorrect_502.cprl...
 Parsing complete.
@@ -9,7 +9,7 @@ Parsing complete.
 Parsing Incorrect_503.cprl...
 *** Syntax error detected near line 8, character 1:
     Expecting ";" but found "proc" instead.
-*** Fatal exception: Parsing terminated.
+*** Fatal exception: No error recovery -- parsing terminated.
 
 Parsing Incorrect_504.cprl...
 Parsing complete.
@@ -17,5 +17,5 @@ Parsing complete.
 Parsing Incorrect_505.cprl...
 *** Syntax error detected near line 5, character 5:
     Identifier "i" is already defined in the current scope.
-*** Fatal exception: Parsing terminated.
+*** Fatal exception: No error recovery -- parsing terminated.
 

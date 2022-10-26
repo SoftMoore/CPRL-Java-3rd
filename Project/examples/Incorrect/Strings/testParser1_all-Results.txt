@@ -1,7 +1,7 @@
 Parsing Incorrect_401.cprl...
 *** Syntax error detected near line 3, character 1:
     Expecting ";" but found "proc" instead.
-*** Fatal exception: Parsing terminated.
+*** Fatal exception: No error recovery -- parsing terminated.
 
 Parsing Incorrect_402.cprl...
 Parsing complete.
@@ -15,7 +15,7 @@ Parsing complete.
 Parsing Incorrect_405.cprl...
 *** Syntax error detected near line 3, character 17:
     Invalid type name.
-*** Fatal exception: Parsing terminated.
+*** Fatal exception: No error recovery -- parsing terminated.
 
 Parsing Incorrect_406.cprl...
 Parsing complete.
