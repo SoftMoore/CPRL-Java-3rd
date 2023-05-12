@@ -38,8 +38,9 @@ public abstract class Instruction extends AST
       }
 
     /**
-     * Initialize static maps.  These maps are shared with all instructions,but
-     * they must be re-initialized if the assembler is run on more than one file.
+     * Initialize static maps.  These maps are shared with all instructions,
+     * but they must be re-initialized if the assembler is run on more than
+     * one file; e.g., via a command like assemble *.asm.
      */
     public static void initMaps()
       {

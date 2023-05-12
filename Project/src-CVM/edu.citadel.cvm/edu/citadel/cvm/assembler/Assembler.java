@@ -19,8 +19,8 @@ public class Assembler
   {
     private static final boolean DEBUG = false;
 
-    private static final String  SUFFIX  = ".asm";
-    private static final int     FAILURE = -1;
+    private static final String SUFFIX  = ".asm";
+    private static final int    FAILURE = -1;
 
     private static boolean optimize = true;
 
@@ -62,14 +62,14 @@ public class Assembler
                         sourceFile = new File(fileName);
 
                         if (!sourceFile.isFile())
-                            throw new FatalException("\"*** File " + fileName
-                                                   + " not found ***\"");
+                            throw new FatalException("*** File " + fileName
+                                                   + " not found ***");
                       }
                     else
                       {
                         // don't try to append the suffix
-                        throw new FatalException("\"*** File " + fileName
-                                               + " not found ***\"");
+                        throw new FatalException("*** File " + fileName
+                                               + " not found ***");
                       }
                   }
 
@@ -93,13 +93,12 @@ public class Assembler
     public Assembler(File sourceFile)
       {
         this.sourceFile = sourceFile;
-        Instruction.initMaps();
       }
 
     /**
-     * Assembles the source file.  If there are no errors in the source file,
-     * the object code is placed in a file with the same base file name as
-     * the source file but with a ".obj" suffix.
+     * Assembles the source file.  If there are no errors in the source
+     * file, the object code is placed in a file with the same base file
+     * name as the source file but with a ".obj" suffix.
      *
      * @throws IOException if there are problems reading the source file
      *                     or writing to the target file.
@@ -112,49 +111,44 @@ public class Assembler
         Scanner scanner = new Scanner(source, errorHandler);
         Parser  parser  = new Parser(scanner, errorHandler);
         AST.setErrorHandler(errorHandler);
+        Instruction.initMaps();
 
         printProgressMessage("Starting assembly for " + sourceFile.getName());
 
         // parse source file
-        Program prog = parser.parseProgram();
+        Program program = parser.parseProgram();
 
         if (DEBUG)
           {
             System.out.println("...program after parsing");
-            printInstructions(prog.getInstructions());
+            printInstructions(program.getInstructions());
           }
 
         // optimize
         if (!errorHandler.errorsExist() && optimize)
           {
             printProgressMessage("...performing optimizations");
-            prog.optimize();
+            program.optimize();
           }
 
         if (DEBUG)
           {
             System.out.println("...program after performing optimizations");
-            printInstructions(prog.getInstructions());
+            printInstructions(program.getInstructions());
           }
 
         // set addresses
         if (!errorHandler.errorsExist())
           {
             printProgressMessage("...setting memory addresses");
-            prog.setAddresses();
+            program.setAddresses();
           }
 
         // check constraints
         if (!errorHandler.errorsExist())
           {
             printProgressMessage("...checking constraints");
-            prog.checkConstraints();
-          }
-
-        if (DEBUG)
-          {
-            System.out.println("...program after checking constraints");
-            printInstructions(prog.getInstructions());
+            program.checkConstraints();
           }
 
         // generate code
@@ -164,7 +158,7 @@ public class Assembler
             AST.setOutputStream(getTargetOutputStream(sourceFile));
 
             // no error recovery from errors detected during code generation
-            prog.emit();
+            program.emit();
           }
 
         if (errorHandler.errorsExist())
@@ -181,15 +175,10 @@ public class Assembler
      */
     private static void printInstructions(List<Instruction> instructions)
       {
-        if (instructions == null)
-            System.out.println("<no instructions>");
-        else
-          {
-            System.out.println("There are " + instructions.size() + " instructions");
-            for (Instruction instruction : instructions)
-                System.out.println(instruction);
-            System.out.println();
-          }
+        System.out.println("There are " + instructions.size() + " instructions");
+        for (Instruction instruction : instructions)
+            System.out.println(instruction);
+        System.out.println();
       }
 
     private static void printProgressMessage(String message)
