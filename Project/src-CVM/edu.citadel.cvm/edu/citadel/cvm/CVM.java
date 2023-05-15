@@ -1,7 +1,6 @@
 package edu.citadel.cvm;
 
 import edu.citadel.compiler.util.ByteUtil;
-import edu.citadel.compiler.util.StringUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -174,8 +173,8 @@ public class CVM
             else
                 out.print("     ");
 
-            String memAddrStr = StringUtil.format(memAddr, FIELD_WIDTH);
-            byte opCode = memory[memAddr];
+            String memAddrStr = String.format("%4s", memAddr);
+            byte   opCode     = memory[memAddr];
 
             switch (opCode)
               {
@@ -270,7 +269,7 @@ public class CVM
             else
                 out.print("     ");
 
-            String memAddrStr = StringUtil.format(memAddr, FIELD_WIDTH);
+            String memAddrStr = String.format("%4s", memAddr);
             out.println(memAddrStr + ":  " + memory[memAddr]);
           }
 

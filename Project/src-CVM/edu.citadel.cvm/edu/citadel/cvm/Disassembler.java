@@ -1,7 +1,6 @@
 package edu.citadel.cvm;
 
 import edu.citadel.compiler.util.ByteUtil;
-import edu.citadel.compiler.util.StringUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -48,6 +47,8 @@ public class Disassembler
               {
                 byte opCode = (byte) inByte;
 
+                String opCodeAddrStr = String.format("%4s", opCodeAddr);
+
                 switch (opCode)
                   {
                     // opcodes with zero operands
@@ -62,16 +63,14 @@ public class Disassembler
                          OpCode.RET4,    OpCode.STOREB,  OpCode.STORE2B,
                          OpCode.STOREW,  OpCode.STOREST, OpCode.SUB  ->
                       {
-                        out.println(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
-                                                    + OpCode.toString(opCode));
+                        out.println(opCodeAddrStr + ":  " + OpCode.toString(opCode));
                         opCodeAddr = opCodeAddr + 1;
                       }
 
                     // opcodes with one byte operand
                     case OpCode.SHL,     OpCode.SHR,     OpCode.LDCB ->
                       {
-                        out.print(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
-                                                    + OpCode.toString(opCode));
+                        out.print(opCodeAddrStr + ":  " + OpCode.toString(opCode));
                         out.println(" " + readByte(file));
                         opCodeAddr = opCodeAddr + 2;  // one byte for opcode and one byte for shift amount
                       }
@@ -85,8 +84,7 @@ public class Disassembler
                          OpCode.LDGADDR, OpCode.PROC,    OpCode.PROGRAM,
                          OpCode.PUTSTR,  OpCode.RET,     OpCode.STORE  ->
                        {
-                         out.print(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
-                                                   + OpCode.toString(opCode));
+                         out.print(opCodeAddrStr + ":  " + OpCode.toString(opCode));
                          out.println(" " + readInt(file));
                          opCodeAddr = opCodeAddr + 1 + Constants.BYTES_PER_INTEGER;
                        }
@@ -94,8 +92,7 @@ public class Disassembler
                     // special case: LDCCH
                     case OpCode.LDCCH ->
                       {
-                        out.print(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
-                                                  + OpCode.toString(opCode));
+                        out.print(opCodeAddrStr + ":  " + OpCode.toString(opCode));
                         out.print(" \'");
 
                         c = readChar(file);
@@ -112,8 +109,7 @@ public class Disassembler
                     // special case: LDCSTR
                     case OpCode.LDCSTR  ->
                       {
-                        out.print(StringUtil.format(opCodeAddr, FIELD_WIDTH) + ":  "
-                                                  + OpCode.toString(opCode));
+                        out.print(opCodeAddrStr + ":  " + OpCode.toString(opCode));
                         // now print the string
                         out.print("  \"");
                         strLength = readInt(file);
