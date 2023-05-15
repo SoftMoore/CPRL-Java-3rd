@@ -32,9 +32,6 @@ public class CVM
     /** end of file */
     private static final int EOF = -1;
 
-    /** field width for printing memory addresses */
-    private static final int FIELD_WIDTH = 4;
-
     /** scanner for handling integer and string input */
     private Scanner scanner;
 

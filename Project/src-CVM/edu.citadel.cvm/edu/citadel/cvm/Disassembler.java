@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 public class Disassembler
   {
     private static final String SUFFIX   = ".obj";
-    private static final int FIELD_WIDTH = 4;
 
     /**
      * Translates CVM machine code into CVM assembly language
