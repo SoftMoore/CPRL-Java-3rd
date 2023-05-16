@@ -95,8 +95,7 @@ public class Disassembler
                         out.print(" \'");
 
                         c = readChar(file);
-                        if (c == '\b' || c == '\t' || c == '\n' || c == '\f'
-                         || c == '\r' || c == '\"' || c == '\'' || c == '\\')
+                        if (isEscapeChar(c))
                             out.print(getUnescapedChar(c));
                         else
                             out.print(c);
@@ -115,8 +114,7 @@ public class Disassembler
                         for (int i = 0;  i < strLength;  ++i)
                           {
                             c = readChar(file);
-                            if (c == '\b' || c == '\t' || c == '\n' || c == '\f'
-                             || c == '\r' || c == '\"' || c == '\'' || c == '\\')
+                            if (isEscapeChar(c))
                                 out.print(getUnescapedChar(c));
                             else
                                 out.print(c);
@@ -134,6 +132,38 @@ public class Disassembler
               }
 
             out.close();
+          }
+      }
+
+
+    /*
+     * Returns true if c is an escaped character.
+     */
+    private static boolean isEscapeChar(char c)
+      {
+        return c == '\t' || c == '\n' || c == '\r'
+            || c == '\"' || c == '\'' || c == '\\';
+      }
+
+    /**
+     * Unescapes characters.  For example, if the parameter c is a tab,
+     * this method will return "\\t"
+     *
+     * @return the string for an escaped character.
+     */
+    private static String getUnescapedChar(char c)
+      {
+        switch (c)
+          {
+            case '\b' : return "\\b";    // backspace
+            case '\t' : return "\\t";    // tab
+            case '\n' : return "\\n";    // linefeed (a.k.a. newline)
+            case '\f' : return "\\f";    // form feed
+            case '\r' : return "\\r";    // carriage return
+            case '\"' : return "\\\"";   // double quote
+            case '\'' : return "\\\'";   // single quote
+            case '\\' : return "\\\\";   // backslash
+            default   : return Character.toString(c);
           }
       }
 
@@ -167,28 +197,6 @@ public class Disassembler
     private static byte readByte(InputStream in) throws IOException
       {
         return (byte) in.read();
-      }
-
-    /**
-     * Unescapes characters.  For example, if the parameter c is a tab,
-     * this method will return "\\t"
-     *
-     * @return the string for an escaped character.
-     */
-    private static String getUnescapedChar(char c)
-      {
-        switch (c)
-          {
-            case '\b' : return "\\b";    // backspace
-            case '\t' : return "\\t";    // tab
-            case '\n' : return "\\n";    // linefeed (a.k.a. newline)
-            case '\f' : return "\\f";    // form feed
-            case '\r' : return "\\r";    // carriage return
-            case '\"' : return "\\\"";   // double quote
-            case '\'' : return "\\\'";   // single quote
-            case '\\' : return "\\\\";   // backslash
-            default   : return Character.toString(c);
-          }
       }
 
     private static void printUsageMessageAndExit()

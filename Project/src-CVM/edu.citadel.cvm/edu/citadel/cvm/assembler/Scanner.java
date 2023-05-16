@@ -345,10 +345,10 @@ public class Scanner
     /**
      * Scans characters in the source file for an escaped character; i.e.,
      * a character preceded by a backslash.  This method handles escape
-     * characters \b, \t, \n, \f, \r, \", \', and \\.  If the character
-     * following a backslash is anything other than one of these characters,
-     * then an exception is thrown.  Assumes that source.getChar() is the
-     * escape character (\).
+     * characters \t, \n, \r, \", \', and \\.  If the character following
+     * a backslash is anything other than one of these characters, then an
+     * exception is thrown.  Assumes that source.getChar() is the escape
+     * character (\).
      *
      * @return the value for an escaped character.
      */
@@ -369,10 +369,8 @@ public class Scanner
 
         switch (c)
           {
-            case 'b'  : return '\b';   // backspace
             case 't'  : return '\t';   // tab
-            case 'n'  : return '\n';   // linefeed (a.k.a. newline)
-            case 'f'  : return '\f';   // form feed
+            case 'n'  : return '\n';   // newline
             case 'r'  : return '\r';   // carriage return
             case '\"' : return '\"';   // double quote
             case '\'' : return '\'';   // single quote
