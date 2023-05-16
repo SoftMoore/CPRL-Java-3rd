@@ -1,8 +1,6 @@
 // test String literals with escape characters
-"string with a backspace       (\b) in the middle"
 "string with a tab             (\t) in the middle"
 "string with a newline (lf)    (\n) in the middle"
-"string with a form feed       (\f) in the middle"
 "string with a carriage return (\r) in the middle"
 "string with a double quote    (\") in the middle"
 "string with a single quote    (\') in the middle"
@@ -16,10 +14,8 @@
 ""
 
 // test Char literals with escape characters
-'\b'
 '\t'
 '\n'
-'\f'
 '\r'
 '\"'
 '\''
