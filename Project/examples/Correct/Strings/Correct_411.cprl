@@ -1,0 +1,37 @@
+// test escape characters
+type S50 = string[50];
+
+proc main()
+  {
+    var testString : S50;
+
+    testString:= "before tab \t after tab";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+
+    testString:= "before carriage return \t after carriage return";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+
+    testString:= "before newline \n after newline";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+
+    testString:= "before single quote \' after single quote";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+
+    testString:= "before double quote \" after double quote";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+
+    testString:= "before backslash \\ after backslash";
+    writeln testString;
+    writeln "length of testString = ", testString.length;
+    writeln;
+  }

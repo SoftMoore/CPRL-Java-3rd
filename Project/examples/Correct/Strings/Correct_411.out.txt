@@ -1,0 +1,19 @@
+before tab 	 after tab
+length of testString = 22
+
+before carriage return 	 after carriage return
+length of testString = 46
+
+before newline 
+ after newline
+length of testString = 30
+
+before single quote ' after single quote
+length of testString = 40
+
+before double quote " after double quote
+length of testString = 40
+
+before backslash \ after backslash
+length of testString = 34
+
