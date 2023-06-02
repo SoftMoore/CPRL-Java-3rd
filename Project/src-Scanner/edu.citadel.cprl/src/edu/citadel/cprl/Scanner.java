@@ -232,7 +232,7 @@ public final class Scanner
 
     /**
      * Scans characters in the source file for a valid identifier using the
-     * lexical rule: identifier = letter ( letter | digit)* .
+     * lexical rule: identifier = letter { letter | digit } .
      *
      * @return the string of letters and digits for the identifier.
      */
