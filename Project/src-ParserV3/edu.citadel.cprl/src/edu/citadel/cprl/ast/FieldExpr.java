@@ -56,7 +56,7 @@ public class FieldExpr extends Expression
     @Override
     public void emit()
       {
-        assert(fieldDecl.getOffset() >= 0) : "Invalid value for field offset.";
+        assert fieldDecl.getOffset() >= 0 : "Invalid value for field offset.";
 // ...
       }
   }
