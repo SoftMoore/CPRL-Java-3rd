@@ -46,14 +46,14 @@ public class Compiler
                         sourceFile = new File(fileName);
 
                         if (!sourceFile.isFile())
-                            throw new FatalException("\"*** File " + fileName
-                                                   + " not found ***\"");
+                            throw new FatalException("*** File \"" + fileName
+                                                   + "\" not found ***");
                       }
                     else
                       {
                         // don't try to append the suffix
-                        throw new FatalException("\"*** File " + fileName
-                                               + " not found ***\"");
+                        throw new FatalException("*** File \"" + fileName
+                                               + "\" not found ***");
                       }
                   }
 
@@ -150,7 +150,9 @@ public class Compiler
         catch (IOException e)
           {
             e.printStackTrace();
-            throw new FatalException("Failed to create file $targetFileName");
+            var errorMsg = "*** Failed to create file " + targetFileName + " ***";
+            throw new FatalException(errorMsg);
+
           }
       }
 
