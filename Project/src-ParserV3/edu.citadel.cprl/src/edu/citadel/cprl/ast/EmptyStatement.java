@@ -9,14 +9,14 @@ package edu.citadel.cprl.ast;
 public class EmptyStatement extends Statement
   {
     private static EmptyStatement instance = new EmptyStatement();
-    
+
     private EmptyStatement()
       {
         super();
       }
 
     /**
-     * Returns the single instance of this class. 
+     * Returns the single instance of this class.
      */
     public static EmptyStatement getInstance()
       {

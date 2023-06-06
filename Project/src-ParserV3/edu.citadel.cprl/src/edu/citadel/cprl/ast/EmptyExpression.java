@@ -11,14 +11,14 @@ import edu.citadel.compiler.Position;
 public class EmptyExpression extends Expression
   {
     private static EmptyExpression instance = new EmptyExpression();
-    
+
     private EmptyExpression()
       {
         super(new Position());
       }
 
     /**
-     * Returns the single instance of this class. 
+     * Returns the single instance of this class.
      */
     public static EmptyExpression getInstance()
       {
