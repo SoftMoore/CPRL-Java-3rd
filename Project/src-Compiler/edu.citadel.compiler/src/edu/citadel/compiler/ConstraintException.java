@@ -11,8 +11,8 @@ public class ConstraintException extends CompilerException
      * Construct a constraint exception with the specified position
      * and error message.
      *
-     * @param position  the position in the source file where the error was detected.
-     * @param errorMsg  a brief message about the nature of the error.
+     * @param position the position in the source file where the error was detected.
+     * @param errorMsg a brief message about the nature of the error.
      */
     public ConstraintException(Position position, String errorMsg)
       {

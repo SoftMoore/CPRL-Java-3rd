@@ -11,7 +11,7 @@ public class InternalCompilerException extends RuntimeException
 
     /**
      * Construct an internal compiler exception with the specified
-     * error message and position.
+     * position and error message.
      */
     public InternalCompilerException(Position position, String errorMsg)
       {
