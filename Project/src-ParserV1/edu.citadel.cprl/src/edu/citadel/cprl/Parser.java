@@ -136,7 +136,7 @@ public class Parser
      *
      * @return the list of identifier tokens.  Returns an empty list if parsing fails.
      */
-    public List<Token> parseIdentifiers() throws IOException
+    private List<Token> parseIdentifiers() throws IOException
       {
         try
           {
