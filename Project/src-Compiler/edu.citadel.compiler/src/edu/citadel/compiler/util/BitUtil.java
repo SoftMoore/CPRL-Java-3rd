@@ -13,17 +13,23 @@ public class BitUtil
         int result = 0;
 
         if (bits.length() != 16)
-            throw new IllegalArgumentException("*** bad string length ***");
+          {
+            var errorMsg = "*** Bad string length: " + bits.length() + " ***";
+            throw new IllegalArgumentException(errorMsg);
+          }
 
         int mask = (1 << 15);
 
-        for (int i = 0;  i < 16;  ++i)
+        for (int i = 0; i < 16; ++i)
           {
             char c = bits.charAt(i);
             if (c == '1')
                 result = result | mask;
             else if (c != '0')
-                throw new IllegalArgumentException("*** non-binary character ***");
+              {
+                var errorMsg = "*** Non-binary character: " + c +" ***";
+                throw new IllegalArgumentException(errorMsg);
+              }
 
             mask = mask >>> 1;
           }
@@ -46,10 +52,9 @@ public class BitUtil
     public static String toBinaryString(int n, int numBits)
       {
         var builder = new StringBuilder();
-
         int mask = 1 << (numBits - 1);
 
-        for (int count = 0;  count < numBits;  ++count)
+        for (int count = 0; count < numBits; ++count)
           {
             builder.append((n & mask) == 0 ? '0' : '1');
             mask = mask >>> 1;
@@ -73,10 +78,9 @@ public class BitUtil
     public static String toBinaryString(short n, int numBits)
       {
         var builder = new StringBuilder();
-
         int mask = 1 << (numBits - 1);
 
-        for (int count = 0;  count < numBits;  ++count)
+        for (int count = 0; count < numBits; ++count)
           {
             builder.append((n & mask) == 0 ? '0' : '1');
             mask = mask >>> 1;
@@ -100,10 +104,9 @@ public class BitUtil
     public static String toBinaryString(byte n, int numBits)
       {
         var builder = new StringBuilder();
-
         int mask = 1 << (numBits - 1);
 
-        for (int count = 0;  count < numBits;  ++count)
+        for (int count = 0; count < numBits; ++count)
           {
             builder.append((n & mask) == 0 ? '0' : '1');
             mask = mask >>> 1;
@@ -141,7 +144,7 @@ public class BitUtil
       }
 
     /**
-     * Returns a hex string representation of the specified byte.
+     * Returns a hexadecimal string representation of the specified byte.
      */
     public static String toHexString(byte n)
       {
@@ -156,15 +159,15 @@ public class BitUtil
       {
         if (n >= Integer.SIZE)
           {
-            String errorMsg = "*** Parameter n too large: " + n + " ***";
+            var errorMsg = "*** Parameter n too large: " + n + " ***";
             throw new IllegalArgumentException(errorMsg);
           }
 
         // mask out rightmost n bits
-        int mask = -1 >>> (Integer.SIZE - n);
+        int mask   = -1 >>> (Integer.SIZE - n);
         int result = value & mask;
 
-        // if  bit (n - 1) is 1, we have a negative number, so set bits 32..n to 1.
+        // if bit (n - 1) is 1, we have a negative number, so set bits 32..n to 1.
         int nthBitMask = 1 << (n - 1);
         if ((result & nthBitMask) != 0)
           {
@@ -184,12 +187,12 @@ public class BitUtil
       {
         if (n >= Integer.SIZE)
           {
-            String errorMsg = "*** Parameter n too large: " + n + " ***";
+            var errorMsg = "*** Parameter n too large: " + n + " ***";
             throw new IllegalArgumentException(errorMsg);
           }
 
         // mask out rightmost n bits
-        int mask = -1 >>> (Integer.SIZE - n);
+        int mask   = -1 >>> (Integer.SIZE - n);
         int result = value & mask;
 
         return result;

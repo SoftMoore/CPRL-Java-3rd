@@ -26,7 +26,6 @@ public class RelationalExpr extends BinaryExpr
       {
         super(leftOperand, operator, rightOperand);
         setType(Type.Boolean);
-
         assert operator.getSymbol().isRelationalOperator() :
             "Operator is not a relational operator.";
       }
@@ -41,20 +40,10 @@ public class RelationalExpr extends BinaryExpr
     public void emit() throws CodeGenException
       {
         emitBranch(false, L1);
-
-        // emit true
-        emit("LDCB " + TRUE);
-
-        // jump over code to emit false
-        emit("BR " + L2);
-
-        // L1:
+        emit("LDCB " + TRUE);    // push true back on the stack
+        emit("BR " + L2);        // jump over code to emit false
         emitLabel(L1);
-
-        // emit false
-        emit("LDCB " + FALSE);
-
-        // L2:
+        emit("LDCB " + FALSE);   // push false onto the stack
         emitLabel(L2);
       }
 
@@ -63,11 +52,11 @@ public class RelationalExpr extends BinaryExpr
       {
         emitOperands();
 
-        Symbol operatorSym = getOperator().getSymbol();
+        var operatorSym = getOperator().getSymbol();
         if (operatorSym == Symbol.equals)
             emit(condition ? "BE "  + label : "BNE " + label);
         else if (operatorSym == Symbol.notEqual)
-            emit(condition ? "BNE " + label : "BE "  +  label);
+            emit(condition ? "BNE " + label : "BE "  + label);
         else if (operatorSym == Symbol.lessThan)
             emit(condition ? "BL "  + label : "BGE " + label);
         else if (operatorSym == Symbol.lessOrEqual)
@@ -78,24 +67,24 @@ public class RelationalExpr extends BinaryExpr
             emit(condition ? "BGE " + label : "BL "  + label);
         else
           {
-            String errorMsg = "Invalid relational operator.";
+            var errorMsg = "Invalid relational operator.";
             throw new CodeGenException(getOperator().getPosition(), errorMsg);
           }
       }
 
     private void emitOperands() throws CodeGenException
       {
-        Expression leftOperand  = getLeftOperand();
-        Expression rightOperand = getRightOperand();
+        var leftOperand  = getLeftOperand();
+        var rightOperand = getRightOperand();
 
-        // Relational operators compare integers only, so we need to make sure
-        // that we have enough bytes on the stack.  Pad with zero bytes.
-        for (int n = 1;  n <= (Type.Integer.getSize() - leftOperand.getType().getSize());  ++n)
+        // Relational operators compare integers only, so we need to make
+        // sure that we have enough bytes on the stack.  Pad with zero bytes.
+        for (int n = 1; n <= (Type.Integer.getSize() - leftOperand.getType().getSize()); ++n)
             emit("LDCB 0");
 
         leftOperand.emit();
 
-        for (int n = 1;  n <= (Type.Integer.getSize() - rightOperand.getType().getSize());  ++n)
+        for (int n = 1; n <= (Type.Integer.getSize() - rightOperand.getType().getSize()); ++n)
             emit("LDCB 0");
 
         rightOperand.emit();

@@ -14,7 +14,7 @@ public class Program extends AST
     private List<InitialDecl>    initialDecls;
     private List<SubprogramDecl> subprogramDecls;
 
-    private int varLength;      // # bytes of all declared variables
+    private int varLength;   // # bytes of all declared variables
 
     /**
      * Construct a program with the specified initial declarations
@@ -22,9 +22,9 @@ public class Program extends AST
      */
     public Program(List<InitialDecl> initialDecls, List<SubprogramDecl> subprogramDecls)
       {
-        this.initialDecls = initialDecls;
+        this.initialDecls    = initialDecls;
         this.subprogramDecls = subprogramDecls;
-        this.varLength = 0;
+        this.varLength       = 0;
       }
 
     /**
@@ -47,19 +47,25 @@ public class Program extends AST
                 decl.checkConstraints();
 
             // check procedure main
-            Declaration decl = getIdTable().get("main");
+            var decl = getIdTable().get("main");
             if (decl == null)
                 throw error("Program is missing procedure \"main()\".");
             else if (!(decl instanceof ProcedureDecl))
-                throw error(decl.getPosition(), "Identifier \"main\" was not declared as a procedure.");
+              {
+                var errorMsg = "Identifier \"main\" was not declared as a procedure.";
+                throw error(decl.getPosition(), errorMsg);
+              }
             else
               {
                 ProcedureDecl procDecl = (ProcedureDecl) decl;
                 if (procDecl.getParamLength() != 0)
-                    throw error(decl.getPosition(), "Procedure \"main\" cannot have parameters.");
+                  {
+                    var errorMsg = "Procedure \"main\" cannot have parameters.";
+                    throw error(decl.getPosition(), errorMsg);
+                  }
               }
           }
-        catch(ConstraintException e)
+        catch (ConstraintException e)
           {
             getErrorHandler().reportError(e);
           }
@@ -101,7 +107,7 @@ public class Program extends AST
             emit("PROGRAM " + varLength);
 
         for (InitialDecl decl : initialDecls)
-          decl.emit();
+            decl.emit();
 
         emit("CALL _main");
         emit("HALT");

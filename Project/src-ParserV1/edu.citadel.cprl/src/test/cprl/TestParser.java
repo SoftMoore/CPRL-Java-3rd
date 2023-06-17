@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class TestParser
   {
-    private static final String SUFFIX  = ".cprl";
+    private static final String SUFFIX = ".cprl";
 
     public static void main(String[] args) throws Exception
       {
@@ -40,16 +40,16 @@ public class TestParser
 
                     if (index < 0 || !fileName.substring(index).equals(SUFFIX))
                       {
-                        fileName += SUFFIX;
-                        sourceFile = new File(fileName);
+                        fileName   += SUFFIX;
+                        sourceFile  = new File(fileName);
 
                         if (!sourceFile.isFile())
-                            throw new FatalException("\"*** File " + fileName + " not found ***\"");
+                            throw new FatalException("File " + fileName + " not found");
                       }
                     else
                       {
                         // don't try to append the suffix
-                        throw new FatalException("\"*** File " + fileName + " not found ***\"");
+                        throw new FatalException("File " + fileName + " not found");
                       }
                   }
 
@@ -64,8 +64,7 @@ public class TestParser
                 parser.parseProgram();
 
                 if (errorHandler.errorsExist())
-                    errorHandler.printMessage("Errors detected in " + fileName
-                                            + " -- parsing terminated.");
+                    errorHandler.printMessage("Errors detected in " + fileName + " -- parsing terminated.");
                 else
                     printProgressMessage("Parsing complete.");
 

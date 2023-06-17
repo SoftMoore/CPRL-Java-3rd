@@ -2,6 +2,7 @@ package edu.citadel.cprl.ast;
 
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
+
 import edu.citadel.cprl.StringType;
 import edu.citadel.cprl.Type;
 
@@ -55,8 +56,8 @@ public class OutputStmt extends Statement
                 if (type != Type.Integer && type != Type.Boolean
                     && type != Type.Char && !(type instanceof StringType))
                   {
-                    String errorMsg = "Output supported only for integers, "
-                                    + "characters, booleans, and strings.";
+                    var errorMsg = "Output supported only for integers, "
+                                 + "characters, booleans, and strings.";
                     throw error(expr.getPosition(), errorMsg);
                   }
               }
@@ -74,7 +75,7 @@ public class OutputStmt extends Statement
           {
             expr.emit();
 
-            Type type = expr.getType();
+            var type = expr.getType();
 
             if (type == Type.Integer)
                 emit("PUTINT");
@@ -84,7 +85,7 @@ public class OutputStmt extends Statement
                 emit("PUTCH");
             else   // must be a string type
                 emit("PUTSTR " + ((StringType) type).getCapacity());
-         }
+          }
 
         if (isWriteln)
             emit("PUTEOL");

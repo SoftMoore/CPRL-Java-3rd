@@ -27,7 +27,6 @@ public class FunctionCallExpr extends Expression
     public FunctionCallExpr(Token funId, List<Expression> actualParams)
       {
         super(funId.getPosition());
-
         this.funId = funId;
         this.actualParams = actualParams;
       }
@@ -38,16 +37,16 @@ public class FunctionCallExpr extends Expression
         try
           {
             // get the declaration for this function call from the identifier table
-            Declaration decl = getIdTable().get(funId.getText());
+            var decl = getIdTable().get(funId.getText());
 
             if (decl == null)
               {
-                String errorMsg = "Function \"" + funId + "\" has not been declared.";
+                var errorMsg = "Function \"" + funId + "\" has not been declared.";
                 throw error(funId.getPosition(), errorMsg);
               }
             else if (!(decl instanceof FunctionDecl))
               {
-                String errorMsg = "Identifier \"" + funId + "\" was not declared as a function.";
+                var errorMsg = "Identifier \"" + funId + "\" was not declared as a function.";
                 throw error(funId.getPosition(), errorMsg);
               }
             else
@@ -56,20 +55,23 @@ public class FunctionCallExpr extends Expression
             // at this point funDecl should not be null
             setType(funDecl.getType());
 
-            List<ParameterDecl> formalParams = funDecl.getFormalParams();
+            var formalParams = funDecl.getFormalParams();
 
             // check that numbers of parameters match
             if (actualParams.size() != formalParams.size())
-                throw error(funId.getPosition(), "Incorrect number of actual parameters.");
+              {
+                var errorMsg = "Incorrect number of actual parameters.";
+                throw error(funId.getPosition(), errorMsg);
+              }
 
             // call checkConstraints for each actual parameter
             for (Expression expr : actualParams)
                 expr.checkConstraints();
 
-            for (int i = 0;  i < actualParams.size();  ++i)
+            for (int i = 0; i < actualParams.size(); ++i)
               {
-                Expression    expr  = actualParams.get(i);
-                ParameterDecl param = formalParams.get(i);
+                var expr  = actualParams.get(i);
+                var param = formalParams.get(i);
 
                 // check that parameter types match
                 if (!matchTypes(param.getType(), expr))
@@ -78,7 +80,7 @@ public class FunctionCallExpr extends Expression
                 // check that string parameters are not literals
                 if (expr.getType() instanceof StringType && expr instanceof ConstValue)
                   {
-                    String errorMsg = "String literals can't be passed as parameters.";
+                    var errorMsg = "String literals can't be passed as parameters.";
                     throw error(expr.getPosition(), errorMsg);
                   }
 

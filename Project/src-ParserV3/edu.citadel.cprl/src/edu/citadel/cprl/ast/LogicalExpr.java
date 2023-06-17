@@ -42,15 +42,15 @@ public class LogicalExpr extends BinaryExpr
 
             if (leftOperand.getType() != Type.Boolean)
               {
-                String errorMsg = "Left operand for a logical expression "
-                                + "should have type Boolean.";
+                var errorMsg = "Left operand for a logical expression "
+                             + "should have type Boolean.";
                 throw error(leftOperand.getPosition(), errorMsg);
               }
 
             if (rightOperand.getType() != Type.Boolean)
               {
-                String errorMsg = "Right operand for a logical expression "
-                                + "should have type Boolean.";
+                var errorMsg = "Right operand for a logical expression "
+                             + "should have type Boolean.";
                 throw error(rightOperand.getPosition(), errorMsg);
               }
           }
@@ -64,11 +64,10 @@ public class LogicalExpr extends BinaryExpr
     public void emit() throws CodeGenException
       {
         // Uses short-circuit evaluation for logical expressions.
-        Expression leftOperand  = getLeftOperand();
-        Expression rightOperand = getRightOperand();
-        Token      operator     = getOperator();
-
-        Symbol operatorSym = operator.getSymbol();
+        var leftOperand  = getLeftOperand();
+        var rightOperand = getRightOperand();
+        var operator     = getOperator();
+        var operatorSym  = operator.getSymbol();
 
         if (operatorSym == Symbol.andRW)
           {
@@ -94,14 +93,12 @@ public class LogicalExpr extends BinaryExpr
         // branch to code following the expression
         emit("BR " + L2);
 
-        // L1:
         emitLabel(L1);
 
         // evaluate the right operand and leave result on
         // top of stack as value for compound expression
         rightOperand.emit();
 
-        // L2:
         emitLabel(L2);
       }
   }

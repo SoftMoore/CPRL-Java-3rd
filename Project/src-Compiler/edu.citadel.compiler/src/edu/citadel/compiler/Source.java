@@ -9,18 +9,18 @@ import java.io.Reader;
  */
 public final class Source
   {
-    /** The reader used to read characters from the source file. */
+    // The reader used to read characters from the source file.
     private Reader sourceReader;
 
-    /** An integer representing the current character in the source file.  This
-     *  field has the value EOF (-1) when the end of file has been reached. */
-    private int currentChar;
+    // An integer representing the current character in the source file.
+    // This field has the value EOF (-1) when the end of file has been reached.
+    private int currentChar = 0;
 
-    /** The source line number of the current character. */
-    private int lineNumber;
+    // The source line number of the current character.
+    private int lineNumber = 1;
 
-    /** The offset of the current character within its line. */
-    private int charNumber;
+    // The offset of the current character within its line.
+    private int charNumber = 0;
 
     /**
      * A constant representing end of file.
@@ -28,16 +28,12 @@ public final class Source
     public static final int EOF = -1;
 
     /**
-     * Initialize Source with a Reader and advance to the first character.
+     * Initialize source with a reader and advance to the first character.
      */
     public Source(Reader sourceReader) throws IOException
       {
         this.sourceReader = sourceReader;
-        currentChar = 0;
-        lineNumber  = 1;
-        charNumber  = 0;
-
-        advance();      // advance to the first character
+        advance();   // advance to the first character
       }
 
     /**

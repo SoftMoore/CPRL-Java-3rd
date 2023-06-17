@@ -36,4 +36,3 @@ public class RecordType extends Type
         return fieldNameMap.get(idStr);
       }
   }
-

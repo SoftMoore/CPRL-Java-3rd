@@ -12,7 +12,6 @@ public class Scope extends HashMap<String, Declaration>
 
     private ScopeLevel scopeLevel;
 
-
     public Scope(ScopeLevel scopeLevel)
       {
         this.scopeLevel = scopeLevel;
@@ -20,6 +19,6 @@ public class Scope extends HashMap<String, Declaration>
 
     public ScopeLevel getScopeLevel()
       {
-          return scopeLevel;
+        return scopeLevel;
       }
   }

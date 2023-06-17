@@ -18,7 +18,7 @@ public class EmptyExpression extends Expression
       }
 
     /**
-     * Returns the single instance of this class.
+     * Returns the single instance of this class. 
      */
     public static EmptyExpression getInstance()
       {

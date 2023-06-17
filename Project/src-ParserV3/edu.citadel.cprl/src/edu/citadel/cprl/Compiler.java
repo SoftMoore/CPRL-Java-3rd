@@ -6,7 +6,6 @@ import edu.citadel.compiler.FatalException;
 import edu.citadel.compiler.Source;
 
 import edu.citadel.cprl.ast.AST;
-import edu.citadel.cprl.ast.Program;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Compiler
   {
-    private static final String SUFFIX  = ".cprl";
+    private static final String SUFFIX = ".cprl";
 
     /**
      * This method drives the compilation process.
@@ -42,18 +41,16 @@ public class Compiler
 
                     if (index < 0 || !fileName.substring(index).equals(SUFFIX))
                       {
-                        fileName += SUFFIX;
+                        fileName  += SUFFIX;
                         sourceFile = new File(fileName);
 
                         if (!sourceFile.isFile())
-                            throw new FatalException("*** File \"" + fileName
-                                                   + "\" not found ***");
+                            throw new FatalException("File \"" + fileName + "\" not found");
                       }
                     else
                       {
                         // don't try to append the suffix
-                        throw new FatalException("*** File \"" + fileName
-                                               + "\" not found ***");
+                        throw new FatalException("File \"" + fileName + "\" not found");
                       }
                   }
 
@@ -82,7 +79,8 @@ public class Compiler
     public void compile(File sourceFile) throws IOException
       {
         var errorHandler = new ErrorHandler();
-        var reader  = new BufferedReader(new FileReader(sourceFile, StandardCharsets.UTF_8));
+        var fileReader   = new FileReader(sourceFile, StandardCharsets.UTF_8);
+        var reader  = new BufferedReader(fileReader);
         var source  = new Source(reader);
         var scanner = new Scanner(source, 4, errorHandler);   // 4 lookahead tokens
         var idTable = new IdTable();
@@ -92,7 +90,7 @@ public class Compiler
         printProgressMessage("...parsing");
 
         // parse source file
-        Program program = parser.parseProgram();
+        var program = parser.parseProgram();
 
         // check constraints
         if (!errorHandler.errorsExist())
@@ -135,24 +133,23 @@ public class Compiler
     private PrintWriter getTargetPrintWriter(File sourceFile)
       {
         // get source file name minus the suffix
-        String baseName = sourceFile.getName();
+        var baseName = sourceFile.getName();
         int suffixIndex = baseName.lastIndexOf(SUFFIX);
         if (suffixIndex > 0)
             baseName = sourceFile.getName().substring(0, suffixIndex);
 
-        String targetFileName = baseName + ".asm";
+        var targetFileName = baseName + ".asm";
 
         try
           {
             var targetFile = new File(sourceFile.getParent(), targetFileName);
-            return new PrintWriter(new FileWriter(targetFile, StandardCharsets.UTF_8), true);
+            var fileWriter = new FileWriter(targetFile, StandardCharsets.UTF_8);
+            return new PrintWriter(fileWriter, true);
           }
         catch (IOException e)
           {
             e.printStackTrace();
-            var errorMsg = "*** Failed to create file " + targetFileName + " ***";
-            throw new FatalException(errorMsg);
-
+            throw new FatalException("Failed to create file " + targetFileName);
           }
       }
 

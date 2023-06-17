@@ -1,6 +1,5 @@
 package edu.citadel.cprl;
 
-import java.util.Objects;
 import edu.citadel.cvm.Constants;
 
 /**
@@ -10,12 +9,12 @@ import edu.citadel.cvm.Constants;
 public class Type
   {
     private String typeName;
-    private int    size;
+    private int size;
 
     // predefined types
     public static final Type Boolean = new Type("Boolean", Constants.BYTES_PER_BOOLEAN);
     public static final Type Integer = new Type("Integer", Constants.BYTES_PER_INTEGER);
-    public static final Type Char    = new Type("Char"   , Constants.BYTES_PER_CHAR);
+    public static final Type Char    = new Type("Char",    Constants.BYTES_PER_CHAR);
 
     // an address of the target machine
     public static final Type Address = new Type("Address", Constants.BYTES_PER_ADDRESS);
@@ -84,8 +83,8 @@ public class Type
           {
             if (literalText.charAt(i) == '\\')
               {
-                --capacity;    // subtract for an escaped character
-                ++i;           // skip over the escaped character
+                --capacity;   // subtract for an escaped character
+                ++i;          // skip over the escaped character
               }
 
             ++i;
@@ -101,7 +100,7 @@ public class Type
      */
     public static Type typeOf(Token literal)
       {
-        Symbol symbol = literal.getSymbol();
+        var symbol = literal.getSymbol();
         if (symbol == Symbol.intLiteral)
             return Type.Integer;
         else if (symbol == Symbol.charLiteral)
@@ -126,7 +125,7 @@ public class Type
     @Override
     public int hashCode()
       {
-        return Objects.hash(typeName);
+        return typeName.hashCode();
       }
 
     @Override
@@ -140,6 +139,6 @@ public class Type
 
         Type other = (Type) obj;
 
-        return Objects.equals(typeName, other.typeName);
+        return typeName.equals(other.typeName);
       }
   }

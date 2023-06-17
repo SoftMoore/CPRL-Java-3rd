@@ -14,49 +14,49 @@ public class CVM
   {
     private static final boolean DEBUG = false;
 
-    /** exit return value for failure */
+    // exit return value for failure
     private static final int FAILURE = -1;
 
-    /** 1K = 2**10 */
+    // 1K = 2**10
     private static final int K = 1024;
 
-    /** default memory size for the virtual machine */
+    // default memory size for the virtual machine
     private static final int DEFAULT_MEMORY_SIZE = 8*K;
 
-    /** virtual machine constant for false */
+    // virtual machine constant for false
     private static final byte FALSE = (byte) 0;
 
-    /** virtual machine constant for true */
+    // virtual machine constant for true
     private static final byte TRUE = (byte) 1;
 
-    /** end of file */
+    // end of file
     private static final int EOF = -1;
 
-    /** scanner for handling integer and string input */
+    // scanner for handling integer and string input
     private Scanner scanner;
 
-    /** Reader for handling char input */
+    // Reader for handling char input
     private Reader reader;
 
-    /** PrintStream for handling output */
+    // PrintStream for handling output
     private PrintStream out;
 
-    /** computer memory (for the virtual CPRL machine) */
+    // computer memory (for the virtual CPRL machine)
     private byte[] memory;
 
-    /** program counter (index of the next instruction in memory) */
+    // program counter (index of the next instruction in memory)
     private int pc;
 
-    /** base pointer */
+    // base pointer
     private int bp;
 
-    /** stack pointer (index of the top of the stack) */
+    // stack pointer (index of the top of the stack)
     private int sp;
 
-    /** bottom of the stack */
+    // bottom of the stack
     private int sb;
 
-    /** true if the virtual computer is currently running */
+    // true if the virtual computer is currently running
     private boolean running;
 
     /**
@@ -73,7 +73,7 @@ public class CVM
             System.exit(0);
           }
 
-        File sourceFile = new File(args[0]);
+        var sourceFile = new File(args[0]);
 
         if (!sourceFile.isFile())
           {
@@ -82,10 +82,9 @@ public class CVM
           }
 
         FileInputStream codeFile = new FileInputStream(sourceFile);
-
-        CVM vm = new CVM(DEFAULT_MEMORY_SIZE);
-        vm.loadProgram(codeFile);
-        vm.run();
+        var cvm = new CVM(DEFAULT_MEMORY_SIZE);
+        cvm.loadProgram(codeFile);
+        cvm.run();
       }
 
     /**
@@ -101,7 +100,7 @@ public class CVM
 
         // create and zero out memory
         memory = new byte[numOfBytes];
-        for (int i = 0;  i < memory.length;  ++i)
+        for (int i = 0; i < memory.length; ++i)
             memory[i] = 0;
 
         // initialize registers
@@ -148,7 +147,7 @@ public class CVM
      */
     private void printRegisters()
       {
-        out.println("PC=" + pc + ", BP=" + bp + ", SB=" + sb + ", SP=" + sp );
+        out.println("PC=" + pc + ", BP=" + bp + ", SB=" + sb + ", SP=" + sp);
       }
 
     /**
@@ -156,7 +155,7 @@ public class CVM
      */
     private void printMemory()
       {
-        int memAddr   = 0;
+        int  memAddr = 0;
         byte byte0;
         byte byte1;
         byte byte2;
@@ -170,91 +169,67 @@ public class CVM
             else
                 out.print("     ");
 
-            String memAddrStr = String.format("%4s", memAddr);
-            byte   opCode     = memory[memAddr];
+            var memAddrStr = String.format("%4s", memAddr);
+            var opcode = Opcode.toOpcode(memory[memAddr]);
 
-            switch (opCode)
+            if (opcode.isZeroOperandOpcode())
               {
-                // opcodes with zero operands
-                case OpCode.ADD,     OpCode.DEC,     OpCode.DIV,
-                     OpCode.GETCH,   OpCode.GETINT,  OpCode.HALT,
-                     OpCode.LOADB,   OpCode.LOAD2B,  OpCode.LOADW,
-                     OpCode.LOADSTR, OpCode.LDCB0,   OpCode.LDCB1,
-                     OpCode.LDCINT0, OpCode.LDCINT1, OpCode.INC,
-                     OpCode.MOD,     OpCode.MUL,     OpCode.NEG,
-                     OpCode.NOT,     OpCode.PUTBYTE, OpCode.PUTCH,
-                     OpCode.PUTINT,  OpCode.PUTEOL,  OpCode.RET0,
-                     OpCode.RET4,    OpCode.STOREB,  OpCode.STORE2B,
-                     OpCode.STOREW,  OpCode.STOREST, OpCode.SUB  ->
-                  {
-                    out.println(memAddrStr + ":  " + OpCode.toString(opCode));
-                    ++memAddr;
-                  }
-
-                // opcodes with one byte operand
-                case OpCode.SHL,     OpCode.SHR,     OpCode.LDCB->
-                  {
-                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
-                    ++memAddr;
-                    out.println(" " + memory[memAddr++]);
-                  }
-
-                // opcodes with one int operand
-                case OpCode.ALLOC,   OpCode.BR,      OpCode.BE,
-                     OpCode.BNE,     OpCode.BG,      OpCode.BGE,
-                     OpCode.BL,      OpCode.BLE,     OpCode.BZ,
-                     OpCode.BNZ,     OpCode.CALL,    OpCode.GETSTR,
-                     OpCode.LOAD,    OpCode.LDCINT,  OpCode.LDLADDR,
-                     OpCode.LDGADDR, OpCode.PROC,    OpCode.PROGRAM,
-                     OpCode.PUTSTR,  OpCode.RET,     OpCode.STORE  ->
-                  {
-                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
-                    ++memAddr;
-                    byte0 = memory[memAddr++];
-                    byte1 = memory[memAddr++];
-                    byte2 = memory[memAddr++];
-                    byte3 = memory[memAddr++];
-                    out.println(" " + ByteUtil.bytesToInt(byte0, byte1, byte2, byte3));
-                  }
-
-                // special case: LDCCH
-                case OpCode.LDCCH ->
-                  {
-                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
-                    ++memAddr;
-                    byte0 = memory[memAddr++];
-                    byte1 = memory[memAddr++];
-                    out.println(" " + ByteUtil.bytesToChar(byte0, byte1));
-                  }
-
-                // special case: LDCSTR
-                case OpCode.LDCSTR ->
-                  {
-                    out.print(memAddrStr + ":  " + OpCode.toString(opCode));
-                    ++memAddr;
-                    // now print the string
-                    out.print("  \"");
-                    byte0 = memory[memAddr++];
-                    byte1 = memory[memAddr++];
-                    byte2 = memory[memAddr++];
-                    byte3 = memory[memAddr++];
-                    int strLength = ByteUtil.bytesToInt(byte0, byte1, byte2, byte3);
-                    for (int i = 0;  i < strLength;  ++i)
-                      {
-                        byte0 = memory[memAddr++];
-                        byte1 = memory[memAddr++];
-                        out.print(ByteUtil.bytesToChar(byte0, byte1));
-                      }
-                    out.println("\"");
-                  }
-
-                default->
-                    error("*** PrintMemory: Unknown opCode $opCode ***");
+                out.println(memAddrStr + ":  " + opcode);
+                ++memAddr;
               }
+            else if (opcode.isByteOperandOpcode())
+              {
+                out.print(memAddrStr + ":  " + opcode);
+                ++memAddr;
+                out.println(" " + memory[memAddr++]);
+
+              }
+            else if (opcode.isIntOperandOpcode())
+              {
+                out.print(memAddrStr + ":  " + opcode);
+                ++memAddr;
+                byte0 = memory[memAddr++];
+                byte1 = memory[memAddr++];
+                byte2 = memory[memAddr++];
+                byte3 = memory[memAddr++];
+                out.println(" " + ByteUtil.bytesToInt(byte0, byte1, byte2, byte3));
+              }
+            else if (opcode == Opcode.LDCCH)
+              {
+                // special case: LDCCH
+                out.print(memAddrStr + ":  " + opcode);
+                ++memAddr;
+                byte0 = memory[memAddr++];
+                byte1 = memory[memAddr++];
+                out.println(" " + ByteUtil.bytesToChar(byte0, byte1));
+
+              }
+            else if (opcode == Opcode.LDCSTR)
+              {
+                // special case: LDCSTR
+                out.print(memAddrStr + ":  " + opcode);
+                ++memAddr;
+                // now print the string
+                out.print("  \"");
+                byte0 = memory[memAddr++];
+                byte1 = memory[memAddr++];
+                byte2 = memory[memAddr++];
+                byte3 = memory[memAddr++];
+                int strLength = ByteUtil.bytesToInt(byte0, byte1, byte2, byte3);
+                for (int i = 0; i < strLength; ++i)
+                  {
+                    byte0 = memory[memAddr++];
+                    byte1 = memory[memAddr++];
+                    out.print(ByteUtil.bytesToChar(byte0, byte1));
+                   }
+                 out.println("\"");
+              }
+            else
+                error("*** PrintMemory: Unknown opcode " + opcode + " ***");
           }
 
         // now print remaining values that compose the stack
-        for (memAddr = sb; memAddr <= sp;  ++memAddr)
+        for (memAddr = sb; memAddr <= sp; ++memAddr)
           {
             // Prints "SB ->", "BP ->", and "SP ->" in front of the correct memory address
             if (sb == memAddr)
@@ -266,7 +241,7 @@ public class CVM
             else
                 out.print("     ");
 
-            String memAddrStr = String.format("%4s", memAddr);
+            var memAddrStr = String.format("%4s", memAddr);
             out.println(memAddrStr + ":  " + memory[memAddr]);
           }
 
@@ -287,8 +262,6 @@ public class CVM
      */
     public void run()
       {
-        byte opCode;
-
         running = true;
         pc = 0;
 
@@ -301,73 +274,71 @@ public class CVM
                 pause();
               }
 
-            opCode = fetchByte();
-
-            switch (opCode)
+            switch (Opcode.toOpcode(fetchByte()))
               {
-                case OpCode.ADD     -> add();
-                case OpCode.ALLOC   -> allocate();
-                case OpCode.BR      -> branch();
-                case OpCode.BE      -> branchEqual();
-                case OpCode.BNE     -> branchNotEqual();
-                case OpCode.BG      -> branchGreater();
-                case OpCode.BGE     -> branchGreaterOrEqual();
-                case OpCode.BL      -> branchLess();
-                case OpCode.BLE     -> branchLessOrEqual();
-                case OpCode.BZ      -> branchZero();
-                case OpCode.BNZ     -> branchNonZero();
-                case OpCode.CALL    -> call();
-                case OpCode.DEC     -> decrement();
-                case OpCode.DIV     -> divide();
-                case OpCode.GETCH   -> getCh();
-                case OpCode.GETINT  -> getInt();
-                case OpCode.GETSTR  -> getString();
-                case OpCode.HALT    -> halt();
-                case OpCode.INC     -> increment();
-                case OpCode.LDCB    -> loadConstByte();
-                case OpCode.LDCB0   -> loadConstByteZero();
-                case OpCode.LDCB1   -> loadConstByteOne();
-                case OpCode.LDCCH   -> loadConstCh();
-                case OpCode.LDCINT  -> loadConstInt();
-                case OpCode.LDCINT0 -> loadConstIntZero();
-                case OpCode.LDCINT1 -> loadConstIntOne();
-                case OpCode.LDCSTR  -> loadConstStr();
-                case OpCode.LDLADDR -> loadLocalAddress();
-                case OpCode.LDGADDR -> loadGlobalAddress();
-                case OpCode.LOAD    -> load();
-                case OpCode.LOADB   -> loadByte();
-                case OpCode.LOAD2B  -> load2Bytes();
-                case OpCode.LOADW   -> loadWord();
-                case OpCode.LOADSTR -> loadString();
-                case OpCode.MOD     -> modulo();
-                case OpCode.MUL     -> multiply();
-                case OpCode.NEG     -> negate();
-                case OpCode.NOT     -> not();
-                case OpCode.PROC    -> procedure();
-                case OpCode.PROGRAM -> program();
-                case OpCode.PUTBYTE -> putByte();
-                case OpCode.PUTCH   -> putChar();
-                case OpCode.PUTEOL  -> putEOL();
-                case OpCode.PUTINT  -> putInt();
-                case OpCode.PUTSTR  -> putString();
-                case OpCode.RET     -> returnInst();
-                case OpCode.RET0    -> returnZero();
-                case OpCode.RET4    -> returnFour();
-                case OpCode.SHL     -> shiftLeft();
-                case OpCode.SHR     -> shiftRight();
-                case OpCode.STORE   -> store();
-                case OpCode.STOREB  -> storeByte();
-                case OpCode.STORE2B -> store2Bytes();
-                case OpCode.STOREW  -> storeWord();
-                case OpCode.STOREST -> storeString();
-                case OpCode.SUB     -> subtract();
-                default             -> error("invalid machine instruction");
+                case ADD     -> add();
+                case ALLOC   -> allocate();
+                case BR      -> branch();
+                case BE      -> branchEqual();
+                case BNE     -> branchNotEqual();
+                case BG      -> branchGreater();
+                case BGE     -> branchGreaterOrEqual();
+                case BL      -> branchLess();
+                case BLE     -> branchLessOrEqual();
+                case BZ      -> branchZero();
+                case BNZ     -> branchNonZero();
+                case CALL    -> call();
+                case DEC     -> decrement();
+                case DIV     -> divide();
+                case GETCH   -> getCh();
+                case GETINT  -> getInt();
+                case GETSTR  -> getString();
+                case HALT    -> halt();
+                case INC     -> increment();
+                case LDCB    -> loadConstByte();
+                case LDCB0   -> loadConstByteZero();
+                case LDCB1   -> loadConstByteOne();
+                case LDCCH   -> loadConstCh();
+                case LDCINT  -> loadConstInt();
+                case LDCINT0 -> loadConstIntZero();
+                case LDCINT1 -> loadConstIntOne();
+                case LDCSTR  -> loadConstStr();
+                case LDLADDR -> loadLocalAddress();
+                case LDGADDR -> loadGlobalAddress();
+                case LOAD    -> load();
+                case LOADB   -> loadByte();
+                case LOAD2B  -> load2Bytes();
+                case LOADW   -> loadWord();
+                case LOADSTR -> loadString();
+                case MOD     -> modulo();
+                case MUL     -> multiply();
+                case NEG     -> negate();
+                case NOT     -> not();
+                case PROC    -> procedure();
+                case PROGRAM -> program();
+                case PUTBYTE -> putByte();
+                case PUTCH   -> putChar();
+                case PUTEOL  -> putEOL();
+                case PUTINT  -> putInt();
+                case PUTSTR  -> putString();
+                case RET     -> returnInst();
+                case RET0    -> returnZero();
+                case RET4    -> returnFour();
+                case SHL     -> shiftLeft();
+                case SHR     -> shiftRight();
+                case STORE   -> store();
+                case STOREB  -> storeByte();
+                case STORE2B -> store2Bytes();
+                case STOREW  -> storeWord();
+                case STOREST -> storeString();
+                case SUB     -> subtract();
+                default      -> error("invalid machine instruction");
               }
           }
       }
 
-    // Start: internal machine instructions that do NOT correspond to OpCodes
-    //------------------------------------------------------------------------
+    // Start: internal machine instructions that do NOT correspond to opcodes
+    // ------------------------------------------------------------------------
 
     /**
      * Print an error message and exit with nonzero status code.
@@ -393,7 +364,6 @@ public class CVM
       {
         byte b1 = popByte();
         byte b0 = popByte();
-
         return ByteUtil.bytesToChar(b0, b1);
       }
 
@@ -406,7 +376,6 @@ public class CVM
         byte b2 = popByte();
         byte b1 = popByte();
         byte b0 = popByte();
-
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
@@ -424,7 +393,6 @@ public class CVM
     private void pushChar(char c)
       {
         byte[] bytes = ByteUtil.charToBytes(c);
-
         pushByte(bytes[0]);
         pushByte(bytes[1]);
       }
@@ -435,7 +403,6 @@ public class CVM
     private void pushInt(int n)
       {
         byte[] bytes = ByteUtil.intToBytes(n);
-
         pushByte(bytes[0]);
         pushByte(bytes[1]);
         pushByte(bytes[2]);
@@ -457,7 +424,6 @@ public class CVM
       {
         byte b0 = fetchByte();
         byte b1 = fetchByte();
-
         return ByteUtil.bytesToChar(b0, b1);
       }
 
@@ -470,7 +436,6 @@ public class CVM
         byte b1 = fetchByte();
         byte b2 = fetchByte();
         byte b3 = fetchByte();
-
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
@@ -484,7 +449,6 @@ public class CVM
         byte b1 = memory[address + 1];
         byte b2 = memory[address + 2];
         byte b3 = memory[address + 3];
-
         return ByteUtil.bytesToInt(b0, b1, b2, b3);
       }
 
@@ -505,7 +469,6 @@ public class CVM
       {
         byte b0 = memory[address + 0];
         byte b1 = memory[address + 1];
-
         return ByteUtil.bytesToChar(b0, b1);
       }
 
@@ -533,24 +496,32 @@ public class CVM
         memory[address + 3] = bytes[3];
       }
 
-    //----------------------------------------------------------------------
-    // End: internal machine instructions that do NOT correspond to OpCodes
+    /**
+     * Writes the word value to the specified memory address.
+     * Does not alter pc, sp, or bp.
+     */
+    private void putWordToAddr(int value, int address)
+      {
+        putIntToAddr(value, address);
+      }
 
-    // Start: machine instructions corresponding to OpCodes
-    //------------------------------------------------------
+
+    // ----------------------------------------------------------------------
+    // End: internal machine instructions that do NOT correspond to opcodes
+
+    // Start: machine instructions corresponding to opcodes
+    // ------------------------------------------------------
 
     private void add()
       {
         int operand2 = popInt();
         int operand1 = popInt();
-
         pushInt(operand1 + operand2);
       }
 
     private void allocate()
       {
         int numBytes = fetchInt();
-
         sp = sp + numBytes;
       }
 
@@ -625,7 +596,7 @@ public class CVM
 
     private void branchZero()
       {
-        int displacement = fetchInt();
+        int  displacement = fetchInt();
         byte value = popByte();
 
         if (value == 0)
@@ -634,7 +605,7 @@ public class CVM
 
     private void branchNonZero()
       {
-        int displacement = fetchInt();
+        int  displacement = fetchInt();
         byte value = popByte();
 
         if (value != 0)
@@ -645,8 +616,8 @@ public class CVM
       {
         int displacement = fetchInt();
 
-        pushInt(bp);          // dynamic link
-        pushInt(pc);          // return address
+        pushInt(bp);   // dynamic link
+        pushInt(pc);   // return address
 
         // set bp to starting address of new frame
         bp = sp - Constants.BYTES_PER_CONTEXT + 1;
@@ -711,8 +682,8 @@ public class CVM
           {
             int destAddr = popInt();
             int capacity = fetchInt();
-            String data = scanner.nextLine();
-            int length  = data.length() < capacity ? data.length() : capacity;
+            var data     = scanner.nextLine();
+            int length   = data.length() < capacity ? data.length() : capacity;
 
             putIntToAddr(length, destAddr);
             destAddr = destAddr + Constants.BYTES_PER_INTEGER;
@@ -722,8 +693,9 @@ public class CVM
                 destAddr = destAddr + Constants.BYTES_PER_CHAR;
               }
           }
-        catch (Exception e)   // e could be a NumberFormatException or a NullPointerException
+        catch (Exception e)
           {
+            // e could be a NumberFormatException or a NullPointerException
             error("Invalid input");
           }
       }
@@ -749,14 +721,13 @@ public class CVM
         int length  = fetchInt();
         int address = popInt();
 
-        for (int i = 0;  i < length;  ++i)
+        for (int i = 0; i < length; ++i)
             pushByte(memory[address + i]);
       }
 
     private void loadConstByte()
       {
         byte b = fetchByte();
-
         pushByte(b);
       }
 
@@ -795,7 +766,6 @@ public class CVM
     private void loadConstStr()
       {
         int capacity = fetchInt();
-
         pushInt(capacity);
 
         // fetch each character and push it onto the stack
@@ -821,9 +791,8 @@ public class CVM
      */
     private void loadByte()
       {
-        int address = popInt();
+        int  address = popInt();
         byte b = memory[address];
-
         pushByte(b);
       }
 
@@ -833,11 +802,9 @@ public class CVM
      */
     private void load2Bytes()
       {
-        int address = popInt();
-
+        int  address = popInt();
         byte b0 = memory[address + 0];
         byte b1 = memory[address + 1];
-
         pushByte(b0);
         pushByte(b1);
       }
@@ -846,7 +813,7 @@ public class CVM
       {
         // loads (pushes) the string onto the stack in reverse order,
         // so that the length is on the top of the stack
-        int address   = popInt();       // initialize to source address
+        int address   = popInt();             // initialize to source address
         int strLength = getIntAtAddr(address);
 
         // update address to point to the first character in the string
@@ -857,7 +824,7 @@ public class CVM
         for (int i = 0; i < strLength; ++i)
           {
             chars[i] = getCharAtAddr(address);
-            address = address + Constants.BYTES_PER_CHAR;
+            address  = address + Constants.BYTES_PER_CHAR;
           }
 
         for (int i = strLength - 1; i >= 0; --i)
@@ -881,15 +848,13 @@ public class CVM
       {
         int operand2 = popInt();
         int operand1 = popInt();
-
-        pushInt(operand1 % operand2);
+        pushInt(operand1%operand2);
       }
 
     private void multiply()
       {
         int operand2 = popInt();
         int operand1 = popInt();
-
         pushInt(operand1*operand2);
       }
 
@@ -952,10 +917,8 @@ public class CVM
         // number of bytes in the string
         int numBytes = Constants.BYTES_PER_INTEGER + capacity*Constants.BYTES_PER_CHAR;
 
-        int addr = sp - numBytes + 1;     // initialized to starting address of the string
-
+        int addr = sp - numBytes + 1;                                              // initialized
         int strLength = getIntAtAddr(addr);
-
         addr = addr + Constants.BYTES_PER_INTEGER;
 
         for (int i = 0; i < strLength; ++i)
@@ -972,7 +935,6 @@ public class CVM
       {
         int bpSave = bp;
         int paramLength = fetchInt();
-
         sp = bpSave - paramLength - 1;
         bp = getIntAtAddr(bpSave);
         pc = getIntAtAddr(bpSave + Constants.BYTES_PER_INTEGER);
@@ -996,7 +958,7 @@ public class CVM
 
     private void shiftLeft()
       {
-        int  operand = popInt();
+        int operand = popInt();
 
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
@@ -1007,13 +969,13 @@ public class CVM
 
     private void shiftRight()
       {
-        int  operand = popInt();
+        int operand = popInt();
 
         // zero out left three bits of shiftAmount
         byte mask = 0x1F;   // = 00011111 in binary
         byte shiftAmount = (byte) (fetchByte() & mask);
 
-        pushInt(operand >> shiftAmount);   // ">>" is arithmetic shift in Java
+        pushInt(operand >> shiftAmount);
       }
 
     private void store()
@@ -1022,20 +984,18 @@ public class CVM
         byte[] data = new byte[length];
 
         // pop bytes of data, storing in reverse order
-        for (int i = length - 1;  i >= 0;  --i)
+        for (int i = length - 1; i >= 0; --i)
             data[i] = popByte();
 
         int destAddr = popInt();
-
-        for (int i = 0;  i < length;  ++i)
+        for (int i = 0; i < length; ++i)
             memory[destAddr + i] = data[i];
       }
 
     private void storeByte()
       {
-        byte value   = popByte();
-        int destAddr = popInt();
-
+        byte value = popByte();
+        int  destAddr = popInt();
         memory[destAddr] = value;
       }
 
@@ -1044,7 +1004,6 @@ public class CVM
         byte byte1 = popByte();
         byte byte0 = popByte();
         int  destAddr = popInt();
-
         memory[destAddr + 0] = byte0;
         memory[destAddr + 1] = byte1;
       }
@@ -1052,18 +1011,17 @@ public class CVM
     private void storeString()
       {
         int strLength = popInt();
-
-        char[] chars = new char[strLength];
+        char[] chars  = new char[strLength];
         for (int i = 0; i < strLength; ++i)
             chars[i] = popChar();
 
-        var address = popInt();     // initialize to destination address
+        var address = popInt();   // initialize to destination address
 
         // values were on the stack in reverse order
         putIntToAddr(strLength, address);
         address = address + Constants.BYTES_PER_INTEGER;
 
-        for (int i = 0;  i < strLength; ++i)
+        for (int i = 0; i < strLength; ++i)
           {
             putCharToAddr(chars[i], address);
             address = address + Constants.BYTES_PER_CHAR;
@@ -1074,24 +1032,14 @@ public class CVM
       {
         int value = popInt();
         int destAddr = popInt();
-
-        byte[] bytes = ByteUtil.intToBytes(value);
-
-        memory[destAddr + 0] = bytes[0];
-        memory[destAddr + 1] = bytes[1];
-        memory[destAddr + 2] = bytes[2];
-        memory[destAddr + 3] = bytes[3];
+        putWordToAddr(value, destAddr);
       }
 
     private void subtract()
       {
         int operand2 = popInt();
         int operand1 = popInt();
-        int result = operand1 - operand2;
-
+        int result   = operand1 - operand2;
         pushInt(result);
       }
-
-    // End: machine instructions corresponding to OpCodes
-    //----------------------------------------------------
   }

@@ -5,20 +5,18 @@ import edu.citadel.cvm.Constants;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Base class for CPRL procedures and functions.
  */
 public abstract class SubprogramDecl extends Declaration
   {
-    private List<ParameterDecl> formalParams;
-    private List<InitialDecl>   initialDecls;
-    private List<Statement>     statements;
+    private List<ParameterDecl> formalParams = Collections.emptyList();
+    private List<InitialDecl>   initialDecls = Collections.emptyList();
+    private List<Statement>     statements   = Collections.emptyList();
 
-    private int varLength;   // # bytes of all declared variables
-
-    private String L1;       // label of address of first statement
+    private int varLength = 0;   // # bytes of all declared variables
+    private String L1;           // label of address of first statement
 
     /**
      * Construct a subprogram declaration with the specified subprogram identifier.
@@ -26,12 +24,6 @@ public abstract class SubprogramDecl extends Declaration
     public SubprogramDecl(Token subprogramId)
       {
         super(subprogramId);
-
-        this.formalParams = Collections.emptyList();
-        this.initialDecls = Collections.emptyList();
-        this.statements   = Collections.emptyList();
-        this.varLength    = 0;
-
         L1 = "_" + subprogramId;
       }
 
@@ -157,10 +149,10 @@ public abstract class SubprogramDecl extends Declaration
             currentAddr = 0;
 
             // we need to process the parameter declarations in reverse order
-            ListIterator<ParameterDecl> iter = formalParams.listIterator(formalParams.size());
+            var iter = formalParams.listIterator(formalParams.size());
             while (iter.hasPrevious())
               {
-                ParameterDecl decl = iter.previous();
+                var decl = iter.previous();
                 currentAddr = currentAddr - decl.getSize();
                 decl.setRelAddr(currentAddr);
               }

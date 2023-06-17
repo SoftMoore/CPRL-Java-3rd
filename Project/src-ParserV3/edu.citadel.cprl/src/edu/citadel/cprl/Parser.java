@@ -18,8 +18,8 @@ public final class Parser
     private Scanner scanner;
     private IdTable idTable;
     private ErrorHandler errorHandler;
-    private LoopContext  loopContext;
-    private SubprogramContext subprogramContext;
+    private LoopContext  loopContext = new LoopContext();
+    private SubprogramContext subprogramContext = new SubprogramContext();
 
     /** Symbols that can follow a statement. */
     private final Set<Symbol> stmtFollowers = EnumSet.of(
@@ -45,7 +45,7 @@ public final class Parser
       {
         // An initial declaration can always be followed by another
         // initial declaration, regardless of the scope level of IdTable.
-        EnumSet<Symbol> followers = EnumSet.of(Symbol.constRW, Symbol.varRW, Symbol.typeRW);
+        var followers = EnumSet.of(Symbol.constRW, Symbol.varRW, Symbol.typeRW);
 
         if (idTable.getScopeLevel() == ScopeLevel.LOCAL)
             followers.addAll(stmtFollowers);
@@ -64,32 +64,28 @@ public final class Parser
         this.scanner = scanner;
         this.idTable = idTable;
         this.errorHandler = errorHandler;
-        loopContext  = new LoopContext();
-        subprogramContext = new SubprogramContext();
       }
 
     /**
      * Parse the following grammar rule:<br>
      * <code>program = initialDecls subprogramDecls .</code>
      *
-     * @return the parsed program.  Returns a program with no initial
-     *         declarations and no statements if parsing fails.
+     * @return the parsed program.  Returns a program with an empty list of initial
+     *         declarations and an empty list of statements if parsing fails.
+     *
      */
     public Program parseProgram() throws IOException
       {
         try
           {
-            List<InitialDecl>    initialDecls = parseInitialDecls();
-            List<SubprogramDecl> subprogDecls = parseSubprogramDecls();
+            var initialDecls = parseInitialDecls();
+            var subprogDecls = parseSubprogramDecls();
 
             // match(Symbol.EOF)
             // Let's generate a better error message than "Expecting "End-of-File" but ..."
             if (scanner.getSymbol() != Symbol.EOF)
-              {
-                String errorMsg = "Expecting \"proc\" or \"fun\" " +
-                                  "but found \"" + scanner.getToken() + "\" instead.";
-                throw error(errorMsg);
-              }
+                throw error("Expecting \"proc\" or \"fun\" " + "but found \""
+                            + scanner.getToken() + "\" instead.");
 
             return new Program(initialDecls, subprogDecls);
           }
@@ -121,8 +117,8 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>initialDecl = constDecl | varDecl | typeDecl .</code>
      *
-     * @return the parsed initial declaration.  Returns an empty
-     *         initial declaration if parsing fails.
+     * @return the parsed initial declaration.  Returns an
+     *         empty initial declaration if parsing fails.
      */
     private InitialDecl parseInitialDecl() throws IOException
       {
@@ -180,15 +176,15 @@ public final class Parser
         try
           {
             match(Symbol.varRW);
-            List<Token> identifiers = parseIdentifiers();
+            var identifiers = parseIdentifiers();
             match(Symbol.colon);
-            Type varType = parseTypeName();
+            var varType = parseTypeName();
 
             ConstValue initialValue = null;
             if (scanner.getSymbol() == Symbol.assign)
               {
                 matchCurrentSymbol();
-                Expression constValue = parseConstValue();
+                var constValue = parseConstValue();
                 if (constValue instanceof ConstValue)
                     initialValue = (ConstValue) constValue;
               }
@@ -222,7 +218,7 @@ public final class Parser
         try
           {
             var identifiers = new ArrayList<Token>(10);
-            Token idToken = scanner.getToken();
+            var idToken = scanner.getToken();
             match(Symbol.identifier);
             identifiers.add(idToken);
 
@@ -248,8 +244,8 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>typeDecl = arrayTypeDecl | recordTypeDecl | stringTypeDecl .</code>
      *
-     * @return the parsed type declaration.  Returns null an empty
-     *         initial declaration parsing fails.
+     * @return the parsed type declaration.  Returns an
+     *         empty initial declaration parsing fails.
      */
     private InitialDecl parseTypeDecl() throws IOException
       {
@@ -257,7 +253,7 @@ public final class Parser
 
         try
           {
-            Symbol symbol = scanner.lookahead(4).getSymbol();
+            var symbol = scanner.lookahead(4).getSymbol();
             if (symbol == Symbol.arrayRW)
                 return parseArrayTypeDecl();
             else if (symbol == Symbol.recordRW)
@@ -289,15 +285,16 @@ public final class Parser
      */
     private InitialDecl parseArrayTypeDecl() throws IOException
       {
+        try
+          {
 // ...
-            Expression numElements = parseConstValue();
+            var numElements = parseConstValue();
             if (numElements instanceof EmptyExpression)
               {
                 // create default value for numElements to prevent "undeclared" errors
                 var token = new Token(Symbol.intLiteral, scanner.getPosition(), "0");
                 numElements = new ConstValue(token);
               }
-
 // ...
       }
 
@@ -305,15 +302,15 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>"type" typeId "=" "record" "{" fieldDecls "}" ";" .</code>
      *
-     * @return the parsed record type declaration.  Returns an
-     *         empty initial declaration if parsing fails.
+     * @return the parsed record type declaration.  Returns
+     *         an empty initial declaration if parsing fails.
      */
     private InitialDecl parseRecordTypeDecl() throws IOException
       {
         try
           {
             match(Symbol.typeRW);
-            Token typeId = scanner.getToken();
+            var typeId = scanner.getToken();
             match(Symbol.identifier);
             match(Symbol.equals);
             match(Symbol.recordRW);
@@ -350,7 +347,7 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>fieldDecls = { fieldDecl } .</code>
      *
-     * @return a (possibly empty) list of field declarations.
+     * @return a list of field declarations.
      */
     private List<FieldDecl> parseFieldDecls() throws IOException
       {
@@ -378,14 +375,13 @@ public final class Parser
     private InitialDecl parseStringTypeDecl() throws IOException
       {
 // ...
-            Expression numElements = parseConstValue();
+            var numElements = parseConstValue();
             if (numElements instanceof EmptyExpression)
               {
                 // create a default value for numElements to prevent "not declared" errors
                 var token = new Token(Symbol.intLiteral, scanner.getPosition(), "0");
                 numElements = new ConstValue(token);
               }
-
 // ...
       }
 
@@ -397,47 +393,52 @@ public final class Parser
      */
     private Type parseTypeName() throws IOException
       {
-        Type type = Type.UNKNOWN;
+        var type = Type.UNKNOWN;
 
         try
           {
-            if (scanner.getSymbol() == Symbol.IntegerRW)
+            switch (scanner.getSymbol())
               {
-                type = Type.Integer;
-                matchCurrentSymbol();
-              }
-            else if (scanner.getSymbol() == Symbol.BooleanRW)
-              {
-                type = Type.Boolean;
-                matchCurrentSymbol();
-              }
-            else if (scanner.getSymbol() == Symbol.CharRW)
-              {
-                type = Type.Char;
-                matchCurrentSymbol();
-              }
-            else if (scanner.getSymbol() == Symbol.identifier)
-              {
-                Token typeId = scanner.getToken();
-                matchCurrentSymbol();
-                Declaration decl = idTable.get(typeId.getText());
-
-                if (decl != null)
+                case IntegerRW ->
                   {
-                    if (decl instanceof ArrayTypeDecl
-                     || decl instanceof RecordTypeDecl
-                     || decl instanceof StringTypeDecl)
-                        type = decl.getType();
-                    else
-                        throw error(typeId.getPosition(), "Identifier \""
-                                  + typeId + "\" is not a valid type name.");
+                    type = Type.Integer;
+                    matchCurrentSymbol();
                   }
-                else
-                    throw error(typeId.getPosition(), "Identifier \""
-                              + typeId + "\" has not been declared.");
+                case BooleanRW ->
+                  {
+                    type = Type.Boolean;
+                    matchCurrentSymbol();
+                  }
+                case CharRW ->
+                  {
+                    type = Type.Char;
+                    matchCurrentSymbol();
+                  }
+                case identifier ->
+                  {
+                    var typeId = scanner.getToken();
+                    matchCurrentSymbol();
+                    var decl = idTable.get(typeId.getText());
+
+                    if (decl != null)
+                      {
+                        if (decl instanceof ArrayTypeDecl || decl instanceof RecordTypeDecl
+                                || decl instanceof StringTypeDecl)
+                            type = decl.getType();
+                        else
+                          {
+                            var errorMsg = "Identifier \"" + typeId + "\" is not a valid type name.";
+                            throw error(typeId.getPosition(), errorMsg);
+                          }
+                      }
+                    else
+                      {
+                        var errorMsg = "Identifier \"" + typeId + "\" has not been declared.";
+                        throw error(typeId.getPosition(), errorMsg);
+                      }
+                  }
+                default -> throw error("Invalid type name.");
               }
-            else
-                throw error("Invalid type name.");
           }
         catch (ParserException e)
           {
@@ -476,15 +477,15 @@ public final class Parser
      * <code>procedureDecl = "proc" procId "(" [ formalParameters ] ")"
      *                       "{" initialDecls statements "}" .</code>
      *
-     * @return the parsed procedure declaration.  Returns an empty
-     *         subprogram declaration if parsing fails.
+     * @return the parsed procedure declaration.  Returns an
+     *         empty subprogram declaration if parsing fails.
      */
     private SubprogramDecl parseProcedureDecl() throws IOException
       {
         try
           {
             match(Symbol.procRW);
-            Token procId = scanner.getToken();
+            var procId = scanner.getToken();
             match(Symbol.identifier);
 
             var procDecl = new ProcedureDecl(procId);
@@ -526,8 +527,8 @@ public final class Parser
      * <code>functionDecl = "fun" funcId "(" [ formalParameters ] ")" ":" typeName
      *                      "{" initialDecls statements "}" .</code>
      *
-     * @return the parsed function declaration.  Returns an empty
-     *         subprogram declaration if parsing fails.
+     * @return the parsed function declaration.  Returns an
+     *         empty subprogram declaration if parsing fails.
      */
     private SubprogramDecl parseFunctionDecl() throws IOException
       {
@@ -583,14 +584,14 @@ public final class Parser
         try
           {
             Statement stmt;
-            Symbol symbol = scanner.getSymbol();
+            var symbol = scanner.getSymbol();
 
             if (symbol == Symbol.identifier)
               {
                 // Handle identifiers based on how they are declared,
                 // or use the lookahead symbol if not declared.
-                String idStr = scanner.getText();
-                Declaration decl = idTable.get(idStr);
+                var idStr = scanner.getText();
+                var decl  = idTable.get(idStr);
 
                 if (decl != null)
                   {
@@ -632,7 +633,8 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>assignmentStmt = variable ":=" expression ";" .</code>
      *
-     * @return the parsed assignment statement.  Returns an empty statement if parsing fails.
+     * @return the parsed assignment statement.  Returns
+     *         an empty statement if parsing fails.
      */
     private Statement parseAssignmentStmt() throws IOException
       {
@@ -720,7 +722,7 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>writelnStmt = "writeln" [ expressions ] ";" .</code>
      *
-     * @return the parsed writeln statement.  Returns null if parsing fails.
+     * @return the parsed writeln statement.  Returns an empty statement if parsing fails.
      */
     private Statement parseWritelnStmt() throws IOException
       {
@@ -750,7 +752,8 @@ public final class Parser
      * <code>procedureCallStmt = procId "(" [ actualParameters ] ")" ";" .<br>
      *       actualParameters = expressions .</code>
      *
-     * @return the parsed procedure call statement.  Returns an empty statement if parsing fails.
+     * @return the parsed procedure call statement.  Returns
+     *         an empty statement if parsing fails.
      */
     private Statement parseProcedureCallStmt() throws IOException
       {
@@ -783,24 +786,25 @@ public final class Parser
      */
     private Variable parseVariableCommon() throws IOException, ParserException
       {
-        Token idToken = scanner.getToken();
+        var idToken = scanner.getToken();
         match(Symbol.identifier);
-        Declaration decl = idTable.get(idToken.getText());
+        var decl = idTable.get(idToken.getText());
 
         if (decl == null)
           {
-            String errorMsg = "Identifier \"" + idToken + "\" has not been declared.";
+            var errorMsg = "Identifier \"" + idToken + "\" has not been declared.";
             throw error(idToken.getPosition(), errorMsg);
           }
         else if (!(decl instanceof VariableDecl))
           {
-            String errorMsg = "Identifier \"" + idToken + "\" is not a variable.";
+            var errorMsg = "Identifier \"" + idToken + "\" is not a variable.";
             throw error(idToken.getPosition(), errorMsg);
           }
 
-        VariableDecl variableDecl = (VariableDecl) decl;
+        var variableDecl  = (VariableDecl) decl;
 
         var selectorExprs = new ArrayList<Expression>(5);
+
         while (scanner.getSymbol().isSelectorStarter())
           {
             if (scanner.getSymbol() == Symbol.leftBracket)
@@ -865,11 +869,11 @@ public final class Parser
      */
     private Expression parseExpression() throws IOException
       {
-        Expression expr = parseRelation();
+        var expr = parseRelation();
 
         while (scanner.getSymbol().isLogicalOperator())
           {
-            Token operator = scanner.getToken();
+            var operator = scanner.getToken();
             matchCurrentSymbol();
             expr = new LogicalExpr(expr, operator, parseRelation());
           }
@@ -929,7 +933,7 @@ public final class Parser
 
             if (scanner.getSymbol() == Symbol.notRW)
               {
-                Token operator = scanner.getToken();
+                var operator = scanner.getToken();
                 matchCurrentSymbol();
                 expr = new NotExpr(operator, parseFactor());
               }
@@ -942,8 +946,8 @@ public final class Parser
               {
                 // Handle identifiers based on how they are declared,
                 // or use the lookahead symbol if not declared.
-                String idStr = scanner.getText();
-                Declaration decl = idTable.get(idStr);
+                var idStr = scanner.getText();
+                var decl  = idTable.get(idStr);
 
                 if (decl != null)
                   {
@@ -1002,7 +1006,8 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>constValue = literal | constId .</code>
      *
-     * @return the parsed constant value.  Returns an empty expression if parsing fails.
+     * @return the parsed constant value.  Returns
+     *         an empty expression if parsing fails.
      */
     private Expression parseConstValue() throws IOException
       {
@@ -1020,7 +1025,7 @@ public final class Parser
       {
         try
           {
-            Variable variable = parseVariableCommon();
+            var variable = parseVariableCommon();
             return new VariableExpr(variable);
           }
         catch (ParserException e)
@@ -1036,8 +1041,8 @@ public final class Parser
      * <code>functionCallExpr = funcId "(" [ actualParameters ] ")" .<br>
      *       actualParameters = expressions .</code>
      *
-     * @return the parsed function call expression.
-     *         Returns an empty expression if parsing fails.
+     * @return the parsed function call expression.  Returns
+     *         an empty expression if parsing fails.
      */
     private Expression parseFunctionCallExpr() throws IOException
       {
@@ -1056,15 +1061,15 @@ public final class Parser
             scanner.advance();
         else
           {
-            String errorMsg = "Expecting \"" + expectedSymbol + "\" but found \""
-                            + scanner.getToken() + "\" instead.";
+            var errorMsg = "Expecting \"" + expectedSymbol + "\" but found \""
+                         + scanner.getToken() + "\" instead.";
             throw error(errorMsg);
           }
       }
 
     /**
-     * Advance the scanner.  This method represents an unconditional match
-     * with the current scanner symbol.
+     * Advance the scanner.  This method represents an unconditional
+     * match with the current scanner symbol.
      */
     private void matchCurrentSymbol() throws IOException
       {

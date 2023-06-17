@@ -11,7 +11,6 @@ public enum ScopeLevel
 
     private String text;
 
-
     /**
      * Construct a new scope level with its text.
      */

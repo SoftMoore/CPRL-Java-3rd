@@ -10,11 +10,6 @@ public class EmptyStatement extends Statement
   {
     private static EmptyStatement instance = new EmptyStatement();
 
-    private EmptyStatement()
-      {
-        super();
-      }
-
     /**
      * Returns the single instance of this class.
      */

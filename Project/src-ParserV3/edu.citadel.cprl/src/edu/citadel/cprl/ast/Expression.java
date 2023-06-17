@@ -15,7 +15,7 @@ public abstract class Expression extends AST
     /** constant for true */
     public static final String TRUE = "1";
 
-    private Type     type;
+    private Type type;
     private Position position;   // position of the expression
 
     /**
@@ -23,7 +23,7 @@ public abstract class Expression extends AST
      */
     public Expression(Type type, Position position)
       {
-        this.type     = type;
+        this.type = type;
         this.position = position;
       }
 
@@ -74,8 +74,7 @@ public abstract class Expression extends AST
       {
         // default behavior unless overridden; correct for constants and variable expressions
         assert type == Type.Boolean : "Expression type is not Boolean.";
-
-        emit();  // leaves boolean expression value on top of stack
+        emit();   // leaves boolean expression value on top of stack
         emit(condition ? "BNZ " + label : "BZ " + label);
       }
   }

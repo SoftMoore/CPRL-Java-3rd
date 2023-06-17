@@ -13,4 +13,4 @@ source cprl_config
 #CLASSPATH=$COMPILER_PROJECT_PATH
 #java -ea -cp "$CLASSPATH" edu.citadel.cvm.assembler.Assembler $*
 MODULEPATH=$COMPILER_PROJECT_PATH
-java -ea -p "$MODULEPATH" -m edu.citadel.cvm/edu.citadel.cvm.assembler.Assembler $*
+java -ea -p "$MODULEPATH" -m edu.citadel.assembler/edu.citadel.assembler.Assembler $*

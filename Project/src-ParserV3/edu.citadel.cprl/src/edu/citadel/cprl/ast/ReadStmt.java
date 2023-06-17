@@ -33,12 +33,12 @@ public class ReadStmt extends Statement
       {
         variable.emit();
 
-        Type type = variable.getType();
+        var type = variable.getType();
         if (type instanceof StringType strType)
             emit("GETSTR " + strType.getCapacity());
         else if (type == Type.Integer)
             emit("GETINT");
-        else  // type must be Char
+        else   // type must be Char
             emit("GETCH");
       }
   }

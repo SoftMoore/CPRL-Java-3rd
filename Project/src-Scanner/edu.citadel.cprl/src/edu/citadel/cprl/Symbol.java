@@ -203,9 +203,7 @@ public enum Symbol
         return this == times || this == divide || this == modRW;
       }
 
-    /**
-     * Returns the label for this Symbol.
-     */
+    @Override
     public String toString()
       {
         return label;

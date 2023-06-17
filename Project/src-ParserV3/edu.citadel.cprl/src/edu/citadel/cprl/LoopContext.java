@@ -9,12 +9,7 @@ import java.util.Stack;
  */
 public final class LoopContext
   {
-    private Stack<LoopStmt> loopStack;
-
-    public LoopContext()
-      {
-        loopStack = new Stack<LoopStmt>();
-      }
+    private Stack<LoopStmt> loopStack= new Stack<LoopStmt>();
 
     /**
      * Returns the loop statement currently being parsed.

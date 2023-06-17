@@ -31,7 +31,7 @@ public class ConstValue extends Expression
       {
         super(Type.typeOf(literal), literal.getPosition());
         this.literal = literal;
-        this.decl = null;
+        this.decl    = null;
       }
 
     /**
@@ -42,7 +42,7 @@ public class ConstValue extends Expression
       {
         super(decl.getType(), identifier.getPosition());
         this.literal = decl.getLiteral();
-        this.decl = decl;
+        this.decl    = decl;
       }
 
     /**
@@ -80,10 +80,10 @@ public class ConstValue extends Expression
                   {
                     Integer.parseInt(literal.getText());
                   }
-                catch(NumberFormatException e)
+                catch (NumberFormatException e)
                   {
-                    String errorMsg = "The number \"" + literal.getText()
-                                    + "\" cannot be converted to an integer in CPRL.";
+                    var errorMsg = "The number \"" + literal.getText()
+                                 + "\" cannot be converted to an integer in CPRL.";
                     throw error(literal.getPosition(), errorMsg);
                   }
               }
@@ -97,7 +97,7 @@ public class ConstValue extends Expression
     @Override
     public void emit() throws CodeGenException
       {
-        Type exprType = getType();
+        var exprType = getType();
 
         if (exprType == Type.Integer)
             emit("LDCINT " + getLiteralIntValue());
@@ -109,7 +109,7 @@ public class ConstValue extends Expression
             emit("LDCSTR " + literal.getText());
         else
           {
-            String errorMsg = "Invalid type for constant value.";
+            var errorMsg = "Invalid type for constant value.";
             throw new CodeGenException(literal.getPosition(), errorMsg);
           }
       }

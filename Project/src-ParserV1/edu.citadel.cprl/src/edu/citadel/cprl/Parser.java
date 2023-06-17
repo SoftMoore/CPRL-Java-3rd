@@ -108,7 +108,7 @@ public class Parser
         try
           {
             match(Symbol.varRW);
-            List<Token> identifiers = parseIdentifiers();
+            var identifiers = parseIdentifiers();
             match(Symbol.colon);
             parseTypeName();
 
@@ -141,7 +141,7 @@ public class Parser
         try
           {
             var identifiers = new ArrayList<Token>(10);
-            Token idToken = scanner.getToken();
+            var idToken     = scanner.getToken();
             match(Symbol.identifier);
             identifiers.add(idToken);
 
@@ -173,7 +173,7 @@ public class Parser
 
         try
           {
-            Symbol symbol = scanner.lookahead(4).getSymbol();
+            var symbol = scanner.lookahead(4).getSymbol();
             if (symbol == Symbol.arrayRW)
                 parseArrayTypeDecl();
             else if (symbol == Symbol.recordRW)
@@ -182,7 +182,7 @@ public class Parser
                 parseStringTypeDecl();
             else
               {
-                Position errorPos = scanner.lookahead(4).getPosition();
+                var errorPos = scanner.lookahead(4).getPosition();
                 throw error(errorPos, "Invalid type declaration.");
               }
           }
@@ -212,7 +212,7 @@ public class Parser
         try
           {
             match(Symbol.typeRW);
-            Token typeId = scanner.getToken();
+            var typeId = scanner.getToken();
             match(Symbol.identifier);
             match(Symbol.equals);
             match(Symbol.recordRW);
@@ -274,31 +274,35 @@ public class Parser
       {
         try
           {
-            if (scanner.getSymbol() == Symbol.IntegerRW)
-                matchCurrentSymbol();
-            else if (scanner.getSymbol() == Symbol.BooleanRW)
-                matchCurrentSymbol();
-            else if (scanner.getSymbol() == Symbol.CharRW)
-                matchCurrentSymbol();
-            else if (scanner.getSymbol() == Symbol.identifier)
+            switch (scanner.getSymbol())
               {
-                Token typeId = scanner.getToken();
-                IdType type = idTable.get(typeId.getText());
-
-                if (type != null)
+                case IntegerRW  -> matchCurrentSymbol();
+                case BooleanRW  -> matchCurrentSymbol();
+                case CharRW     -> matchCurrentSymbol();
+                case identifier ->
                   {
-                    if (type == IdType.arrayTypeId || type == IdType.recordTypeId || type == IdType.stringTypeId)
-                        matchCurrentSymbol();
+                    var typeId = scanner.getToken();
+                    matchCurrentSymbol();
+                    var type   = idTable.get(typeId.getText());
+
+                    if (type != null)
+                      {
+                        if (type == IdType.arrayTypeId || type == IdType.recordTypeId || type == IdType.stringTypeId)
+                            ;   // empty statement for versions 1 and 2 of Parser
+                        else
+                          {
+                            var errorMsg = "Identifier \"" + typeId + "\" is not a valid type name.";
+                            throw error(typeId.getPosition(), errorMsg);
+                          }
+                      }
                     else
-                        throw error(typeId.getPosition(), "Identifier \""
-                                  + typeId + "\" is not a valid type name.");
+                      {
+                        var errorMsg = "Identifier \"" + typeId + "\" has not been declared.";
+                        throw error(typeId.getPosition(), errorMsg);
+                      }
                   }
-                else
-                    throw error(typeId.getPosition(), "Identifier \""
-                              + typeId + "\" has not been declared.");
+                default -> throw error("Invalid type name.");
               }
-            else
-                throw error("Invalid type name.");
           }
         catch (ParserException e)
           {
@@ -335,7 +339,7 @@ public class Parser
         try
           {
             match(Symbol.procRW);
-            Token procId = scanner.getToken();
+            var procId = scanner.getToken();
             match(Symbol.identifier);
             idTable.add(procId, IdType.procedureId);
             match(Symbol.leftParen);
@@ -416,14 +420,14 @@ public class Parser
 
         try
           {
-            Symbol symbol = scanner.getSymbol();
+            var symbol = scanner.getSymbol();
 
             if (symbol == Symbol.identifier)
               {
                 // Handle identifiers based on how they are declared,
                 // or use the lookahead symbol if not declared.
-                String idStr  = scanner.getText();
-                IdType idType = idTable.get(idStr);
+                var idStr  = scanner.getText();
+                var idType = idTable.get(idStr);
 
                 if (idType != null)
                   {
@@ -578,18 +582,18 @@ public class Parser
      */
     private void parseVariableCommon() throws IOException, ParserException
       {
-        Token idToken = scanner.getToken();
+        var idToken = scanner.getToken();
         match(Symbol.identifier);
-        IdType idType = idTable.get(idToken.getText());
+        var idType = idTable.get(idToken.getText());
 
         if (idType == null)
           {
-            String errorMsg = "Identifier \"" + idToken + "\" has not been declared.";
+            var errorMsg = "Identifier \"" + idToken + "\" has not been declared.";
             throw error(idToken.getPosition(), errorMsg);
           }
         else if (idType != IdType.variableId)
           {
-            String errorMsg = "Identifier \"" + idToken + "\" is not a variable.";
+            var errorMsg = "Identifier \"" + idToken + "\" is not a variable.";
             throw error(idToken.getPosition(), errorMsg);
           }
 
@@ -711,8 +715,8 @@ public class Parser
               {
                 // Handle identifiers based on how they are declared,
                 // or use the lookahead symbol if not declared.
-                String idStr = scanner.getText();
-                IdType idType = idTable.get(idStr);
+                var idStr  = scanner.getText();
+                var idType = idTable.get(idStr);
 
                 if (idType != null)
                   {
@@ -800,8 +804,8 @@ public class Parser
             scanner.advance();
         else
           {
-            String errorMsg = "Expecting \"" + expectedSymbol + "\" but found \""
-                            + scanner.getToken() + "\" instead.";
+            var errorMsg = "Expecting \"" + expectedSymbol + "\" but found \""
+                         + scanner.getToken() + "\" instead.";
             throw error(errorMsg);
           }
       }
@@ -826,12 +830,12 @@ public class Parser
       }
 
     /**
-     * Create a parser exception with the specified error message and the
-     * current scanner position.
+     * Create a parser exception with the specified error message and
+     * the current scanner position.
      */
     private ParserException error(String errorMsg)
       {
-        return new ParserException(scanner.getPosition(), errorMsg);
+        return error(scanner.getPosition(), errorMsg);
       }
 
     /**
@@ -843,8 +847,8 @@ public class Parser
       }
 
     /**
-     * Create an internal compiler exception with the specified error message
-     * and the current scanner position.
+     * Create an internal compiler exception with the specified error
+     * message and the current scanner position.
      */
     private InternalCompilerException internalError(String errorMsg)
       {

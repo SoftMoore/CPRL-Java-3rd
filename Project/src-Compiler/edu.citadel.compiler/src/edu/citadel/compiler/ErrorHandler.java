@@ -10,24 +10,13 @@ import java.util.Set;
  */
 public class ErrorHandler
   {
-    /** Maximum number of errors to be reported. */
-    private static int MAX_ERRORS = 15;
+    // Maximum number of errors to be reported.
+    private final int MAX_ERRORS = 15;
 
-    private PrintWriter err;
-    private int errorCount = 0;
-    private String lastMessage;   // remember last error message
-    private Set<String> undeclaredIds;
-
-    /**
-     * Constructs a new ErrorHandler.
-     */
-    public ErrorHandler()
-      {
-        err = new PrintWriter(System.err, true, StandardCharsets.UTF_8);
-        errorCount = 0;
-        lastMessage = "";
-        undeclaredIds = new HashSet<>();
-      }
+    private PrintWriter err = new PrintWriter(System.err, true, StandardCharsets.UTF_8);
+    private int errorCount  = 0;
+    private String lastMessage = "";   // remember last error message
+    private Set<String> undeclaredIds = new HashSet<>();
 
     /**
      * Returns true if errors have been reported by the error handler.
@@ -44,17 +33,14 @@ public class ErrorHandler
      */
     public void reportError(CompilerException e)
       {
-        if (errorCount <= MAX_ERRORS)
-          {
-            if (shouldPrint(e.getMessage()))
-              {
-                err.println(e.getMessage());
-                ++errorCount;
-                lastMessage = e.getMessage();
-              }
-          }
-        else
+        if (errorCount > MAX_ERRORS)
             throw new FatalException("Max errors exceeded.");
+        else if (shouldPrint(e.getMessage()))
+          {
+            err.println(e.getMessage());
+            ++errorCount;
+            lastMessage = e.getMessage();
+          }
       }
 
     /**

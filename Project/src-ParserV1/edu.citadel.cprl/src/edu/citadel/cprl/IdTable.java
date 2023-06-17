@@ -1,7 +1,6 @@
 package edu.citadel.cprl;
 
 import edu.citadel.compiler.ParserException;
-
 import java.util.ArrayList;
 
 /**
@@ -10,23 +9,21 @@ import java.util.ArrayList;
  */
 public final class IdTable
   {
-    // IdTable is implemented as a stack of scopes.  Opening a scope
-    // pushes a new scope onto the stack.  Searching for an identifier
+    // IdTable is implemented as a stack of scopes. Opening a scope
+    // pushes a new scope onto the stack. Searching for an identifier
     // involves searching at the current level (top scope in the stack)
     // and then at enclosing scopes (scopes under the top).
 
     private static final int INITIAL_SCOPE_LEVELS = 3;
 
-    private ArrayList<Scope> table;
-    private int currentLevel;
+    private ArrayList<Scope> table = new ArrayList<Scope>(INITIAL_SCOPE_LEVELS);
+    private int currentLevel = 0;
 
     /**
      * Construct an empty identifier table with scope level initialized to 0.
      */
     public IdTable()
       {
-        table = new ArrayList<Scope>(INITIAL_SCOPE_LEVELS);
-        currentLevel = 0;
         table.add(currentLevel, new Scope(ScopeLevel.GLOBAL));
       }
 
@@ -68,14 +65,14 @@ public final class IdTable
         assert idToken.getSymbol() == Symbol.identifier :
             "IdTable.add(): The token is not an identifier.";
 
-        Scope scope = table.get(currentLevel);
-        IdType oldDecl = scope.put(idToken.getText(), idType);
+        var scope   = table.get(currentLevel);
+        var oldDecl = scope.put(idToken.getText(), idType);
 
         // check that the identifier has not been defined previously
         if (oldDecl != null)
           {
-            String errorMsg = "Identifier \"" + idToken.getText()
-                            + "\" is already defined in the current scope.";
+            var errorMsg = "Identifier \"" + idToken.getText()
+                         + "\" is already defined in the current scope.";
             throw new ParserException(idToken.getPosition(), errorMsg);
           }
       }
@@ -88,11 +85,11 @@ public final class IdTable
     public IdType get(String idStr)
       {
         IdType idType = null;
-        int level = currentLevel;
+        int    level  = currentLevel;
 
         while (level >= 0 && idType == null)
           {
-            Scope scope = table.get(level);
+            var scope = table.get(level);
             idType = scope.get(idStr);
             --level;
           }

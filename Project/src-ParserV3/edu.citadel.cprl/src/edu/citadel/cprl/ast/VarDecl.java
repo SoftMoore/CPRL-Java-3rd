@@ -2,6 +2,7 @@ package edu.citadel.cprl.ast;
 
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
+
 import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
@@ -30,8 +31,8 @@ public class VarDecl extends InitialDecl
       {
         super(new Token(), varType);
         this.initialValue = initialValue;
-
         singleVarDecls = new ArrayList<>(identifiers.size());
+
         for (Token id : identifiers)
             singleVarDecls.add(new SingleVarDecl(id, varType, initialValue, scopeLevel));
       }
@@ -54,7 +55,7 @@ public class VarDecl extends InitialDecl
 
             if (initialValue != null && !matchTypes(getType(), initialValue))
               {
-                String errorMsg = "Type mismatch for variable initialization.";
+                var errorMsg = "Type mismatch for variable initialization.";
                 throw error(initialValue.getPosition(), errorMsg);
               }
           }

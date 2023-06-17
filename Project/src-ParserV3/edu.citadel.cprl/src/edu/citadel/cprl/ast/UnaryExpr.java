@@ -18,7 +18,6 @@ public abstract class UnaryExpr extends Expression
     public UnaryExpr(Token operator, Expression operand)
       {
         super(operator.getPosition());
-
         this.operator = operator;
         this.operand  = operand;
       }

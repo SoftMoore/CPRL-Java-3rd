@@ -18,16 +18,14 @@ public final class IdTable
 
     private static final int INITIAL_SCOPE_LEVELS = 3;
 
-    private ArrayList<Scope> table;
-    private int currentLevel;
+    private ArrayList<Scope> table = new ArrayList<Scope>(INITIAL_SCOPE_LEVELS);
+    private int currentLevel = 0;
 
     /**
      * Construct an empty identifier table with scope level initialized to 0.
      */
     public IdTable()
       {
-        table = new ArrayList<Scope>(INITIAL_SCOPE_LEVELS);
-        currentLevel = 0;
         table.add(currentLevel, new Scope(ScopeLevel.GLOBAL));
       }
 
@@ -65,20 +63,20 @@ public final class IdTable
      */
     public void add(Declaration decl) throws ParserException
       {
-        Token idToken = decl.getIdToken();
+        var idToken = decl.getIdToken();
 
         // assumes that idToken is an identifier token
         assert idToken.getSymbol() == Symbol.identifier :
             "IdTable.add(): The token in the declaration is not an identifier.";
 
-        Scope scope = table.get(currentLevel);
-        Declaration oldDecl = scope.put(idToken.getText(), decl);
+        var scope   = table.get(currentLevel);
+        var oldDecl = scope.put(idToken.getText(), decl);
 
         // check that the identifier has not been declared previously
         if (oldDecl != null)
           {
-            String errorMsg = "Identifier \"" + idToken.getText()
-                            + "\" is already defined in the current scope.";
+            var errorMsg = "Identifier \"" + idToken.getText()
+                         + "\" is already defined in the current scope.";
             throw new ParserException(idToken.getPosition(), errorMsg);
           }
       }
@@ -95,7 +93,7 @@ public final class IdTable
 
         while (level >= 0 && decl == null)
           {
-            Scope scope = table.get(level);
+            var scope = table.get(level);
             decl = scope.get(idStr);
             --level;
           }

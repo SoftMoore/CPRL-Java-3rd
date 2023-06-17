@@ -18,9 +18,10 @@ public final class Scanner
     private ErrorHandler errorHandler;
 
     // buffer to hold lookahead tokens
-    private TokenBuffer buffer;
+    private TokenBuffer tokenBuffer;
 
-    private StringBuilder scanBuffer;
+    // buffer to hold identifiers and literals
+    private StringBuilder scanBuffer = new StringBuilder(100);
 
     /**
      * Construct scanner with its associated source, number
@@ -29,11 +30,10 @@ public final class Scanner
     public Scanner(Source source, int k, ErrorHandler errorHandler) throws IOException
       {
         this.source = source;
+        this.tokenBuffer = new TokenBuffer(k);
         this.errorHandler = errorHandler;
-        buffer = new TokenBuffer(k);
-        scanBuffer = new StringBuilder(100);
 
-        // fill buffer with k tokens
+        // fill token buffer with k tokens
         for (int i = 0; i < k; ++i)
             advance();
       }
@@ -77,7 +77,7 @@ public final class Scanner
     public Token lookahead(int i)
       {
         assert i >= 1 & i <= 4 : "Range check for lookahead token index";
-        return buffer.get(i - 1);
+        return tokenBuffer.get(i - 1);
       }
 
     /**
@@ -85,7 +85,7 @@ public final class Scanner
      */
     public void advance() throws IOException
       {
-        buffer.add(nextToken());
+        tokenBuffer.add(nextToken());
       }
 
     /**
@@ -113,9 +113,9 @@ public final class Scanner
      */
     private Token nextToken() throws IOException
       {
-        Symbol symbol   = Symbol.unknown;
-        var    position = new Position();
-        String text     = "";
+        var symbol   = Symbol.unknown;
+        var position = new Position();
+        var text     = "";
 
         try
           {
@@ -131,7 +131,7 @@ public final class Scanner
               }
             else if (isLetter((char) source.getChar()))
               {
-                String idString = scanIdentifier();
+                var idString = scanIdentifier();
                 symbol = getIdentifierSymbol(idString);
 
                 if (symbol == Symbol.identifier)
@@ -144,16 +144,14 @@ public final class Scanner
               }
             else
               {
-                switch((char) source.getChar())
+                switch ((char) source.getChar())
                   {
                     case '+' ->
                       {
                         symbol = Symbol.plus;
                         source.advance();
                       }
-
 // ...
-
                     case '/' ->
                       {
                         source.advance();
@@ -165,27 +163,23 @@ public final class Scanner
                         else
                             symbol = Symbol.divide;
                       }
-
 // ...
-
-                    case '>' ->
+                    case '<' ->
                       {
                         source.advance();
                         if ((char) source.getChar() == '=')
                           {
-                            symbol = Symbol.greaterOrEqual;
+                            symbol = Symbol.lessOrEqual;
                             source.advance();
                           }
                         else
-                            symbol = Symbol.greaterThan;
+                            symbol = Symbol.lessThan;
                       }
-
 // ...
-
-                    default   ->     // error: invalid character
+                    default ->
                       {
-                        String errorMsg = "Invalid character \'"
-                                        + ((char) source.getChar()) + "\'";
+                        // error: invalid character
+                        var errorMsg = "Invalid character \'" + ((char) source.getChar()) + "\'";
                         source.advance();
                         throw error(errorMsg);
                       }
@@ -218,8 +212,8 @@ public final class Scanner
       {
         // assumes that source.getChar() is the second '/'
         assert (char) source.getChar() == '/' : "Check for '/' as part of comment.";
-
-// ...
+        skipToEndOfLine();
+        source.advance();
       }
 
     /**
@@ -240,9 +234,8 @@ public final class Scanner
       {
         // assumes that source.getChar() is the first letter of the identifier
         assert isLetter((char) source.getChar()) :
-            "Check identifier start for letter at position "
-            + source.getCharPosition() + ".";
-
+                    "Check identifier start for letter at position "
+                    + source.getCharPosition() + ".";
 // ...
       }
 
@@ -256,8 +249,8 @@ public final class Scanner
       {
         // assumes that source.getChar() is the first digit of the integer literal
         assert isDigit((char) source.getChar()) :
-            "Check integer literal start for digit at position "
-            + source.getCharPosition() + ".";
+               "Check integer literal start for digit at position "
+                + source.getCharPosition() + ".";
 
         clearScanBuffer();
 
@@ -284,8 +277,7 @@ public final class Scanner
       {
         // assumes that source.getChar() is the opening double quote for the string literal
         assert (char) source.getChar() == '\"' :
-            "Check for opening quote (\") at position " + source.getCharPosition() + ".";
-
+               "Check for opening quote (\") at position " + source.getCharPosition() + ".";
 // ...
       }
 
@@ -302,10 +294,9 @@ public final class Scanner
       {
         // assumes that source.getChar() is the opening single quote for the char literal
         assert (char) source.getChar() == '\'' :
-            "Check for opening quote (\') at position "
-            + source.getCharPosition() + ".";
+               "Check for opening quote (\') at position " + source.getCharPosition() + ".";
 
-        String errorMsg = "Invalid Char literal.";
+        var errorMsg = "Invalid Char literal.";
         clearScanBuffer();
 
         // append the opening single quote
@@ -316,16 +307,15 @@ public final class Scanner
         checkGraphicChar(source.getChar());
         c = (char) source.getChar();
 
-        if (c == '\\')                 // escaped character
-          {
+        if (c == '\\')   // escaped character
             scanBuffer.append(scanEscapedChar());
-          }
-        else if (c == '\'')            // either '' (empty) or '''; both are invalid
+        else if (c == '\'')
           {
+            // either '' (empty) or '''; both are invalid
             source.advance();
             c = (char) source.getChar();
 
-            if (c == '\'')             // three single quotes in a row
+            if (c == '\'')   // three single quotes in a row
                 source.advance();
 
             throw error(errorMsg);
@@ -339,7 +329,7 @@ public final class Scanner
         c = (char) source.getChar();   // should be the closing single quote
         checkGraphicChar(c);
 
-        if (c == '\'')                 // should be the closing single quote
+        if (c == '\'')
           {
             scanBuffer.append(c);      // append the closing quote
             source.advance();
@@ -365,31 +355,33 @@ public final class Scanner
       {
         // assumes that source.getChar() is the backslash for the escaped char
         assert (char) source.getChar() == '\\' :
-            "Check for escape character ('\\') at position "
-            + source.getCharPosition() + ".";
+               "Check for escape character ('\\') at position "
+                + source.getCharPosition() + ".";
 
         // Need to save current position for error reporting.
-        Position backslashPosition = source.getCharPosition();
+         var backslashPosition = source.getCharPosition();
 
         source.advance();
         checkGraphicChar(source.getChar());
         char c = (char) source.getChar();
 
-        source.advance();  // leave source at second character following the backslash
+        source.advance();   // leave source at second character following backslash
 
         switch (c)
           {
-            case 't'  : return "\\t";    // tab
-            case 'n'  : return "\\n";    // linefeed (a.k.a. newline)
-            case 'r'  : return "\\r";    // carriage return
-            case '\"' : return "\\\"";   // double quote
-            case '\'' : return "\\\'";   // single quote
-            case '\\' : return "\\\\";   // backslash
-            default   :
+            case 't':  return "\\t";    // tab
+            case 'n':  return "\\n";    // newline
+            case 'r':  return "\\r";    // carriage return
+            case '\"': return "\\\"";   // double quote
+            case '\'': return "\\\'";   // single quote
+            case '\\': return "\\\\";   // backslash
+            default:
+              {
                 // report error but return the invalid character
-                ScannerException ex = error(backslashPosition, "Illegal escape character.");
+                var ex = error(backslashPosition, "Illegal escape character.");
                 errorHandler.reportError(ex);
                 return "\\" + c;
+              }
           }
       }
 
@@ -408,18 +400,16 @@ public final class Scanner
     private void skipToEndOfLine() throws ScannerException, IOException
       {
         while ((char) source.getChar() != '\n')
-          {
             source.advance();
             checkEOF();
-          }
       }
 
     /**
-     * Checks that the integer represents a graphic character in the Unicode
-     * Basic Multilingual Plane (BMP).
+     * Checks that the integer represents a graphic character in the
+     * Unicode Basic Multilingual Plane (BMP).
      *
-     * @throws ScannerException if the integer does not represent a BMP graphic
-     *         character.
+     * @throws ScannerException if the integer does not represent a
+     *         BMP graphic character.
      */
     private void checkGraphicChar(int n) throws ScannerException
       {
@@ -430,16 +420,16 @@ public final class Scanner
         else
           {
             char c = (char) n;
-            if (c == '\r' || c == '\n')            // special check for end of line
+            if (c == '\r' || c == '\n')           // special check for end of line
                 throw error("Char and String literals can not extend past end of line.");
-            else if (Character.isISOControl(c))    // Sorry.  No ISO control characters.
+            else if (Character.isISOControl(c))   // Sorry. No ISO control characters.
                 throw error("Control characters not allowed in Char or String literal.");
           }
       }
 
     /**
      * Returns true only if the specified character is a letter.<br>
-     * `'A'..'Z' + 'a'..'z' (r.e. char class: [A-Za-z])`
+     * <code>'A'..'Z' + 'a'..'z' (r.e. char class: [A-Za-z])</code>
      */
     private static boolean isLetter(char ch)
       {
@@ -448,7 +438,7 @@ public final class Scanner
 
     /**
      * Returns true only if the specified character is a digit.<br>
-     * `'0'..'9' (r.e. char class: [0-9])`
+     * <code>'0'..'9' (r.e. char class: [0-9])</code>
      */
     private static boolean isDigit(char ch)
       {
@@ -457,7 +447,7 @@ public final class Scanner
 
     /**
      * Returns true only if the specified character is a letter or a digit.<br>
-     * `'A'..'Z' + 'a'..'z + '0'..'9' (r.e. char class: [A-Za-z0-9])`
+     * <code>'A'..'Z' + 'a'..'z + '0'..'9' (r.e. char class: [A-Za-z0-9])</code>
      */
     private static boolean isLetterOrDigit(char ch)
       {

@@ -49,8 +49,7 @@ public final class ParameterDecl extends Declaration implements VariableDecl
       }
 
     /**
-     * Returns the relative address (offset) associated with this parameter
-     * declaration.
+     * Returns the relative address (offset) associated with this parameter declaration.
      */
     public int getRelAddr()
       {
@@ -68,7 +67,7 @@ public final class ParameterDecl extends Declaration implements VariableDecl
     @Override
     public void checkConstraints()
       {
-        assert getType() != null && getType() != Type.UNKNOWN && getType() != Type.none :
-            "Invalid CPRL type in parameter declaration.";
+        assert getType() != null && getType() != Type.UNKNOWN && getType() != Type.none
+            : "Invalid CPRL type in parameter declaration.";
       }
   }

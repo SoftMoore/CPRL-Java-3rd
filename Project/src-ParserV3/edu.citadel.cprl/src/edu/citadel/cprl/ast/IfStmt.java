@@ -10,8 +10,8 @@ import edu.citadel.cprl.Type;
 public class IfStmt extends Statement
   {
     private Expression booleanExpr;
-    private Statement  thenStmt;      // statement following "then"
-    private Statement  elseStmt;      // statement following "else"
+    private Statement  thenStmt;         // statement following "then"
+    private Statement  elseStmt;         // statement following "else"
 
     // labels used during code generation
     private String L1 = getNewLabel();   // label of address at end of then statement
@@ -63,7 +63,7 @@ public class IfStmt extends Statement
 
             if (booleanExpr.getType() != Type.Boolean)
               {
-                String errorMsg = "An \"if\" condition should have type Boolean.";
+                var errorMsg = "An \"if\" condition should have type Boolean.";
                 throw error(booleanExpr.getPosition(), errorMsg);
               }
           }
@@ -78,21 +78,17 @@ public class IfStmt extends Statement
       {
         // if expression evaluates to false, branch to L1
         booleanExpr.emitBranch(false, L1);
-
         thenStmt.emit();
 
         // if there is an else part, branch to end of if statement
         if (elseStmt != null)
             emit("BR " + L2);
 
-        // L1:
         emitLabel(L1);
 
         if (elseStmt != null)
           {
             elseStmt.emit();
-
-            // L2:
             emitLabel(L2);
           }
       }

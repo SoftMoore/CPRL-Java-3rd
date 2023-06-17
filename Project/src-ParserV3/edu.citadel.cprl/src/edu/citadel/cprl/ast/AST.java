@@ -16,9 +16,6 @@ import java.io.PrintWriter;
  */
 public abstract class AST
   {
-    // number of spaces to print before opcode
-    private static final String SPACES = "   ";
-
     private static PrintWriter out = new PrintWriter(System.out);
 
     // current label number for control flow
@@ -112,14 +109,11 @@ public abstract class AST
      */
     protected boolean matchTypes(Type type, Expression expr)
       {
-        Type exprType = expr.getType();
+        var exprType = expr.getType();
         if (type == exprType)
             return true;
         else if (type instanceof StringType t && exprType instanceof StringType e)
-          {
-            return (e.getCapacity() <= t.getCapacity())
-                && (expr instanceof ConstValue);
-          }
+            return (e.getCapacity() <= t.getCapacity()) && (expr instanceof ConstValue);
         else
             return false;
       }
@@ -166,6 +160,6 @@ public abstract class AST
      */
     protected void emit(String instruction)
       {
-        out.println(SPACES + instruction);
+        out.println("   " + instruction);
       }
   }

@@ -29,11 +29,11 @@ public class FunctionDecl extends SubprogramDecl
     public int getRelAddr()
       {
         int firstParamAddr = 0;
+        var params = getFormalParams();
 
-        List<ParameterDecl> params = getFormalParams();
         if (params.size() > 0)
           {
-            ParameterDecl firstParamDecl = params.get(0);
+            var firstParamDecl = params.get(0);
             firstParamAddr = firstParamDecl.getRelAddr();
           }
 
@@ -62,7 +62,7 @@ public class FunctionDecl extends SubprogramDecl
      * @param statements the list of statements to check for a return statement.  If
      *                   any of the statements in the list contains nested statements
      *                   (e.g., an if statement, a compound statement, or a loop statement),
-     *                   then the nested statements are also checked for a return statement.
+     *                   then any nested statements are also checked for a return statement.
      */
     private boolean hasReturnStmt(List<Statement> statements)
       {
@@ -80,15 +80,15 @@ public class FunctionDecl extends SubprogramDecl
      * Returns true if the specified statement is a return statement or contains
      * at least one return statement.
      *
-     * @param statement the statement to check for a return statement.  If the statement
-     *                  contains nested statements (e.g., an if statement, a compound
-     *                  statement, or a loop statement), then the nested statements are
-     *                  also checked for a return statement.
+     * @param statement  the statement to check for a return statement.  If the
+     *                   statement contains nested statements (e.g., an if statement,
+     *                   a compound statement, or a loop statement), then the nested
+     *                   statements are also checked for a return statement.
      */
     private Boolean hasReturnStmt(Statement statement)
-    {
+      {
 // ...
-    }
+      }
 
     @Override
     public void emit() throws CodeGenException

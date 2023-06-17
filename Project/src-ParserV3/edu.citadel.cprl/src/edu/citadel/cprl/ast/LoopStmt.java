@@ -10,22 +10,12 @@ import edu.citadel.cprl.Type;
  */
 public class LoopStmt extends Statement
   {
-    private Expression whileExpr;
-    private Statement  statement;
+    private Expression whileExpr = null;
+    private Statement  statement = EmptyStatement.getInstance();
 
     // labels used during code generation
-    private String L1 = getNewLabel();    // label for start of loop
-    private String L2 = getNewLabel();    // label for end of loop
-
-    /**
-     * Default constructor.  Construct a loop statement with a null "while"
-     * expression and an empty statement for the loop body.
-     */
-    public LoopStmt()
-      {
-        this.whileExpr = null;
-        this.statement = EmptyStatement.getInstance();
-      }
+    private String L1 = getNewLabel();   // label for start of loop
+    private String L2 = getNewLabel();   // label for end of loop
 
     /**
      * Set the while expression for this loop statement.

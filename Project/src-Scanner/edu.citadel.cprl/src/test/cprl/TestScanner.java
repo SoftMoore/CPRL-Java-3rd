@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 public class TestScanner
   {
     private static PrintStream out
-        = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+            = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
     public static void main(String[] args)
       {
@@ -23,17 +23,17 @@ public class TestScanner
             if (args.length != 1)
                 printUsageAndExit();
 
-            System.out.println("initializing...");
+            out.println("initializing...");
 
-            String fileName = args[0];
+            var fileName = args[0];
             var errorHandler = new ErrorHandler();
             var reader  = new FileReader(fileName, StandardCharsets.UTF_8);
             var source  = new Source(reader);
-            var scanner = new Scanner(source, 4, errorHandler);
+            var scanner = new Scanner(source, 4, errorHandler);   // 4 lookahead tokens
             Token token;
 
-            System.out.println("starting main loop...");
-            System.out.println();
+            out.println("starting main loop...");
+            out.println();
 
             do
               {
@@ -43,8 +43,8 @@ public class TestScanner
               }
             while (token.getSymbol() != Symbol.EOF);
 
-            System.out.println();
-            System.out.println("...done");
+            out.println();
+            out.println("...done");
           }
         catch (Exception e)
           {
@@ -52,13 +52,13 @@ public class TestScanner
           }
       }
 
-    public static void printToken(Token token)
+    private static void printToken(Token token)
       {
         out.printf("line: %2d   char: %2d   token: ",
             token.getPosition().getLineNumber(),
             token.getPosition().getCharNumber());
 
-        Symbol symbol = token.getSymbol();
+        var symbol = token.getSymbol();
         if (symbol.isReservedWord())
             out.print("Reserved Word -> ");
         else if (symbol == Symbol.identifier    || symbol == Symbol.intLiteral
@@ -70,8 +70,8 @@ public class TestScanner
 
     private static void printUsageAndExit()
       {
-        System.out.println("Usage: java test.cprl.TestScanner <test file>");
-        System.out.println();
+        out.println("Usage: java test.cprl.TestScanner <test file>");
+        out.println();
         System.exit(0);
       }
   }

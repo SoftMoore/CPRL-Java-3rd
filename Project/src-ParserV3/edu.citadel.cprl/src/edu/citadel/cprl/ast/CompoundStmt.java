@@ -8,7 +8,7 @@ import edu.citadel.compiler.CodeGenException;
  */
 public class CompoundStmt extends Statement
   {
-    /** the list of statements in the compound statement */
+    // the list of statements in the compound statement
     private List<Statement> statements;
 
     public CompoundStmt(List<Statement> statements)

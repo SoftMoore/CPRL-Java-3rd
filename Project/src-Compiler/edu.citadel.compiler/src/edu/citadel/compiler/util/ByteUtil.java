@@ -13,8 +13,8 @@ public class ByteUtil
     public static String byteToHexString(byte b)
       {
         var builder = new StringBuilder(2);
-        builder.append(HEX_ARRAY[b >>> 4]);
-        builder.append(HEX_ARRAY[b & 0x0F]);
+        builder.append(HEX_ARRAY[b >>> 4])
+               .append(HEX_ARRAY[b & 0x0F]);
         return builder.toString();
       }
 
@@ -24,10 +24,10 @@ public class ByteUtil
     public static String charToHexString(char c)
       {
         var builder = new StringBuilder(2);
-        builder.append(HEX_ARRAY[c >>> 12]);
-        builder.append(HEX_ARRAY[(c & 0x0F00) >> 8]);
-        builder.append(HEX_ARRAY[(c & 0x00F0) >> 4]);
-        builder.append(HEX_ARRAY[c & 0x000F]);
+        builder.append(HEX_ARRAY[c >>> 12])
+               .append(HEX_ARRAY[(c & 0x0F00) >> 8])
+               .append(HEX_ARRAY[(c & 0x00F0) >> 4])
+               .append(HEX_ARRAY[c & 0x000F]);
         return builder.toString();
       }
 
@@ -37,7 +37,7 @@ public class ByteUtil
     public static String bytesToHex(byte[] bytes)
       {
         var builder = new StringBuilder(bytes.length*3);
-        for (int i = 0;  i < bytes.length; ++i)
+        for (int i = 0; i < bytes.length; ++i)
           {
             int v = bytes[i] & 0xFF;
             builder.append(HEX_ARRAY[v >>> 4]);
@@ -54,8 +54,7 @@ public class ByteUtil
      */
     public static char bytesToChar(byte b0, byte b1)
       {
-        return (char) ( (((int)b0 << 8) & 0x0000FF00)
-                      |  ((int)b1       & 0x000000FF));
+        return (char) ((((int) b0 << 8) & 0x0000FF00) | ((int) b1 & 0x000000FF));
       }
 
     /**
@@ -64,56 +63,50 @@ public class ByteUtil
      */
     public static int bytesToInt(byte b0, byte b1, byte b2, byte b3)
       {
-        return (((int)b0 << 24) & 0xFF000000)
-            |  (((int)b1 << 16) & 0x00FF0000)
-            |  (((int)b2 << 8)  & 0x0000FF00)
-            |   ((int)b3        & 0x000000FF);
+        return (int) b0 << 24 & 0xFF000000
+             | (int) b1 << 16 & 0x00FF0000
+             | (int) b2 << 8  & 0x0000FF00
+             | (int) b3       & 0x000000FF;
       }
 
     /**
      * Converts a char to an array of 2 bytes.  The bytes in the return
-     * array are ordered with the one at index 0 as the high order byte
-     * and the one at index 1 as the low order byte.
+     * array are ordered with the byte at index 0 as the high order byte
+     * and the byte at index 1 as the low order byte.
      */
     public static byte[] charToBytes(char c)
       {
         byte[] result = new byte[2];
-
         result[0] = (byte) ((c >>> 8) & 0x00FF);
         result[1] = (byte) ((c >>> 0) & 0x00FF);
-
         return result;
       }
 
     /**
      * Converts a short to an array of 2 bytes.  The bytes in the return
-     * array are ordered with the one at index 0 as the high order byte
-     * and the one at index 1 as the low order byte.
+     * array are ordered with the byte at index 0 as the high order byte
+     * and the byte at index 1 as the low order byte.
      */
     public static byte[] shortToBytes(short n)
       {
         byte[] result = new byte[2];
-
         result[0] = (byte) ((n >>> 8) & 0x00FF);
         result[1] = (byte) ((n >>> 0) & 0x00FF);
-
         return result;
       }
 
     /**
      * Converts an int to an array of 4 bytes.  The bytes in the return
-     * array are ordered with the one at index 0 as the high order byte
-     * and the one at index 3 as the low order byte.
+     * array are ordered with the byte at index 0 as the high order byte
+     * and the byte at index 3 as the low order byte.
      */
     public static byte[] intToBytes(int n)
       {
         byte[] result = new byte[4];
-
         result[0] = (byte) ((n >>> 24) & 0x000000FF);
         result[1] = (byte) ((n >>> 16) & 0x000000FF);
-        result[2] = (byte) ((n >>>  8) & 0x000000FF);
-        result[3] = (byte) ((n >>>  0) & 0x000000FF);
-
+        result[2] = (byte) ((n >>> 8)  & 0x000000FF);
+        result[3] = (byte) ((n >>> 0)  & 0x000000FF);
         return result;
       }
   }

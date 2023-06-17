@@ -1,9 +1,9 @@
 package edu.citadel.cprl;
 
 /**
- * This class encapsulates the language concept of a string type in the
- * programming language CPRL.  A string is essentially a record with
- * two components as follows.
+ * This class encapsulates the language concept of a string type in
+ * the programming language CPRL.  A string is essentially a record
+ * with two components as follows:
  * <code>record { length : Integer, data : array[capacity] of Char }</code>
  */
 public class StringType extends Type

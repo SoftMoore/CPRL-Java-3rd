@@ -15,6 +15,6 @@ public class Constants
 
     public static final int BYTES_PER_BOOLEAN = 1;
 
-    /** A context contains 2 addresses &ndash; return address and dynamic link */
+    /** A context contains 2 addresses: return address and dynamic link */
     public static final int BYTES_PER_CONTEXT = 2*BYTES_PER_ADDRESS;
   }

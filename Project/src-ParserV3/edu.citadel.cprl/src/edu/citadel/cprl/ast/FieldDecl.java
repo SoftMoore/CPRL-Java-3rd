@@ -13,8 +13,8 @@ public class FieldDecl extends Declaration
     private int offset;   // offset for this field within the record; initialized
                           // to 0 but can be updated during constraint analysis
 
-    /** The size (number of bytes) associated with this field declaration,
-     *  which is simply the number of bytes associated with its type. */
+    // The size (number of bytes) associated with this field declaration,
+    // which is simply the number of bytes associated with its type.
     private int size;
 
     /**
@@ -24,7 +24,7 @@ public class FieldDecl extends Declaration
       {
         super(fieldId, type);
         offset = 0;
-        size = type.getSize();
+        size   = type.getSize();
       }
 
     /**
