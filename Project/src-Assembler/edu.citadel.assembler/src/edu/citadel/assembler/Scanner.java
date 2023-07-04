@@ -37,8 +37,7 @@ public class Scanner
 
         // initialize HashMap with reserved word symbols
         opcodeMap = new HashMap<>(100);
-        Symbol[] symbols = Symbol.values();
-        for (Symbol symbol : symbols)
+        for (Symbol symbol : Symbol.values())
           {
             if (symbol.isOpcode())
                 opcodeMap.put(symbol.toString(), symbol);
@@ -302,33 +301,32 @@ public class Scanner
 
         clearScanBuffer();
 
-        char c = (char) source.getChar();   // opening quote
-        scanBuffer.append(c);               // append the opening quote
+        char c = (char) source.getChar();           // opening quote
+        scanBuffer.append(c);                       // append the opening quote
 
         source.advance();
         checkGraphicChar(source.getChar());
-        c = (char) source.getChar();   // the character literal
+        c = (char) source.getChar();                // the character literal
 
-        if (c == '\\') // escaped character
-            scanBuffer.append(scanEscapedChar());   // call to scanEscapedChar()
-                                                    // advances source
-        else if (c == '\'')            // check for empty char literal
+        if (c == '\\')                              // escaped character
+            scanBuffer.append(scanEscapedChar());   // call to scanEscapedChar() advances source
+        else if (c == '\'')                         // check for empty char literal
           {
             source.advance();
             throw error("Char literal must contain exactly one character.");
           }
         else
           {
-            scanBuffer.append(c); // append the character literal
+            scanBuffer.append(c);                   // append the character literal
             source.advance();
           }
 
         checkGraphicChar(source.getChar());
-        c = (char) source.getChar();   // should be the closing quote
+        c = (char) source.getChar();                // should be the closing quote
 
         if (c == '\'')
           {
-            scanBuffer.append(c);      // append the closing quote
+            scanBuffer.append(c);                   // append the closing quote
             source.advance();
           }
         else
@@ -370,8 +368,7 @@ public class Scanner
             case '\"' -> '\"';   // double quote
             case '\'' -> '\'';   // single quote
             case '\\' -> '\\';   // backslash
-            default   -> throw new ScannerException(backslashPosition,
-                                                    "Illegal escape character.");
+            default   -> throw new ScannerException(backslashPosition, "Illegal escape character.");
           };
       }
 
