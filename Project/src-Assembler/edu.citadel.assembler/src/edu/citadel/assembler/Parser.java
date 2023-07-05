@@ -17,20 +17,18 @@ import java.util.Set;
  */
 public class Parser
   {
-    /**
-     * Symbols that can follow an assembly language instruction.
-     */
-    private Set<Symbol> instructionFollowers = makeInstructionFollowers();
-
     private Scanner scanner;
     private ErrorHandler errorHandler;
+
+    // Symbols that can follow an assembly language instruction.
+    private Set<Symbol> instructionFollowers = makeInstructionFollowers();
 
     /**
      * Returns a set of symbols that can follow an instruction.
      */
     private Set<Symbol> makeInstructionFollowers()
       {
-        EnumSet<Symbol> followers = EnumSet.noneOf(Symbol.class);
+        var followers = EnumSet.noneOf(Symbol.class);
 
         // add all opcodes
         for (Symbol symbol : Symbol.values())
@@ -129,7 +127,7 @@ public class Parser
       }
 
     private Instruction makeInstruction(List<Token> labels, Token opcode, Token arg)
-            throws ParserException
+        throws ParserException
       {
         checkArgs(opcode, arg);
 
