@@ -18,6 +18,16 @@ public abstract class AST
     private static ErrorHandler errorHandler;
 
     /**
+     * Initializes static members that are shared with all instructions.
+     * The members must be re-initialized each time that the assembler is
+     * run on a different file; e.g., via a command like ipAssemble *.asm.
+     */
+    public static void initStatic()
+      {
+        Instruction.initMaps();    
+      }
+
+    /**
      * Set the output stream to be used for code generation.
      */
     public static void setOutputStream(OutputStream out)

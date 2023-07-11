@@ -91,6 +91,7 @@ public class Assembler
     public Assembler(File sourceFile)
       {
         this.sourceFile = sourceFile;
+        AST.initStatic();
       }
 
     /**
@@ -109,7 +110,6 @@ public class Assembler
         Scanner scanner = new Scanner(source, errorHandler);
         Parser  parser  = new Parser(scanner, errorHandler);
         AST.setErrorHandler(errorHandler);
-        Instruction.initMaps();
 
         printProgressMessage("Starting assembly for " + sourceFile.getName());
 
