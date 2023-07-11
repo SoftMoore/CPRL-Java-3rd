@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class CVM
   {
     private static final boolean DEBUG = false;
+    private static final String SUFFIX = ".obj";
 
     // exit return value for failure
     private static final int FAILURE = -1;
@@ -33,31 +34,31 @@ public class CVM
     private static final int EOF = -1;
 
     // scanner for handling integer and string input
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
     // Reader for handling char input
-    private Reader reader;
+    private Reader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
 
     // PrintStream for handling output
-    private PrintStream out;
+    private PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
     // computer memory (for the virtual CPRL machine)
     private byte[] memory;
 
     // program counter (index of the next instruction in memory)
-    private int pc;
+    private int pc = 0;
 
     // base pointer
-    private int bp;
+    private int bp = 0;
 
     // stack pointer (index of the top of the stack)
-    private int sp;
+    private int sp = 0;
 
     // bottom of the stack
-    private int sb;
+    private int sb = 0;
 
     // true if the virtual computer is currently running
-    private boolean running;
+    private boolean running = false;
 
     /**
      * This method constructs a CPRL virtual machine, loads into memory the
@@ -73,12 +74,31 @@ public class CVM
             System.exit(0);
           }
 
-        var sourceFile = new File(args[0]);
+        var filename = args[0];
+        var sourceFile = new File(filename);
 
         if (!sourceFile.isFile())
           {
-            System.err.println("*** File " + args[0] + " not found ***");
-            System.exit(FAILURE);
+            // see if we can find the file by appending the suffix
+            int index = filename.lastIndexOf('.');
+
+            if (index < 0 || !filename.substring(index).equals(SUFFIX))
+              {
+                filename  += SUFFIX;
+                sourceFile = new File(filename);
+
+                if (!sourceFile.isFile())
+                  {
+                    System.err.println("*** File " + filename + " not found ***");
+                    System.exit(FAILURE);
+                  }
+              }
+            else
+              {
+                // don't try to append the suffix
+                System.err.println("*** File " + filename + " not found ***");
+                System.exit(FAILURE);
+              }
           }
 
         FileInputStream codeFile = new FileInputStream(sourceFile);
@@ -94,22 +114,10 @@ public class CVM
      */
     public CVM(int numOfBytes)
       {
-        scanner = new Scanner(System.in);
-        reader  = new InputStreamReader(System.in, StandardCharsets.UTF_8);
-        out     = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-
         // create and zero out memory
         memory = new byte[numOfBytes];
         for (int i = 0; i < memory.length; ++i)
             memory[i] = 0;
-
-        // initialize registers
-        pc = 0;
-        bp = 0;
-        sp = 0;
-        sb = 0;
-
-        running = false;
       }
 
     /**
@@ -440,6 +448,17 @@ public class CVM
       }
 
     /**
+     * Returns the character at the specified memory address.
+     * Does not alter pc, sp, or bp.
+     */
+    private char getCharAtAddr(int address)
+      {
+        byte b0 = memory[address + 0];
+        byte b1 = memory[address + 1];
+        return ByteUtil.bytesToChar(b0, b1);
+      }
+
+    /**
      * Returns the integer at the specified memory address.
      * Does not alter pc, sp, or bp.
      */
@@ -459,17 +478,6 @@ public class CVM
     private int getWordAtAddr(int address)
       {
         return getIntAtAddr(address);
-      }
-
-    /**
-     * Returns the character at the specified memory address.
-     * Does not alter pc, sp, or bp.
-     */
-    private char getCharAtAddr(int address)
-      {
-        byte b0 = memory[address + 0];
-        byte b1 = memory[address + 1];
-        return ByteUtil.bytesToChar(b0, b1);
       }
 
     /**
