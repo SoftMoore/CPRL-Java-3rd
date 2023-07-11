@@ -25,6 +25,16 @@ public abstract class AST
     private static ErrorHandler errorHandler;
 
     /**
+     * Initializes static members that are shared with all instructions.
+     * The members must be re-initialized each time that the compiler is
+     * run on a different file; e.g., via a command like cprlc *.asm1.
+     */
+    public static void initStatic()
+      {
+        currentLabelNum = -1;
+      }
+
+    /**
      * Set the print writer to be used for code generation.
      */
     public static void setPrintWriter(PrintWriter out)

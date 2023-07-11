@@ -17,6 +17,11 @@ public class Compiler
   {
     private static final String SUFFIX = ".cprl";
 
+    private Compiler()
+      {
+        AST.initStatic();
+      }
+
     /**
      * This method drives the compilation process.
      *
