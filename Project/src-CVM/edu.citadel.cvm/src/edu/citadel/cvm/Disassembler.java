@@ -12,6 +12,9 @@ public class Disassembler
   {
     private static final String SUFFIX = ".obj";
 
+    // exit return value for failure
+    private static final int FAILURE = -1;
+
     /**
      * Translates CVM machine code into CVM assembly language
      * for each object code file named in args.
@@ -23,12 +26,17 @@ public class Disassembler
 
         for (String fileName : args)
           {
-            FileInputStream file = new FileInputStream(fileName);
-
             // get object code file name minus the suffix
             int suffixIndex = fileName.lastIndexOf(SUFFIX);
-            String baseName = fileName.substring(0, suffixIndex);
+            if (suffixIndex < 0)
+              {
+                System.err.println("*** Invalid file name suffix: " + fileName + " ***");
+                System.exit(FAILURE);
+              }
+              
+            FileInputStream file = new FileInputStream(fileName);
 
+            var baseName = fileName.substring(0, suffixIndex);
             var outputFileName = baseName + ".dis.txt";
             var writer = new FileWriter(outputFileName, StandardCharsets.UTF_8);
             var out    = new PrintWriter(writer, true);
@@ -45,7 +53,7 @@ public class Disassembler
                 var opcodeAddrStr = String.format("%4s", opcodeAddr);
 
                 if (opcode == null)
-                    System.err.println("*** Unknown opcode " + inByte 
+                    System.err.println("*** Unknown opcode " + inByte
                                      + " in file " + fileName + " ***");
                 else if (opcode.isZeroOperandOpcode())
                   {
@@ -99,8 +107,8 @@ public class Disassembler
                                + strLength*Constants.BYTES_PER_CHAR;
                   }
                 else
-                  System.err.println("*** Unknown opcode " + inByte 
-                                   + " in file " + fileName + " ***");
+                    System.err.println("*** Unknown opcode " + inByte
+                                     + " in file " + fileName + " ***");
 
                 inByte = file.read();
             }
@@ -172,7 +180,7 @@ public class Disassembler
 
     private static void printUsageMessageAndExit()
       {
-        System.out.println("Usage: java edu.citadel.cvm.Disassembler filename");
+        System.out.println("Usage: Expecting one or more file names ending in \".obj\"");
         System.out.println();
         System.exit(0);
       }
