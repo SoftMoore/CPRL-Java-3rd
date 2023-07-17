@@ -81,7 +81,7 @@ public class Scanner
       }
 
     /**
-     * Advance until lookahead(1).symbol matches one of the symbols
+     * Advance until the lookahead symbol matches one of the symbols
      * in the given set or until end of file is encountered.
      */
     public void advanceTo(Set<Symbol> symbols) throws IOException
