@@ -4,7 +4,7 @@ Month March has a maximum of 31 days.
 Month April has a maximum of 30 days.
 Month May has a maximum of 31 days.
 Month June has a maximum of 30 days.
-Month July has a maximum of 1 days.
+Month July has a maximum of 31 days.
 Month August has a maximum of 31 days.
 Month September has a maximum of 30 days.
 Month October has a maximum of 31 days.

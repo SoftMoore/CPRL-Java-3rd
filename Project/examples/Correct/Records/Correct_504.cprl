@@ -33,7 +33,7 @@ proc initMonths()
     months[6].maxDays := 30;
 
     months[7].name := "July";
-    months[7].maxDays := 1;
+    months[7].maxDays := 31;
 
     months[8].name := "August";
     months[8].maxDays := 31;

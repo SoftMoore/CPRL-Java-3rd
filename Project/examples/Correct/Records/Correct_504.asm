@@ -128,7 +128,7 @@ _initMonths:
    ADD
    LDCINT 22
    ADD
-   LDCINT 1
+   LDCINT 31
    STOREW
    LDGADDR 0
    LDCINT 8
@@ -234,11 +234,11 @@ _main:
    LDLADDR 8
    LDCINT 1
    STOREW
-L82:
+L0:
    LDLADDR 8
    LOADW
    LDCINT 12
-   BG L83
+   BG L1
    LDGADDR 0
    LDLADDR 8
    LOADW
@@ -253,6 +253,6 @@ L82:
    LDCINT 1
    ADD
    STOREW
-   BR L82
-L83:
+   BR L0
+L1:
    RET 0
