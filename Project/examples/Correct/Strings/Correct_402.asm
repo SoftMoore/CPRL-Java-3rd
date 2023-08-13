@@ -11,7 +11,8 @@ _main:
 L0:
    LDLADDR 20
    LOADW
-   LDCINT 4
+   LDLADDR 8
+   LOADW
    BGE L1
    LDLADDR 8
    LDCINT 4

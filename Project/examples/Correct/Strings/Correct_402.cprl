@@ -6,7 +6,7 @@ proc main()
     var i : Integer;
 
     i := 0;
-    while i < 4 loop
+    while i < firstName.length loop
       {
         write firstName[i];
         i := i + 1;
