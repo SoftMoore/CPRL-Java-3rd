@@ -15,7 +15,7 @@ proc writeName(n : Name)
   {
     var i : Integer;
     i := 0;
-    while i < 4 loop
+    while i < n.length loop
       {
         write n[i];
         i := i + 1;

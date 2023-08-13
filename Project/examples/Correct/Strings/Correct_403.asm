@@ -27,11 +27,12 @@ _writeName:
    LDLADDR 8
    LDCINT 0
    STOREW
-L4:
+L0:
    LDLADDR 8
    LOADW
-   LDCINT 4
-   BGE L5
+   LDLADDR -44
+   LOADW
+   BGE L1
    LDLADDR -44
    LDCINT 4
    ADD
@@ -48,6 +49,6 @@ L4:
    LDCINT 1
    ADD
    STOREW
-   BR L4
-L5:
+   BR L0
+L1:
    RET 44
