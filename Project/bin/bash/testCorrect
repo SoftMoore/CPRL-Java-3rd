@@ -5,8 +5,8 @@
 # Assumes that commands cprlc and assemble have already run successfully.
 
 # Command-line arguments are as follows:
-# - %0 : the name of this file
-# - %1 : the name of the CPRL object file to test
+# - $0 : the name of this file
+# - $1 : the name of the CPRL object file to test
 
 echo Testing Program $1
 
