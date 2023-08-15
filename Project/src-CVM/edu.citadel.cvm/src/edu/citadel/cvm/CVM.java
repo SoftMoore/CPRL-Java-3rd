@@ -261,8 +261,18 @@ public class CVM
      */
     private void pause()
       {
+        int ch;
         out.println("Press enter to continue...");
-        System.console().readLine();   // does not work within IDE
+        try
+          {
+            ch = System.in.read();
+            while (ch != '\n')
+                ch = System.in.read();
+          }
+        catch (IOException ex)
+          {
+            // ignore
+          }
       }
 
     /**
