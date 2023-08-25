@@ -79,7 +79,7 @@ public class Type
 
         // assume that the literal text was parsed correctly by the compiler
         int i = 1;
-        while (i < literalText.length() - 3)
+        while (i <= literalText.length() - 3)
           {
             if (literalText.charAt(i) == '\\')
               {
