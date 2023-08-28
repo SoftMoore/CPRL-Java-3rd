@@ -22,7 +22,7 @@ public class CVM
     private static final int K = 1024;
 
     // default memory size for the virtual machine
-    private static final int DEFAULT_MEMORY_SIZE = 8*K;
+    private static final int DEFAULT_MEMORY_SIZE = 16*K;
 
     // virtual machine constant for false
     private static final byte FALSE = (byte) 0;
@@ -144,9 +144,9 @@ public class CVM
             sp = bp - 1;
             codeFile.close();
           }
-        catch (IOException e)
+        catch (IOException ex)
           {
-            error(e.toString());
+            error(ex.toString());
           }
       }
 
@@ -257,22 +257,33 @@ public class CVM
       }
 
     /**
+     * Alternative to Console.readline() when CVM runs in an IDE.
+     */
+    private void readLine()
+      {
+        int ch;
+        try
+          {
+            do
+                ch = System.in.read();
+            while (ch != '\n');
+          }
+        catch (IOException ex)
+          {
+            error(ex.toString());
+          }        
+      }
+    
+    /**
      * Prompt user and wait for user to press the enter key.
      */
     private void pause()
       {
-        int ch;
-        out.println("Press enter to continue...");
-        try
-          {
-            ch = System.in.read();
-            while (ch != '\n')
-                ch = System.in.read();
-          }
-        catch (IOException ex)
-          {
-            // ignore
-          }
+        Console console = System.console();
+        if (console == null)
+            readLine();
+        else
+            console.readLine();
       }
 
     /**
@@ -675,8 +686,7 @@ public class CVM
           }
         catch (IOException ex)
           {
-            ex.printStackTrace();
-            error("Invalid input");
+            error(ex.toString());
           }
       }
 
@@ -688,9 +698,9 @@ public class CVM
             int n = scanner.nextInt();
             putIntToAddr(n, destAddr);
           }
-        catch (NumberFormatException e)
+        catch (NumberFormatException ex)
           {
-            error("Invalid input");
+            error(ex.toString());
           }
       }
 
@@ -700,8 +710,12 @@ public class CVM
           {
             int destAddr = popInt();
             int capacity = fetchInt();
-            var data     = scanner.nextLine();
-            int length   = data.length() < capacity ? data.length() : capacity;
+            var data = "";
+            
+            if (scanner.hasNextLine())
+                data = scanner.nextLine();
+
+            int length = data.length() < capacity ? data.length() : capacity;
 
             putIntToAddr(length, destAddr);
             destAddr = destAddr + Constants.BYTES_PER_INTEGER;
@@ -711,10 +725,9 @@ public class CVM
                 destAddr = destAddr + Constants.BYTES_PER_CHAR;
               }
           }
-        catch (Exception e)
+        catch (Exception ex)
           {
-            // e could be a NumberFormatException or a NullPointerException
-            error("Invalid input");
+            error(ex.toString());
           }
       }
 
