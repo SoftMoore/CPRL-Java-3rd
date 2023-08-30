@@ -42,17 +42,17 @@ _max:
    LOADW
    LDLADDR -4
    LOADW
-   BL L60
+   BL L2
    LDLADDR -12
    LDLADDR -8
    LOADW
    STOREW
    RET 8
-   BR L61
-L60:
+   BR L3
+L2:
    LDLADDR -12
    LDLADDR -4
    LOADW
    STOREW
    RET 8
-L61:
+L3:

@@ -22,296 +22,296 @@ _main:
    LOADW
    LDGADDR 4
    LOADW
-   BL L82
+   BL L4
    LDCB 0
-   BR L83
-L82:
+   BR L5
+L4:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
-   BGE L80
+   BGE L2
    LDCB 1
-   BR L81
-L80:
+   BR L3
+L2:
    LDCB 0
-L81:
-L83:
-   BZ L84
+L3:
+L5:
+   BZ L6
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-   BR L85
-L84:
+   BR L7
+L6:
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-L85:
+L7:
    LDGADDR 0
    LOADW
    LDGADDR 4
    LOADW
-   BL L90
+   BL L12
    LDCB 0
-   BR L91
-L90:
+   BR L13
+L12:
    LDGADDR 0
    LOADW
    LDGADDR 8
    LOADW
-   BL L88
+   BL L10
    LDCB 1
-   BR L89
-L88:
+   BR L11
+L10:
    LDCB 0
-L89:
-L91:
-   BZ L92
+L11:
+L13:
+   BZ L14
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-   BR L93
-L92:
+   BR L15
+L14:
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-L93:
+L15:
    LDGADDR 4
    LOADW
    LDGADDR 0
    LOADW
-   BLE L98
+   BLE L20
    LDCB 0
-   BR L99
-L98:
+   BR L21
+L20:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
-   BGE L96
+   BGE L18
    LDCB 1
-   BR L97
-L96:
+   BR L19
+L18:
    LDCB 0
-L97:
-L99:
-   BZ L100
+L19:
+L21:
+   BZ L22
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-   BR L101
-L100:
+   BR L23
+L22:
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-L101:
+L23:
    LDGADDR 4
    LOADW
    LDGADDR 0
    LOADW
-   BL L106
+   BL L28
    LDCB 0
-   BR L107
-L106:
+   BR L29
+L28:
    LDGADDR 8
    LOADW
    LDGADDR 0
    LOADW
    NEG
-   BG L104
+   BG L26
    LDCB 1
-   BR L105
-L104:
+   BR L27
+L26:
    LDCB 0
-L105:
-L107:
-   BZ L108
+L27:
+L29:
+   BZ L30
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-   BR L109
-L108:
+   BR L31
+L30:
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-L109:
+L31:
    LDGADDR 0
    LOADW
    LDGADDR 4
    LOADW
-   BGE L114
+   BGE L36
    LDCB 1
-   BR L115
-L114:
+   BR L37
+L36:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
-   BGE L112
+   BGE L34
    LDCB 1
-   BR L113
-L112:
+   BR L35
+L34:
    LDCB 0
-L113:
-L115:
-   BZ L116
+L35:
+L37:
+   BZ L38
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-   BR L117
-L116:
+   BR L39
+L38:
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-L117:
+L39:
    LDGADDR 0
    LOADW
    LDGADDR 4
    LOADW
-   BGE L122
+   BGE L44
    LDCB 1
-   BR L123
-L122:
+   BR L45
+L44:
    LDGADDR 4
    LOADW
    NEG
    LDGADDR 8
    LOADW
-   BLE L120
+   BLE L42
    LDCB 1
-   BR L121
-L120:
+   BR L43
+L42:
    LDCB 0
-L121:
-L123:
-   BZ L124
+L43:
+L45:
+   BZ L46
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-   BR L125
-L124:
+   BR L47
+L46:
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-L125:
+L47:
    LDGADDR 4
    LOADW
    LDGADDR 0
    LOADW
-   BG L130
+   BG L52
    LDCB 1
-   BR L131
-L130:
+   BR L53
+L52:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
-   BGE L128
+   BGE L50
    LDCB 1
-   BR L129
-L128:
+   BR L51
+L50:
    LDCB 0
-L129:
-L131:
-   BZ L132
+L51:
+L53:
+   BZ L54
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-   BR L133
-L132:
+   BR L55
+L54:
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-L133:
+L55:
    LDGADDR 0
    LOADW
    NEG
    LDGADDR 4
    LOADW
-   BGE L138
+   BGE L60
    LDCB 1
-   BR L139
-L138:
+   BR L61
+L60:
    LDGADDR 8
    LOADW
    LDGADDR 4
    LOADW
-   BG L136
+   BG L58
    LDCB 1
-   BR L137
-L136:
+   BR L59
+L58:
    LDCB 0
-L137:
-L139:
-   BZ L140
+L59:
+L61:
+   BZ L62
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-   BR L141
-L140:
+   BR L63
+L62:
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-L141:
+L63:
    LDGADDR 8
    LDCINT 0
    STOREW
    LDGADDR 12
    LOADB
-   BNZ L144
+   BNZ L66
    LDCB 0
-   BR L145
-L144:
+   BR L67
+L66:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
    DIV
    LDCINT 2
-   BL L142
+   BL L64
    LDCB 1
-   BR L143
-L142:
+   BR L65
+L64:
    LDCB 0
-L143:
-L145:
-   BZ L146
+L65:
+L67:
+   BZ L68
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-   BR L147
-L146:
+   BR L69
+L68:
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-L147:
+L69:
    LDGADDR 13
    LOADB
-   BZ L150
+   BZ L72
    LDCB 1
-   BR L151
-L150:
+   BR L73
+L72:
    LDGADDR 4
    LOADW
    LDGADDR 8
    LOADW
    DIV
    LDCINT 0
-   BGE L148
+   BGE L70
    LDCB 1
-   BR L149
-L148:
+   BR L71
+L70:
    LDCB 0
-L149:
-L151:
-   BZ L152
+L71:
+L73:
+   BZ L74
    LDCSTR "valid"
    PUTSTR 5
    PUTEOL
-   BR L153
-L152:
+   BR L75
+L74:
    LDCSTR "not valid"
    PUTSTR 9
    PUTEOL
-L153:
+L75:
    RET 0

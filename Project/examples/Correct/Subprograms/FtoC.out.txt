@@ -1,0 +1,1 @@
+Enter temperature in degrees Fahrenheit: Temperature in degrees Celsius is 30

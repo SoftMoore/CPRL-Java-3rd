@@ -5,12 +5,12 @@ _writeStr:
    LDLADDR 8
    LDCINT 0
    STOREW
-L94:
+L0:
    LDLADDR 8
    LOADW
    LDLADDR -24
    LOADW
-   BGE L95
+   BGE L1
    LDLADDR -24
    LDCINT 4
    ADD
@@ -27,8 +27,8 @@ L94:
    LDCINT 1
    ADD
    STOREW
-   BR L94
-L95:
+   BR L0
+L1:
    RET 24
 _makeMyString:
    PROC 28
@@ -39,12 +39,12 @@ _makeMyString:
    LDLADDR 32
    LDCINT 0
    STOREW
-L98:
+L4:
    LDLADDR 32
    LOADW
    LDLADDR -24
    LOADW
-   BGE L99
+   BGE L5
    LDLADDR 8
    LDCINT 4
    ADD
@@ -69,8 +69,8 @@ L98:
    LDCINT 1
    ADD
    STOREW
-   BR L98
-L99:
+   BR L4
+L5:
    LDLADDR -48
    LDLADDR 8
    LOAD 24

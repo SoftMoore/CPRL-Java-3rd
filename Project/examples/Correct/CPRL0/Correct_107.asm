@@ -16,22 +16,22 @@ _main:
    LDGADDR 0
    LOADW
    LDCINT 7
-   BLE L16
+   BLE L0
    LDCB 1
-   BR L17
-L16:
+   BR L1
+L0:
    LDCB 0
-L17:
+L1:
    STOREB
    LDGADDR 0
    LOADW
    LDCINT 0
-   BGE L28
+   BGE L12
    LDGADDR 4
    LDCINT 1
    NEG
    STOREW
-L20:
+L4:
    LDGADDR 0
    LDGADDR 0
    LOADW
@@ -43,42 +43,42 @@ L20:
    LDGADDR 0
    LOADW
    LDCINT 0
-   BG L21
-   BR L20
-L21:
-   BR L29
-L28:
+   BG L5
+   BR L4
+L5:
+   BR L13
+L12:
    LDGADDR 0
    LOADW
    LDCINT 0
-   BNE L26
+   BNE L10
    LDGADDR 4
    LDCINT 0
    STOREW
-   BR L27
-L26:
+   BR L11
+L10:
    LDGADDR 4
    LDCINT 1
    STOREW
-L27:
-L29:
+L11:
+L13:
    LDGADDR 12
    LOADB
-   BNZ L30
+   BNZ L14
    LDCB 0
-   BR L31
-L30:
+   BR L15
+L14:
    LDCB 0
    NOT
-L31:
-   BZ L32
+L15:
+   BZ L16
    LDCSTR "TRUE   "
    PUTSTR 7
-   BR L33
-L32:
+   BR L17
+L16:
    LDCSTR "FALSE   "
    PUTSTR 8
-L33:
+L17:
    LDGADDR 0
    LOADW
    PUTINT

@@ -25,64 +25,64 @@ _main:
    LDGADDR 2
    LOADW
    LDCINT 0
-   BE L34
+   BE L0
    LDCB 1
-   BR L35
-L34:
+   BR L1
+L0:
    LDCB 0
-L35:
+L1:
    STOREB
    LDGADDR 1
    LDGADDR 6
    LOADW
    LDCINT 0
-   BE L36
+   BE L2
    LDCB 1
-   BR L37
-L36:
+   BR L3
+L2:
    LDCB 0
-L37:
+L3:
    STOREB
    LDCSTR "b1 and b2 = "
    PUTSTR 12
    LDGADDR 0
    LOADB
-   BNZ L38
+   BNZ L4
    LDCB 0
-   BR L39
-L38:
+   BR L5
+L4:
    LDGADDR 1
    LOADB
-L39:
-   BZ L40
+L5:
+   BZ L6
    LDCSTR "true"
    PUTSTR 4
    PUTEOL
-   BR L41
-L40:
+   BR L7
+L6:
    LDCSTR "false"
    PUTSTR 5
    PUTEOL
-L41:
+L7:
    LDCSTR "b1 or  b2 = "
    PUTSTR 12
    LDGADDR 0
    LOADB
-   BZ L42
+   BZ L8
    LDCB 1
-   BR L43
-L42:
+   BR L9
+L8:
    LDGADDR 1
    LOADB
-L43:
-   BZ L44
+L9:
+   BZ L10
    LDCSTR "true"
    PUTSTR 4
    PUTEOL
-   BR L45
-L44:
+   BR L11
+L10:
    LDCSTR "false"
    PUTSTR 5
    PUTEOL
-L45:
+L11:
    RET 0

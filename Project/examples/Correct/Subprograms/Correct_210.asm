@@ -2,7 +2,7 @@
    HALT
 _main:
    PROC 8
-L26:
+L0:
    LDCSTR "Enter value for a (0 to exit):  "
    PUTSTR 32
    LDLADDR 8
@@ -16,7 +16,7 @@ L26:
    LDLADDR 8
    LOADW
    LDCINT 0
-   BE L27
+   BE L1
    LDCSTR "Enter value for b:  "
    PUTSTR 20
    LDLADDR 12
@@ -49,8 +49,8 @@ L26:
    CALL _writeBoolean
    PUTEOL
    PUTEOL
-   BR L26
-L27:
+   BR L0
+L1:
    LDCSTR "Done."
    PUTSTR 5
    PUTEOL
@@ -61,23 +61,23 @@ _lessThan:
    LOADW
    LDLADDR -4
    LOADW
-   BGE L30
+   BGE L4
    LDCB 1
-   BR L31
-L30:
+   BR L5
+L4:
    LDCB 0
-L31:
+L5:
    STOREB
    RET 8
 _writeBoolean:
    LDLADDR -1
    LOADB
-   BZ L32
+   BZ L6
    LDCSTR "true"
    PUTSTR 4
-   BR L33
-L32:
+   BR L7
+L6:
    LDCSTR "false"
    PUTSTR 5
-L33:
+L7:
    RET 1

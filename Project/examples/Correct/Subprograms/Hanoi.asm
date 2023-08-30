@@ -17,7 +17,7 @@ _move:
    LDLADDR -10
    LOADW
    LDCINT 0
-   BLE L56
+   BLE L2
    LDLADDR -10
    LOADW
    LDCINT 1
@@ -51,5 +51,5 @@ _move:
    LDLADDR -6
    LOAD2B
    CALL _move
-L56:
+L2:
    RET 10

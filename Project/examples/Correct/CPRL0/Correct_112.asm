@@ -21,13 +21,13 @@ _main:
    LDCINT 1
    SUB
    STOREW
-L64:
+L0:
    LDGADDR 0
    LOADW
    LDCINT 2
    LDCINT 5
    MUL
-   BG L65
+   BG L1
    LDGADDR 0
    LDGADDR 0
    LOADW
@@ -39,32 +39,32 @@ L64:
    LDCINT 2
    MOD
    LDCINT 0
-   BNE L74
+   BNE L10
    LDCSTR "even"
    PUTSTR 4
    PUTEOL
-   BR L75
-L74:
+   BR L11
+L10:
    LDGADDR 0
    LOADW
    LDCINT 2
    MOD
    LDCINT 1
-   BNE L72
+   BNE L8
    LDCSTR "odd"
    PUTSTR 3
    PUTEOL
-   BR L73
-L72:
+   BR L9
+L8:
    LDCSTR "weird"
    PUTSTR 5
    PUTEOL
-L73:
-L75:
+L9:
+L11:
    LDGADDR 0
    LOADW
    LDCINT 9
-   BE L65
-   BR L64
-L65:
+   BE L1
+   BR L0
+L1:
    RET 0

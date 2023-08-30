@@ -1,0 +1,222 @@
+Starting compilation for Incorrect_201.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 14, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_201.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_202.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 10, character 9:
+    Expression for a var parameter must be a variable.
+Errors detected in Incorrect_202.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_203.cprl
+...parsing
+*** Syntax error detected near line 5, character 5:
+    Expecting "{" but found "n" instead.
+Errors detected in Incorrect_203.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_204.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 14, character 12:
+    Parameter type mismatch.
+Errors detected in Incorrect_204.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_205.cprl
+...parsing
+*** Syntax error detected near line 2, character 8:
+    Expecting ":" but found "=" instead.
+*** Syntax error detected near line 19, character 5:
+    Identifier "x2" has not been declared.
+Errors detected in Incorrect_205.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_206.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 13, character 10:
+    Incorrect number of actual parameters.
+Errors detected in Incorrect_206.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_207.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 3, character 5:
+    A function must have at least one return statement.
+Errors detected in Incorrect_207.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_208.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 16:
+    Right operand for expression should have type Integer.
+Errors detected in Incorrect_208.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_209.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 13, character 10:
+    Incorrect number of actual parameters.
+Errors detected in Incorrect_209.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_210.cprl
+...parsing
+*** Syntax error detected near line 11, character 3:
+    Expecting ";" but found "}" instead.
+Errors detected in Incorrect_210.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_211.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 13, character 12:
+    Parameter type mismatch.
+Errors detected in Incorrect_211.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_212.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 3, character 11:
+    A function cannot have var parameters.
+Errors detected in Incorrect_212.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_213.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 4, character 9:
+    A return statement nested within a function must return a value.
+Errors detected in Incorrect_213.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_214.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 16:
+    Return expression type does not match function return type.
+Errors detected in Incorrect_214.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_215.cprl
+...parsing
+*** Syntax error detected near line 6, character 5:
+    Identifier "f" is already defined in the current scope.
+Errors detected in Incorrect_215.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_216.cprl
+...parsing
+...checking constraints
+*** Constraint error detected:
+    Program is missing procedure "main()".
+Errors detected in Incorrect_216.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_217.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 7, character 16:
+    Right operand for expression should have type Integer.
+Errors detected in Incorrect_217.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_218.cprl
+...parsing
+*** Syntax error detected near line 11, character 13:
+    Identifier "inc" is not valid as an expression.
+Errors detected in Incorrect_218.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_219.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_219.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_220.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 3, character 18:
+    The number "9999999999999" cannot be converted to an integer in CPRL.
+Errors detected in Incorrect_220.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_221.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 14, character 7:
+    Parameter type mismatch.
+Errors detected in Incorrect_221.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_222.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 7, character 16:
+    Return expression allowed only within functions.
+Errors detected in Incorrect_222.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_223.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 5:
+    Identifier "main" was not declared as a procedure.
+Errors detected in Incorrect_223.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_224.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 6:
+    Procedure "main" cannot have parameters.
+Errors detected in Incorrect_224.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_225.cprl
+...parsing
+*** Syntax error detected near line 9, character 1:
+    Expecting "proc" or "fun" but found "procedure" instead.
+Errors detected in Incorrect_225.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_226.cprl
+...parsing
+*** Syntax error detected near line 1, character 1:
+    Expecting "proc" or "fun" but found "function" instead.
+Errors detected in Incorrect_226.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_227.cprl
+...parsing
+*** Syntax error detected near line 8, character 6:
+    Identifier "p" is already defined in the current scope.
+Errors detected in Incorrect_227.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_228.cprl
+...parsing
+*** Syntax error detected near line 8, character 26:
+    Expecting "{" but found ":" instead.
+Errors detected in Incorrect_228.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_229.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 5:
+    Procedure "q" has not been declared.
+Errors detected in Incorrect_229.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_230.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 4, character 13:
+    Function "g" has not been declared.
+*** Constraint error detected near line 4, character 13:
+    Output supported only for integers, characters, booleans, and strings.
+Errors detected in Incorrect_230.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_231.cprl
+...parsing
+*** Syntax error detected near line 1, character 13:
+    Invalid type declaration.
+*** Syntax error detected near line 5, character 13:
+    Identifier "Name" has not been declared.
+Errors detected in Incorrect_231.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_232.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 24:
+    Type mismatch for variable initialization.
+*** Constraint error detected near line 6, character 21:
+    Type mismatch for variable initialization.
+Errors detected in Incorrect_232.cprl -- compilation terminated.
+

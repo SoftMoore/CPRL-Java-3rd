@@ -1,0 +1,175 @@
+   CALL _main
+   HALT
+_main:
+   PROC 332
+   LDCSTR "Enter an empty string to exit."
+   PUTSTR 30
+   PUTEOL
+L0:
+   LDCSTR "First string?   "
+   PUTSTR 16
+   LDLADDR 8
+   GETSTR 80
+   LDLADDR 8
+   LOADW
+   LDCINT 0
+   BE L1
+   LDCSTR "Second string?  "
+   PUTSTR 16
+   LDLADDR 172
+   GETSTR 80
+   LDLADDR 336
+   ALLOC 4
+   LDLADDR 8
+   LOAD 164
+   LDLADDR 172
+   LOAD 164
+   CALL _strcmp
+   STOREW
+   LDLADDR 336
+   LOADW
+   LDCINT 0
+   BGE L10
+   LDLADDR 8
+   LOAD 164
+   PUTSTR 80
+   LDCSTR " is less than "
+   PUTSTR 14
+   LDLADDR 172
+   LOAD 164
+   PUTSTR 80
+   PUTEOL
+   BR L11
+L10:
+   LDLADDR 336
+   LOADW
+   LDCINT 0
+   BLE L8
+   LDLADDR 8
+   LOAD 164
+   PUTSTR 80
+   LDCSTR " is greater than "
+   PUTSTR 17
+   LDLADDR 172
+   LOAD 164
+   PUTSTR 80
+   PUTEOL
+   BR L9
+L8:
+   LDLADDR 8
+   LOAD 164
+   PUTSTR 80
+   LDCSTR " is equal to "
+   PUTSTR 13
+   LDLADDR 172
+   LOAD 164
+   PUTSTR 80
+   PUTEOL
+L9:
+L11:
+   PUTEOL
+   BR L0
+L1:
+   RET 0
+_strcmp:
+   PROC 8
+   LDLADDR 8
+   LDCINT 0
+   STOREW
+   LDLADDR 12
+   LDLADDR -328
+   LOADW
+   STOREW
+   LDLADDR -164
+   LOADW
+   LDLADDR -328
+   LOADW
+   BGE L14
+   LDLADDR 12
+   LDLADDR -164
+   LOADW
+   STOREW
+L14:
+L16:
+   LDLADDR 8
+   LOADW
+   LDLADDR 12
+   LOADW
+   BGE L17
+   LDCB 0
+   LDCB 0
+   LDLADDR -328
+   LDCINT 4
+   ADD
+   LDLADDR 8
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDLADDR -164
+   LDCINT 4
+   ADD
+   LDLADDR 8
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LOAD2B
+   BGE L26
+   LDLADDR -332
+   LDCINT 1
+   NEG
+   STOREW
+   RET 328
+   BR L27
+L26:
+   LDCB 0
+   LDCB 0
+   LDLADDR -328
+   LDCINT 4
+   ADD
+   LDLADDR 8
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDLADDR -164
+   LDCINT 4
+   ADD
+   LDLADDR 8
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LOAD2B
+   BLE L24
+   LDLADDR -332
+   LDCINT 1
+   STOREW
+   RET 328
+   BR L25
+L24:
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+L25:
+L27:
+   BR L16
+L17:
+   LDLADDR -332
+   LDLADDR -328
+   LOADW
+   LDLADDR -164
+   LOADW
+   SUB
+   STOREW
+   RET 328

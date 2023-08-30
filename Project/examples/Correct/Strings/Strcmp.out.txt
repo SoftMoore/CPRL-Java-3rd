@@ -1,0 +1,12 @@
+Enter an empty string to exit.
+First string?   Second string?  abcd is less than wxyz
+
+First string?   Second string?  wxyz is greater than abcd
+
+First string?   Second string?  abc is less than abcd
+
+First string?   Second string?  abcd is equal to abcd
+
+First string?   Second string?  456 is less than 89
+
+First string?   

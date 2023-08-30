@@ -5,7 +5,7 @@
    CALL _main
    HALT
 _main:
-L162:
+L0:
    LDGADDR 0
    LDGADDR 0
    LOADW
@@ -15,9 +15,9 @@ L162:
    LDGADDR 0
    LOADW
    LDCINT 6
-   BE L163
-   BR L162
-L163:
+   BE L1
+   BR L0
+L1:
    LDCSTR "x = "
    PUTSTR 4
    LDGADDR 0

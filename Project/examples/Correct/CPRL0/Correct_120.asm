@@ -9,24 +9,24 @@ _main:
    LDGADDR 0
    LOADW
    LDCINT 10
-   BG L168
+   BG L0
    LDCB 1
-   BR L169
-L168:
+   BR L1
+L0:
    LDCB 0
-L169:
+L1:
    NOT
    STOREB
    LDGADDR 4
    LOADB
-   BZ L170
+   BZ L2
    LDCSTR "not (x <= 10)"
    PUTSTR 13
    PUTEOL
-   BR L171
-L170:
+   BR L3
+L2:
    LDCSTR "x <= 10"
    PUTSTR 7
    PUTEOL
-L171:
+L3:
    RET 0

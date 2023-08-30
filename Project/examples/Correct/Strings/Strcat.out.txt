@@ -1,0 +1,1 @@
+"Hello, " concatenated with "world." is Hello, world.

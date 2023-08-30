@@ -1,0 +1,88 @@
+   0:  CALL 1
+   5:  HALT
+   6:  PROC 104
+  11:  LDLADDR 8
+  16:  LDCSTR  "before tab \t after tab"
+  65:  STORE 48
+  70:  LDLADDR 8
+  75:  LOAD 104
+  80:  PUTSTR 50
+  85:  PUTEOL
+  86:  LDCSTR  "length of testString = "
+ 137:  PUTSTR 23
+ 142:  LDLADDR 8
+ 147:  LOADW
+ 148:  PUTINT
+ 149:  PUTEOL
+ 150:  PUTEOL
+ 151:  LDLADDR 8
+ 156:  LDCSTR  "before carriage return \t after carriage return"
+ 253:  STORE 96
+ 258:  LDLADDR 8
+ 263:  LOAD 104
+ 268:  PUTSTR 50
+ 273:  PUTEOL
+ 274:  LDCSTR  "length of testString = "
+ 325:  PUTSTR 23
+ 330:  LDLADDR 8
+ 335:  LOADW
+ 336:  PUTINT
+ 337:  PUTEOL
+ 338:  PUTEOL
+ 339:  LDLADDR 8
+ 344:  LDCSTR  "before newline \n after newline"
+ 409:  STORE 64
+ 414:  LDLADDR 8
+ 419:  LOAD 104
+ 424:  PUTSTR 50
+ 429:  PUTEOL
+ 430:  LDCSTR  "length of testString = "
+ 481:  PUTSTR 23
+ 486:  LDLADDR 8
+ 491:  LOADW
+ 492:  PUTINT
+ 493:  PUTEOL
+ 494:  PUTEOL
+ 495:  LDLADDR 8
+ 500:  LDCSTR  "before single quote \' after single quote"
+ 585:  STORE 84
+ 590:  LDLADDR 8
+ 595:  LOAD 104
+ 600:  PUTSTR 50
+ 605:  PUTEOL
+ 606:  LDCSTR  "length of testString = "
+ 657:  PUTSTR 23
+ 662:  LDLADDR 8
+ 667:  LOADW
+ 668:  PUTINT
+ 669:  PUTEOL
+ 670:  PUTEOL
+ 671:  LDLADDR 8
+ 676:  LDCSTR  "before double quote \" after double quote"
+ 761:  STORE 84
+ 766:  LDLADDR 8
+ 771:  LOAD 104
+ 776:  PUTSTR 50
+ 781:  PUTEOL
+ 782:  LDCSTR  "length of testString = "
+ 833:  PUTSTR 23
+ 838:  LDLADDR 8
+ 843:  LOADW
+ 844:  PUTINT
+ 845:  PUTEOL
+ 846:  PUTEOL
+ 847:  LDLADDR 8
+ 852:  LDCSTR  "before backslash \\ after backslash"
+ 925:  STORE 72
+ 930:  LDLADDR 8
+ 935:  LOAD 104
+ 940:  PUTSTR 50
+ 945:  PUTEOL
+ 946:  LDCSTR  "length of testString = "
+ 997:  PUTSTR 23
+1002:  LDLADDR 8
+1007:  LOADW
+1008:  PUTINT
+1009:  PUTEOL
+1010:  PUTEOL
+1011:  RET0

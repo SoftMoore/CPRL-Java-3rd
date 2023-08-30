@@ -9,11 +9,11 @@ _main:
    LDGADDR 0
    LOADW
    LDCINT 5
-   BG L166
+   BG L0
    LDCB 1
-   BR L167
-L166:
+   BR L1
+L0:
    LDCB 0
-L167:
+L1:
    PUTBYTE
    RET 0

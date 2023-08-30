@@ -3,16 +3,16 @@
 _print:
    LDLADDR -1
    LOADB
-   BZ L12
+   BZ L0
    LDCSTR "true"
    PUTSTR 4
    PUTEOL
-   BR L13
-L12:
+   BR L1
+L0:
    LDCSTR "false"
    PUTSTR 5
    PUTEOL
-L13:
+L1:
    RET 1
 _main:
    PROC 2
@@ -31,68 +31,68 @@ _main:
    CALL _print
    LDLADDR 8
    LOADB
-   BNZ L14
+   BNZ L2
    LDCB 0
-   BR L15
-L14:
+   BR L3
+L2:
    LDLADDR 9
    LOADB
-L15:
+L3:
    CALL _print
    LDLADDR 8
    LOADB
-   BNZ L16
+   BNZ L4
    LDCB 0
-   BR L17
-L16:
+   BR L5
+L4:
    LDLADDR 9
    LOADB
    NOT
-L17:
+L5:
    CALL _print
    LDLADDR 8
    LOADB
    NOT
-   BNZ L18
+   BNZ L6
    LDCB 0
-   BR L19
-L18:
+   BR L7
+L6:
    LDLADDR 9
    LOADB
    NOT
-L19:
+L7:
    CALL _print
    LDLADDR 8
    LOADB
-   BZ L20
+   BZ L8
    LDCB 1
-   BR L21
-L20:
+   BR L9
+L8:
    LDLADDR 9
    LOADB
-L21:
+L9:
    CALL _print
    LDLADDR 8
    LOADB
-   BZ L22
+   BZ L10
    LDCB 1
-   BR L23
-L22:
+   BR L11
+L10:
    LDLADDR 9
    LOADB
    NOT
-L23:
+L11:
    CALL _print
    LDLADDR 8
    LOADB
    NOT
-   BZ L24
+   BZ L12
    LDCB 1
-   BR L25
-L24:
+   BR L13
+L12:
    LDLADDR 9
    LOADB
    NOT
-L25:
+L13:
    CALL _print
    RET 0

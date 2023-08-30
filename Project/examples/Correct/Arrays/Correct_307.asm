@@ -101,11 +101,11 @@ _writeArray:
    LDLADDR 8
    LDCINT 0
    STOREW
-L60:
+L0:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L61
+   BGE L1
    LDLADDR -4
    LOADW
    LDLADDR 8
@@ -123,8 +123,8 @@ L60:
    LDCINT 1
    ADD
    STOREW
-   BR L60
-L61:
+   BR L0
+L1:
    PUTEOL
    RET 4
 _max:
@@ -141,11 +141,11 @@ _max:
    LDLADDR 8
    LDCINT 1
    STOREW
-L64:
+L4:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L65
+   BGE L5
    LDLADDR -4
    LOADW
    LDLADDR 8
@@ -156,7 +156,7 @@ L64:
    LOADW
    LDLADDR 12
    LOADW
-   BLE L70
+   BLE L10
    LDLADDR 12
    LDLADDR -4
    LOADW
@@ -167,15 +167,15 @@ L64:
    ADD
    LOADW
    STOREW
-L70:
+L10:
    LDLADDR 8
    LDLADDR 8
    LOADW
    LDCINT 1
    ADD
    STOREW
-   BR L64
-L65:
+   BR L4
+L5:
    LDLADDR -8
    LDLADDR 12
    LOADW

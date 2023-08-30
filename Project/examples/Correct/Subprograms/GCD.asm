@@ -2,7 +2,7 @@
    HALT
 _main:
    PROC 8
-L42:
+L0:
    LDCSTR "Enter value for a (0 to exit):  "
    PUTSTR 32
    LDLADDR 8
@@ -16,7 +16,7 @@ L42:
    LDLADDR 8
    LOADW
    LDCINT 0
-   BE L43
+   BE L1
    LDCSTR "Enter value for b:  "
    PUTSTR 20
    LDLADDR 12
@@ -49,8 +49,8 @@ L42:
    PUTINT
    PUTEOL
    PUTEOL
-   BR L42
-L43:
+   BR L0
+L1:
    LDCSTR "Done."
    PUTSTR 5
    PUTEOL
@@ -69,11 +69,11 @@ _gcd:
    LOADW
    CALL _abs
    STOREW
-L46:
+L4:
    LDLADDR -4
    LOADW
    LDCINT 0
-   BE L47
+   BE L5
    LDLADDR 8
    LDLADDR -8
    LOADW
@@ -89,8 +89,8 @@ L46:
    LOADW
    MOD
    STOREW
-   BR L46
-L47:
+   BR L4
+L5:
    LDLADDR -12
    LDLADDR -8
    LOADW
@@ -100,18 +100,18 @@ _abs:
    LDLADDR -4
    LOADW
    LDCINT 0
-   BL L52
+   BL L10
    LDLADDR -8
    LDLADDR -4
    LOADW
    STOREW
    RET 4
-   BR L53
-L52:
+   BR L11
+L10:
    LDLADDR -8
    LDLADDR -4
    LOADW
    NEG
    STOREW
    RET 4
-L53:
+L11:

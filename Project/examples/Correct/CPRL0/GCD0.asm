@@ -2,7 +2,7 @@
    CALL _main
    HALT
 _main:
-L196:
+L0:
    LDCSTR "Enter value for a (0 to exit):  "
    PUTSTR 32
    LDGADDR 0
@@ -17,7 +17,7 @@ L196:
    LDGADDR 0
    LOADW
    LDCINT 0
-   BE L197
+   BE L1
    LDCSTR "Enter value for b:  "
    PUTSTR 20
    LDGADDR 4
@@ -40,24 +40,24 @@ L196:
    LDGADDR 8
    LOADW
    LDCINT 0
-   BGE L202
+   BGE L6
    LDGADDR 8
    LDGADDR 8
    LOADW
    NEG
    STOREW
-L202:
+L6:
    LDGADDR 12
    LOADW
    LDCINT 0
-   BGE L206
+   BGE L10
    LDGADDR 12
    LDGADDR 12
    LOADW
    NEG
    STOREW
-L206:
-L208:
+L10:
+L12:
    LDGADDR 16
    LDGADDR 8
    LOADW
@@ -76,9 +76,9 @@ L208:
    LDGADDR 12
    LOADW
    LDCINT 0
-   BE L209
-   BR L208
-L209:
+   BE L13
+   BR L12
+L13:
    LDCSTR "GCD("
    PUTSTR 4
    LDGADDR 0
@@ -96,8 +96,8 @@ L209:
    PUTINT
    PUTEOL
    PUTEOL
-   BR L196
-L197:
+   BR L0
+L1:
    LDCSTR "Done."
    PUTSTR 5
    PUTEOL

@@ -1,0 +1,90 @@
+   CALL _main
+   HALT
+_main:
+   PROC 328
+   LDLADDR 8
+   LDCSTR "Hello, "
+   STORE 18
+   LDLADDR 172
+   LDCSTR "world."
+   STORE 16
+   LDCSTR "\""
+   PUTSTR 1
+   LDLADDR 8
+   LOAD 164
+   PUTSTR 80
+   LDCSTR "\" concatenated with \""
+   PUTSTR 21
+   LDLADDR 172
+   LOAD 164
+   PUTSTR 80
+   LDCSTR "\" is "
+   PUTSTR 5
+   LDLADDR 8
+   LDLADDR 172
+   LOAD 164
+   CALL _strcat
+   LDLADDR 8
+   LOAD 164
+   PUTSTR 80
+   PUTEOL
+   RET 0
+_strcat:
+   PROC 8
+   LDLADDR 12
+   LDCINT 0
+   STOREW
+   LDLADDR 8
+   LDLADDR -168
+   LOADW
+   LOADW
+   STOREW
+L0:
+   LDLADDR 12
+   LOADW
+   LDLADDR -164
+   LOADW
+   BGE L1
+   LDLADDR -168
+   LOADW
+   LDCINT 4
+   ADD
+   LDLADDR 8
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LDLADDR -164
+   LDCINT 4
+   ADD
+   LDLADDR 12
+   LOADW
+   LDCINT 2
+   MUL
+   ADD
+   LOAD2B
+   STORE2B
+   LDLADDR 12
+   LDLADDR 12
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   LDLADDR 8
+   LDLADDR 8
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L0
+L1:
+   LDLADDR -168
+   LOADW
+   LDLADDR -168
+   LOADW
+   LOADW
+   LDLADDR -164
+   LOADW
+   ADD
+   STOREW
+   RET 168

@@ -15,11 +15,11 @@ _printArray:
    LDLADDR 8
    LDCINT 0
    STOREW
-L44:
+L0:
    LDLADDR 8
    LOADW
    LDCINT 5
-   BGE L45
+   BGE L1
    LDLADDR -4
    LOADW
    LDLADDR 8
@@ -37,8 +37,8 @@ L44:
    LDCINT 1
    ADD
    STOREW
-   BR L44
-L45:
+   BR L0
+L1:
    PUTEOL
    RET 4
 _main:
@@ -46,11 +46,11 @@ _main:
    LDLADDR 28
    LDCINT 0
    STOREW
-L48:
+L4:
    LDLADDR 28
    LOADW
    LDCINT 5
-   BGE L49
+   BGE L5
    LDLADDR 8
    LDLADDR 28
    LOADW
@@ -68,8 +68,8 @@ L48:
    LDCINT 1
    ADD
    STOREW
-   BR L48
-L49:
+   BR L4
+L5:
    LDCSTR "initial array:"
    PUTSTR 14
    PUTEOL
@@ -78,11 +78,11 @@ L49:
    LDLADDR 28
    LDCINT 0
    STOREW
-L52:
+L8:
    LDLADDR 28
    LOADW
    LDCINT 5
-   BGE L53
+   BGE L9
    LDLADDR 8
    LDLADDR 28
    LOADW
@@ -96,8 +96,8 @@ L52:
    LDCINT 1
    ADD
    STOREW
-   BR L52
-L53:
+   BR L8
+L9:
    LDCSTR "incremented array:"
    PUTSTR 18
    PUTEOL

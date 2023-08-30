@@ -22,18 +22,18 @@ _lessThan:
    LOADW
    LDLADDR -8
    LOADW
-   BGE L62
+   BGE L8
    LDCB 1
-   BR L63
-L62:
+   BR L9
+L8:
    LDLADDR -16
    LOADW
    LDLADDR -8
    LOADW
-   BE L60
+   BE L6
    LDCB 0
-   BR L61
-L60:
+   BR L7
+L6:
    LDLADDR -16
    LDCINT 4
    ADD
@@ -42,14 +42,14 @@ L60:
    LDCINT 4
    ADD
    LOADW
-   BGE L58
+   BGE L4
    LDCB 1
-   BR L59
-L58:
+   BR L5
+L4:
    LDCB 0
-L59:
-L61:
-L63:
+L5:
+L7:
+L9:
    STOREB
    RET 16
 _sort:
@@ -57,11 +57,11 @@ _sort:
    LDLADDR 8
    LDCINT 1
    STOREW
-L64:
+L10:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L65
+   BGE L11
    LDLADDR 16
    LDLADDR -4
    LOADW
@@ -78,14 +78,14 @@ L64:
    LDCINT 1
    SUB
    STOREW
-L68:
+L14:
    LDLADDR 12
    LOADW
    LDCINT 0
-   BGE L72
+   BGE L18
    LDCB 0
-   BR L73
-L72:
+   BR L19
+L18:
    ALLOC 1
    LDLADDR 16
    LOAD 8
@@ -98,8 +98,8 @@ L72:
    ADD
    LOAD 8
    CALL _lessThan
-L73:
-   BZ L69
+L19:
+   BZ L15
    LDLADDR -4
    LOADW
    LDLADDR 12
@@ -124,8 +124,8 @@ L73:
    LDCINT 1
    SUB
    STOREW
-   BR L68
-L69:
+   BR L14
+L15:
    LDLADDR -4
    LOADW
    LDLADDR 12
@@ -144,19 +144,19 @@ L69:
    LDCINT 1
    ADD
    STOREW
-   BR L64
-L65:
+   BR L10
+L11:
    RET 4
 _writeArray:
    PROC 4
    LDLADDR 8
    LDCINT 0
    STOREW
-L74:
+L20:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L75
+   BGE L21
    LDCSTR "   "
    PUTSTR 3
    LDLADDR -4
@@ -175,19 +175,19 @@ L74:
    LDCINT 1
    ADD
    STOREW
-   BR L74
-L75:
+   BR L20
+L21:
    RET 4
 _main:
    PROC 84
    LDLADDR 8
    LDCINT 0
    STOREW
-L78:
+L24:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L79
+   BGE L25
    LDLADDR 12
    LDLADDR 8
    LOADW
@@ -215,8 +215,8 @@ L78:
    LDCINT 1
    ADD
    STOREW
-   BR L78
-L79:
+   BR L24
+L25:
    LDLADDR 12
    LDCINT 2
    LDCINT 8

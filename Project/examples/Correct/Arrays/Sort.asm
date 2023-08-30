@@ -5,11 +5,11 @@ _sort:
    LDLADDR 8
    LDCINT 1
    STOREW
-L124:
+L0:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L125
+   BGE L1
    LDLADDR 16
    LDLADDR -4
    LOADW
@@ -26,14 +26,14 @@ L124:
    LDCINT 1
    SUB
    STOREW
-L128:
+L4:
    LDLADDR 12
    LOADW
    LDCINT 0
-   BGE L134
+   BGE L10
    LDCB 0
-   BR L135
-L134:
+   BR L11
+L10:
    LDLADDR 16
    LOADW
    LDLADDR -4
@@ -44,14 +44,14 @@ L134:
    MUL
    ADD
    LOADW
-   BGE L132
+   BGE L8
    LDCB 1
-   BR L133
-L132:
+   BR L9
+L8:
    LDCB 0
-L133:
-L135:
-   BZ L129
+L9:
+L11:
+   BZ L5
    LDLADDR -4
    LOADW
    LDLADDR 12
@@ -76,8 +76,8 @@ L135:
    LDCINT 1
    SUB
    STOREW
-   BR L128
-L129:
+   BR L4
+L5:
    LDLADDR -4
    LOADW
    LDLADDR 12
@@ -96,19 +96,19 @@ L129:
    LDCINT 1
    ADD
    STOREW
-   BR L124
-L125:
+   BR L0
+L1:
    RET 4
 _printArray:
    PROC 4
    LDLADDR 8
    LDCINT 0
    STOREW
-L136:
+L12:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L137
+   BGE L13
    LDLADDR -4
    LOADW
    LDLADDR 8
@@ -126,8 +126,8 @@ L136:
    LDCINT 1
    ADD
    STOREW
-   BR L136
-L137:
+   BR L12
+L13:
    PUTEOL
    RET 4
 _main:
@@ -135,11 +135,11 @@ _main:
    LDLADDR 8
    LDCINT 0
    STOREW
-L140:
+L16:
    LDLADDR 8
    LOADW
    LDCINT 10
-   BGE L141
+   BGE L17
    LDLADDR 12
    LDLADDR 8
    LOADW
@@ -157,8 +157,8 @@ L140:
    LDCINT 1
    ADD
    STOREW
-   BR L140
-L141:
+   BR L16
+L17:
    LDLADDR 12
    LDCINT 2
    LDCINT 4

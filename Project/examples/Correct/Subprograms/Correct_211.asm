@@ -6,7 +6,7 @@ _inc:
    LOADW
    LDLADDR -4
    LOADW
-   BGE L36
+   BGE L2
    LDLADDR -8
    LOADW
    LDLADDR -8
@@ -15,10 +15,10 @@ _inc:
    LDCINT 1
    ADD
    STOREW
-   BR L37
-L36:
+   BR L3
+L2:
    RET 8
-L37:
+L3:
    RET 8
 _main:
    PROC 4

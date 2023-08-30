@@ -1,0 +1,58 @@
+Starting compilation for Incorrect_401.cprl
+...parsing
+*** Syntax error detected near line 3, character 1:
+    Expecting ";" but found "proc" instead.
+*** Syntax error detected near line 5, character 17:
+    Identifier "Name" has not been declared.
+Errors detected in Incorrect_401.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_402.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 11:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_402.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_403.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 11:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_403.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_404.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 1, character 20:
+    String capacity must be a positive integer.
+*** Constraint error detected near line 6, character 11:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_404.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_405.cprl
+...parsing
+*** Syntax error detected near line 3, character 17:
+    Invalid type name.
+Errors detected in Incorrect_405.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_406.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 8, character 15:
+    Parameter type mismatch.
+Errors detected in Incorrect_406.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_407.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 11, character 22:
+    String literals can't be passed as parameters.
+Errors detected in Incorrect_407.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_408.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 10, character 15:
+    String literals can't be passed as parameters.
+Errors detected in Incorrect_408.cprl -- compilation terminated.
+

@@ -5,7 +5,7 @@ _main:
    LDGADDR 0
    LDCINT 1
    STOREW
-L188:
+L0:
    LDGADDR 0
    LDGADDR 0
    LOADW
@@ -16,7 +16,7 @@ L188:
    LDGADDR 0
    LOADW
    STOREW
-L190:
+L2:
    LDGADDR 4
    LDGADDR 4
    LOADW
@@ -26,15 +26,15 @@ L190:
    LDGADDR 4
    LOADW
    LDCINT 10
-   BG L191
-   BR L190
-L191:
+   BG L3
+   BR L2
+L3:
    LDGADDR 0
    LOADW
    LDCINT 6
-   BE L189
-   BR L188
-L189:
+   BE L1
+   BR L0
+L1:
    LDCSTR "x = "
    PUTSTR 4
    LDGADDR 0

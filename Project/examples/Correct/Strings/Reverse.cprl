@@ -1,0 +1,31 @@
+type Text = string[80];
+
+proc main()
+  {
+    var str : Text;
+    str := "12345";
+    write "Reversing \"", str, "\": ";
+    reverse(str);
+    writeln (str);
+  }
+
+// reverse the characters in str
+proc reverse(var str : Text)
+  {
+    var iStart, iEnd : Integer;
+    var temp : Char;
+
+    iStart := 0;
+    iEnd   := str.length - 1;
+
+    while iStart < iEnd loop
+      {
+        // swap str[iStart] and str[iEnd}
+        temp := str[iStart];
+        str[iStart] := str[iEnd];
+        str[iEnd] := temp;
+
+        iStart := iStart  + 1;
+        iEnd   := iEnd    - 1;
+      }
+  }

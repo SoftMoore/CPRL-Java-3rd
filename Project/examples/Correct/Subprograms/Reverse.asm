@@ -14,9 +14,9 @@ _reverse:
    LDCB 0
    LDCB 0
    LDCCH 'E'
-   BE L64
+   BE L2
    CALL _reverse
-L64:
+L2:
    LDLADDR 8
    LOAD2B
    PUTCH

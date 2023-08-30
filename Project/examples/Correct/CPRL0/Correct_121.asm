@@ -11,33 +11,33 @@ _main:
    LDGADDR 4
    LOADW
    LDCINT 0
-   BNE L176
+   BNE L4
    LDCB 0
-   BR L177
-L176:
+   BR L5
+L4:
    LDGADDR 0
    LOADW
    LDGADDR 4
    LOADW
    DIV
    LDCINT 10
-   BGE L174
+   BGE L2
    LDCB 1
-   BR L175
-L174:
+   BR L3
+L2:
    LDCB 0
-L175:
-L177:
-   BZ L178
+L3:
+L5:
+   BZ L6
    LDGADDR 0
    LOADW
    PUTINT
    PUTEOL
-   BR L179
-L178:
+   BR L7
+L6:
    LDGADDR 4
    LOADW
    PUTINT
    PUTEOL
-L179:
+L7:
    RET 0

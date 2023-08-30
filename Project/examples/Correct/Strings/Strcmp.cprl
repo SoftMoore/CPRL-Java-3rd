@@ -1,0 +1,53 @@
+type Text = string[80];
+
+proc main()
+  {
+    var str1 : Text;
+    var str2 : Text;
+    var cmp  : Integer;
+
+    writeln "Enter an empty string to exit.";
+    loop
+      {
+        write "First string?   ";
+        read str1;
+
+        exit when str1.length = 0;
+
+        write "Second string?  ";
+        read str2;
+
+        cmp := strcmp(str1, str2);
+        if cmp < 0 then
+            writeln str1, " is less than ", str2;
+        else if cmp > 0 then
+            writeln str1, " is greater than ", str2;
+        else
+            writeln str1, " is equal to ", str2;
+        writeln;
+      }
+  }
+
+// compare str1 and str2; return negative value if str1 < str2,
+// 0 if str1 = str2, and positive value if str1 > str2
+fun strcmp(str1 : Text, str2 : Text) : Integer
+  {
+    var i : Integer := 0;
+    var minLength : Integer;    // minimum length of the two strings
+
+    minLength := str1.length;
+    if str2.length < str1.length then
+        minLength := str2.length;
+
+    while i < minLength loop
+      {
+        if str1[i] < str2[i] then
+            return -1;
+        else if str1[i] > str2[i] then
+            return 1;
+        else
+            i := i + 1;
+      }
+
+    return str1.length - str2.length;
+  }

@@ -1,0 +1,65 @@
+Starting compilation for Incorrect_301.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 9, character 10:
+    Type mismatch for assignment statement.
+*** Constraint error detected near line 10, character 12:
+    Index expression must have type Integer.
+*** Constraint error detected near line 11, character 7:
+    Index expression must have type Integer.
+*** Constraint error detected near line 12, character 7:
+    Index expression must have type Integer.
+Errors detected in Incorrect_301.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_302.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 11, character 10:
+    Selector expression not allowed; not an array, record, or string.
+*** Constraint error detected near line 12, character 10:
+    Type mismatch for assignment statement.
+*** Constraint error detected near line 13, character 18:
+    Selector expression not allowed; not an array, record, or string.
+*** Constraint error detected near line 14, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_302.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_303.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 7, character 12:
+    Index expression must have type Integer.
+*** Constraint error detected near line 8, character 15:
+    Index expression must have type Integer.
+Errors detected in Incorrect_303.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_304.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 10, character 10:
+    Type mismatch for left and right operands of a relational expression.
+*** Constraint error detected near line 13, character 10:
+    Operand types not permitted for a relational expression.
+Errors detected in Incorrect_304.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_305.cprl
+...parsing
+*** Syntax error detected near line 1, character 16:
+    Invalid constant.
+Errors detected in Incorrect_305.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_306.cprl
+...parsing
+*** Syntax error detected near line 6, character 7:
+    Expecting "Identifier" but found "0" instead.
+Errors detected in Incorrect_306.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_307.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 6, character 10:
+    Input supported only for integers, characters, and strings.
+*** Constraint error detected near line 7, character 11:
+    Output supported only for integers, characters, booleans, and strings.
+Errors detected in Incorrect_307.cprl -- compilation terminated.
+

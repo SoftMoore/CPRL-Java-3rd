@@ -26,14 +26,14 @@ _main:
    LOADW
    LDGADDR 4
    LOADW
-   BG L10
+   BG L2
    LDCSTR "x <= y"
    PUTSTR 6
    PUTEOL
-   BR L11
-L10:
+   BR L3
+L2:
    LDCSTR "x > y"
    PUTSTR 5
    PUTEOL
-L11:
+L3:
    RET 0

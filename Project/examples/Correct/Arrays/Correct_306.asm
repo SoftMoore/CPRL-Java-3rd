@@ -56,11 +56,11 @@ _printArray:
    LDLADDR 8
    LDCINT 0
    STOREW
-L56:
+L0:
    LDLADDR 8
    LOADW
    LDCINT 5
-   BGE L57
+   BGE L1
    LDLADDR -4
    LOADW
    LDLADDR 8
@@ -78,7 +78,7 @@ L56:
    LDCINT 1
    ADD
    STOREW
-   BR L56
-L57:
+   BR L0
+L1:
    PUTEOL
    RET 4

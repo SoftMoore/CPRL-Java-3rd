@@ -6,10 +6,10 @@ _p:
    LOADW
    LDLADDR -4
    LOADW
-   BGE L40
+   BGE L2
    RET 8
-   BR L41
-L40:
+   BR L3
+L2:
    LDLADDR -8
    LOADW
    LDLADDR -4
@@ -17,7 +17,7 @@ L40:
    LDCINT 3
    ADD
    STOREW
-L41:
+L3:
    RET 8
 _main:
    PROC 8

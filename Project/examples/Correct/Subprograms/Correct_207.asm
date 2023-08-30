@@ -6,7 +6,7 @@ _inc:
    LOADW
    LDLADDR -4
    LOADW
-   BGE L10
+   BGE L2
    LDLADDR -8
    LOADW
    LDLADDR -8
@@ -15,12 +15,12 @@ _inc:
    LDCINT 1
    ADD
    STOREW
-   BR L11
-L10:
+   BR L3
+L2:
    LDCSTR "bounds check failed"
    PUTSTR 19
    PUTEOL
-L11:
+L3:
    RET 8
 _main:
    PROC 4
