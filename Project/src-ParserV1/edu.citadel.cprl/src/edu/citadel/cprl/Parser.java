@@ -141,7 +141,7 @@ public class Parser
         try
           {
             var identifiers = new ArrayList<Token>(10);
-            var idToken     = scanner.getToken();
+            var idToken = scanner.getToken();
             match(Symbol.identifier);
             identifiers.add(idToken);
 
@@ -283,7 +283,7 @@ public class Parser
                   {
                     var typeId = scanner.getToken();
                     matchCurrentSymbol();
-                    var type   = idTable.get(typeId.getText());
+                    var type = idTable.get(typeId.getText());
 
                     if (type != null)
                       {

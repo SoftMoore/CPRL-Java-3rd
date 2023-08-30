@@ -53,8 +53,8 @@ public class OutputStmt extends Statement
               {
                 Type type = expr.getType();
 
-                if (type != Type.Integer && type != Type.Boolean
-                    && type != Type.Char && !(type instanceof StringType))
+                if (type != Type.Integer && type != Type.Boolean && type != Type.Char
+                      && !(type instanceof StringType))
                   {
                     var errorMsg = "Output supported only for integers, "
                                  + "characters, booleans, and strings.";

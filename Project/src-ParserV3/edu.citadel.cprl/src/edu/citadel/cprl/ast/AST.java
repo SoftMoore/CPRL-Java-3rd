@@ -120,6 +120,7 @@ public abstract class AST
     protected boolean matchTypes(Type type, Expression expr)
       {
         var exprType = expr.getType();
+
         if (type == exprType)
             return true;
         else if (type instanceof StringType t && exprType instanceof StringType e)

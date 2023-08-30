@@ -16,7 +16,7 @@ public final class IdTable
 
     private static final int INITIAL_SCOPE_LEVELS = 3;
 
-    private ArrayList<Scope> table = new ArrayList<Scope>(INITIAL_SCOPE_LEVELS);
+    private ArrayList<Scope> table = new ArrayList<>(INITIAL_SCOPE_LEVELS);
     private int currentLevel = 0;
 
     /**
