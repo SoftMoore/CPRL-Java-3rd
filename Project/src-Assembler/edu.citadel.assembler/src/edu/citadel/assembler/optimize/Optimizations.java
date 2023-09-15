@@ -7,28 +7,24 @@ import java.util.List;
  */
 public class Optimizations
   {
-    private static final List<Optimization> optimizations;
+    private List<Optimization> optimizations = List.of
+      (
+        new ConstFolding(),
+        new IncDec(),
+        new IncDec2(),
+        new ShiftLeftRight(),
+        new ShiftLeft(),
+        new BranchingReduction(),
+        new ConstNeg(),
+        new LoadSpecialConstants(),
+        new Allocate(),
+        new DeadCodeElimination(),
+        new ReturnSpecialConstants()
+      );
+ 
 
-    public static List<Optimization> getOptimizations()
+    public List<Optimization> getOptimizations()
       {
         return optimizations;
-      }
-
-    static
-      {
-        optimizations = List.of
-          (
-            new ConstFolding(),
-            new IncDec(),
-            new IncDec2(),
-            new ShiftLeftRight(),
-            new ShiftLeft(),
-            new BranchingReduction(),
-            new ConstNeg(),
-            new LoadSpecialConstants(),
-            new Allocate(),
-            new DeadCodeElimination(),
-            new ReturnSpecialConstants()
-          );
       }
   }

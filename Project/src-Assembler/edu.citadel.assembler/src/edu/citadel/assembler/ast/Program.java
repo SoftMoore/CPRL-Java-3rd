@@ -39,14 +39,15 @@ public class Program extends AST
       }
 
     /**
-     * Perform code transformations that improve performance.  This method
-     * is normally called after checkConstraints() and before emit();
+     * Perform code transformations that improve performance.  This method is normally
+     * called after parsing and before setAddresses(), checkConstraints() and emit().
      */
     public void optimize()
       {
+        var opts = new Optimizations();
         for (int n = 0; n < instructions.size(); ++n)
           {
-            for (Optimization optimization : Optimizations.getOptimizations())
+            for (Optimization optimization : opts.getOptimizations())
                 optimization.optimize(instructions, n);
           }
       }
