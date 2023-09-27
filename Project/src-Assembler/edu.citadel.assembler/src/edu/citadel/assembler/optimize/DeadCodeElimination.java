@@ -11,19 +11,19 @@ import java.util.HashMap;
 
 /**
  * If an instruction follows a return or an unconditional branch, and if the instruction
- * has no targeted labels  then that instruction is unreachable (dead) and can be removed.
+ * has no targeted labels, then that instruction is unreachable (dead) and can be removed.
  */
 public class DeadCodeElimination implements Optimization
   {
     private Map<String, Integer> labelBranchCounts = new HashMap<>();
-    
+
     @Override
     public void optimize(List<Instruction> instructions, int instNum)
       {
         // quick check that there are at least 2 instructions remaining
         if (instNum > instructions.size() - 2)
             return;
-        
+
         // When instNum = 1, create a map that maps labels -> n, where n is the number
         // of branch or call instructions that branch to that label.  If a branch
         // instruction gets removed, decrement the corresponding n for its target label.
@@ -46,7 +46,7 @@ public class DeadCodeElimination implements Optimization
                         labelBranchCounts.put(labelTarget, 1);
                   }
               }
-          }        
+          }
 
         var instruction0 = instructions.get(instNum);
         var symbol0      = instruction0.getOpcode().getSymbol();
@@ -74,7 +74,7 @@ public class DeadCodeElimination implements Optimization
               }
           }
       }
-    
+
     private String getLabelTarget(InstructionOneArg instruction)
       {
         assert isBranchOrCallInstruction(instruction) : "invalid branch instruction";
@@ -83,12 +83,12 @@ public class DeadCodeElimination implements Optimization
             : "invalid argument for branch instruction";
         return targetLabel.getText() + ":";
       }
-    
+
     private boolean isBranchOrCallInstruction(Instruction instruction)
       {
         return isBranchOrCallSymbol(instruction.getOpcode().getSymbol());
       }
-    
+
     private boolean isBranchOrCallSymbol(Symbol symbol)
       {
         return switch (symbol)
@@ -102,12 +102,12 @@ public class DeadCodeElimination implements Optimization
       {
         return symbol == Symbol.RET || symbol == Symbol.RET0 || symbol == Symbol.RET4;
       }
-    
+
     private int getTotalBranchCounts(List<Token> labels)
       {
         int sum = 0;
         for (Token label : labels)
-            sum = sum + labelBranchCounts.getOrDefault(label.getText(), 0);        
+            sum = sum + labelBranchCounts.getOrDefault(label.getText(), 0);
         return sum;
       }
   }
