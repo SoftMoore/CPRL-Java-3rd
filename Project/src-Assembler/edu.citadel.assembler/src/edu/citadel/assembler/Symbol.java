@@ -14,7 +14,6 @@ public enum Symbol
     LOADB(0),
     LOAD2B(0),
     LOADW(0),
-    LOADSTR(0),
     LDCB(1),
     LDCCH(1),
     LDCINT(1),
@@ -31,7 +30,6 @@ public enum Symbol
     STOREB(0),
     STORE2B(0),
     STOREW(0),
-    STOREST(0),
 
     // compare/branch opcodes
     BR(1),

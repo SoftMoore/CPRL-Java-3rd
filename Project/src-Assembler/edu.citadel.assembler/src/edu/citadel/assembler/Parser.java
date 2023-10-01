@@ -138,7 +138,6 @@ public class Parser
             case LOADB   -> new InstructionLOADB(labels, opcode);
             case LOAD2B  -> new InstructionLOAD2B(labels, opcode);
             case LOADW   -> new InstructionLOADW(labels, opcode);
-            case LOADSTR -> new InstructionLOADSTR(labels, opcode);
             case LDCB    -> new InstructionLDCB(labels, opcode, arg);
             case LDCB0   -> new InstructionLDCB0(labels, opcode);
             case LDCB1   -> new InstructionLDCB1(labels, opcode);
@@ -153,7 +152,6 @@ public class Parser
             case STOREB  -> new InstructionSTOREB(labels, opcode);
             case STORE2B -> new InstructionSTORE2B(labels, opcode);
             case STOREW  -> new InstructionSTOREW(labels, opcode);
-            case STOREST -> new InstructionSTOREST(labels, opcode);
             case BR      -> new InstructionBR(labels, opcode, arg);
             case BE      -> new InstructionBE(labels, opcode, arg);
             case BNE     -> new InstructionBNE(labels, opcode, arg);

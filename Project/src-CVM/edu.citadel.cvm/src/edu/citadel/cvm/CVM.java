@@ -338,7 +338,6 @@ public class CVM
                 case LOADB   -> loadByte();
                 case LOAD2B  -> load2Bytes();
                 case LOADW   -> loadWord();
-                case LOADSTR -> loadString();
                 case MOD     -> modulo();
                 case MUL     -> multiply();
                 case NEG     -> negate();
@@ -359,7 +358,6 @@ public class CVM
                 case STOREB  -> storeByte();
                 case STORE2B -> store2Bytes();
                 case STOREW  -> storeWord();
-                case STOREST -> storeString();
                 case SUB     -> subtract();
                 default      -> error("invalid machine instruction");
               }
@@ -840,30 +838,6 @@ public class CVM
         pushByte(b1);
       }
 
-    private void loadString()
-      {
-        // loads (pushes) the string onto the stack in reverse order,
-        // so that the length is on the top of the stack
-        int address   = popInt();             // initialize to source address
-        int strLength = getIntAtAddr(address);
-
-        // update address to point to the first character in the string
-        address = address + Constants.BYTES_PER_INTEGER;
-
-        // We need to push the characters and the string length in reverse order
-        char[] chars = new char[strLength];
-        for (int i = 0; i < strLength; ++i)
-          {
-            chars[i] = getCharAtAddr(address);
-            address  = address + Constants.BYTES_PER_CHAR;
-          }
-
-        for (int i = strLength - 1; i >= 0; --i)
-            pushChar(chars[i]);
-
-        pushInt(strLength);
-      }
-
     /**
      * Loads a single word-size variable (four bytes) onto the stack.  The address
      * of the variable is obtained by popping it off the top of the stack.
@@ -1037,26 +1011,6 @@ public class CVM
         int  destAddr = popInt();
         memory[destAddr + 0] = byte0;
         memory[destAddr + 1] = byte1;
-      }
-
-    private void storeString()
-      {
-        int strLength = popInt();
-        char[] chars  = new char[strLength];
-        for (int i = 0; i < strLength; ++i)
-            chars[i] = popChar();
-
-        var address = popInt();   // initialize to destination address
-
-        // values were on the stack in reverse order
-        putIntToAddr(strLength, address);
-        address = address + Constants.BYTES_PER_INTEGER;
-
-        for (int i = 0; i < strLength; ++i)
-          {
-            putCharToAddr(chars[i], address);
-            address = address + Constants.BYTES_PER_CHAR;
-          }
       }
 
     private void storeWord()
