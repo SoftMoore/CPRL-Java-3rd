@@ -18,7 +18,6 @@ echo
 
 for file in *.obj
 do
-   filename=$(basename $file)
-   filename="${filename%.*}"
+   filename=$(basename $file .obj)
    source testCorrect $filename
 done
