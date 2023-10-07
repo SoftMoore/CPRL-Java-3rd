@@ -9,7 +9,7 @@ import edu.citadel.cprl.ast.SubprogramDecl;
 public final class SubprogramContext
   {
     // The subprogram declaration currently being parsed;
-	// null if not currently parsing a subprogram.
+    // null if not currently parsing a subprogram.
     private SubprogramDecl subprogDecl;
 
     public SubprogramContext()
