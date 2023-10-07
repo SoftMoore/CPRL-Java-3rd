@@ -1,5 +1,4 @@
 // Test that functions can have array parameters even though they are passed by value
-// 0  1   2  3  4
 
 const arraySize := 10;
 type A = array[arraySize] of Integer;
