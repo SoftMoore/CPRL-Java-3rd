@@ -271,9 +271,9 @@ public class CVM
         catch (IOException ex)
           {
             error(ex.toString());
-          }        
+          }
       }
-    
+
     /**
      * Prompt user and wait for user to press the enter key.
      */
@@ -411,7 +411,9 @@ public class CVM
      */
     private void pushByte(byte b)
       {
-        memory[++sp] = b;
+        if (++sp >= memory.length)
+            error("*** Out of memory ***");
+        memory[sp] = b;
       }
 
     /**
@@ -550,6 +552,8 @@ public class CVM
       {
         int numBytes = fetchInt();
         sp = sp + numBytes;
+        if (sp >= memory.length)
+            error("*** Out of memory ***");
       }
 
     /**
@@ -709,7 +713,7 @@ public class CVM
             int destAddr = popInt();
             int capacity = fetchInt();
             var data = "";
-            
+
             if (scanner.hasNextLine())
                 data = scanner.nextLine();
 
