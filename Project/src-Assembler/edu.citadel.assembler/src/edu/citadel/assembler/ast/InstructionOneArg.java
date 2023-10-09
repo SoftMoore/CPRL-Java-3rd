@@ -87,7 +87,7 @@ public abstract class InstructionOneArg extends Instruction
     public int argToInt()
       {
         assert getArg().getSymbol() == Symbol.intLiteral :
-        	"Can't convert argument " + getArg() + " to an integer.";
+            "Can't convert argument " + getArg() + " to an integer.";
         return Integer.parseInt(getArg().getText());
       }
 
@@ -98,7 +98,7 @@ public abstract class InstructionOneArg extends Instruction
     public byte argToByte()
       {
         assert getArg().getSymbol() == Symbol.intLiteral :
-        	"Can't convert argument " + getArg() + " to a byte.";
+            "Can't convert argument " + getArg() + " to a byte.";
         return Byte.parseByte(getArg().getText());
       }
 
