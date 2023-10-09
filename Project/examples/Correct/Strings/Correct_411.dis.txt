@@ -16,7 +16,7 @@
  149:  PUTEOL
  150:  PUTEOL
  151:  LDLADDR 8
- 156:  LDCSTR  "before carriage return \t after carriage return"
+ 156:  LDCSTR  "before carriage return \r after carriage return"
  253:  STORE 96
  258:  LDLADDR 8
  263:  LOAD 104

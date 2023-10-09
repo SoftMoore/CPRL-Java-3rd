@@ -10,7 +10,7 @@ proc main()
     writeln "length of testString = ", testString.length;
     writeln;
 
-    testString:= "before carriage return \t after carriage return";
+    testString:= "before carriage return \r after carriage return";
     writeln testString;
     writeln "length of testString = ", testString.length;
     writeln;

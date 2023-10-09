@@ -1,7 +1,7 @@
 before tab 	 after tab
 length of testString = 22
 
-before carriage return 	 after carriage return
+before carriage return  after carriage return
 length of testString = 46
 
 before newline 

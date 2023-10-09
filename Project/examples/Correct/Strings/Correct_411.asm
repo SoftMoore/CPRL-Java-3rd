@@ -17,7 +17,7 @@ _main:
    PUTEOL
    PUTEOL
    LDLADDR 8
-   LDCSTR "before carriage return \t after carriage return"
+   LDCSTR "before carriage return \r after carriage return"
    STORE 96
    LDLADDR 8
    LOAD 104
