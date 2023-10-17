@@ -34,7 +34,7 @@ public enum Opcode
     STORE2B(32),
     STOREW(33),
 
-    // compare/branch opcodes
+    // branch opcodes
     BR(40),
     BE(41),
     BNE(42),
@@ -45,12 +45,14 @@ public enum Opcode
     BZ(47),
     BNZ(48),
 
-    // shift opcodes
-    SHL(50),
-    SHR(51),
+    // type conversion opcodes
+    INT2BYTE(50),
+    BYTE2INT(51),
 
-    // logical not opcode
+    // logical not and shift opcodes
     NOT(60),
+    SHL(65),
+    SHR(66),
 
     // arithmetic opcodes
     ADD(70),
@@ -100,10 +102,11 @@ public enum Opcode
       {
         return switch (this)
           {
-            case ADD,     DEC,     DIV,     GETCH,   GETINT,  HALT,    LOADB,
-                 LOAD2B,  LOADW,   LDCB0,   LDCB1,   LDCINT0, LDCINT1, INC,
-                 MOD,     MUL,     NEG,     NOT,     PUTBYTE, PUTCH,   PUTINT,
-                 PUTEOL,  RET0,    RET4,    STOREB,  STORE2B, STOREW,  SUB   -> true;
+            case ADD,      BYTE2INT, DEC,     DIV,     GETCH,   GETINT,  HALT,
+                 INT2BYTE, LOADB,    LOAD2B,  LOADW,   LDCB0,   LDCB1,   LDCINT0,
+                 LDCINT1,  INC,      MOD,     MUL,     NEG,     NOT,     PUTBYTE,
+                 PUTCH,    PUTINT,   PUTEOL,  RET0,    RET4,    STOREB,  STORE2B,
+                 STOREW,   SUB                                                -> true;
             default -> false;
           };
       }

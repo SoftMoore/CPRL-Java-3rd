@@ -271,9 +271,9 @@ public class CVM
         catch (IOException ex)
           {
             error(ex.toString());
-          }
+          }        
       }
-
+    
     /**
      * Prompt user and wait for user to press the enter key.
      */
@@ -305,61 +305,63 @@ public class CVM
 
             switch (Opcode.toOpcode(fetchByte()))
               {
-                case ADD     -> add();
-                case ALLOC   -> allocate();
-                case BR      -> branch();
-                case BE      -> branchEqual();
-                case BNE     -> branchNotEqual();
-                case BG      -> branchGreater();
-                case BGE     -> branchGreaterOrEqual();
-                case BL      -> branchLess();
-                case BLE     -> branchLessOrEqual();
-                case BZ      -> branchZero();
-                case BNZ     -> branchNonZero();
-                case CALL    -> call();
-                case DEC     -> decrement();
-                case DIV     -> divide();
-                case GETCH   -> getCh();
-                case GETINT  -> getInt();
-                case GETSTR  -> getString();
-                case HALT    -> halt();
-                case INC     -> increment();
-                case LDCB    -> loadConstByte();
-                case LDCB0   -> loadConstByteZero();
-                case LDCB1   -> loadConstByteOne();
-                case LDCCH   -> loadConstCh();
-                case LDCINT  -> loadConstInt();
-                case LDCINT0 -> loadConstIntZero();
-                case LDCINT1 -> loadConstIntOne();
-                case LDCSTR  -> loadConstStr();
-                case LDLADDR -> loadLocalAddress();
-                case LDGADDR -> loadGlobalAddress();
-                case LOAD    -> load();
-                case LOADB   -> loadByte();
-                case LOAD2B  -> load2Bytes();
-                case LOADW   -> loadWord();
-                case MOD     -> modulo();
-                case MUL     -> multiply();
-                case NEG     -> negate();
-                case NOT     -> not();
-                case PROC    -> procedure();
-                case PROGRAM -> program();
-                case PUTBYTE -> putByte();
-                case PUTCH   -> putChar();
-                case PUTEOL  -> putEOL();
-                case PUTINT  -> putInt();
-                case PUTSTR  -> putString();
-                case RET     -> returnInst();
-                case RET0    -> returnZero();
-                case RET4    -> returnFour();
-                case SHL     -> shiftLeft();
-                case SHR     -> shiftRight();
-                case STORE   -> store();
-                case STOREB  -> storeByte();
-                case STORE2B -> store2Bytes();
-                case STOREW  -> storeWord();
-                case SUB     -> subtract();
-                default      -> error("invalid machine instruction");
+                case ADD      -> add();
+                case ALLOC    -> allocate();
+                case BR       -> branch();
+                case BE       -> branchEqual();
+                case BNE      -> branchNotEqual();
+                case BG       -> branchGreater();
+                case BGE      -> branchGreaterOrEqual();
+                case BL       -> branchLess();
+                case BLE      -> branchLessOrEqual();
+                case BZ       -> branchZero();
+                case BNZ      -> branchNonZero();
+                case BYTE2INT -> byteToInteger();
+                case CALL     -> call();
+                case DEC      -> decrement();
+                case DIV      -> divide();
+                case GETCH    -> getCh();
+                case GETINT   -> getInt();
+                case GETSTR   -> getString();
+                case HALT     -> halt();
+                case INC      -> increment();
+                case INT2BYTE -> intToByte();
+                case LDCB     -> loadConstByte();
+                case LDCB0    -> loadConstByteZero();
+                case LDCB1    -> loadConstByteOne();
+                case LDCCH    -> loadConstCh();
+                case LDCINT   -> loadConstInt();
+                case LDCINT0  -> loadConstIntZero();
+                case LDCINT1  -> loadConstIntOne();
+                case LDCSTR   -> loadConstStr();
+                case LDLADDR  -> loadLocalAddress();
+                case LDGADDR  -> loadGlobalAddress();
+                case LOAD     -> load();
+                case LOADB    -> loadByte();
+                case LOAD2B   -> load2Bytes();
+                case LOADW    -> loadWord();
+                case MOD      -> modulo();
+                case MUL      -> multiply();
+                case NEG      -> negate();
+                case NOT      -> not();
+                case PROC     -> procedure();
+                case PROGRAM  -> program();
+                case PUTBYTE  -> putByte();
+                case PUTCH    -> putChar();
+                case PUTEOL   -> putEOL();
+                case PUTINT   -> putInt();
+                case PUTSTR   -> putString();
+                case RET      -> returnInst();
+                case RET0     -> returnZero();
+                case RET4     -> returnFour();
+                case SHL      -> shiftLeft();
+                case SHR      -> shiftRight();
+                case STORE    -> store();
+                case STOREB   -> storeByte();
+                case STORE2B  -> store2Bytes();
+                case STOREW   -> storeWord();
+                case SUB      -> subtract();
+                default       -> error("invalid machine instruction");
               }
           }
       }
@@ -534,10 +536,8 @@ public class CVM
         putIntToAddr(value, address);
       }
 
-
     // ----------------------------------------------------------------------
     // End: internal machine instructions that do NOT correspond to opcodes
-
     // Start: machine instructions corresponding to opcodes
     // ------------------------------------------------------
 
@@ -552,8 +552,6 @@ public class CVM
       {
         int numBytes = fetchInt();
         sp = sp + numBytes;
-        if (sp >= memory.length)
-            error("*** Out of memory ***");
       }
 
     /**
@@ -643,6 +641,15 @@ public class CVM
             pc = pc + displacement;
       }
 
+    private void byteToInteger()
+      {
+        int operand = popByte();
+
+        // mask out all but least significant byte
+        int mask = 0xFF;   // = 00011111 in binary
+        pushInt(operand & mask);
+      }
+
     private void call()
       {
         int displacement = fetchInt();
@@ -713,7 +720,7 @@ public class CVM
             int destAddr = popInt();
             int capacity = fetchInt();
             var data = "";
-
+            
             if (scanner.hasNextLine())
                 data = scanner.nextLine();
 
@@ -742,6 +749,12 @@ public class CVM
       {
         int operand = popInt();
         pushInt(operand + 1);
+      }
+
+    private void intToByte()
+      {
+        int operand = popInt();
+        pushByte((byte)operand);
       }
 
     /**
