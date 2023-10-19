@@ -643,11 +643,8 @@ public class CVM
 
     private void byteToInteger()
       {
-        int operand = popByte();
-
-        // mask out all but least significant byte
-        int mask = 0xFF;   // = 00011111 in binary
-        pushInt(operand & mask);
+        byte b = popByte();
+        pushInt(ByteUtil.byteToInt(b));
       }
 
     private void call()
@@ -753,8 +750,8 @@ public class CVM
 
     private void intToByte()
       {
-        int operand = popInt();
-        pushByte((byte)operand);
+        int n = popInt();
+        pushByte(ByteUtil.intToByte(n));
       }
 
     /**

@@ -70,6 +70,17 @@ public class ByteUtil
       }
 
     /**
+     * Converts a byte to an int.  The specified byte is the the low
+     * order (least significant) byte for the int and the three high
+     * order bytes are all zero.
+     */
+    public static int byteToInt(byte b)
+      {
+        byte zero = (byte) 0;
+        return bytesToInt(zero, zero, zero, b);
+      }
+
+    /**
      * Converts a char to an array of 2 bytes.  The bytes in the return
      * array are ordered with the byte at index 0 as the high order byte
      * and the byte at index 1 as the low order byte.
@@ -108,5 +119,14 @@ public class ByteUtil
         result[2] = (byte) ((n >>> 8)  & 0x000000FF);
         result[3] = (byte) ((n >>> 0)  & 0x000000FF);
         return result;
+      }
+
+    /**
+     * Returns the low order (least significant) byte of the specified integer.
+     */
+    public static byte intToByte(int n)
+      {
+        byte[] bytes = intToBytes(n);
+        return bytes[3];
       }
   }
