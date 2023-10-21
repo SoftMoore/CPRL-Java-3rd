@@ -13,7 +13,7 @@ import java.util.*;
  * This class uses recursive descent to perform syntax analysis of
  * the CPRL source language.
  */
-public class Parser
+public final class Parser
   {
     private Scanner scanner;
     private IdTable idTable;
