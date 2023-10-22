@@ -33,4 +33,3 @@ echo ...comparing files %1.out.tmp and %1.out.txt
 fc /n %1.out.tmp %1.out.txt > nul
 if errorlevel 1 (echo *** Test Failed ***) else (echo Test Passed)
 echo.
-
