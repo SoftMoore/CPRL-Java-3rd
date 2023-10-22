@@ -2,14 +2,12 @@ package edu.citadel.assembler;
 
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.FatalException;
-import edu.citadel.compiler.Source;
 
 import edu.citadel.assembler.ast.AST;
 import edu.citadel.assembler.ast.Instruction;
 import edu.citadel.assembler.ast.Program;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -23,8 +21,6 @@ public class Assembler
     private static final int    FAILURE = -1;
 
     private static boolean optimize = true;
-
-    private File sourceFile;
 
     /**
      * Translates the assembly source files named in args to CVM machine
@@ -71,8 +67,8 @@ public class Assembler
                       }
                   }
 
-                var assembler = new Assembler(sourceFile);
-                assembler.assemble();
+                var assembler = new Assembler();
+                assembler.assemble(sourceFile);
               }
             catch (FatalException e)
               {
@@ -86,15 +82,6 @@ public class Assembler
       }
 
     /**
-     * Construct an assembler with the specified source file.
-     */
-    public Assembler(File sourceFile)
-      {
-        this.sourceFile = sourceFile;
-        AST.initStatic();
-      }
-
-    /**
      * Assembles the source file.  If there are no errors in the source
      * file, the object code is placed in a file with the same base file
      * name as the source file but with a ".obj" suffix.
@@ -102,16 +89,15 @@ public class Assembler
      * @throws IOException if there are problems reading the source file
      *         or writing to the target file.
      */
-    public void assemble() throws IOException
+    public void assemble(File sourceFile) throws IOException
       {
-        ErrorHandler errorHandler = new ErrorHandler();
-        Reader  reader  = new FileReader(sourceFile, StandardCharsets.UTF_8);
-        Source  source  = new Source(reader);
-        Scanner scanner = new Scanner(source, errorHandler);
-        Parser  parser  = new Parser(scanner, errorHandler);
-        AST.setErrorHandler(errorHandler);
+        var errorHandler = new ErrorHandler();
+        var scanner = new Scanner(sourceFile, errorHandler);
+        var parser  = new Parser(scanner, errorHandler);
+        AST.reset(errorHandler);
 
         printProgressMessage("Starting assembly for " + sourceFile.getName());
+        printProgressMessage("...parsing");
 
         // parse source file
         Program program = parser.parseProgram();
@@ -131,8 +117,11 @@ public class Assembler
 
         if (DEBUG)
           {
-            System.out.println("...program after performing optimizations");
-            printInstructions(program.getInstructions());
+            if (optimize)
+              {
+                System.out.println("...program after performing optimizations");
+                printInstructions(program.getInstructions());
+              }
           }
 
         // set addresses

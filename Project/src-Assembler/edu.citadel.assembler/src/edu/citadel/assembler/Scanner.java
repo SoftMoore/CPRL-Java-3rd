@@ -5,7 +5,8 @@ import edu.citadel.compiler.Position;
 import edu.citadel.compiler.ScannerException;
 import edu.citadel.compiler.ErrorHandler;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -26,16 +27,18 @@ public class Scanner
     private Token token;
 
     /**
-     * Initialize scanner with its associated source and error handler,
-     * and advance to the first token.
+     * Initializes the scanner with its associated source file and error handler.
      */
-    public Scanner(Source source, ErrorHandler errorHandler) throws IOException
+    public Scanner(File sourceFile, ErrorHandler errorHandler) throws IOException
       {
+        var fileReader   = new FileReader(sourceFile, StandardCharsets.UTF_8);
+        var reader  = new BufferedReader(fileReader);
+        var source  = new Source(reader);
         this.source = source;
         this.errorHandler = errorHandler;
         scanBuffer = new StringBuilder(100);
 
-        // initialize HashMap with reserved word symbols
+        // initialize opcodeMap with reserved word symbols
         opcodeMap = new HashMap<>(100);
         for (Symbol symbol : Symbol.values())
           {

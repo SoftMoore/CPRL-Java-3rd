@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Base class for all abstract syntax trees
+ * Base class for all abstract syntax trees.
  */
 public abstract class AST
   {
@@ -22,9 +22,10 @@ public abstract class AST
      * The members must be re-initialized each time that the assembler is
      * run on a different file; e.g., via a command like assemble *.asm.
      */
-    public static void initStatic()
+    public static void reset(ErrorHandler errorHandler)
       {
-        Instruction.initMaps();
+        AST.errorHandler = errorHandler;
+        Instruction.resetMaps();
       }
 
     /**
@@ -33,14 +34,6 @@ public abstract class AST
     public static void setOutputStream(OutputStream out)
       {
         AST.out = out;
-      }
-
-    /**
-     * Set the error handler to be used for code generation.
-     */
-    public static void setErrorHandler(ErrorHandler errorHandler)
-      {
-        AST.errorHandler = errorHandler;
       }
 
     /**
