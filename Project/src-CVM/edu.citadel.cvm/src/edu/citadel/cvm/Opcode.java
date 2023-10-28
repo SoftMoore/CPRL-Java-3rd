@@ -11,10 +11,10 @@ public enum Opcode
     HALT(0),
 
     // load opcodes (move data from memory to top of stack)
-    LOAD(9),
-    LOADB(10),
-    LOAD2B(11),
-    LOADW(12),
+    LOAD(10),
+    LOADB(11),
+    LOAD2B(12),
+    LOADW(13),
     LDCB(14),
     LDCCH(15),
     LDCINT(16),
@@ -49,8 +49,12 @@ public enum Opcode
     INT2BYTE(50),
     BYTE2INT(51),
 
-    // logical not and shift opcodes
+    // logical NOT, bitwise, and shift opcodes
     NOT(60),
+    BITAND(61),
+    BITOR(62),
+    BITXOR(63),
+    BITNOT(64),
     SHL(65),
     SHR(66),
 
@@ -102,11 +106,12 @@ public enum Opcode
       {
         return switch (this)
           {
-            case ADD,      BYTE2INT, DEC,     DIV,     GETCH,   GETINT,  HALT,
-                 INT2BYTE, LOADB,    LOAD2B,  LOADW,   LDCB0,   LDCB1,   LDCINT0,
-                 LDCINT1,  INC,      MOD,     MUL,     NEG,     NOT,     PUTBYTE,
-                 PUTCH,    PUTINT,   PUTEOL,  RET0,    RET4,    STOREB,  STORE2B,
-                 STOREW,   SUB                                                -> true;
+            case ADD,      BITAND,  BITNOT, BITOR,   BITXOR, BYTE2INT,
+                 DEC,      DIV,     GETCH,  GETINT,  HALT,   INC,
+                 INT2BYTE, LOADB,   LOAD2B, LOADW,   LDCB0,  LDCB1,
+                 LDCINT0,  LDCINT1, MOD,    MUL,     NEG,    NOT,
+                 PUTBYTE,  PUTCH,   PUTINT, PUTEOL,  RET0,   RET4,
+                 SHL,      SHR,     STOREB, STORE2B, STOREW, SUB   -> true;
             default -> false;
           };
       }
@@ -116,11 +121,7 @@ public enum Opcode
      */
     public boolean isByteOperandOpcode()
       {
-        return switch (this)
-          {
-            case SHL, SHR, LDCB -> true;
-            default -> false;
-          };
+        return this == LDCB;
       }
 
     /**
@@ -132,7 +133,7 @@ public enum Opcode
           {
             case ALLOC,   BR,      BE,   BNE,     BG,     BGE,  BL,
                  BLE,     BZ,      BNZ,  CALL,    GETSTR, LOAD, LDCINT,
-                 LDLADDR, LDGADDR, PROC, PROGRAM, PUTSTR, RET,  STORE   -> true;
+                 LDLADDR, LDGADDR, PROC, PROGRAM, PUTSTR, RET,  STORE  -> true;
             default -> false;
           };
       }

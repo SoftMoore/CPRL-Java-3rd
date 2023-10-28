@@ -164,8 +164,12 @@ public class Parser
             case INT2BYTE -> new InstructionINT2BYTE(labels, opcode);
             case BYTE2INT -> new InstructionBYTE2INT(labels, opcode);
             case NOT      -> new InstructionNOT(labels, opcode);
-            case SHL      -> new InstructionSHL(labels, opcode, arg);
-            case SHR      -> new InstructionSHR(labels, opcode, arg);
+            case BITAND   -> new InstructionBITAND(labels, opcode);
+            case BITOR    -> new InstructionBITOR(labels, opcode);
+            case BITXOR   -> new InstructionBITXOR(labels, opcode);
+            case BITNOT   -> new InstructionBITNOT(labels, opcode);
+            case SHL      -> new InstructionSHL(labels, opcode);
+            case SHR      -> new InstructionSHR(labels, opcode);
             case ADD      -> new InstructionADD(labels, opcode);
             case SUB      -> new InstructionSUB(labels, opcode);
             case MUL      -> new InstructionMUL(labels, opcode);

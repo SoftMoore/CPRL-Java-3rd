@@ -9,11 +9,11 @@ import java.io.IOException;
 
 /**
  * This class implements the abstract syntax tree for the assembly
- * language instruction SHL.
+ * language instruction BITNOT.
  */
-public class InstructionSHL extends InstructionNoArgs
+public class InstructionBITNOT extends InstructionNoArgs
   {
-    public InstructionSHL(List<Token> labels, Token opcode)
+    public InstructionBITNOT(List<Token> labels, Token opcode)
       {
         super(labels, opcode);
       }
@@ -21,12 +21,12 @@ public class InstructionSHL extends InstructionNoArgs
     @Override
     public void assertOpcode()
       {
-        assertOpcode(Symbol.SHL);
+        assertOpcode(Symbol.BITNOT);
       }
 
     @Override
     public void emit() throws IOException
       {
-        emit(Opcode.SHL);
+        emit(Opcode.BITNOT);
       }
   }

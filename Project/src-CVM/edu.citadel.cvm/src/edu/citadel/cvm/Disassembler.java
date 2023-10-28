@@ -63,7 +63,10 @@ public class Disassembler
                 else if (opcode.isByteOperandOpcode())
                   {
                     out.print(opcodeAddrStr + ":  " + opcode);
-                    out.println(" " + readByte(file));
+                    int n = readByte(file);
+                    if (n < 0)
+                        n = n + 256;
+                    out.println(" " + n);
                     opcodeAddr = opcodeAddr + 2;   // byte for opcode plus byte for operand
                   }
                 else if (opcode.isIntOperandOpcode())

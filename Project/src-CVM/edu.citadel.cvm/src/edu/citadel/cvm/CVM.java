@@ -271,9 +271,9 @@ public class CVM
         catch (IOException ex)
           {
             error(ex.toString());
-          }        
+          }
       }
-    
+
     /**
      * Prompt user and wait for user to press the enter key.
      */
@@ -306,6 +306,10 @@ public class CVM
             switch (Opcode.toOpcode(fetchByte()))
               {
                 case ADD      -> add();
+                case BITAND   -> bitAnd();
+                case BITOR    -> bitOr();
+                case BITXOR   -> bitXor();
+                case BITNOT   -> bitNot();
                 case ALLOC    -> allocate();
                 case BR       -> branch();
                 case BE       -> branchEqual();
@@ -354,8 +358,8 @@ public class CVM
                 case RET      -> returnInst();
                 case RET0     -> returnZero();
                 case RET4     -> returnFour();
-                case SHL      -> shiftLeft();
-                case SHR      -> shiftRight();
+                case SHL      -> shl();
+                case SHR      -> shr();
                 case STORE    -> store();
                 case STOREB   -> storeByte();
                 case STORE2B  -> store2Bytes();
@@ -552,11 +556,37 @@ public class CVM
       {
         int numBytes = fetchInt();
         sp = sp + numBytes;
+        if (sp >= memory.length)
+            error("*** Out of memory ***");
       }
 
-    /**
-     * Unconditional branch.
-     */
+    private void bitAnd()
+      {
+        int operand2 = popInt();
+        int operand1 = popInt();
+        pushInt(operand1 & operand2);
+      }
+
+    private void bitOr()
+      {
+        int operand2 = popInt();
+        int operand1 = popInt();
+        pushInt(operand1 | operand2);
+      }
+
+    private void bitXor()
+      {
+        int operand2 = popInt();
+        int operand1 = popInt();
+        pushInt(operand1 ^ operand2);
+      }
+
+    private void bitNot()
+      {
+        int operand = popInt();
+        pushInt(~operand);
+      }
+
     private void branch()
       {
         int displacement = fetchInt();
@@ -717,7 +747,7 @@ public class CVM
             int destAddr = popInt();
             int capacity = fetchInt();
             var data = "";
-            
+
             if (scanner.hasNextLine())
                 data = scanner.nextLine();
 
@@ -904,7 +934,6 @@ public class CVM
 
         bp = sb;
         sp = bp + varLength - 1;
-
         if (sp >= memory.length)
             error("*** Out of memory ***");
       }
@@ -916,7 +945,7 @@ public class CVM
 
     private void putByte()
       {
-        out.print(popByte());
+        out.print((popByte() + 256) % 256);
       }
 
     private void putInt()
@@ -975,26 +1004,26 @@ public class CVM
         pc = getIntAtAddr(bpSave + Constants.BYTES_PER_INTEGER);
       }
 
-    private void shiftLeft()
+    private void shl()
       {
-        int operand = popInt();
+        int operand2 = popInt();
+        int operand1 = popInt();
 
-        // zero out left three bits of shiftAmount
-        byte mask = 0x1F;   // = 00011111 in binary
-        byte shiftAmount = (byte) (fetchByte() & mask);
+        // zero out all except rightmost 5 bits of shiftAmount
+        int shiftAmount = operand2 & 0b11111;
 
-        pushInt(operand << shiftAmount);
+        pushInt(operand1 << shiftAmount);
       }
 
-    private void shiftRight()
+    private void shr()
       {
-        int operand = popInt();
+        int operand2 = popInt();
+        int operand1 = popInt();
 
-        // zero out left three bits of shiftAmount
-        byte mask = 0x1F;   // = 00011111 in binary
-        byte shiftAmount = (byte) (fetchByte() & mask);
+        // zero out all except rightmost 5 bits of shiftAmount
+        int shiftAmount = operand2 & 0b11111;
 
-        pushInt(operand >> shiftAmount);
+        pushInt(operand1 >> shiftAmount);
       }
 
     private void store()

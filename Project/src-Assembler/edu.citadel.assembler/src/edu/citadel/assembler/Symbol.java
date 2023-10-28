@@ -46,10 +46,14 @@ public enum Symbol
     INT2BYTE(0),
     BYTE2INT(0),
 
-    // logical not and shift opcode
+    // logical not, bitwise, and shift opcodes
     NOT(0),
-    SHL(1),
-    SHR(1),
+    BITAND(0),
+    BITOR(0),
+    BITXOR(0),
+    BITNOT(0),
+    SHL(0),
+    SHR(0),
 
     // arithmetic opcodes
     ADD(0),

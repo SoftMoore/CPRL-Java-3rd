@@ -12,8 +12,6 @@ public class Optimizations
         new ConstFolding(),
         new IncDec(),
         new IncDec2(),
-        new ShiftLeftRight(),
-        new ShiftLeft(),
         new BranchingReduction(),
         new ConstNeg(),
         new LoadSpecialConstants(),
