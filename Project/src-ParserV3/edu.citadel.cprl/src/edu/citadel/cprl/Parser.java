@@ -958,8 +958,23 @@ public final class Parser
                     else if (decl instanceof FunctionDecl)
                         expr = parseFunctionCallExpr();
                     else
-                        throw error("Identifier \"" + idStr
-                                  + "\" is not valid as an expression.");
+                      {
+                        var errorPos = scanner.getPosition();
+                        var errorMsg = "Identifier \"" + idStr + "\" is not valid as an expression.";
+
+                        // special handling when procedure call is used as a function call
+                        if (decl instanceof ProcedureDecl)
+                          {
+                            scanner.advance();
+                            if (scanner.getSymbol() == Symbol.leftParen)
+                              {
+                                scanner.advanceTo(Symbol.rightParen);
+                                scanner.advance();   // advance past the right paren
+                              }
+                          }
+
+                        throw error(errorPos, errorMsg);
+                      }
                   }
                 else
                   {
@@ -985,18 +1000,6 @@ public final class Parser
         catch (ParserException e)
           {
             errorHandler.reportError(e);
-
-            // special handling of identifier followed by left paren
-            if (scanner.getSymbol() == Symbol.identifier)
-              {
-                scanner.advance();
-                if (scanner.getSymbol() == Symbol.leftParen)
-                  {
-                    scanner.advanceTo(Symbol.rightParen);
-                    scanner.advance();   // advance past the right paren
-                  }
-              }
-
             recover(factorFollowers);
             return EmptyExpression.getInstance();
           }
