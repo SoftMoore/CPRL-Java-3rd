@@ -778,7 +778,6 @@ public final class Parser
                         parseFunctionCallExpr();
                     else
                       {
-                        // special handling when procedure call is used as a function call
                         var errorPos = scanner.getPosition();
                         var errorMsg = "Identifier \"" + idStr + "\" is not valid as an expression.";
 
