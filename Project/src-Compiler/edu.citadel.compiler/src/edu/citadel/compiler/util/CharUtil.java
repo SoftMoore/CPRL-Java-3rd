@@ -16,7 +16,7 @@ public class CharUtil
 
     /**
      * Returns true only if the specified character is a hex digit
-     * ('0'-'9', 'A'..'F', or 'a'..'f').
+     * ('0'..'9', 'A'..'F', or 'a'..'f').
      */
     public static boolean isHexDigit(char ch)
       {
