@@ -144,14 +144,6 @@ public class BitUtil
       }
 
     /**
-     * Returns a hexadecimal string representation of the specified byte.
-     */
-    public static String toHexString(byte n)
-      {
-        return String.format("%02X", n);
-      }
-
-    /**
      * Returns the n least significant (rightmost) bits in the
      * specified value as a signed (2s complement) integer.
      */
