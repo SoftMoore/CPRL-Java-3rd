@@ -9,8 +9,8 @@ import edu.citadel.cprl.Type;
 
 /**
  * The abstract syntax tree node for a multiplying expression.  A multiplying
- * expression is a binary expression where the operator is a multiplying operator
- * such as "*", "/", or "mod".  A simple example would be "5*x".
+ * expression is a binary expression where the operator is a multiplying
+ * operator such as "*", "/", or "mod".  A simple example would be "5*x".
  */
 public class MultiplyingExpr extends BinaryExpr
   {
