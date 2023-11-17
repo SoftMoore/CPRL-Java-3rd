@@ -1,0 +1,93 @@
+// 5 identical lines: true true true false false false
+
+type BoolStr = string[5];
+
+proc main()
+  {
+    write bToStr(isLetter('A')), " ";
+    write bToStr(isLetter('C')), " ";
+    write bToStr(isLetter('z')), " ";
+    write bToStr(isLetter('<')), " ";
+    write bToStr(isLetter('~')), " ";
+    write bToStr(isLetter('7'));
+    writeln;
+
+    write bToStr(isDigit('0')), " ";
+    write bToStr(isDigit('4')), " ";
+    write bToStr(isDigit('9')), " ";
+    write bToStr(isDigit('D')), " ";
+    write bToStr(isDigit('*')), " ";
+    write bToStr(isDigit('?'));
+    writeln;
+
+    write bToStr(isLetterOrDigit('S')), " ";
+    write bToStr(isLetterOrDigit('n')), " ";
+    write bToStr(isLetterOrDigit('9')), " ";
+    write bToStr(isLetterOrDigit('@')), " ";
+    write bToStr(isLetterOrDigit('$')), " ";
+    write bToStr(isLetterOrDigit('\''));
+    writeln;
+
+    write bToStr(isBinaryDigit('0')), " ";
+    write bToStr(isBinaryDigit('1')), " ";
+    write bToStr(isBinaryDigit('0')), " ";
+    write bToStr(isBinaryDigit('8')), " ";
+    write bToStr(isBinaryDigit('F')), " ";
+    write bToStr(isBinaryDigit('#'));
+    writeln;
+
+    write bToStr(isHexDigit('3')), " ";
+    write bToStr(isHexDigit('C')), " ";
+    write bToStr(isHexDigit('f')), " ";
+    write bToStr(isHexDigit('G')), " ";
+    write bToStr(isHexDigit(';')), " ";
+    write bToStr(isHexDigit('.'));
+    writeln;
+  }
+
+fun bToStr(b : Boolean) : BoolStr
+  {
+    if b then
+        return "true";
+    else
+        return "false";
+  }
+
+// Returns true only if the specified character is a letter;
+// i.e., the character is in 'A'..'Z' + 'a'..'z'.
+ ///
+fun isLetter(ch : Char) : Boolean
+  {
+    return (ch >= 'a' and ch <= 'z') or (ch >= 'A' and ch <= 'Z');
+  }
+
+// Returns true only if the specified character is a digit;
+// i.e., the character is in '0'..'9'
+fun isDigit(ch : Char) : Boolean
+  {
+    return ch >= '0'and ch <= '9';
+  }
+
+// Returns true only if the specified character is a letter or a digit;
+// i.e., the character is in 'A'..'Z' + 'a'..'z + '0'..'9'.
+fun isLetterOrDigit(ch : Char) : Boolean
+  {
+    return isLetter(ch) or isDigit(ch);
+  }
+
+// Returns true only if the specified character is a binary digit;
+// i.e., the character is either '0' or '1'.
+fun isBinaryDigit(ch : Char) : Boolean
+  {
+    return ch = '0' or ch = '1';
+  }
+
+// Returns true only if the specified character is a hex digit;
+// i.e., the character is in '0'..'9' + 'A'..'F' + 'a'..'f'.
+fun isHexDigit(ch : Char) : Boolean
+  {
+    if isDigit(ch) then
+        return true;
+    else
+        return (ch >= 'A' and ch <= 'F') or (ch >= 'a' and ch <= 'f');
+  }
