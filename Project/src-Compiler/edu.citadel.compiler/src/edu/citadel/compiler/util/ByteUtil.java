@@ -34,7 +34,7 @@ public class ByteUtil
     /**
      * Convert an array of bytes to a string of hexadecimal digits separated by spaces.
      */
-    public static String bytesToHex(byte[] bytes)
+    public static String bytesToHexString(byte[] bytes)
       {
         var builder = new StringBuilder(bytes.length*3);
         for (int i = 0; i < bytes.length; ++i)
