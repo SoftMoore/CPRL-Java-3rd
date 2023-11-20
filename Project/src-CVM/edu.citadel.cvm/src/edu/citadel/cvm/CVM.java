@@ -965,7 +965,7 @@ public class CVM
         // number of bytes in the string
         int numBytes = Constants.BYTES_PER_INTEGER + capacity*Constants.BYTES_PER_CHAR;
 
-        int addr = sp - numBytes + 1;                                              // initialized
+        int addr = sp - numBytes + 1;           // initialize to starting address of string
         int strLength = getIntAtAddr(addr);
         addr = addr + Constants.BYTES_PER_INTEGER;
 
