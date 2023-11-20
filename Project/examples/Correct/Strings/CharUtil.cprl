@@ -1,6 +1,13 @@
-// 5 identical lines: true true true false false false
+// true true true false false false
+// true true true false false false
+// true true true false false false
+// true true true false false false
+// true true true false false false
+// true true true false false false
+// \t   \n   \r   \"    \'    \\
 
 type BoolStr = string[5];
+type CharStr = string[2];
 
 proc main()
   {
@@ -42,6 +49,22 @@ proc main()
     write bToStr(isHexDigit('G')), " ";
     write bToStr(isHexDigit(';')), " ";
     write bToStr(isHexDigit('.'));
+    writeln;
+
+    write bToStr(isEscapeChar('\t')), " ";
+    write bToStr(isEscapeChar('\n')), " ";
+    write bToStr(isEscapeChar('\"')), " ";
+    write bToStr(isEscapeChar('u')), " ";
+    write bToStr(isEscapeChar('r')), " ";
+    write bToStr(isEscapeChar('-'));
+    writeln;
+
+    write getUnescapedChar('\t'), "   ";
+    write getUnescapedChar('\n'), "   ";
+    write getUnescapedChar('\r'), "   ";
+    write getUnescapedChar('\"'), "    ";
+    write getUnescapedChar('\''), "    ";
+    write getUnescapedChar('\\');
     writeln;
   }
 
@@ -90,4 +113,37 @@ fun isHexDigit(ch : Char) : Boolean
         return true;
     else
         return (ch >= 'A' and ch <= 'F') or (ch >= 'a' and ch <= 'f');
+  }
+
+// Returns true only if the specified character is an escaped character.
+fun isEscapeChar(c : Char) : Boolean
+  {
+    return c = '\t' or c = '\n' or c = '\r'
+        or c = '\"' or c = '\'' or c = '\\';
+  }
+
+// Unescapes characters.  For example, if parameter ch is a tab,
+// this method will return "\\t"
+fun getUnescapedChar(ch : Char) : CharStr
+  {
+    var result : CharStr;
+
+    if ch = '\t' then         // tab
+        return "\\t";
+    else if ch = '\n' then    // newline
+        return "\\n";
+    else if ch = '\r' then    // carriage return
+        return "\\r";
+    else if ch = '\"' then    // double quote
+        return "\\\"";
+    else if ch = '\'' then    // single quote
+        return "\\\'";
+    else if ch = '\\' then    // backslash
+        return "\\\\";
+    else
+      {
+        result[0] := ch;
+        result.length := 1;
+        return result;
+      }
   }

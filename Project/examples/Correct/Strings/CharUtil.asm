@@ -236,6 +236,88 @@ _main:
    CALL _bToStr
    PUTSTR 5
    PUTEOL
+   ALLOC 14
+   ALLOC 1
+   LDCCH '\t'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   LDCSTR " "
+   PUTSTR 1
+   ALLOC 14
+   ALLOC 1
+   LDCCH '\n'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   LDCSTR " "
+   PUTSTR 1
+   ALLOC 14
+   ALLOC 1
+   LDCCH '\"'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   LDCSTR " "
+   PUTSTR 1
+   ALLOC 14
+   ALLOC 1
+   LDCCH 'u'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   LDCSTR " "
+   PUTSTR 1
+   ALLOC 14
+   ALLOC 1
+   LDCCH 'r'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   LDCSTR " "
+   PUTSTR 1
+   ALLOC 14
+   ALLOC 1
+   LDCCH '-'
+   CALL _isEscapeChar
+   CALL _bToStr
+   PUTSTR 5
+   PUTEOL
+   ALLOC 8
+   LDCCH '\t'
+   CALL _getUnescapedChar
+   PUTSTR 2
+   LDCSTR "   "
+   PUTSTR 3
+   ALLOC 8
+   LDCCH '\n'
+   CALL _getUnescapedChar
+   PUTSTR 2
+   LDCSTR "   "
+   PUTSTR 3
+   ALLOC 8
+   LDCCH '\r'
+   CALL _getUnescapedChar
+   PUTSTR 2
+   LDCSTR "   "
+   PUTSTR 3
+   ALLOC 8
+   LDCCH '\"'
+   CALL _getUnescapedChar
+   PUTSTR 2
+   LDCSTR "    "
+   PUTSTR 4
+   ALLOC 8
+   LDCCH '\''
+   CALL _getUnescapedChar
+   PUTSTR 2
+   LDCSTR "    "
+   PUTSTR 4
+   ALLOC 8
+   LDCCH '\\'
+   CALL _getUnescapedChar
+   PUTSTR 2
+   PUTEOL
    RET 0
 _bToStr:
    LDLADDR -1
@@ -457,3 +539,214 @@ L43:
    STOREB
    RET 2
 L45:
+_isEscapeChar:
+   LDLADDR -3
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\t'
+   BNE L50
+   LDCB 1
+   BR L51
+L50:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\n'
+   BNE L48
+   LDCB 1
+   BR L49
+L48:
+   LDCB 0
+L49:
+L51:
+   BZ L54
+   LDCB 1
+   BR L55
+L54:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\r'
+   BNE L52
+   LDCB 1
+   BR L53
+L52:
+   LDCB 0
+L53:
+L55:
+   BZ L58
+   LDCB 1
+   BR L59
+L58:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\"'
+   BNE L56
+   LDCB 1
+   BR L57
+L56:
+   LDCB 0
+L57:
+L59:
+   BZ L62
+   LDCB 1
+   BR L63
+L62:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\''
+   BNE L60
+   LDCB 1
+   BR L61
+L60:
+   LDCB 0
+L61:
+L63:
+   BZ L66
+   LDCB 1
+   BR L67
+L66:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\\'
+   BNE L64
+   LDCB 1
+   BR L65
+L64:
+   LDCB 0
+L65:
+L67:
+   STOREB
+   RET 2
+_getUnescapedChar:
+   PROC 8
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\t'
+   BNE L90
+   LDLADDR -10
+   LDCSTR "\\t"
+   STORE 8
+   RET 2
+   BR L91
+L90:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\n'
+   BNE L88
+   LDLADDR -10
+   LDCSTR "\\n"
+   STORE 8
+   RET 2
+   BR L89
+L88:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\r'
+   BNE L86
+   LDLADDR -10
+   LDCSTR "\\r"
+   STORE 8
+   RET 2
+   BR L87
+L86:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\"'
+   BNE L84
+   LDLADDR -10
+   LDCSTR "\\\""
+   STORE 8
+   RET 2
+   BR L85
+L84:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\''
+   BNE L82
+   LDLADDR -10
+   LDCSTR "\\\'"
+   STORE 8
+   RET 2
+   BR L83
+L82:
+   LDCB 0
+   LDCB 0
+   LDLADDR -2
+   LOAD2B
+   LDCB 0
+   LDCB 0
+   LDCCH '\\'
+   BNE L80
+   LDLADDR -10
+   LDCSTR "\\\\"
+   STORE 8
+   RET 2
+   BR L81
+L80:
+   LDLADDR 8
+   LDCINT 4
+   ADD
+   LDCINT 0
+   LDCINT 2
+   MUL
+   ADD
+   LDLADDR -2
+   LOAD2B
+   STORE2B
+   LDLADDR 8
+   LDCINT 1
+   STOREW
+   LDLADDR -10
+   LDLADDR 8
+   LOAD 8
+   STORE 8
+   RET 2
+L81:
+L83:
+L85:
+L87:
+L89:
+L91:
