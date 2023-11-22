@@ -33,8 +33,7 @@ public class Scanner
       {
         var fileReader   = new FileReader(sourceFile, StandardCharsets.UTF_8);
         var reader  = new BufferedReader(fileReader);
-        var source  = new Source(reader);
-        this.source = source;
+        this.source = new Source(reader);
         this.errorHandler = errorHandler;
         scanBuffer = new StringBuilder(100);
 
