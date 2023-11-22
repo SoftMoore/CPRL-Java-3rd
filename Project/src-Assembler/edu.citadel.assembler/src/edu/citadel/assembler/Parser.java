@@ -3,6 +3,7 @@ package edu.citadel.assembler;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.compiler.ParserException;
 import edu.citadel.compiler.Position;
+
 import edu.citadel.assembler.ast.*;
 
 import java.io.IOException;
@@ -161,8 +162,8 @@ public class Parser
             case BLE      -> new InstructionBLE(labels, opcode, arg);
             case BZ       -> new InstructionBZ(labels, opcode, arg);
             case BNZ      -> new InstructionBNZ(labels, opcode, arg);
-            case INT2BYTE -> new InstructionINT2BYTE(labels, opcode);
             case BYTE2INT -> new InstructionBYTE2INT(labels, opcode);
+            case INT2BYTE -> new InstructionINT2BYTE(labels, opcode);
             case NOT      -> new InstructionNOT(labels, opcode);
             case BITAND   -> new InstructionBITAND(labels, opcode);
             case BITOR    -> new InstructionBITOR(labels, opcode);
@@ -212,15 +213,16 @@ public class Parser
 
     private void checkArgs(Token opcode, Token arg) throws ParserException
       {
-        Symbol symbol  = opcode.getSymbol();
-        int    numArgs = symbol.getNumArgs();
+        var symbol   = opcode.getSymbol();
+        var numArgs  = symbol.getNumArgs();
+        var errorPos = opcode.getPosition();
 
         if (numArgs == 0)
           {
             if (arg != null)
               {
                 var errorMsg = "No arguments allowed for this opcode.";
-                throw error(opcode.getPosition(), errorMsg);
+                throw error(errorPos, errorMsg);
               }
           }
         else if (numArgs == 1)
@@ -228,13 +230,13 @@ public class Parser
             if (arg == null)
               {
                 var errorMsg = "One argument is required for this opcode.";
-                throw error(opcode.getPosition(), errorMsg);
+                throw error(errorPos, errorMsg);
               }
           }
         else
           {
             var errorMsg = "Invalid number of arguments for opcode " + opcode + ".";
-            throw error(opcode.getPosition(), errorMsg);
+            throw error(errorPos, errorMsg);
           }
       }
 
@@ -254,13 +256,12 @@ public class Parser
       }
 
     /**
-     * Create a parser exception with the specified message and the
+     * Create a parser exception with the specified error message and the
      * current scanner position.
      */
     private ParserException error(String errorMsg)
       {
-        var errorPos = scanner.getPosition();
-        return new ParserException(errorPos, errorMsg);
+        return error(scanner.getPosition(), errorMsg);
       }
 
     /**
