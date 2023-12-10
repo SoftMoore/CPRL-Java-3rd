@@ -300,7 +300,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>"type" typeId "=" "record" "{" fieldDecls "}" ";" .</code>
+     * <code>recordTypeDecl = "type" typeId "=" "record" "{" fieldDecls "}" ";" .</code>
      *
      * @return the parsed record type declaration.  Returns
      *         an empty initial declaration if parsing fails.
@@ -367,7 +367,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>"type" typeId "=" "string" "[" intConstValue "]" ";" .</code>
+     * <code>stringTypeDecl = "type" typeId "=" "string" "[" intConstValue "]" ";" .</code>
      *
      * @return the parsed string type declaration.  Returns an
      *         empty initial declaration if parsing fails.

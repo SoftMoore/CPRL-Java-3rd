@@ -245,7 +245,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>"type" typeId "=" "record" "{" fieldDecls "}" ";" .</code>
+     * <code>recordTypeDecl = "type" typeId "=" "record" "{" fieldDecls "}" ";" .</code>
      */
     private void parseRecordTypeDecl() throws IOException
       {
@@ -299,7 +299,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>"type" typeId "=" "string" "[" intConstValue "]" ";" .</code>
+     * <code>stringTypeDecl = "type" typeId "=" "string" "[" intConstValue "]" ";" .</code>
      */
     private void parseStringTypeDecl() throws IOException
       {
