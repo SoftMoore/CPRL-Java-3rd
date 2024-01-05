@@ -3,7 +3,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 
-import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
@@ -27,13 +26,40 @@ public class RelationalExpr extends BinaryExpr
         super(leftOperand, operator, rightOperand);
         setType(Type.Boolean);
         assert operator.getSymbol().isRelationalOperator() :
-            "Operator is not a relational operator.";
+               "Operator is not a relational operator.";
       }
 
     @Override
     public void checkConstraints()
       {
-// ...
+        try
+          {
+            var leftOperand  = getLeftOperand();
+            var rightOperand = getRightOperand();
+            var operator     = getOperator();
+
+            leftOperand.checkConstraints();
+            rightOperand.checkConstraints();
+
+            if (!leftOperand.getType().equals(rightOperand.getType()))
+              {
+                var errorMsg = "Type mismatch for left and right operands "
+                             + "of a relational expression.";
+                throw error(operator.getPosition(), errorMsg);
+              }
+
+            // check to make sure that we are comparing only operands with scalar types
+            Type type = leftOperand.getType();
+            if (!type.isScalar())
+              {
+                var errorMsg = "Operand types not permitted for a relational expression.";
+                throw error(operator.getPosition(), errorMsg);
+              }
+          }
+        catch (ConstraintException e)
+          {
+            getErrorHandler().reportError(e);
+          }
       }
 
     @Override
@@ -52,23 +78,21 @@ public class RelationalExpr extends BinaryExpr
       {
         emitOperands();
 
-        var operatorSym = getOperator().getSymbol();
-        if (operatorSym == Symbol.equals)
-            emit(condition ? "BE "  + label : "BNE " + label);
-        else if (operatorSym == Symbol.notEqual)
-            emit(condition ? "BNE " + label : "BE "  + label);
-        else if (operatorSym == Symbol.lessThan)
-            emit(condition ? "BL "  + label : "BGE " + label);
-        else if (operatorSym == Symbol.lessOrEqual)
-            emit(condition ? "BLE " + label : "BG "  + label);
-        else if (operatorSym == Symbol.greaterThan)
-            emit(condition ? "BG "  + label : "BLE " + label);
-        else if (operatorSym == Symbol.greaterOrEqual)
-            emit(condition ? "BGE " + label : "BL "  + label);
-        else
+        // rewritten to use switch instead of if/else if
+        switch (getOperator().getSymbol())
           {
-            var errorMsg = "Invalid relational operator.";
-            throw new CodeGenException(getOperator().getPosition(), errorMsg);
+            case equals         -> emit(condition ? "BE "  + label : "BNE " + label);
+            case notEqual       -> emit(condition ? "BNE " + label : "BE "  + label);
+            case lessThan       -> emit(condition ? "BL "  + label : "BGE " + label);
+            case lessOrEqual    -> emit(condition ? "BLE " + label : "BG "  + label);
+            case greaterThan    -> emit(condition ? "BG "  + label : "BLE " + label);
+            case greaterOrEqual -> emit(condition ? "BGE " + label : "BL "  + label);
+            default ->
+              {
+                var position = getOperator().getPosition();
+                var errorMsg = "Invalid relational operator.";
+                throw new CodeGenException(position, errorMsg);
+              }
           }
       }
 
