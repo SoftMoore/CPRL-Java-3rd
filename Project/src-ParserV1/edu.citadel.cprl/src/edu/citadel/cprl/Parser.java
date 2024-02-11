@@ -570,7 +570,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>variable = ( varId | paramId) { indexExpr | fieldExpr } .</code>
+     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .</code>
      * <br>
      * This helper method provides common logic for methods parseVariable() and
      * parseVariableExpr().  The method does not handle any ParserExceptions but
@@ -630,7 +630,7 @@ public final class Parser
 
     /**
      * Parse the following grammar rule:<br>
-     * <code>variable = ( varId | paramId) { indexExpr | fieldExpr } .</code>
+     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .</code>
      */
     private void parseVariable() throws IOException
       {
