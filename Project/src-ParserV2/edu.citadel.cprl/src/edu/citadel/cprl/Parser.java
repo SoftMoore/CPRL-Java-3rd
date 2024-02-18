@@ -37,17 +37,20 @@ public final class Parser
         Symbol.modRW,     Symbol.rightBracket, Symbol.comma);
 
     /** Symbols that can follow an initial declaration (computed property).
-     *  Set is computed dynamically based on the scope level of IdTable.*/
+     *  Set is computed dynamically based on the scope level. */
     private Set<Symbol> initialDeclFollowers()
       {
-        // An initial declaration can always be followed by another initial
-        // declaration, regardless of the scope level of IdTable.
+        // An initial declaration can always be followed by another
+        // initial declaration, regardless of the scope level.
         var followers = EnumSet.of(Symbol.constRW, Symbol.varRW, Symbol.typeRW);
 
-        if (idTable.getScopeLevel() == ScopeLevel.LOCAL)
-            followers.addAll(stmtFollowers);
-        else
+        if (idTable.getScopeLevel() == ScopeLevel.GLOBAL)
             followers.addAll(EnumSet.of(Symbol.procRW, Symbol.funRW));
+        else
+          {
+            followers.addAll(stmtFollowers);
+            followers.remove(Symbol.elseRW);
+          }
 
         return followers;
       }
