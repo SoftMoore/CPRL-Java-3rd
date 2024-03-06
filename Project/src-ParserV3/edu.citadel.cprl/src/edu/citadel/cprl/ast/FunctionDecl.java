@@ -44,15 +44,7 @@ public class FunctionDecl extends SubprogramDecl
     @Override
     public void checkConstraints()
       {
-        try
-          {
-            super.checkConstraints();
-// ...
-          }
-        catch (ConstraintException e)
-          {
-            getErrorHandler().reportError(e);
-          }
+// ...   call super.checkConstraints() before checking any additional constraints
       }
 
     /**

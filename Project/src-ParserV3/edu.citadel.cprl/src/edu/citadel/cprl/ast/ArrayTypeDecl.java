@@ -18,11 +18,10 @@ public class ArrayTypeDecl extends InitialDecl
      *
      * @param typeId the token containing the identifier for the array
      * @param elementType the type of elements in the array
-     * @param numElements the number of elements in the array
-     */
-    public ArrayTypeDecl(Token typeId, Type elemType, ConstValue numElements)
+     * @param numElements the number of elements in the array     */
+    public ArrayTypeDecl(Token typeId, Type elementType, ConstValue numElements)
       {
-        super(typeId, new ArrayType(typeId.getText(), numElements.getLiteralIntValue(), elemType));
+        super(typeId, new ArrayType(typeId.getText(), numElements.getIntValue(), elementType));
         this.numElements = numElements;
       }
 

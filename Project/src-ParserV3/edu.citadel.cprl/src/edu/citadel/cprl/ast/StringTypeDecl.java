@@ -21,7 +21,7 @@ public class StringTypeDecl extends InitialDecl
      */
     public StringTypeDecl(Token typeId, ConstValue capacity)
       {
-        super(typeId, new StringType(typeId.getText(), capacity.getLiteralIntValue()));
+        super(typeId, new StringType(typeId.getText(), capacity.getIntValue()));
         this.capacity = capacity;
       }
 

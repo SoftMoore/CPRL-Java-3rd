@@ -52,7 +52,7 @@ public class ConstValue extends Expression
      * character.  For a boolean literal, this method returns 0 for false
      * and 1 for true.  For any other literal, the method returns 0.
      */
-    public int getLiteralIntValue()
+    public int getIntValue()
       {
         if (literal.getSymbol() == Symbol.intLiteral)
             return Integer.parseInt(literal.getText());
@@ -100,9 +100,9 @@ public class ConstValue extends Expression
         var exprType = getType();
 
         if (exprType == Type.Integer)
-            emit("LDCINT " + getLiteralIntValue());
+            emit("LDCINT " + getIntValue());
         else if (exprType == Type.Boolean)
-            emit("LDCB " + getLiteralIntValue());
+            emit("LDCB " + getIntValue());
         else if (exprType == Type.Char)
             emit("LDCCH " + literal.getText());
         else if (exprType instanceof StringType)
