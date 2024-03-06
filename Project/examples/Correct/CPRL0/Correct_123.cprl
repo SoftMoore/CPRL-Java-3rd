@@ -1,12 +1,12 @@
 // test that binary operators minus and divide are left associative
-// output should be as follows:
-// left-associative: 10
-//right-associative: 14
-//             cprl: 10
+//  output should be as follows:
+//  left-associative: 10
+// right-associative: 14
+//              cprl: 10
 //
-// left-associative: 2
-//right-associative: 8
-//             cprl: 2
+//  left-associative: 2
+// right-associative: 8
+//              cprl: 2
 
 var x, y, z : Integer;
 
@@ -17,7 +17,7 @@ proc main()
     y := 4;
     z := 2;
 
-    writeln " left-associative: ", (x - y) -z;
+    writeln " left-associative: ", (x - y) - z;
     writeln "right-associative: ", x - (y - z);
     writeln "             cprl: ", x - y - z;
 
