@@ -9,7 +9,7 @@ import edu.citadel.cprl.Type;
 import java.util.List;
 
 /**
- * This abstract syntax tree for both write and writeln statements.
+ * This class implements the abstract syntax tree for both write and writeln statements.
  */
 public class OutputStmt extends Statement
   {
