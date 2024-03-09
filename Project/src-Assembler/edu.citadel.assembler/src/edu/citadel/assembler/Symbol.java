@@ -20,7 +20,7 @@ public enum Symbol
     LDCSTR(1),
     LDLADDR(1),
     LDGADDR(1),
-    
+
     LDCB0(0),
     LDCB1(0),
     LDCINT0(0),
@@ -46,8 +46,10 @@ public enum Symbol
     INT2BYTE(0),
     BYTE2INT(0),
 
-    // logical not, bitwise, and shift opcodes
+    // logical not opcode
     NOT(0),
+
+    // bitwise and shift opcodes
     BITAND(0),
     BITOR(0),
     BITXOR(0),
@@ -86,7 +88,7 @@ public enum Symbol
 
     // unknown symbol (first symbol that is not an opcode)
     UNKNOWN(),
-    
+
     // literal values and identifier symbols
     intLiteral(),
     stringLiteral(),
@@ -116,7 +118,7 @@ public enum Symbol
       }
 
     /**
-     * Returns the number of arguments required for an opcode. 
+     * Returns the number of arguments required for an opcode.
      */
     public int getNumArgs()
       {
