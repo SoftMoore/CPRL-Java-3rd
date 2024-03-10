@@ -573,8 +573,10 @@ public final class Parser
       }
 
     /**
-     * Parse the following grammar rule:<br>
-     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .</code>
+     * Parse the following grammar rules:<br>
+     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .<br>
+     *       indexExpr = "[" expression "]" .<br>
+     *       fieldExpr = "." fieldId .</code>
      * <br>
      * This helper method provides common logic for methods parseVariable() and
      * parseVariableExpr().  The method does not handle any ParserExceptions but
@@ -604,32 +606,17 @@ public final class Parser
         while (scanner.getSymbol().isSelectorStarter())
           {
             if (scanner.getSymbol() == Symbol.leftBracket)
-                parseIndexExpr();
+              {
+                match(Symbol.leftBracket);
+                parseExpression();
+                match(Symbol.rightBracket);
+              }
             else if (scanner.getSymbol() == Symbol.dot)
-                parseFieldExpr();
+              {
+                match(Symbol.dot);
+                match(Symbol.identifier);
+              }
           }
-      }
-
-    /**
-     * Parse the following grammar rule:<br>
-     * <code>indexExpr = "[" expression "]" .</code>
-     *
-     * @throws ParserException if parsing fails.
-     */
-    private void parseIndexExpr() throws IOException, ParserException
-      {
-// ...
-      }
-
-    /**
-     * Parse the following grammar rule:<br>
-     * <code>fieldExpr = "." fieldId .</code>
-     *
-     * @throws ParserException if parsing fails.
-     */
-    private void parseFieldExpr() throws IOException, ParserException
-      {
-// ...
       }
 
     /**

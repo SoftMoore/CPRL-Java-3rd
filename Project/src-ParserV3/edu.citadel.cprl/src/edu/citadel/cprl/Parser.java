@@ -774,8 +774,10 @@ public final class Parser
       }
 
     /**
-     * Parse the following grammar rule:<br>
-     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .</code>
+     * Parse the following grammar rules:<br>
+     * <code>variable = ( varId | paramId ) { indexExpr | fieldExpr } .<br>
+     *       indexExpr = "[" expression "]" .<br>
+     *       fieldExpr = "." fieldId .</code>
      * <br>
      * This helper method provides common logic for methods parseVariable() and
      * parseVariableExpr().  The method does not handle any ParserExceptions but
@@ -804,42 +806,26 @@ public final class Parser
           }
 
         var variableDecl  = (VariableDecl) decl;
-
         var selectorExprs = new ArrayList<Expression>(5);
 
         while (scanner.getSymbol().isSelectorStarter())
           {
             if (scanner.getSymbol() == Symbol.leftBracket)
-                selectorExprs.add(parseIndexExpr());
+              {
+                match(Symbol.leftBracket);
+                selectorExprs.add(parseExpression());
+                match(Symbol.rightBracket);
+              }
             else if (scanner.getSymbol() == Symbol.dot)
-                selectorExprs.add(parseFieldExpr());
+              {
+                match(Symbol.dot);
+                var fieldId = scanner.getToken();
+                match(Symbol.identifier);
+                selectorExprs.add(new FieldExpr(fieldId));
+              }
           }
 
         return new Variable(variableDecl, idToken.getPosition(), selectorExprs);
-      }
-
-    /**
-     * Parse the following grammar rule:<br>
-     * <code>indexExpr = "[" expression "]" .</code>
-     *
-     * @return the parsed index expression.
-     * @throws ParserException if parsing fails.
-     */
-    private Expression parseIndexExpr() throws IOException, ParserException
-      {
-// ...
-      }
-
-    /**
-     * Parse the following grammar rule:<br>
-     * <code>fieldExpr = "." fieldId .</code>
-     *
-     * @return the parsed field expression.
-     * @throws ParserException if parsing fails.
-     */
-    private Expression parseFieldExpr() throws IOException, ParserException
-      {
-// ...
       }
 
     /**
