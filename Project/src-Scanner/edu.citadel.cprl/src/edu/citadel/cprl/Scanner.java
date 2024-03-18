@@ -400,8 +400,10 @@ public final class Scanner
     private void skipToEndOfLine() throws ScannerException, IOException
       {
         while ((char) source.getChar() != '\n')
+          {
             source.advance();
             checkEOF();
+          }
       }
 
     /**
