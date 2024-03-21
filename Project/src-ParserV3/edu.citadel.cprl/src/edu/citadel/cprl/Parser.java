@@ -468,7 +468,8 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>subprogramDecl = procedureDecl | functionDecl .</code>
      *
-     * @return the parsed subprogram declaration.  Returns null if parsing fails.
+     * @return the parsed subprogram declaration.  Returns an
+     *         empty subprogram declaration if parsing fails.
      */
     private SubprogramDecl parseSubprogramDecl() throws IOException
       {
