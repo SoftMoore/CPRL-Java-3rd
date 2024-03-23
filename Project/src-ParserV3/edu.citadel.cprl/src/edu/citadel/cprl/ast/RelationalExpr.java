@@ -32,34 +32,7 @@ public class RelationalExpr extends BinaryExpr
     @Override
     public void checkConstraints()
       {
-        try
-          {
-            var leftOperand  = getLeftOperand();
-            var rightOperand = getRightOperand();
-            var operator     = getOperator();
-
-            leftOperand.checkConstraints();
-            rightOperand.checkConstraints();
-
-            if (!leftOperand.getType().equals(rightOperand.getType()))
-              {
-                var errorMsg = "Type mismatch for left and right operands "
-                             + "of a relational expression.";
-                throw error(operator.getPosition(), errorMsg);
-              }
-
-            // check to make sure that we are comparing only operands with scalar types
-            Type type = leftOperand.getType();
-            if (!type.isScalar())
-              {
-                var errorMsg = "Operand types not permitted for a relational expression.";
-                throw error(operator.getPosition(), errorMsg);
-              }
-          }
-        catch (ConstraintException e)
-          {
-            getErrorHandler().reportError(e);
-          }
+// ...
       }
 
     @Override
