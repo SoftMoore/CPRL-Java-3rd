@@ -1,0 +1,7 @@
+var x : Integer;
+
+proc main()
+  {
+    x := -true;   // not an integer expression
+    writeln x;
+  }

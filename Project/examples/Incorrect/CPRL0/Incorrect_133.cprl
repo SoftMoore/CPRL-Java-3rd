@@ -1,0 +1,8 @@
+var x : Integer;
+var y : Integer := x;   // x is not a constant
+var z : Integer := n;   // n never declared
+
+proc main()
+  {
+    writeln x, y, z;
+  }

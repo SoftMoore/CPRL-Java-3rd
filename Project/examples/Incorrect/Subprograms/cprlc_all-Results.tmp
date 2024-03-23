@@ -220,3 +220,10 @@ Starting compilation for Incorrect_232.cprl
     Type mismatch for variable initialization.
 Errors detected in Incorrect_232.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_233.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 5, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_233.cprl -- compilation terminated.
+

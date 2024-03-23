@@ -1,0 +1,12 @@
+var x : Integer;
+
+proc main()
+  {
+    x := f();   // type mismatch
+    write x;
+  }
+
+fun f() : Boolean
+  {
+    return true;
+  }
