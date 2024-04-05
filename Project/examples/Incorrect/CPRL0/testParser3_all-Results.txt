@@ -152,7 +152,7 @@ Parsing Incorrect_133.cprl...
 *** Syntax error detected near line 2, character 20:
     Identifier x was not declared as a constant.
 *** Syntax error detected near line 3, character 20:
-    Identifier n has not been declared.
+    Identifier "n" has not been declared.
 Errors detected in Incorrect_133.cprl -- parsing terminated.
 
 Parsing Incorrect_134.cprl...
