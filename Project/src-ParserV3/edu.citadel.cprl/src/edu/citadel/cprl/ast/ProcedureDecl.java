@@ -21,6 +21,19 @@ public class ProcedureDecl extends SubprogramDecl
     @Override
     public void emit() throws CodeGenException
       {
-// ...
+        setRelativeAddresses();
+        emitLabel(getSubprogramLabel());
+
+        // no need to emit PROC instruction if varLength == 0
+        if (getVarLength() > 0)
+            emit("PROC " + getVarLength());
+
+        for (InitialDecl decl : getInitialDecls())
+            decl.emit();
+
+        for (Statement statement : getStatements())
+            statement.emit();
+
+        emit("RET " + getParamLength());
       }
   }
