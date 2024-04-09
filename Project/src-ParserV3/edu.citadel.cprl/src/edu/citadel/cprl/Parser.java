@@ -813,12 +813,14 @@ public final class Parser
           {
             if (scanner.getSymbol() == Symbol.leftBracket)
               {
+                // parse index expression
                 match(Symbol.leftBracket);
                 selectorExprs.add(parseExpression());
                 match(Symbol.rightBracket);
               }
             else if (scanner.getSymbol() == Symbol.dot)
               {
+                // parse field expression
                 match(Symbol.dot);
                 var fieldId = scanner.getToken();
                 match(Symbol.identifier);
