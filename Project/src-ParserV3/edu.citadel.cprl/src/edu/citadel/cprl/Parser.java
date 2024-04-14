@@ -663,7 +663,7 @@ public final class Parser
      */
     private Statement parseIfStmt() throws IOException
       {
-// ...
+// ...   Hint: Use null for elseStmt if there is no else statement.
       }
 
     /**
@@ -685,7 +685,7 @@ public final class Parser
      */
     private Statement parseExitStmt() throws IOException
       {
-// ...
+// ...   Hint: Use null for whenExpr if there is no when expression.
       }
 
     /**
@@ -771,7 +771,7 @@ public final class Parser
      */
     private Statement parseReturnStmt() throws IOException
       {
-// ...
+// ...   Hint: Use null for returnExpr if there is no return expression.
       }
 
     /**
