@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Run testCorrect on all ".obj" files in the current directory.
+# Run testCorrect on all ".cprl" files in the current directory.
 #
 
 echo ...deleting all \".asm\", \".obj\", and \".tmp\" files
@@ -16,8 +16,8 @@ echo ...reasembling all \".asm\" files
 assemble *.asm > /dev/null
 echo
 
-for file in *.obj
+for file in *.cprl
 do
-   filename=$(basename $file .obj)
-   source testCorrect $filename
+   filename=$(basename $file .cprl)
+   source testCorrect calledFromTestCorrect_all $filename
 done

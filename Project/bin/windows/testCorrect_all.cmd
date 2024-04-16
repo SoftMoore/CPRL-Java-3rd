@@ -1,7 +1,7 @@
 @echo off
 
 rem
-rem Run testCorrect on all ".obj" files in the current directory.
+rem Run testCorrect on all ".cprl" files in the current directory.
 rem
 
 echo ...deleting all ".asm", ".obj", and ".tmp" files
@@ -16,4 +16,4 @@ echo ...reasembling all ".asm" files
 call assemble *.asm > nul
 echo.
 
-for %%f in (*.obj) do (call testCorrect %%~nf)
+for %%f in (*.cprl) do (call testCorrect calledFromTestCorrect_all %%~nf)

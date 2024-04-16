@@ -2,11 +2,27 @@
 
 rem
 rem Test a CPRL program for correct execution.
-rem Assumes that commands cprlc and assemble have already run successfully.
 
 rem Command-line arguments are as follows:
 rem - %0 : the name of this file
-rem - %1 : the name of the CPRL object file to test
+rem - %1 : the base name of the file to test without an extension
+rem Example: testCorrect Correct_101
+
+if %1==calledFromTestCorrect_all (
+    shift
+) else (
+    echo ...deleting files %1.asm, %1.obj, and %1.tmp
+    del %1.asm  2>nul
+    del %1.obj  2>nul
+    del %1.tmp  2>nul
+
+    echo ...recompiling %1.cprl
+    call cprlc %1.cprl > nul
+
+    echo ...reasembling %1.asm
+    call assemble %1.asm > nul
+    echo.
+)
 
 echo Testing Program %1
 

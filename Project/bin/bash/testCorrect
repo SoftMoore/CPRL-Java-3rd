@@ -2,11 +2,28 @@
 
 #
 # Test a CPRL program for correct execution.
-# Assumes that commands cprlc and assemble have already run successfully.
 
 # Command-line arguments are as follows:
 # - $0 : the name of this file
-# - $1 : the name of the CPRL object file to test
+# - $1 : the base name of the file to test without an extension
+
+
+if [ $1 = calledFromTestCorrect_all ]
+then
+    shift
+else
+    echo ...deleting files $1.asm, $1.obj, and $1.tmp
+    rm -f $1.asm
+    rm -f $1.obj
+    rm -f $1.tmp
+
+    echo ...recompiling $1.cprl
+    cprlc $1.cprl > /dev/null
+
+    echo ...reasembling $1.asm
+    assemble $1.asm > /dev/null
+    echo ""
+fi
 
 echo Testing Program $1
 
