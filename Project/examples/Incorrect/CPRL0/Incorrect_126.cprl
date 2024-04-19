@@ -7,7 +7,7 @@ proc main()
     loop
       {
         x := x + 1;
-        y := x;   // error inside loop not related to exit
+        y := x;   // y never declared; error inside loop not related to exit
         exit when x = 10;
       }
 

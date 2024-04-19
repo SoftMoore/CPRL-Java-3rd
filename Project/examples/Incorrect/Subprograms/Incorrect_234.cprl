@@ -1,0 +1,11 @@
+proc inc(var n : Integer)
+  {
+    n := n + 1;
+  }
+
+proc main()
+  {
+    var x : Integer := 10;
+
+    inc(x + 1);   // actual parameter passed to a var parameter must be a variable
+  }

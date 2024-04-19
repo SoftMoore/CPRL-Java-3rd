@@ -1,2 +1,2 @@
-x = 5, y = 6
-x = 8, y = 5
+x = 18; after call to p(x), x = 10
+x = 7;  after call to p(x), x = 7

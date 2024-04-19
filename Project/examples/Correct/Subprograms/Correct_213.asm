@@ -1,65 +1,49 @@
    CALL _main
    HALT
 _p:
-   LDLADDR -8
-   LOADW
-   LOADW
    LDLADDR -4
    LOADW
+   LOADW
+   LDCINT 10
    BGE L2
-   RET 8
-   BR L3
+   RET 4
 L2:
-   LDLADDR -8
-   LOADW
    LDLADDR -4
    LOADW
-   LDCINT 3
-   ADD
+   LDCINT 10
    STOREW
-L3:
-   RET 8
+   RET 4
 _main:
-   PROC 8
+   PROC 4
    LDLADDR 8
-   LDCINT 5
+   LDCINT 18
    STOREW
-   LDLADDR 12
-   LDCINT 6
-   STOREW
-   LDLADDR 8
-   LDLADDR 12
-   LOADW
-   CALL _p
    LDCSTR "x = "
    PUTSTR 4
    LDLADDR 8
    LOADW
    PUTINT
-   LDCSTR ", y = "
-   PUTSTR 6
-   LDLADDR 12
+   LDLADDR 8
+   CALL _p
+   LDCSTR "; after call to p(x), x = "
+   PUTSTR 26
+   LDLADDR 8
    LOADW
    PUTINT
    PUTEOL
    LDLADDR 8
-   LDCINT 6
+   LDCINT 7
    STOREW
-   LDLADDR 12
-   LDCINT 5
-   STOREW
-   LDLADDR 8
-   LDLADDR 12
-   LOADW
-   CALL _p
    LDCSTR "x = "
    PUTSTR 4
    LDLADDR 8
    LOADW
    PUTINT
-   LDCSTR ", y = "
-   PUTSTR 6
-   LDLADDR 12
+   LDLADDR 8
+   CALL _p
+   LDCSTR ";  after call to p(x), x = "
+   PUTSTR 27
+   LDLADDR 8
    LOADW
    PUTINT
    PUTEOL

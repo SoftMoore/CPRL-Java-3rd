@@ -3,25 +3,25 @@
 // x = 5, y = 6
 // x = 8, y = 5
 
-proc p(var m : Integer, n : Integer)
+proc p(var n : Integer)
   {
-   if m < n then
-      return;
-   else
-      m := n + 3;
+    if n < 10 then
+        return;
+
+    n := 10;
   }
 
 proc main()
   {
-    var x, y : Integer;
+    var x : Integer;
 
-    x := 5;
-    y := 6;
-    p(x, y);
-    writeln "x = ", x, ", y = ", y;
+    x := 18;
+    write "x = ", x;
+    p(x);
+    writeln "; after call to p(x), x = ", x;
 
-    x := 6;
-    y := 5;
-    p(x, y);
-    writeln "x = ", x, ", y = ", y;
+    x := 7;
+    write "x = ", x;
+    p(x);
+    writeln ";  after call to p(x), x = ", x;
   }

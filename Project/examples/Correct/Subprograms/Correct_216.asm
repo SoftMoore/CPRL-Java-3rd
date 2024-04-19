@@ -1,0 +1,89 @@
+   CALL _main
+   HALT
+_main:
+   PROC 4
+   LDLADDR 8
+   LDCINT 12
+   STOREW
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", f(x) = "
+   PUTSTR 9
+   ALLOC 4
+   LDLADDR 8
+   LOADW
+   CALL _f
+   PUTINT
+   PUTEOL
+   LDLADDR 8
+   LDCINT 2
+   NEG
+   STOREW
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", f(x) = "
+   PUTSTR 9
+   ALLOC 4
+   LDLADDR 8
+   LOADW
+   CALL _f
+   PUTINT
+   PUTEOL
+   LDLADDR 8
+   LDCINT 7
+   STOREW
+   LDCSTR "x = "
+   PUTSTR 4
+   LDLADDR 8
+   LOADW
+   PUTINT
+   LDCSTR ", f(x) = "
+   PUTSTR 9
+   ALLOC 4
+   LDLADDR 8
+   LOADW
+   CALL _f
+   PUTINT
+   PUTEOL
+   RET 0
+_f:
+L0:
+   LDLADDR -4
+   LOADW
+   LDCINT 10
+   BLE L8
+   LDLADDR -4
+   LDLADDR -4
+   LOADW
+   LDCINT 1
+   SUB
+   STOREW
+   BR L9
+L8:
+   LDLADDR -4
+   LOADW
+   LDCINT 0
+   BGE L6
+   LDLADDR -4
+   LDLADDR -4
+   LOADW
+   LDCINT 1
+   ADD
+   STOREW
+   BR L7
+L6:
+   LDLADDR -8
+   LDLADDR -4
+   LOADW
+   STOREW
+   RET 4
+L7:
+L9:
+   BR L0
+L1:

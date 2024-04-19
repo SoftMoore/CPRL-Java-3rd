@@ -1,0 +1,28 @@
+// FunctionDecl where only return statement is in an else statement
+
+proc main()
+  {
+    var x : Integer;
+
+    x := 12;
+    writeln "x = ", x, ", f(x) = ", f(x);
+
+    x := -2;
+    writeln "x = ", x, ", f(x) = ", f(x);
+
+    x := 7;
+    writeln "x = ", x, ", f(x) = ", f(x);
+  }
+
+fun f(n : Integer) : Integer
+  {
+    loop
+      {
+        if n > 10 then
+            n := n - 1;
+        else if n < 0 then
+            n := n + 1;
+        else
+            return n;
+      }
+  }

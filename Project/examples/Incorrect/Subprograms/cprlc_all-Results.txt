@@ -227,3 +227,10 @@ Starting compilation for Incorrect_233.cprl
     Type mismatch for assignment statement.
 Errors detected in Incorrect_233.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_234.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 10, character 11:
+    Expression for a var parameter must be a variable.
+Errors detected in Incorrect_234.cprl -- compilation terminated.
+
