@@ -142,3 +142,8 @@ Parsing complete.
 Parsing Incorrect_134.cprl...
 Parsing complete.
 
+Parsing Incorrect_135.cprl...
+*** Syntax error detected near line 9, character 1:
+    Expecting "End-of-File" but found "var" instead.
+*** Fatal exception: No error recovery -- parsing terminated.
+

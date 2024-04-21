@@ -124,3 +124,13 @@ Parsing complete.
 Parsing Incorrect_234.cprl...
 Parsing complete.
 
+Parsing Incorrect_235.cprl...
+*** Syntax error detected near line 2, character 23:
+    Expecting ":" but found "Boolean" instead.
+*** Syntax error detected near line 4, character 8:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_235.cprl -- parsing terminated.
+
+Parsing Incorrect_236.cprl...
+Parsing complete.
+

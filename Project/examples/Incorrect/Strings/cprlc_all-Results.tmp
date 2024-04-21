@@ -56,3 +56,10 @@ Starting compilation for Incorrect_408.cprl
     String literals can't be passed as parameters.
 Errors detected in Incorrect_408.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_409.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 1, character 20:
+    String capacity cannot be greater than 512.
+Errors detected in Incorrect_409.cprl -- compilation terminated.
+

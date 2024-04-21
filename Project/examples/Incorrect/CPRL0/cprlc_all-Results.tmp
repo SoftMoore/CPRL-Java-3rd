@@ -233,3 +233,9 @@ Starting compilation for Incorrect_134.cprl
     Expression following "-" operator is not an Integer expression.
 Errors detected in Incorrect_134.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_135.cprl
+...parsing
+*** Syntax error detected near line 9, character 1:
+    Expecting "proc" or "fun" but found "var" instead.
+Errors detected in Incorrect_135.cprl -- compilation terminated.
+

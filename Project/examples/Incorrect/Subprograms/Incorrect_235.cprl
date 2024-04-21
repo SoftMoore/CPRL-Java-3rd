@@ -1,0 +1,12 @@
+// missing colon in parameter declaration for y
+proc p(x : Integer, y Boolean, var z : Boolean)
+  {
+    if y or z then
+        writeln "x = ", x;
+  }
+
+proc main()
+  {
+    var n : Boolean := true;
+    p(5, true, n);
+  }

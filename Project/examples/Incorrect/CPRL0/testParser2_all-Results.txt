@@ -152,3 +152,8 @@ Parsing complete.
 Parsing Incorrect_134.cprl...
 Parsing complete.
 
+Parsing Incorrect_135.cprl...
+*** Syntax error detected near line 9, character 1:
+    Expecting "proc" or "fun" but found "var" instead.
+Errors detected in Incorrect_135.cprl -- parsing terminated.
+

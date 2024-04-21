@@ -234,3 +234,22 @@ Starting compilation for Incorrect_234.cprl
     Expression for a var parameter must be a variable.
 Errors detected in Incorrect_234.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_235.cprl
+...parsing
+*** Syntax error detected near line 2, character 23:
+    Expecting ":" but found "Boolean" instead.
+*** Syntax error detected near line 4, character 8:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_235.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_236.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 14, character 5:
+    Procedure "p2" has not been declared.
+*** Constraint error detected near line 15, character 10:
+    Function "f2" has not been declared.
+*** Constraint error detected near line 15, character 7:
+    Type mismatch for assignment statement.
+Errors detected in Incorrect_236.cprl -- compilation terminated.
+

@@ -1,0 +1,9 @@
+var n : Integer;
+
+proc main()
+  {
+    n := 5;
+    writeln "n = ", n;
+  }
+
+var m : Integer;   // initial declaration following all subprogram declarations

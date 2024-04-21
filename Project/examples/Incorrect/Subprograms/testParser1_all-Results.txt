@@ -120,3 +120,11 @@ Parsing complete.
 Parsing Incorrect_234.cprl...
 Parsing complete.
 
+Parsing Incorrect_235.cprl...
+*** Syntax error detected near line 2, character 23:
+    Expecting ":" but found "Boolean" instead.
+*** Fatal exception: No error recovery -- parsing terminated.
+
+Parsing Incorrect_236.cprl...
+Parsing complete.
+
