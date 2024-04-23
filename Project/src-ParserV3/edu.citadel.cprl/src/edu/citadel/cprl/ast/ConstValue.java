@@ -45,6 +45,28 @@ public class ConstValue extends Expression
         this.decl    = decl;
       }
 
+    /*
+     * Returns true if this constant value has the specified type.
+     */
+    public boolean hasType(Type t)
+      {
+        if (t == Type.Integer && getType() == Type.Integer)
+          {
+            // We still need to check that the literal can be converted to an integer.
+            try
+              {
+                Integer.parseInt(literal.getText());
+                return true;
+              }
+            catch (NumberFormatException e)
+              {
+                return false;
+              }
+          }
+
+        return t == getType();
+      }
+
     /**
      * Returns an integer value for the declaration literal.  For an integer
      * literal, this method simply returns its integer value.  For a char

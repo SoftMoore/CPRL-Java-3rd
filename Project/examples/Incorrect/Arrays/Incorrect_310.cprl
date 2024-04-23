@@ -1,0 +1,7 @@
+type T = array[true] of Integer;   // number of elements must have type Integer
+var a : T;
+
+proc main()
+  {
+    a[0] := 1;
+  }

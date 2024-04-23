@@ -109,28 +109,18 @@ Parsing Incorrect_230.cprl...
 Parsing complete.
 
 Parsing Incorrect_231.cprl...
-*** Syntax error detected near line 1, character 13:
-    Invalid type declaration.
-*** Syntax error detected near line 5, character 13:
-    Identifier "Name" has not been declared.
-Errors detected in Incorrect_231.cprl -- parsing terminated.
+Parsing complete.
 
 Parsing Incorrect_232.cprl...
-Parsing complete.
+*** Syntax error detected near line 2, character 23:
+    Expecting ":" but found "Boolean" instead.
+*** Syntax error detected near line 4, character 8:
+    Identifier "y" has not been declared.
+Errors detected in Incorrect_232.cprl -- parsing terminated.
 
 Parsing Incorrect_233.cprl...
 Parsing complete.
 
 Parsing Incorrect_234.cprl...
-Parsing complete.
-
-Parsing Incorrect_235.cprl...
-*** Syntax error detected near line 2, character 23:
-    Expecting ":" but found "Boolean" instead.
-*** Syntax error detected near line 4, character 8:
-    Identifier "y" has not been declared.
-Errors detected in Incorrect_235.cprl -- parsing terminated.
-
-Parsing Incorrect_236.cprl...
 Parsing complete.
 

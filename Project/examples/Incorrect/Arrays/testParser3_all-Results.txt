@@ -23,3 +23,16 @@ Errors detected in Incorrect_306.cprl -- parsing terminated.
 Parsing Incorrect_307.cprl...
 Parsing complete.
 
+Parsing Incorrect_308.cprl...
+Parsing complete.
+
+Parsing Incorrect_309.cprl...
+*** Syntax error detected near line 1, character 16:
+    Invalid integer constant.
+Errors detected in Incorrect_309.cprl -- parsing terminated.
+
+Parsing Incorrect_310.cprl...
+*** Syntax error detected near line 1, character 16:
+    Invalid integer constant.
+Errors detected in Incorrect_310.cprl -- parsing terminated.
+

@@ -1,0 +1,7 @@
+type T = array[9999999999999] of Integer;   // number of elements it too large for an Integer
+var a : T;
+
+proc main()
+  {
+    a[0] := 1;
+  }

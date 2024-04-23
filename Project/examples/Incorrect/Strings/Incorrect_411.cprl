@@ -1,0 +1,10 @@
+type Name = string[20];
+
+proc main()
+  {
+    var x : Integer := "Hello";   // can't initialize integer with string
+    var n : Name := 5;            // can't initialize string with integer
+
+    write x;
+    write n;
+  }

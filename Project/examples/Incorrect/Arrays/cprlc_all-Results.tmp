@@ -63,3 +63,22 @@ Starting compilation for Incorrect_307.cprl
     Output supported only for integers, characters, booleans, and strings.
 Errors detected in Incorrect_307.cprl -- compilation terminated.
 
+Starting compilation for Incorrect_308.cprl
+...parsing
+...checking constraints
+*** Constraint error detected near line 1, character 16:
+    Array size must be a positive integer.
+Errors detected in Incorrect_308.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_309.cprl
+...parsing
+*** Syntax error detected near line 1, character 16:
+    Invalid integer constant.
+Errors detected in Incorrect_309.cprl -- compilation terminated.
+
+Starting compilation for Incorrect_310.cprl
+...parsing
+*** Syntax error detected near line 1, character 16:
+    Invalid integer constant.
+Errors detected in Incorrect_310.cprl -- compilation terminated.
+

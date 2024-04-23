@@ -1,7 +1,9 @@
-type Name = String[20];     // invalid type declaration
+fun f() : Integer
+  {
+    return 9999999999999;   // literal is too large for Integer
+  }
 
 proc main()
   {
-    var n : Name :=  "Nate";
-    write n;
+    writeln f();
   }

@@ -1,0 +1,7 @@
+type T = array[0] of Integer;   // number of elements must be positive
+var a : T;
+
+proc main()
+  {
+    a[0] := 1;
+  }

@@ -107,24 +107,16 @@ Parsing Incorrect_230.cprl...
 Parsing complete.
 
 Parsing Incorrect_231.cprl...
-*** Syntax error detected near line 1, character 13:
-    Invalid type declaration.
-*** Fatal exception: No error recovery -- parsing terminated.
+Parsing complete.
 
 Parsing Incorrect_232.cprl...
-Parsing complete.
+*** Syntax error detected near line 2, character 23:
+    Expecting ":" but found "Boolean" instead.
+*** Fatal exception: No error recovery -- parsing terminated.
 
 Parsing Incorrect_233.cprl...
 Parsing complete.
 
 Parsing Incorrect_234.cprl...
-Parsing complete.
-
-Parsing Incorrect_235.cprl...
-*** Syntax error detected near line 2, character 23:
-    Expecting ":" but found "Boolean" instead.
-*** Fatal exception: No error recovery -- parsing terminated.
-
-Parsing Incorrect_236.cprl...
 Parsing complete.
 

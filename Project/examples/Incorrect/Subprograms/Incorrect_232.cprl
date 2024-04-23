@@ -1,10 +1,12 @@
-type Name = string[20];
+// missing colon in parameter declaration for y
+proc p(x : Integer, y Boolean, var z : Boolean)
+  {
+    if y or z then
+        writeln "x = ", x;
+  }
 
 proc main()
   {
-    var x : Integer := "Hello";   // can't initialize integer with string
-    var n : Name := 5;            // can't initialize string with integer
-
-    write x;
-    write n;
+    var n : Boolean := true;
+    p(5, true, n);
   }

@@ -1,0 +1,7 @@
+type Name = String[20];     // invalid type declaration
+
+proc main()
+  {
+    var n : Name :=  "Nate";
+    write n;
+  }

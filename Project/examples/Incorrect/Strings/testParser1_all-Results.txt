@@ -29,3 +29,11 @@ Parsing complete.
 Parsing Incorrect_409.cprl...
 Parsing complete.
 
+Parsing Incorrect_410.cprl...
+*** Syntax error detected near line 1, character 13:
+    Invalid type declaration.
+*** Fatal exception: No error recovery -- parsing terminated.
+
+Parsing Incorrect_411.cprl...
+Parsing complete.
+

@@ -288,17 +288,42 @@ public final class Parser
      */
     private InitialDecl parseArrayTypeDecl() throws IOException
       {
-        try
+// ...
+            var numElements = parseIntConstValue();
+// ...
+      }
+
+    /**
+     * Wrapper for method parseConstValue() that always returns a valid integer constant.
+     *
+     * @return the parsed constant value.  Returns a default
+     *         integer constant value if parsing fails.
+     */
+    private Expression parseIntConstValue() throws IOException
+      {
+        // save current position for possible error reporting
+        var savePosition = scanner.getPosition();
+        var constValue = parseConstValue();
+
+        // create a default value to be used when numElements is not a valid integer
+        var token = new Token(Symbol.intLiteral, savePosition, "1");
+        var defaultConstValue = new ConstValue(token);
+
+        if (constValue instanceof EmptyExpression)
+            constValue = defaultConstValue;   // error has already been reported
+        else
           {
-// ...
-            var numElements = parseConstValue();
-            if (numElements instanceof EmptyExpression)
+            var constValue2 = (ConstValue) constValue;
+            if (!constValue2.hasType(Type.Integer))
               {
-                // create default value for numElements to prevent "undeclared" errors
-                var token = new Token(Symbol.intLiteral, scanner.getPosition(), "0");
-                numElements = new ConstValue(token);
+                // report the error here but continue with the default value
+                var errorMsg = "Invalid integer constant.";
+                errorHandler.reportError(error(savePosition, errorMsg));
+                constValue = defaultConstValue;
               }
-// ...
+          }
+
+        return constValue;
       }
 
     /**
@@ -378,13 +403,7 @@ public final class Parser
     private InitialDecl parseStringTypeDecl() throws IOException
       {
 // ...
-            var numElements = parseConstValue();
-            if (numElements instanceof EmptyExpression)
-              {
-                // create a default value for numElements to prevent "not declared" errors
-                var token = new Token(Symbol.intLiteral, scanner.getPosition(), "0");
-                numElements = new ConstValue(token);
-              }
+            var numElements = parseIntConstValue();
 // ...
       }
 
