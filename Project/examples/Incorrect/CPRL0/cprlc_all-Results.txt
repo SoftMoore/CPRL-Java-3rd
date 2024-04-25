@@ -221,7 +221,7 @@ Errors detected in Incorrect_132.cprl -- compilation terminated.
 Starting compilation for Incorrect_133.cprl
 ...parsing
 *** Syntax error detected near line 2, character 20:
-    Identifier x was not declared as a constant.
+    Identifier "x" was not declared as a constant.
 *** Syntax error detected near line 3, character 20:
     Identifier "n" has not been declared.
 Errors detected in Incorrect_133.cprl -- compilation terminated.
