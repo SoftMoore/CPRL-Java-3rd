@@ -288,42 +288,26 @@ public final class Parser
      */
     private InitialDecl parseArrayTypeDecl() throws IOException
       {
-// ...
-            var numElements = parseIntConstValue();
-// ...
-      }
-
-    /**
-     * Wrapper for method parseConstValue() that always returns a valid integer constant.
-     *
-     * @return the parsed constant value.  Returns a default
-     *         integer constant value if parsing fails.
-     */
-    private Expression parseIntConstValue() throws IOException
-      {
-        // save current position for possible error reporting
-        var savePosition = scanner.getPosition();
-        var constValue = parseConstValue();
-
-        // create a default value to be used when numElements is not a valid integer
-        var token = new Token(Symbol.intLiteral, savePosition, "1");
-        var defaultConstValue = new ConstValue(token);
-
-        if (constValue instanceof EmptyExpression)
-            constValue = defaultConstValue;   // error has already been reported
-        else
+        try
           {
-            var constValue2 = (ConstValue) constValue;
-            if (!constValue2.hasType(Type.Integer))
+// ...
+            var numElements = parseConstValue();
+// ...
+            if (numElements instanceof EmptyExpression)
               {
-                // report the error here but continue with the default value
-                var errorMsg = "Invalid integer constant.";
-                errorHandler.reportError(error(savePosition, errorMsg));
-                constValue = defaultConstValue;
+                // Error has already been reported.  Create default value and continue.
+                var token = new Token(Symbol.intLiteral, new Position(), "1");
+                var defaultConstValue = new ConstValue(token);
+                numElements = defaultConstValue;
               }
+// ...
           }
-
-        return constValue;
+        catch (ParserException e)
+          {
+            errorHandler.reportError(e);
+            recover(initialDeclFollowers());
+            return EmptyInitialDecl.getInstance();
+          }
       }
 
     /**
@@ -402,9 +386,26 @@ public final class Parser
      */
     private InitialDecl parseStringTypeDecl() throws IOException
       {
+        try
+          {
 // ...
-            var numElements = parseIntConstValue();
+            var numElements = parseConstValue();
 // ...
+            if (numElements instanceof EmptyExpression)
+              {
+                // Error has already been reported.  Create default value and continue.
+                var token = new Token(Symbol.intLiteral, new Position(), "1");
+                var defaultConstValue = new ConstValue(token);
+                numElements = defaultConstValue;
+              }
+// ...
+          }
+        catch (ParserException e)
+          {
+            errorHandler.reportError(e);
+            recover(initialDeclFollowers());
+            return EmptyInitialDecl.getInstance();
+          }
       }
 
     /**
