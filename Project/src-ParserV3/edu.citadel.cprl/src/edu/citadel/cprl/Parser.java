@@ -297,8 +297,7 @@ public final class Parser
               {
                 // Error has already been reported.  Create default value and continue.
                 var token = new Token(Symbol.intLiteral, new Position(), "1");
-                var defaultConstValue = new ConstValue(token);
-                numElements = defaultConstValue;
+                numElements = new ConstValue(token);
               }
 // ...
           }
@@ -395,8 +394,7 @@ public final class Parser
               {
                 // Error has already been reported.  Create default value and continue.
                 var token = new Token(Symbol.intLiteral, new Position(), "1");
-                var defaultConstValue = new ConstValue(token);
-                numElements = defaultConstValue;
+                numElements = new ConstValue(token);
               }
 // ...
           }
