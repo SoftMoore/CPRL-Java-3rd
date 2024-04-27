@@ -72,13 +72,15 @@ Errors detected in Incorrect_308.cprl -- compilation terminated.
 
 Starting compilation for Incorrect_309.cprl
 ...parsing
-*** Syntax error detected near line 1, character 16:
-    Invalid integer constant.
+...checking constraints
+*** Constraint error detected near line 1, character 16:
+    The number "9999999999999" cannot be converted to an integer in CPRL.
 Errors detected in Incorrect_309.cprl -- compilation terminated.
 
 Starting compilation for Incorrect_310.cprl
 ...parsing
-*** Syntax error detected near line 1, character 16:
-    Invalid integer constant.
+...checking constraints
+*** Constraint error detected near line 1, character 16:
+    Array size must have type Integer.
 Errors detected in Incorrect_310.cprl -- compilation terminated.
 
