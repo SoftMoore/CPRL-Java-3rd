@@ -291,14 +291,7 @@ public final class Parser
         try
           {
 // ...
-            var numElements = parseConstValue();
-// ...
-            if (numElements instanceof EmptyExpression)
-              {
-                // Error has already been reported.  Create default value and continue.
-                var token = new Token(Symbol.intLiteral, new Position(), "1");
-                numElements = new ConstValue(token);
-              }
+            var numElements = parseIntConstValue();
 // ...
           }
         catch (ParserException e)
@@ -388,14 +381,7 @@ public final class Parser
         try
           {
 // ...
-            var numElements = parseConstValue();
-// ...
-            if (numElements instanceof EmptyExpression)
-              {
-                // Error has already been reported.  Create default value and continue.
-                var token = new Token(Symbol.intLiteral, new Position(), "1");
-                numElements = new ConstValue(token);
-              }
+            var numElements = parseIntConstValue();
 // ...
           }
         catch (ParserException e)
@@ -1062,6 +1048,24 @@ public final class Parser
       }
 
     // Utility parsing methods
+
+    /*
+     * Wrapper around method parseConstValue() that always
+     * returns a valid constant value.
+     */
+    private ConstValue parseIntConstValue() throws IOException
+      {
+        var intConstValue = parseConstValue();
+
+        if (intConstValue instanceof EmptyExpression)
+          {
+            // Error has already been reported.  Create default value and continue.
+            var token = new Token(Symbol.intLiteral, new Position(), "1");
+            intConstValue = new ConstValue(token);
+          }
+
+        return (ConstValue) intConstValue;
+      }
 
     /**
      * Check that the current scanner symbol is the expected symbol.  If it
