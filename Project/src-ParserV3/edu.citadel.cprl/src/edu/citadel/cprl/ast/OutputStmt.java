@@ -56,8 +56,7 @@ public class OutputStmt extends Statement
                 if (type != Type.Integer && type != Type.Boolean && type != Type.Char
                       && !(type instanceof StringType))
                   {
-                    var errorMsg = "Output supported only for integers, "
-                                 + "characters, booleans, and strings.";
+                    var errorMsg = "Output supported only for scalar types and strings.";
                     throw error(expr.getPosition(), errorMsg);
                   }
               }

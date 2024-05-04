@@ -60,7 +60,7 @@ Starting compilation for Incorrect_307.cprl
 *** Constraint error detected near line 6, character 10:
     Input supported only for integers, characters, and strings.
 *** Constraint error detected near line 7, character 11:
-    Output supported only for integers, characters, booleans, and strings.
+    Output supported only for scalar types and strings.
 Errors detected in Incorrect_307.cprl -- compilation terminated.
 
 Starting compilation for Incorrect_308.cprl
