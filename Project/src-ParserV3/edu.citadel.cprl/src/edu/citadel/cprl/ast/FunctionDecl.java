@@ -22,23 +22,14 @@ public class FunctionDecl extends SubprogramDecl
       }
 
     /**
-     * Computes the relative address of the function return value. <br>
-     * Note: This method assumes that the relative addresses of all
-     * formal parameters have been set.
+     * Computes/returns the relative address of the function return value.
      */
     public int getRelAddr()
       {
-        int firstParamAddr = 0;
-        var params = getFormalParams();
-
-        if (params.size() > 0)
-          {
-            var firstParamDecl = params.get(0);
-            firstParamAddr = firstParamDecl.getRelAddr();
-          }
-
-        // the location for the return value is above the first parameter
-        return firstParamAddr - getType().getSize();
+        var relAddr = -getType().getSize();
+        for (ParameterDecl decl : getFormalParams())
+            relAddr = relAddr - decl.getSize();
+        return relAddr;
       }
 
     @Override
