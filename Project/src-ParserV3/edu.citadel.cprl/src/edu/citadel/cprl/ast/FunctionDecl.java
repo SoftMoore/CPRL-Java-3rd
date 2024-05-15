@@ -26,10 +26,7 @@ public class FunctionDecl extends SubprogramDecl
      */
     public int getRelAddr()
       {
-        var relAddr = -getType().getSize();
-        for (ParameterDecl decl : getFormalParams())
-            relAddr = relAddr - decl.getSize();
-        return relAddr;
+        return -getType().getSize() - getParamLength();
       }
 
     @Override
