@@ -27,7 +27,7 @@ public abstract class AST
     /**
      * Initializes static members that are shared with all AST subclasses.
      * The members must be re-initialized each time that the compiler is
-     * run on a different file; e.g., via a command like cprlc *.asm1.
+     * run on a different file; e.g., via a command like cprlc *.cprl.
      */
     public static void initStatic()
       {

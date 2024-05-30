@@ -31,7 +31,7 @@ public enum Symbol
     STORE2B(0),
     STOREW(0),
 
-    // compare/branch opcodes
+    // branch opcodes
     BR(1),
     BE(1),
     BNE(1),

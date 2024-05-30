@@ -32,14 +32,4 @@ public abstract class CompilerException extends Exception
       {
         super("*** " + errorType + " error detected:\n    " + errorMsg);
       }
-
-    /**
-     * Construct a compiler exception with the specified error message.
-     *
-     * @param errorMsg a brief message about the nature of the error.
-     */
-    public CompilerException(String errorMsg)
-      {
-        super(errorMsg);
-      }
   }

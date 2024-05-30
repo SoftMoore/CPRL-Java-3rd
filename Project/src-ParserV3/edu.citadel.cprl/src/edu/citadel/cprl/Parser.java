@@ -75,7 +75,6 @@ public final class Parser
      *
      * @return the parsed program.  Returns a program with an empty list of initial
      *         declarations and an empty list of statements if parsing fails.
-     *
      */
     public Program parseProgram() throws IOException
       {
@@ -152,7 +151,7 @@ public final class Parser
           {
             if (scanner.getSymbol().isLiteral())
               {
-                Token literal = scanner.getToken();
+                var literal = scanner.getToken();
                 matchCurrentSymbol();
                 return literal;
               }
