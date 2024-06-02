@@ -1,7 +1,7 @@
 @echo off
 
 rem
-rem Run CPRL TestSource on the specified file
+rem Run CPRL TestSource on the specified file.
 rem
 
 rem set config environment variables locally

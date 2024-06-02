@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Set the path to include this directory
+# Set the path to include this directory.
 #
 
 if [[ $0 != "-bash" ]]

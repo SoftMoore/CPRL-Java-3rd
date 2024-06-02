@@ -1,7 +1,7 @@
 @echo off
 
 rem
-rem Run CPRL Virtual Machine interpreter on a single ".obj" file
+rem Run CPRL Virtual Machine interpreter on a single ".obj" file.
 rem
 
 rem set config environment variables locally

@@ -6,6 +6,7 @@
 # Command-line arguments are as follows:
 # - $0 : the name of this file
 # - $1 : the base name of the file to test without an extension
+# Example: testCorrect Correct_101
 
 
 if [ $1 = calledFromTestCorrect_all ]

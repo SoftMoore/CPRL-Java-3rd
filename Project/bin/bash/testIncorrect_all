@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #
-# Compile, assemble, and run all ".cprl" files in the current
-# directory, and compare the results with the expected results.
+# Compile all ".cprl" files in the current directory
+# and compare the results with the expected results.
 #
 
 echo ...deleting \"cprlc_all-Results.tmp\"
