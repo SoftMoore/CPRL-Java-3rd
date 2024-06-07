@@ -1,8 +1,17 @@
 @echo off
 
 rem
-rem Run testCorrect on all ".cprl" files in the current directory.
+rem Run testCorrect for all ".cprl" files in the current directory.
 rem
+
+rem count number of cprl files
+set numCprlFiles=0
+for %%f in (*.cprl) do set /a numCprlFiles+=1
+
+if %numCprlFiles% == 0 (
+   echo no ".cprl" files found in current directory
+   exit /b
+)
 
 echo ...deleting all ".asm", ".obj", and ".tmp" files
 del *.asm  2>nul

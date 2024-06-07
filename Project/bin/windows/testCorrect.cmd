@@ -8,6 +8,11 @@ rem - %0 : the name of this file
 rem - %1 : the base name of the file to test without an extension
 rem Example: testCorrect Correct_101
 
+if "%~1"=="" (
+  echo missing base name of the file to test
+  exit /b
+)
+
 if %1==calledFromTestCorrect_all (
     shift
 ) else (

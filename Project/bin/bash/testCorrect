@@ -8,6 +8,12 @@
 # - $1 : the base name of the file to test without an extension
 # Example: testCorrect Correct_101
 
+if [ -z "$1" ]
+then
+    echo missing base name of the file to test
+    echo
+    exit
+fi
 
 if [ $1 = calledFromTestCorrect_all ]
 then
@@ -23,7 +29,7 @@ else
 
     echo ...reasembling $1.asm
     assemble $1.asm > /dev/null
-    echo ""
+    echo
 fi
 
 echo Testing Program $1
@@ -38,7 +44,7 @@ fi
 if [ ! -f $1.out.txt ]
 then
     echo "Can't find $1.out.txt"
-    echo ""
+    echo
     exit 1
 fi
 
@@ -59,5 +65,5 @@ else
     echo "Test Passed"
 fi
 
-echo ""
+echo
 

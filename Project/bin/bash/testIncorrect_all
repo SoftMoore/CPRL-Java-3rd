@@ -5,6 +5,14 @@
 # and compare the results with the expected results.
 #
 
+count=$(ls -1 | grep '\.cprl$' | wc -l)
+if [ $count -eq 0 ]
+then
+    echo no \".cprl\" files found in current directory
+    echo
+    exit
+fi
+
 echo ...deleting \"cprlc_all-Results.tmp\"
 rm -f cprlc_all-Results.tmp
 
