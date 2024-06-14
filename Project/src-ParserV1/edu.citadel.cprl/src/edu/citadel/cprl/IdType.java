@@ -9,8 +9,8 @@ public enum IdType
     variableId,
     arrayTypeId,
     recordTypeId,
-    fieldId,
     stringTypeId,
+    fieldId,
     procedureId,
     functionId;
   }
