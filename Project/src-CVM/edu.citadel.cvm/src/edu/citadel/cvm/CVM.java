@@ -1028,16 +1028,13 @@ public class CVM
 
     private void store()
       {
-        int length  = fetchInt();
-        byte[] data = new byte[length];
+        int length   = fetchInt();
+        int destAddr = getIntAtAddr(sp - length - 3);
 
         // pop bytes of data, storing in reverse order
         for (int i = length - 1; i >= 0; --i)
-            data[i] = popByte();
-
-        int destAddr = popInt();
-        for (int i = 0; i < length; ++i)
-            memory[destAddr + i] = data[i];
+            memory[destAddr + i] = popByte();
+        popByte();   // remove destAddr from stack
       }
 
     private void storeByte()
