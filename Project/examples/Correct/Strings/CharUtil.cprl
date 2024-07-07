@@ -78,7 +78,6 @@ fun bToStr(b : Boolean) : BoolStr
 
 // Returns true only if the specified character is a letter;
 // i.e., the character is in 'A'..'Z' + 'a'..'z'.
- ///
 fun isLetter(ch : Char) : Boolean
   {
     return (ch >= 'a' and ch <= 'z') or (ch >= 'A' and ch <= 'Z');
