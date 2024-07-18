@@ -344,8 +344,8 @@ public final class Scanner
      * Scans characters in the source file for an escaped character; i.e.,
      * a character preceded by a backslash.  This method checks escape
      * characters \t, \n, \r, \", \', and \\.  If the character following
-     * a backslash is anything other than one of these characters, then an
-     * exception is thrown.  Note that the escaped character sequence is
+     * a backslash is anything other than one of these characters, then
+     * an error is reported.  Note that the escaped character sequence is
      * returned unmodified; i.e., \t returns "\t", not the tab character.
      * Assumes that source.getChar() is the escape character (\).
      *

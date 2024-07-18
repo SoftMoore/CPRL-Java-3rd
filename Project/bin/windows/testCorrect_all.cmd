@@ -23,6 +23,6 @@ call cprlc *.cprl > nul
 
 echo ...reasembling all ".asm" files
 call assemble *.asm > nul
-echo.
+echo;
 
 for %%f in (*.cprl) do (call testCorrect calledFromTestCorrect_all %%~nf)

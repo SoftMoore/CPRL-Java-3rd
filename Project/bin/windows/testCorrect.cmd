@@ -26,20 +26,20 @@ if %1==calledFromTestCorrect_all (
 
     echo ...reasembling %1.asm
     call assemble %1.asm > nul
-    echo.
+    echo;
 )
 
 echo Testing Program %1
 
 if not exist %1.obj (
     echo Can't find %1.obj
-    echo.
+    echo;
     goto :eof
 )
 
 if not exist %1.out.txt (
     echo Can't find %1.out.txt
-    echo.
+    echo;
     goto :eof
 )
 
@@ -53,4 +53,4 @@ rem comparing output files
 echo ...comparing files %1.out.tmp and %1.out.txt
 fc /n %1.out.tmp %1.out.txt > nul
 if errorlevel 1 (echo *** Test Failed ***) else (echo Test Passed)
-echo.
+echo;
