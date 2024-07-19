@@ -15,17 +15,13 @@ public class CharUtil
       }
 
     /**
-     * Returns true only if the specified character is a hex digit
-     * ('0'..'9', 'A'..'F', or 'a'..'f').
+     * Returns true only if the specified character is a hex digit.<br>
+     * <code>'0'..'9' + 'A'..'F' + 'a'..'f'</code>
      */
-    public static boolean isHexDigit(char ch)
+    public static boolean isHexDigit(int ch)
       {
-        if (Character.isDigit(ch))
-            return true;
-        else
-          {
-            ch = Character.toUpperCase(ch);
-            return ch >= 'A' && ch <= 'F';
-          }
+        return (ch >= '0' && ch <= '9')
+            || (ch >= 'a' && ch <= 'f')
+            || (ch >= 'A' && ch <= 'F');
       }
   }
