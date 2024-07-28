@@ -65,30 +65,34 @@ public class BranchingReduction implements Optimization
 
     /**
      * Returns true if the symbol is a conditional branch; that is,
-     * if the symbol is one of BNZ, BZ, BG, BGE, BL, or BLE.
+     * if the symbol is one of BG, BGE, BL, BLE, BE, BNe, BZ, BNZ.
      */
     private static boolean isConditionalBranch(Symbol s)
       {
-        return s == Symbol.BNZ || s == Symbol.BZ || s == Symbol.BG
-            || s == Symbol.BGE || s == Symbol.BL || s == Symbol.BLE;
+        return s == Symbol.BG || s == Symbol.BGE
+            || s == Symbol.BL || s == Symbol.BLE
+            || s == Symbol.BE || s == Symbol.BNE
+            || s == Symbol.BZ || s == Symbol.BNZ;
       }
 
     /**
-     * Returns dual branch conditional branch instruction with the specified
-     * instruction labels and label argument.  For example, if parameter s has
-     * the value Symbol.BG, then an instruction of type InstructionBLE is returned.
+     * Returns dual conditional branch instruction with the specified instruction
+     * labels and label argument.  For example, if parameter s has the value
+     * Symbol.BG, then an instruction of type InstructionBLE is returned.
      */
     private static Instruction makeDualBranchInst(List<Token> labels, Symbol s, Token labelArg)
       {
         return switch (s)
           {
-            case BNZ -> new InstructionBZ(labels,  new Token(Symbol.BZ), labelArg);
-            case BZ  -> new InstructionBNZ(labels, new Token(Symbol.BNZ), labelArg);
             case BG  -> new InstructionBLE(labels, new Token(Symbol.BLE), labelArg);
-            case BGE -> new InstructionBL(labels,  new Token(Symbol.BL), labelArg);
+            case BGE -> new InstructionBL(labels,  new Token(Symbol.BL),  labelArg);
             case BL  -> new InstructionBGE(labels, new Token(Symbol.BGE), labelArg);
-            case BLE -> new InstructionBG(labels,  new Token(Symbol.BG), labelArg);
-            default  -> throw new IllegalArgumentException("Illegal branch instruction " + s);
+            case BLE -> new InstructionBG(labels,  new Token(Symbol.BG),  labelArg);
+            case BE  -> new InstructionBNE(labels, new Token(Symbol.BNE), labelArg);
+            case BNE -> new InstructionBE(labels,  new Token(Symbol.BE),  labelArg);
+            case BZ  -> new InstructionBNZ(labels, new Token(Symbol.BNZ), labelArg);
+            case BNZ -> new InstructionBZ(labels,  new Token(Symbol.BZ),  labelArg);
+            default  -> throw new IllegalArgumentException("Illegal conditional branch instruction " + s);
           };
       }
 
