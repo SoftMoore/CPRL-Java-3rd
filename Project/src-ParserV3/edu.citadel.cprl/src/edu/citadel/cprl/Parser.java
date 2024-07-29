@@ -73,8 +73,9 @@ public final class Parser
      * Parse the following grammar rule:<br>
      * <code>program = initialDecls subprogramDecls .</code>
      *
-     * @return the parsed program.  Returns a program with an empty list of initial
-     *         declarations and an empty list of statements if parsing fails.
+     * @return the parsed program.  Returns a program with an empty list
+     *         of initial declarations and an empty list of subprogram
+     *         declarations if parsing fails.
      */
     public Program parseProgram() throws IOException
       {
