@@ -453,7 +453,7 @@ public class CVM
       }
 
     /**
-     * Fetch the next instruction char operand from memory.
+     * Fetch the next character operand from memory.
      */
     private char fetchChar()
       {
@@ -463,7 +463,7 @@ public class CVM
       }
 
     /**
-     * Fetch the next instruction int operand from memory.
+     * Fetch the next integer operand from memory.
      */
     private int fetchInt()
       {
