@@ -11,9 +11,9 @@ architecture that is similar to but much simpler than the Java Virtual Machine (
 The assembler has been moved into a separate module, so now there are four modules for the compiler project.
 See Appendix A listed below for details.**
 
-Several sections from the book are provided as PDF documents.
-* [Table of Contents](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/TOC.pdf)
-* [Preface](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/Preface.pdf)
-* [Appendix A: The Compiler Project](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixA.pdf)
-* [Appendix C: Definition of the Programming Language CPRL](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixC.pdf)
-* [Appendix E: Definition of the CPRL Virtual Machine](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/SoftMoore/CPRL-Java-3rd/main/Book/AppendixE.pdf)
+The following sections from the book are provided as PDF documents in the `Book` folder.
+* Table of Contents
+* Preface
+* Appendix A: The Compiler Project
+* Appendix C: Definition of the Programming Language CPRL
+* Appendix E: Definition of the CPRL Virtual Machine
