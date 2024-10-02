@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#
+# Test all correct and incorrect CPRL examples.
+#
+
+# set config environment variables
+source cprl_config
+
+# ----------------------------------------
+# test all correct examples
+# ----------------------------------------
+
+pushd $EXAMPLES_HOME/Correct > /dev/null 2>&1
+for dirname in *
+do
+    pushd $dirname > /dev/null 2>&1
+    echo Testing $dirname
+    testCorrect_all
+    popd > /dev/null 2>&1
+done
+popd > /dev/null 2>&1
+
+# ----------------------------------------
+# test all incorrect examples
+# ----------------------------------------
+
+pushd $EXAMPLES_HOME/Incorrect > /dev/null 2>&1
+for dirname in *
+do
+    pushd $dirname > /dev/null 2>&1
+    echo Testing $dirname
+    testIncorrect_all
+    echo
+    popd > /dev/null 2>&1
+done
+popd > /dev/null 2>&1
