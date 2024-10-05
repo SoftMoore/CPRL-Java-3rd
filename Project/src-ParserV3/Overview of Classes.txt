@@ -17,7 +17,6 @@ LoopContext.java
 * Parser.java
 * RecordType.java
 Scope.java
-ScopeLevel.java
 * StringType.java
 SubprogramContext.java
 Type.java
