@@ -1,9 +1,9 @@
 package edu.citadel.cprl;
 
-import edu.citadel.compiler.ErrorHandler;
-import edu.citadel.compiler.InternalCompilerException;
-import edu.citadel.compiler.ParserException;
 import edu.citadel.compiler.Position;
+import edu.citadel.compiler.ErrorHandler;
+import edu.citadel.compiler.ParserException;
+import edu.citadel.compiler.InternalCompilerException;
 
 import java.io.IOException;
 import java.util.*;
@@ -370,7 +370,7 @@ public final class Parser
      */
     private void parseSubprogramDecl() throws IOException
       {
-// ...   throw an internal error if the symbol is not one of procedureRW or functionRW
+// ...   throw an internal error if the symbol is not one of procRW or funRW
       }
 
     /**
@@ -485,11 +485,13 @@ public final class Parser
                 else
                   {
                     // make parsing decision using lookahead symbol
-// ...
+// ...   Big Hint: Read the book!
                   }
               }
             else if (symbol == Symbol.leftBrace)
                 parseCompoundStmt();
+            else if (symbol == Symbol.ifRW)
+                parseIfStmt();
 // ...
           }
         catch (ParserException e)

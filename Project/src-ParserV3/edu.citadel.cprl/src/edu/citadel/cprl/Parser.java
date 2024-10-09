@@ -1,9 +1,10 @@
 package edu.citadel.cprl;
 
-import edu.citadel.compiler.ErrorHandler;
-import edu.citadel.compiler.InternalCompilerException;
-import edu.citadel.compiler.ParserException;
 import edu.citadel.compiler.Position;
+import edu.citadel.compiler.ErrorHandler;
+import edu.citadel.compiler.ParserException;
+import edu.citadel.compiler.InternalCompilerException;
+
 import edu.citadel.cprl.ast.*;
 
 import java.io.IOException;
@@ -381,7 +382,7 @@ public final class Parser
         try
           {
 // ...
-            var numElements = parseIntConstValue();
+            var capacity = parseIntConstValue();
 // ...
           }
         catch (ParserException e)
@@ -477,7 +478,7 @@ public final class Parser
      */
     private SubprogramDecl parseSubprogramDecl() throws IOException
       {
-// ...   throw an internal error if the symbol is not one of procedureRW or functionRW
+// ...   throw an internal error if the symbol is not one of procRW or funRW
       }
 
     /**
@@ -613,11 +614,13 @@ public final class Parser
                 else
                   {
                     // make parsing decision using lookahead symbol
-// ...
+// ...   Big Hint: Read the book!
                   }
               }
             else if (symbol == Symbol.leftBrace)
                 stmt = parseCompoundStmt();
+            else if (symbol == Symbol.ifRW)
+                stmt = parseIfStmt();
 // ...
           }
         catch (ParserException e)
