@@ -1031,7 +1031,7 @@ public class CVM
         // pop bytes of data, storing in reverse order
         for (int i = length - 1; i >= 0; --i)
             memory[destAddr + i] = popByte();
-        popByte();   // remove destAddr from stack
+        popInt();   // remove destAddr from stack
       }
 
     private void storeByte()
