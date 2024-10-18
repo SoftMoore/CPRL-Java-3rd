@@ -200,7 +200,7 @@ Starting compilation for Incorrect_230.cprl
 *** Constraint error detected near line 4, character 13:
     Function "g" has not been declared.
 *** Constraint error detected near line 4, character 13:
-    Output supported only for integers, characters, booleans, and strings.
+    Output supported only for scalar types and strings.
 Errors detected in Incorrect_230.cprl -- compilation terminated.
 
 Starting compilation for Incorrect_231.cprl
