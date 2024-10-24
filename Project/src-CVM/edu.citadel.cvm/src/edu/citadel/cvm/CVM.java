@@ -7,13 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
- * This class implements a virtual machine for the programming language CPRL.
- * It interprets instructions for a hypothetical CPRL computer.
+ * This class implements a virtual machine for the programming language
+ * CPRL.  It interprets instructions for a hypothetical CPRL computer.
  */
 public class CVM
   {
-    private static final boolean DEBUG = false;
-    private static final String SUFFIX = ".obj";
+    private static final boolean DEBUG  = false;
+    private static final String  SUFFIX = ".obj";
 
     // exit return value for failure
     private static final int FAILURE = -1;
@@ -75,9 +75,9 @@ public class CVM
           }
 
         var filename = args[0];
-        var sourceFile = new File(filename);
+        var file = new File(filename);
 
-        if (!sourceFile.isFile())
+        if (!file.isFile())
           {
             // see if we can find the file by appending the suffix
             int index = filename.lastIndexOf('.');
@@ -85,9 +85,9 @@ public class CVM
             if (index < 0 || !filename.substring(index).equals(SUFFIX))
               {
                 filename  += SUFFIX;
-                sourceFile = new File(filename);
+                file = new File(filename);
 
-                if (!sourceFile.isFile())
+                if (!file.isFile())
                   {
                     System.err.println("*** File " + filename + " not found ***");
                     System.exit(FAILURE);
@@ -101,7 +101,7 @@ public class CVM
               }
           }
 
-        FileInputStream codeFile = new FileInputStream(sourceFile);
+        var codeFile = new FileInputStream(file);
         var cvm = new CVM(DEFAULT_MEMORY_SIZE);
         cvm.loadProgram(codeFile);
         cvm.run();
@@ -110,7 +110,7 @@ public class CVM
     /**
      * Construct a CPRL virtual machine with a given number of bytes of memory.
      *
-     * @param numOfBytes the number of bytes in memory of the virtual machine
+     * @param numOfBytes The number of bytes in memory of the virtual machine.
      */
     public CVM(int numOfBytes)
       {
@@ -123,7 +123,7 @@ public class CVM
     /**
      * Loads the program into memory.
      *
-     * @param codeFile the FileInputStream containing the object code
+     * @param codeFile The FileInputStream containing the object code.
      */
     public void loadProgram(FileInputStream codeFile)
       {
@@ -210,7 +210,6 @@ public class CVM
                 byte0 = memory[memAddr++];
                 byte1 = memory[memAddr++];
                 out.println(" " + ByteUtil.bytesToChar(byte0, byte1));
-
               }
             else if (opcode == Opcode.LDCSTR)
               {
@@ -294,79 +293,86 @@ public class CVM
         running = true;
         pc = 0;
 
-        while (running)
+        try
           {
-            if (DEBUG)
+            while (running)
               {
-                printRegisters();
-                printMemory();
-                pause();
-              }
+                if (DEBUG)
+                  {
+                    printRegisters();
+                    printMemory();
+                    pause();
+                  }
 
-            switch (Opcode.toOpcode(fetchByte()))
-              {
-                case ADD      -> add();
-                case BITAND   -> bitAnd();
-                case BITOR    -> bitOr();
-                case BITXOR   -> bitXor();
-                case BITNOT   -> bitNot();
-                case ALLOC    -> allocate();
-                case BR       -> branch();
-                case BE       -> branchEqual();
-                case BNE      -> branchNotEqual();
-                case BG       -> branchGreater();
-                case BGE      -> branchGreaterOrEqual();
-                case BL       -> branchLess();
-                case BLE      -> branchLessOrEqual();
-                case BZ       -> branchZero();
-                case BNZ      -> branchNonZero();
-                case BYTE2INT -> byteToInteger();
-                case CALL     -> call();
-                case DEC      -> decrement();
-                case DIV      -> divide();
-                case GETCH    -> getCh();
-                case GETINT   -> getInt();
-                case GETSTR   -> getString();
-                case HALT     -> halt();
-                case INC      -> increment();
-                case INT2BYTE -> intToByte();
-                case LDCB     -> loadConstByte();
-                case LDCB0    -> loadConstByteZero();
-                case LDCB1    -> loadConstByteOne();
-                case LDCCH    -> loadConstCh();
-                case LDCINT   -> loadConstInt();
-                case LDCINT0  -> loadConstIntZero();
-                case LDCINT1  -> loadConstIntOne();
-                case LDCSTR   -> loadConstStr();
-                case LDLADDR  -> loadLocalAddress();
-                case LDGADDR  -> loadGlobalAddress();
-                case LOAD     -> load();
-                case LOADB    -> loadByte();
-                case LOAD2B   -> load2Bytes();
-                case LOADW    -> loadWord();
-                case MOD      -> modulo();
-                case MUL      -> multiply();
-                case NEG      -> negate();
-                case NOT      -> not();
-                case PROC     -> procedure();
-                case PROGRAM  -> program();
-                case PUTBYTE  -> putByte();
-                case PUTCH    -> putChar();
-                case PUTEOL   -> putEOL();
-                case PUTINT   -> putInt();
-                case PUTSTR   -> putString();
-                case RET      -> returnInst();
-                case RET0     -> returnZero();
-                case RET4     -> returnFour();
-                case SHL      -> shl();
-                case SHR      -> shr();
-                case STORE    -> store();
-                case STOREB   -> storeByte();
-                case STORE2B  -> store2Bytes();
-                case STOREW   -> storeWord();
-                case SUB      -> subtract();
-                default       -> error("invalid machine instruction");
+                switch (Opcode.toOpcode(fetchByte()))
+                  {
+                    case ADD      -> add();
+                    case ALLOC    -> allocate();
+                    case BITAND   -> bitAnd();
+                    case BITOR    -> bitOr();
+                    case BITXOR   -> bitXor();
+                    case BITNOT   -> bitNot();
+                    case BR       -> branch();
+                    case BE       -> branchEqual();
+                    case BNE      -> branchNotEqual();
+                    case BG       -> branchGreater();
+                    case BGE      -> branchGreaterOrEqual();
+                    case BL       -> branchLess();
+                    case BLE      -> branchLessOrEqual();
+                    case BZ       -> branchZero();
+                    case BNZ      -> branchNonZero();
+                    case BYTE2INT -> byteToInteger();
+                    case CALL     -> call();
+                    case DEC      -> decrement();
+                    case DIV      -> divide();
+                    case GETCH    -> getCh();
+                    case GETINT   -> getInt();
+                    case GETSTR   -> getString();
+                    case HALT     -> halt();
+                    case INC      -> increment();
+                    case INT2BYTE -> intToByte();
+                    case LDCB     -> loadConstByte();
+                    case LDCB0    -> loadConstByteZero();
+                    case LDCB1    -> loadConstByteOne();
+                    case LDCCH    -> loadConstCh();
+                    case LDCINT   -> loadConstInt();
+                    case LDCINT0  -> loadConstIntZero();
+                    case LDCINT1  -> loadConstIntOne();
+                    case LDCSTR   -> loadConstStr();
+                    case LDLADDR  -> loadLocalAddress();
+                    case LDGADDR  -> loadGlobalAddress();
+                    case LOAD     -> load();
+                    case LOADB    -> loadByte();
+                    case LOAD2B   -> load2Bytes();
+                    case LOADW    -> loadWord();
+                    case MOD      -> modulo();
+                    case MUL      -> multiply();
+                    case NEG      -> negate();
+                    case NOT      -> not();
+                    case PROC     -> procedure();
+                    case PROGRAM  -> program();
+                    case PUTBYTE  -> putByte();
+                    case PUTCH    -> putChar();
+                    case PUTEOL   -> putEOL();
+                    case PUTINT   -> putInt();
+                    case PUTSTR   -> putString();
+                    case RET      -> returnInst();
+                    case RET0     -> returnZero();
+                    case RET4     -> returnFour();
+                    case SHL      -> shl();
+                    case SHR      -> shr();
+                    case STORE    -> store();
+                    case STOREB   -> storeByte();
+                    case STORE2B  -> store2Bytes();
+                    case STOREW   -> storeWord();
+                    case SUB      -> subtract();
+                    default       -> error("invalid machine instruction");
+                  }
               }
+          }
+        catch (Throwable t)
+          {
+            System.err.println("Virtual Machine Error: " + t.getMessage());
           }
       }
 
@@ -535,9 +541,9 @@ public class CVM
      * Writes the word value to the specified memory address.
      * Does not alter pc, sp, or bp.
      */
-    private void putWordToAddr(int value, int address)
+    private void putWordToAddr(int word, int address)
       {
-        putIntToAddr(value, address);
+        putIntToAddr(word, address);
       }
 
     // ----------------------------------------------------------------------
@@ -713,12 +719,12 @@ public class CVM
         try
           {
             int destAddr = popInt();
-            int ch = reader.read();
+            int n = reader.read();
 
-            if (ch == EOF)
+            if (n == EOF)
                 error("Invalid input: EOF");
 
-            putCharToAddr((char) ch, destAddr);
+            putCharToAddr((char) n, destAddr);
           }
         catch (IOException ex)
           {
@@ -755,6 +761,7 @@ public class CVM
 
             putIntToAddr(length, destAddr);
             destAddr = destAddr + Constants.BYTES_PER_INTEGER;
+
             for (int i = 0; i < length; ++i)
               {
                 putCharToAddr(data.charAt(i), destAddr);
@@ -784,11 +791,6 @@ public class CVM
         pushByte(ByteUtil.intToByte(n));
       }
 
-    /**
-     * Loads a multibyte variable onto the stack.  The number of bytes
-     * is an argument of the instruction, and the address of the
-     * variable is obtained by popping it off the top of the stack.
-     */
     private void load()
       {
         int length  = fetchInt();
@@ -858,10 +860,6 @@ public class CVM
         pushInt(sb + displacement);
       }
 
-    /**
-     * Loads a single byte onto the stack.  The address of the
-     * byte is obtained by popping it off the top of the stack.
-     */
     private void loadByte()
       {
         int  address = popInt();
@@ -869,10 +867,6 @@ public class CVM
         pushByte(b);
       }
 
-    /**
-     * Loads two bytes onto the stack.  The address of the first
-     * byte is obtained by popping it off the top of the stack.
-     */
     private void load2Bytes()
       {
         int  address = popInt();
@@ -882,10 +876,6 @@ public class CVM
         pushByte(b1);
       }
 
-    /**
-     * Loads a single word-size variable (four bytes) onto the stack.  The address
-     * of the variable is obtained by popping it off the top of the stack.
-     */
     private void loadWord()
       {
         int address = popInt();
@@ -916,11 +906,7 @@ public class CVM
     private void not()
       {
         byte operand = popByte();
-
-        if (operand == FALSE)
-            pushByte(TRUE);
-        else
-            pushByte(FALSE);
+        pushByte(operand == FALSE ? TRUE : FALSE);
       }
 
     private void procedure()
@@ -934,6 +920,7 @@ public class CVM
 
         bp = sb;
         sp = bp + varLength - 1;
+
         if (sp >= memory.length)
             error("*** Out of memory ***");
       }
@@ -965,7 +952,7 @@ public class CVM
         // number of bytes in the string
         int numBytes = Constants.BYTES_PER_INTEGER + capacity*Constants.BYTES_PER_CHAR;
 
-        int addr = sp - numBytes + 1;           // initialize to starting address of string
+        int addr = sp - numBytes + 1;   // starting address of string
         int strLength = getIntAtAddr(addr);
         addr = addr + Constants.BYTES_PER_INTEGER;
 
@@ -1031,6 +1018,7 @@ public class CVM
         // pop bytes of data, storing in reverse order
         for (int i = length - 1; i >= 0; --i)
             memory[destAddr + i] = popByte();
+
         popInt();   // remove destAddr from stack
       }
 
