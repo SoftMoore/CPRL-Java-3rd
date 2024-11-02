@@ -64,7 +64,7 @@ public class CVM
      * This method constructs a CPRL virtual machine, loads into memory the
      * byte code from the file specified by args[0], and runs the byte code.
      *
-     * @throws FileNotFoundException if the file specified in args[0] can't be found.
+     * @throws FileNotFoundException Thrown if the file specified in args[0] can't be found.
      */
     public static void main(String[] args) throws FileNotFoundException
       {
