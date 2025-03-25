@@ -1,5 +1,7 @@
 package edu.citadel.cprl.ast;
 
+import edu.citadel.compiler.CodeGenException;
+
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
@@ -14,5 +16,14 @@ public abstract class InitialDecl extends Declaration
     public InitialDecl(Token identifier, Type declType)
       {
         super(identifier, declType);
+      }
+
+    // Note: Many initial declarations do not require code generation.
+    // A default implementation is provided for convenience.
+
+    @Override
+    public void emit() throws CodeGenException
+      {
+        // nothing to emit for most initial declarations
       }
   }

@@ -1,5 +1,7 @@
 package edu.citadel.cprl.ast;
 
+import edu.citadel.compiler.CodeGenException;
+
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
@@ -58,5 +60,11 @@ public class FieldDecl extends Declaration
             && getType() != Type.none
             && getType() != Type.Address
             : "Invalid CPRL type in field declaration.";
+      }
+
+    @Override
+    public void emit() throws CodeGenException
+      {
+        // nothing to emit for field declarations
       }
   }

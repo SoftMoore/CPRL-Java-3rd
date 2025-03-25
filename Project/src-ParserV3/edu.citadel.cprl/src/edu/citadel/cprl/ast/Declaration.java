@@ -1,7 +1,7 @@
 package edu.citadel.cprl.ast;
 
-import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.Position;
+
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
@@ -23,7 +23,7 @@ public abstract class Declaration extends AST
       }
 
     /**
-     * Construct a declaration with its idToken token.  The type for the
+     * Construct a declaration with its identifier token.  The type for the
      * declaration is initialized to Type.none (e.g. for procedures).
      */
     public Declaration(Token idToken)
@@ -62,14 +62,5 @@ public abstract class Declaration extends AST
     public Position getPosition()
       {
         return idToken.getPosition();
-      }
-
-    // Note: Many declarations do not require code generation.
-    // A default implementation is provided for convenience.
-
-    @Override
-    public void emit() throws CodeGenException
-      {
-        // nothing to do for most declarations
       }
   }

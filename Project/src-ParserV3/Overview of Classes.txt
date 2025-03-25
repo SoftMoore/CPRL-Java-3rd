@@ -53,7 +53,7 @@ LogicalExpr.java
 OutputStmt.java
 ParameterDecl.java
 * ProcedureCallStmt.java
-  ProcedureDecl.java
+ProcedureDecl.java
 Program.java
 * ReadStmt.java
 * RecordTypeDecl.java

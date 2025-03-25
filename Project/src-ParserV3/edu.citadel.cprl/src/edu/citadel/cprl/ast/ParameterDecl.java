@@ -1,5 +1,7 @@
 package edu.citadel.cprl.ast;
 
+import edu.citadel.compiler.CodeGenException;
+
 import edu.citadel.cprl.ScopeLevel;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
@@ -24,9 +26,9 @@ public final class ParameterDecl extends Declaration implements VariableDecl
 
     /**
      * Returns the size (number of bytes) associated with this parameter
-     * declaration.  The size of a parameter declaration is the number of
-     * bytes associated with its type, except for variable parameters,
-     * whose size is the number of bytes of a memory address.
+     * declaration.  The size of a value parameter declaration is the number
+     * of bytes associated with its type.  For variable parameters, the
+     * size is the number of bytes needed for a memory address.
      */
     public int getSize()
       {
@@ -69,5 +71,11 @@ public final class ParameterDecl extends Declaration implements VariableDecl
       {
         assert getType() != null && getType() != Type.UNKNOWN && getType() != Type.none
             : "Invalid CPRL type in parameter declaration.";
+      }
+
+    @Override
+    public void emit() throws CodeGenException
+      {
+        // nothing to emit for parameter declarations
       }
   }
