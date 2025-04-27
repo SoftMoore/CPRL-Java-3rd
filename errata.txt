@@ -1,0 +1,96 @@
+Errata for the book republished in May 2024 and all previous versions.  See back
+of title page; look for a phrase like "Republished with minor revisions" followed
+by a date.  These changes will be made in a subsequent release of the book sometime
+around the middle of 2025.
+
+____________________________________________________________________
+
+
+Page 29, change
+   One such place is the rule for subprogramDecls, which always includes at least one subprogramDecl.
+      subprogramDecls = subprogramDecl { subprogramDecl } .
+to
+   One such place is the lexical rule for intLiteral, which always includes at least one digit.
+      intLiteral = digit { digit } .
+
+____________________________________________________________________
+
+
+Near the bottom of page 42, the rule for syntaxFactor is missing the grouping with parentheses
+plus a period at the end.
+Change
+   syntaxFactor = identifier | terminalSym
+                | "{" syntaxExpr "}" | "[" syntaxExpr "]"
+to
+   syntaxFactor = identifier | terminalSym
+                | "{" syntaxExpr "}" | "[" syntaxExpr "]" | "(" syntaxExpr ")" .
+
+____________________________________________________________________
+
+
+Pages 89, 118, and 293, change
+   subprogramDecls = subprogramDecl { subprogramDecl } .
+to
+   subprogramDecls = { subprogramDecl } .
+
+While it is true that a program requires at least one subprogram, procedure main(),
+it is simpler to parse the rule for zero or more subprogram declarations and then
+add a constraint in AST class Program to check for procedure main.
+
+___________________________________________________________________
+
+
+Page 92, change
+   As an aside, note that the structural grammar for CPRL uses “one or more” in only one rule.
+      subprogramDecls = subprogramDecl { subprogramDecl } .
+   Similarly, the lexical grammar for CPRL uses “one or more” in only three rules.
+to
+   As an aside, note that the structural grammar for CPRL does not use “one or more” in any
+   rules, and the lexical grammar for CPRL uses “one or more” in only one rule.
+
+___________________________________________________________________
+
+
+Near the bottom of page 135, change
+   number characters between the quotation marks.
+to
+   number of characters between the quotation marks.
+
+___________________________________________________________________
+
+
+Middle of page 139 and top of page 149
+
+In the rectangle for SingleVarDecl, change "PROGRAM" to "GLOBAL"
+
+___________________________________________________________________
+
+
+Top of page 140 in subsection ConstValue
+
+For the first constructor add this line at the end.
+   this.decl = null;
+
+For the second constructor add this line at the end.
+   this.decl = decl;
+
+___________________________________________________________________
+
+
+Page 150, in the bullet for OutputStmt, change
+   (Output is supported only scalar types and strings.)
+to
+   Output is supported only for scalar types and strings.
+
+Also on page 150, add the following constraint rule.
+
+•  Program
+   – Miscellaneous Rule: A program must contain a parameterless procedure named main().
+
+___________________________________________________________________
+
+
+Bottom of page 183, in method emit() for class AssignmentStmt, change
+   var.emit();
+to
+   variable.emit();
