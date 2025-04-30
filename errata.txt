@@ -22,8 +22,19 @@ Change
    syntaxFactor = identifier | terminalSym
                 | "{" syntaxExpr "}" | "[" syntaxExpr "]"
 to
-   syntaxFactor = identifier | terminalSym
-                | "{" syntaxExpr "}" | "[" syntaxExpr "]" | "(" syntaxExpr ")" .
+   syntaxFactor = identifier | terminalSym | "{" syntaxExpr "}"
+                | "[" syntaxExpr "]" | "(" syntaxExpr ")" .
+
+Also, delete the rule for escapedChar and change
+   terminalSym = "\"" { terminalChar | escapedChar } "\"" .
+to
+   terminalSym = "\"" { terminalChar | "\\" ( "\"" | "\\" ) } "\"" .
+
+____________________________________________________________________
+
+
+Near the top of page 43, delete the sentence
+    Similarly, escapedChar is defined to be ... or another backslash.
 
 ____________________________________________________________________
 
